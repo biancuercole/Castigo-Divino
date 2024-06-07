@@ -4,6 +4,7 @@ using UnityEngine;
 public class Bullets : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] public float damage;
 
     private Rigidbody2D bulletRb;
     private float destroyDelay = 2f;
@@ -18,9 +19,17 @@ public class Bullets : MonoBehaviour
         Destroy(gameObject, destroyDelay);
     }
 
-    private void OnCollisionEnter2D()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+        if (enemyHealth != null)
+        {
+            StartCoroutine(enemyHealth.GetDamage(damage));
+        }
+
+       
         Destroy(gameObject);
+
     }
 }
 
