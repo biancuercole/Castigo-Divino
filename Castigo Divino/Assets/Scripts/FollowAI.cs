@@ -10,22 +10,17 @@ public class FollowAI : MonoBehaviour
     [SerializeField] public float damage;
 
     private bool isFacingRight = true;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (Vector2.Distance(transform.position, player.position) > minDistance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime); 
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
 
-        bool isPlayerRight = transform.position.x < player.transform.position.x;
-        Flip(isPlayerRight);
+        //bool isPlayerRight = transform.position.x < player.transform.position.x;
+        //Flip(isPlayerRight);            
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
