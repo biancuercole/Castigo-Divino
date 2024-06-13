@@ -25,10 +25,10 @@ public class FollowAI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
-        if (enemyHealth != null)
+        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
         {
-            StartCoroutine(enemyHealth.GetDamage(damage));
+            StartCoroutine(playerHealth.GetDamage(damage));
         }
     }
 

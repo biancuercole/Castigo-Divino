@@ -314,6 +314,7 @@ MonoBehaviour:
   time: 1
   player: {fileID: 1957976470}
   minDistance: 5
+  damage: 30
 --- !u!1 &119936056
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,8 +805,8 @@ GameObject:
   - component: {fileID: 1957976468}
   - component: {fileID: 1957976467}
   - component: {fileID: 1957976471}
-  - component: {fileID: 1957976472}
   - component: {fileID: 1957976473}
+  - component: {fileID: 1957976474}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -936,19 +937,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5127848264444652930, guid: 63b3e5639f4a1a44989c8d627f37f7eb, type: 3}
   shootPosition: {fileID: 821919660}
   rotationSpeed: 7
---- !u!114 &1957976472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957976466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 30
 --- !u!61 &1957976473
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -994,6 +982,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &1957976474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957976466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10c4e577c0cd2c45985683ff52b63c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 30
+  indiceNivel: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

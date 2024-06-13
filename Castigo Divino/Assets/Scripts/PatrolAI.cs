@@ -9,6 +9,7 @@ public class PatrolAI : MonoBehaviour
     [SerializeField] private float time; 
     [SerializeField] private Transform player;
     [SerializeField] private float minDistance;
+    [SerializeField] public float damage;
 
     private bool followPlayer = false; 
     private bool isWaiting;
@@ -45,6 +46,15 @@ public class PatrolAI : MonoBehaviour
                 currentWaypoint = 0;
             }
             isWaiting = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            StartCoroutine(playerHealth.GetDamage(damage));
         }
     }
 }
