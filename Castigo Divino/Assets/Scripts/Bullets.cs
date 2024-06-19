@@ -23,12 +23,12 @@ public class Bullets : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Machine"))
+        /*if (collision.gameObject.CompareTag("Machine"))
         {
             Instantiate(powerUp, collision.transform.position, Quaternion.identity);
             // Destruir la máquina
             Destroy(collision.gameObject);
-        }
+        }*/
 
         EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
