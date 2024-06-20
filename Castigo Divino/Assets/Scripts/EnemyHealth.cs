@@ -7,10 +7,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float maxHealth; 
     private float health;
     private SpriteRenderer spriteRenderer;
+    private NextStage nextStage;
+
     void Start()
     {
         health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        nextStage = FindObjectOfType<NextStage>(); // Encuentra el objeto con el script NextStage
     }
 
     public IEnumerator GetDamage(float damage)
@@ -25,8 +28,8 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
+            nextStage.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
             Destroy(gameObject);
-       
         }
     }
 }
