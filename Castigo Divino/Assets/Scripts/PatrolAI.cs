@@ -10,7 +10,7 @@ public class EnemyPatroll : MonoBehaviour
     [SerializeField] private float time;
     [SerializeField] Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
-    [SerializeField] public float damage;
+    [SerializeField] public int damage;
 
     NavMeshAgent agent;
     private bool isWaiting;
@@ -87,7 +87,7 @@ public class EnemyPatroll : MonoBehaviour
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            StartCoroutine(playerHealth.GetDamage(damage));
+          playerHealth.GetDamage(damage);
         }
     }
 }

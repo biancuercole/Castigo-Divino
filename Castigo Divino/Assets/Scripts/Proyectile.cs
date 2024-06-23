@@ -6,7 +6,7 @@ using UnityEngine.WSA;
 public class Proyectile : MonoBehaviour
 {
     [SerializeField] private float speed;
-    [SerializeField] public float damage;
+    [SerializeField] public int damage;
     private Transform player; 
     private Rigidbody2D rb;
     void Start()
@@ -37,7 +37,7 @@ public class Proyectile : MonoBehaviour
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            StartCoroutine(playerHealth.GetDamage(damage));
+            playerHealth.GetDamage(damage);
         }
 
 

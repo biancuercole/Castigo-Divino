@@ -1,38 +1,68 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth; 
-    private float health;
-    private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
+
+    public int maxHealth;
+    private int health;
+
+    public UnityEvent<int> changeHealth;
+    private SpriteRenderer spriteRenderer;
+   
 
     void Start()
     {
         health = maxHealth;
+
+        changeHealth.Invoke(health);
+
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public IEnumerator GetDamage(float damage)
+    public void GetDamage(int damage)
     {
-        float damageDuration = 0.5f;
-        health -= damage;
-        if (health > 0)
+        
+        int temporaryHealth = health - damage;
+       
+
+        if (temporaryHealth < 0)
         {
-            spriteRenderer.color = Color.red;
-            yield return new WaitForSeconds(damageDuration);
-            spriteRenderer.color = Color.white;
+            health = 0;
         }
         else
         {
+            health = temporaryHealth;
+        }
+
+        changeHealth.Invoke(health);
+
+        if (temporaryHealth <= 0)
+        {
             passLevel(indiceNivel);
-       
         }
     }
+
+    public void HealHealth(int healAmount)
+    {
+        int temporaryHealth = health + healAmount;
+
+        if (temporaryHealth > maxHealth)
+        {
+            health = maxHealth;
+        }
+        else
+        {
+            health = temporaryHealth;
+        }
+
+        changeHealth.Invoke(health);
+    }
+
 
     private void passLevel(int indice)
     {
