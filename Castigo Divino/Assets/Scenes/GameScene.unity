@@ -1367,6 +1367,7 @@ GameObject:
   - component: {fileID: 1021036607}
   - component: {fileID: 1021036606}
   - component: {fileID: 1021036611}
+  - component: {fileID: 1021036612}
   m_Layer: 0
   m_Name: Shrine
   m_TagString: Untagged
@@ -1429,9 +1430,9 @@ Rigidbody2D:
   m_GameObject: {fileID: 1021036605}
   m_BodyType: 0
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -1445,7 +1446,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!212 &1021036608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1525,8 +1526,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4506aa193d92f6c4e833280323fadaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
-  indiceNivel: 0
+  maxHealth: 80
+  indiceNivel: 2
+--- !u!114 &1021036612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021036605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!1 &1051930400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,7 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 6074909217324962438, guid: 459996db4104e764f8dc77f5e0e662c3, type: 3}
-  timeBetweenShoots: 1
+  timeBetweenShoots: 5
 --- !u!1 &1165152420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2987,7 +3004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b938aa65fd2deb419d9083cec705e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 2
+  enemyCount: 4
 --- !u!1 &1904670209
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,7 +3158,7 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 68.7, y: -1.4, z: 0}
+  m_LocalPosition: {x: -44.3, y: -8.1, z: 0}
   m_LocalScale: {x: 1.3533074, y: 2.066118, z: 4.132236}
   m_ConstrainProportionsScale: 0
   m_Children:

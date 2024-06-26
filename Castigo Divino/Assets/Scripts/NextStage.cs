@@ -8,8 +8,6 @@ public class NextStage : MonoBehaviour
 
     private void Start()
     {
-        // Inicializar enemyCount con el número total de enemigos en la escena al inicio
-        enemyCount = FindObjectsOfType<EnemyHealth>().Length;
     }
 
     // Método para reducir el contador de enemigos
