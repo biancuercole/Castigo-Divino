@@ -20,7 +20,7 @@ public class ShrineHealth : MonoBehaviour
 
     public IEnumerator GetDamage(float damage)
     {
-        Debug.Log("Recibiendo daño: " + damage);
+        Debug.Log("Recibiendo daï¿½o: " + damage);
         float damageDuration = 0.1f;
         health -= damage;
         if (health > 0)
@@ -32,6 +32,7 @@ public class ShrineHealth : MonoBehaviour
         else
         {
             Debug.Log("Santuario destruido.");
+            SceneManager.LoadScene(indiceNivel);
             
         }
 
