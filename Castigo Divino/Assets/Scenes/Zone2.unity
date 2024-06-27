@@ -1560,7 +1560,7 @@ MonoBehaviour:
   healthPlayer: {fileID: 1006612219}
   indexActual: 0
   heartFull: {fileID: 21300000, guid: 3712eb4dc39562247b378e9d73e2e20e, type: 3}
-  heartEmpty: {fileID: 0}
+  heartEmpty: {fileID: 21300000, guid: ccf98cdea5ec404419534c895cb6f299, type: 3}
 --- !u!114 &1756540414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,7 +1719,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: aac33d57b1e43e34aabf39c7ef5a71b9, type: 3}
-  m_Color: {r: 0.8679245, g: 0.09266879, b: 0.061409745, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
