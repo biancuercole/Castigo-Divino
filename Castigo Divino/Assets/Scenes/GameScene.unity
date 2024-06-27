@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
-  timeBetweenShoots: 5
+  timeBetweenShoots: 7
 --- !u!212 &119936058
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ Transform:
   m_GameObject: {fileID: 194777271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.3, y: 13.3, z: 0.13325137}
+  m_LocalPosition: {x: 14.3, y: 13.81, z: 0.13325137}
   m_LocalScale: {x: 1, y: 6.35264, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1957976470}
-  enemyCount: 1
+  enemyCount: 3
   levelIndex: 3
 --- !u!61 &194777277
 BoxCollider2D:
@@ -769,7 +769,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10747,7 +10747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
-  timeBetweenShoots: 5
+  timeBetweenShoots: 7
 --- !u!212 &1403292864
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11047,8 +11047,8 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.5, y: 11.4, z: 0}
-  m_LocalScale: {x: 1.3533074, y: 2.066118, z: 4.132236}
+  m_LocalPosition: {x: -49.34, y: 11.67, z: 0}
+  m_LocalScale: {x: 1.126033, y: 1.7191341, z: 3.4382682}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 821919660}
