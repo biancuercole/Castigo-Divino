@@ -26,7 +26,6 @@ public class Bullets : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Machine"))
         {
-            Instantiate(Coin, collision.transform.position, Quaternion.identity);
             // Destruir la máquina
             Destroy(collision.gameObject);
         }
@@ -36,7 +35,7 @@ public class Bullets : MonoBehaviour
         {
             enemyHealth.TakeDamage(damage); // Llama al método TakeDamage
         }
-        
+
         Destroy(gameObject);
     }
 }
