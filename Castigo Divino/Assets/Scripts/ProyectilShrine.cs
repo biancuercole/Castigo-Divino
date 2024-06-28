@@ -5,6 +5,7 @@ public class ProyectileShrine : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public int damage;
+    [SerializeField] private TrailRenderer trail;
     private  GameObject shrine; 
     private Rigidbody2D rb;
 
@@ -19,6 +20,7 @@ public class ProyectileShrine : MonoBehaviour
     {
         Vector2 directionToShrine = (shrine.transform.position - transform.position).normalized;
         rb.velocity = directionToShrine * speed;
+        trail.emitting = true;
         StartCoroutine(DestroyProjectile());
     }
 

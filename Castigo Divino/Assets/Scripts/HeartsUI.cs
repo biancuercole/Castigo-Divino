@@ -59,7 +59,7 @@ public class HeartsUI : MonoBehaviour
     
     public void takeHeart(int health)
     {
-        for (int i = indexActual; i >= health ; i--)
+        for (int i = indexActual; i >= health; i--)
         {
             indexActual = i;
             listHearts [indexActual].sprite = heartEmpty; 
@@ -68,7 +68,7 @@ public class HeartsUI : MonoBehaviour
 
     public void giveHeart(int health)
     {
-        for (int i = indexActual; i >= health; i++)
+        for (int i = indexActual; i < health; i++)
         {
             indexActual = i;
             listHearts [indexActual].sprite = heartFull;

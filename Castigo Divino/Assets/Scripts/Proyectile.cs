@@ -7,6 +7,8 @@ public class Proyectile : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public int damage;
+    [SerializeField] private TrailRenderer trail;
+
     private Transform player; 
     private Rigidbody2D rb;
     void Start()
@@ -22,6 +24,7 @@ public class Proyectile : MonoBehaviour
     {
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
         rb.velocity = directionToPlayer * speed;
+        trail.emitting = true;
         StartCoroutine(DestroyProjectile());
     }
 

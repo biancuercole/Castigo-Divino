@@ -28,7 +28,9 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
+            GetComponent<LootBag>().InstantiateLoot(transform.position);
             nextStage.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
+           
             Destroy(gameObject);
         }
     }

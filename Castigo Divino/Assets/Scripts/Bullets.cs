@@ -6,6 +6,7 @@ public class Bullets : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] public float damage;
     [SerializeField] private GameObject Coin;
+    [SerializeField] private TrailRenderer trail;
 
     private Rigidbody2D bulletRb;
     private float destroyDelay = 2f;
@@ -18,6 +19,7 @@ public class Bullets : MonoBehaviour
     {
         bulletRb.velocity = direction * speed;
         Destroy(gameObject, destroyDelay);
+        trail.emitting = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
