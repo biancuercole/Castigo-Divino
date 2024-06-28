@@ -3,7 +3,6 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
     [SerializeField] private Bullets bulletPrefab;
-    [SerializeField] private Transform shootPosition;
     [SerializeField] private float rotationSpeed;
     private Camera cam;
     void Start()
@@ -20,7 +19,7 @@ public class Rotation : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Bullets bullet = Instantiate(bulletPrefab, shootPosition.position, transform.rotation);
+            Bullets bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bullet.LaunchBullet(transform.up);
         }
     }

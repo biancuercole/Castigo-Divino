@@ -1,60 +1,96 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
-public class PatrolAI : MonoBehaviour
+public class EnemyPatroll : MonoBehaviour
 {
-    [SerializeField] private Transform[] WayPoints;
-    [SerializeField] private float speed;
-    [SerializeField] private float time; 
-    [SerializeField] private Transform player;
-    [SerializeField] private float minDistance;
-    [SerializeField] public float damage;
+    [SerializeField] Transform target; 
+    [SerializeField] private float minDistance; 
+    [SerializeField] private float speed; //velocidad para persecución
+    [SerializeField] private float time;
+    [SerializeField] Transform[] WayPoints;
+    [SerializeField] private int currentWaypoint;
+    [SerializeField] public int damage;
 
-    private bool followPlayer = false; 
+    NavMeshAgent agent;
     private bool isWaiting;
-    private int currentWaypoint;
+    private bool isFollowing; 
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        isWaiting = false;
+        isFollowing = false;
+        agent.SetDestination(WayPoints[currentWaypoint].position);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) < minDistance)
+        float distanceToTarget = Vector2.Distance(transform.position, target.position);
+        
+        if (distanceToTarget < minDistance)
         {
-            followPlayer = true; 
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        }else
-        {
-            followPlayer = false;
+            isFollowing = true;
+            agent.SetDestination(target.position);
         }
-
-        if(transform.position != WayPoints[currentWaypoint].position && !followPlayer)
+        else
         {
-            transform.position = Vector2.MoveTowards(transform.position, WayPoints[currentWaypoint].position, speed * Time.deltaTime);
-        }
-        else if (!isWaiting)
-        {
-            StartCoroutine(Wait());
-        }
-
-        IEnumerator Wait()
-        {
-            isWaiting = true;
-            yield return new WaitForSeconds(time);
-            currentWaypoint++;
-            if(currentWaypoint == WayPoints.Length)
+            if (isFollowing)
             {
-                currentWaypoint = 0;
+                // Si estaba siguiendo al jugador y ahora se alejó, volver al waypoint
+                isFollowing = false;
+                agent.SetDestination(WayPoints[currentWaypoint].position);
             }
-            isWaiting = false;
+
+            // Patrullar waypoints
+            if (!isWaiting && agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+            {
+                StartCoroutine(Wait());
+            }
+        }
+        
+        if (agent.velocity.x < 0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else if (agent.velocity.x > -0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    IEnumerator Wait()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(time);
+        
+        // Solo cambiar al siguiente waypoint si no está siguiendo al jugador
+        if (!isFollowing)
+        {
+            currentWaypoint++;
+            if (currentWaypoint == WayPoints.Length)
+            {
+                currentWaypoint = 0;
+            }
+            agent.SetDestination(WayPoints[currentWaypoint].position);
+        }
+
+        isWaiting = false;
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            StartCoroutine(playerHealth.GetDamage(damage));
+          playerHealth.GetDamage(damage);
         }
     }
 }
+
+
+
