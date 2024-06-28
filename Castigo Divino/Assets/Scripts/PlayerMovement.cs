@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     bool isDashing;
     bool canDash;
 
+    public bool IsFacingRight { get; private set; } = true; // Property to check facing direction
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -41,10 +43,12 @@ public class PlayerMovement : MonoBehaviour
         if (mousePosition.x < transform.position.x)
         {
             transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+            IsFacingRight = false;
         }
         else
         {
             transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
+            IsFacingRight = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && canDash)
