@@ -36,15 +36,18 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
 
-        if (moveX != 0)
+        // Detect mouse position relative to player position
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePosition.x < transform.position.x)
         {
-            // Flip the character by modifying the X scale
-            transform.localScale = new Vector3(originalScale.x * (moveX > 0 ? -1 : 1), originalScale.y, originalScale.z);
+            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
         }
 
-        Input.GetMouseButtonDown(0);
-
-        if (Input.GetKeyDown(KeyCode.Space)&& canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && canDash)
         {
             StartCoroutine(Dash());
         }

@@ -53,6 +53,15 @@ public class ShootAI : MonoBehaviour
         {
             StartCoroutine(Wait()); //cuando está en un waypoint
         }
+
+        if (agent.velocity.x < 0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else if (agent.velocity.x > -0.1f)
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
     }
 
     IEnumerator Wait()
