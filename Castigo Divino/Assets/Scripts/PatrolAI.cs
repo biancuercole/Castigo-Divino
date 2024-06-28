@@ -16,7 +16,6 @@ public class EnemyPatroll : MonoBehaviour
     private bool isWaiting;
     private bool isFollowing; 
 
-    // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -27,7 +26,6 @@ public class EnemyPatroll : MonoBehaviour
         agent.SetDestination(WayPoints[currentWaypoint].position);
     }
 
-    // Update is called once per frame
     void Update()
     {
         float distanceToTarget = Vector2.Distance(transform.position, target.position);

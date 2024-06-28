@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
     bool isDashing;
     bool canDash;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -25,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isDashing)

@@ -1,14 +1,30 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ShootAI : MonoBehaviour
 {
     [SerializeField] private GameObject proyectilePrefab;
     [SerializeField] private Transform player;
     [SerializeField] private float shootDistance = 10f;
+    [SerializeField] private Transform[] WayPoints;
+    [SerializeField] private int currentWaypoint;
+    [SerializeField] private float waitTime;
 
-    private bool isShooting;
-    private bool inRange;
+    NavMeshAgent agent;
+    private bool isShooting; //disparo
+    private bool inRange; //disparo
+    private bool isPatrolling; //patrullaje waypoints
+    private bool isWaiting; //espera waypoints
+
+    void Start()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+        isWaiting = false;
+        agent.SetDestination(WayPoints[currentWaypoint].position); //va al waypoint 1
+    } 
 
     void Update()
     {
@@ -19,13 +35,43 @@ public class ShootAI : MonoBehaviour
             {
                 isShooting = true;
                 inRange = true;
-                StartCoroutine(Shoot());
+                agent.isStopped = true;
+                StartCoroutine(Shoot()); //cuando el jugador se acerca, dispara
+            }
+        } else
+        {
+            if(inRange)
+            {
+                inRange = false;
+                isShooting = false;
+                agent.isStopped = false;
+                agent.SetDestination(WayPoints[currentWaypoint].position);
             }
         }
-        else
+
+        if(!isWaiting && agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {
-            inRange = false;
+            StartCoroutine(Wait()); //cuando está en un waypoint
         }
+    }
+
+    IEnumerator Wait()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(waitTime);
+        
+        // Solo cambiar al siguiente waypoint si no está siguiendo al jugador
+        if (!isShooting)
+        {
+            currentWaypoint++;
+            if (currentWaypoint == WayPoints.Length)
+            {
+                currentWaypoint = 0;
+            }
+            agent.SetDestination(WayPoints[currentWaypoint].position);
+        }
+
+        isWaiting = false;
     }
 
     IEnumerator Shoot()

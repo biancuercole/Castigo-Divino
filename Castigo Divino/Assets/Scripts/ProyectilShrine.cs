@@ -42,7 +42,7 @@ public class ProyectileShrine : MonoBehaviour
             }
             else
             {
-                Debug.Log("No se encontró ShrineHealth en " + collision.gameObject.name);
+                Debug.Log("No se encontrï¿½ ShrineHealth en " + collision.gameObject.name);
             }
        
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
@@ -50,8 +50,6 @@ public class ProyectileShrine : MonoBehaviour
             {
                playerHealth.GetDamage(damage);
             }
-
-
 
             Destroy(gameObject);
     }

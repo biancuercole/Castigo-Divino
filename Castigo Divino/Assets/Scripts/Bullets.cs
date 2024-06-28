@@ -36,7 +36,7 @@ public class Bullets : MonoBehaviour
         {
             enemyHealth.TakeDamage(damage); // Llama al método TakeDamage
         }
-       
+        
         Destroy(gameObject);
     }
 }
