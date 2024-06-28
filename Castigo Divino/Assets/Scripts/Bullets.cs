@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class Bullets : MonoBehaviour
@@ -10,6 +9,7 @@ public class Bullets : MonoBehaviour
 
     private Rigidbody2D bulletRb;
     private float destroyDelay = 2f;
+
     private void Awake()
     {
         bulletRb = GetComponent<Rigidbody2D>();
@@ -24,7 +24,6 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag("Machine"))
         {
             Instantiate(Coin, collision.transform.position, Quaternion.identity);
@@ -35,11 +34,10 @@ public class Bullets : MonoBehaviour
         EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            StartCoroutine(enemyHealth.GetDamage(damage));
+            enemyHealth.TakeDamage(damage); // Llama al método TakeDamage
         }
        
         Destroy(gameObject);
-
     }
 }
 
