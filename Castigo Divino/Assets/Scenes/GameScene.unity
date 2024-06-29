@@ -10487,8 +10487,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 821919659}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.17, y: 0.303, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.1699998, y: 0.3030005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10507,7 +10507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5127848264444652930, guid: 63b3e5639f4a1a44989c8d627f37f7eb, type: 3}
-  rotationSpeed: 5
+  rotationSpeed: 3
 --- !u!1 &916125688
 GameObject:
   m_ObjectHideFlags: 0
@@ -11725,6 +11725,10 @@ MonoBehaviour:
   dashSpeed: 22
   dashDuration: 0.3
   dashCoolDown: 1
+  defaultSprite: {fileID: 21300000, guid: 8dd53b67d3c9ef349b45cbfba857c066, type: 3}
+  backSprite: {fileID: 21300000, guid: 86e35d1cb884f7e448615fba3ef7c684, type: 3}
+  sidesSprite: {fileID: 21300000, guid: 08f921ed6cb0e6d4484d0314e48c3b76, type: 3}
+  sidesSprites: {fileID: 21300000, guid: 23f9e0a66216ad54f94de1216746e320, type: 3}
 --- !u!212 &1957976468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11766,7 +11770,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1db42d1f69b01ce4cabb3c4e85551156, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08f921ed6cb0e6d4484d0314e48c3b76, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11813,8 +11817,8 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.39, y: 45.31, z: 0}
-  m_LocalScale: {x: 1.2753448, y: 1.9470912, z: 3.8941824}
+  m_LocalPosition: {x: -42.72, y: 45.2754, z: 0}
+  m_LocalScale: {x: 1.6096127, y: 1.8497367, z: 3.8941824}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 821919660}
