@@ -17,13 +17,18 @@ public class Bullets : MonoBehaviour
 
     public void LaunchBullet(Vector2 direction)
     {
-        bulletRb.velocity = direction * speed;
+        bulletRb.velocity = direction  * speed;
         Destroy(gameObject, destroyDelay);
         trail.emitting = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Machine"))
         {
             // Destruir la máquina

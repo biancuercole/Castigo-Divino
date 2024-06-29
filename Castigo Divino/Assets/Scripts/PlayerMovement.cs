@@ -9,8 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector3 originalScale;
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer GunSpriteRenderer;
 
-    [Header("Dash Settings")]
+   [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
     [SerializeField] float dashCoolDown = 0.7f;
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Sprite backSprite; // Sprite "sin brazos atras"
     [SerializeField] private Sprite sidesSprite;
     [SerializeField] private Sprite sidesSprites;
+
+    [SerializeField] private GameObject Gun; 
 
     bool isDashing;
     bool canDash;
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         originalScale = transform.localScale;
         spriteRenderer = GetComponent<SpriteRenderer>(); // Inicializar el SpriteRenderer
+        GunSpriteRenderer = Gun.GetComponent<SpriteRenderer>();
         canDash = true;
     }
 
@@ -50,18 +54,26 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             spriteRenderer.sprite = backSprite;
+
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             spriteRenderer.sprite = sidesSprite;
+
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             spriteRenderer.sprite = sidesSprites;
+
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
         else
         {
             spriteRenderer.sprite = defaultSprite;
+
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
 
         // Detectar posición del ratón relativa a la posición del jugador
