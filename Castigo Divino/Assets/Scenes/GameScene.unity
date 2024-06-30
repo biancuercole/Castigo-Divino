@@ -11177,7 +11177,7 @@ MonoBehaviour:
   Player: {fileID: 1957976470}
   enemyCount: 5
   levelIndex: 3
-  closedSprite: {fileID: 21300000, guid: ab9995fe94b5df548b3ee22e4e1e2ee3, type: 3}
+  closedSprite: {fileID: 21300000, guid: bf5a64693e7560849911851963815b8c, type: 3}
   openSprite: {fileID: 21300000, guid: 5b49333067d9cff498ed97b2c70c9721, type: 3}
 --- !u!61 &1423538286
 BoxCollider2D:
@@ -11280,7 +11280,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ab9995fe94b5df548b3ee22e4e1e2ee3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11289,7 +11289,7 @@ SpriteRenderer:
   m_Size: {x: 0.72, y: 8.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1423538289
