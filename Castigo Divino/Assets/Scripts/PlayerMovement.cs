@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
+    private Animator playerAnimator;
     private Vector3 originalScale;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer GunSpriteRenderer;
@@ -16,23 +17,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashDuration = 0.25f;
     [SerializeField] float dashCoolDown = 0.7f;
 
-    [Header("Sprites")]
+    /*[Header("Sprites")]
     [SerializeField] private Sprite defaultSprite; // Sprite por defecto
     [SerializeField] private Sprite backSprite; // Sprite "sin brazos atras"
     [SerializeField] private Sprite sidesSprite;
-    [SerializeField] private Sprite sidesSprites;
+    [SerializeField] private Sprite sidesSprites;*/
 
     [SerializeField] private GameObject Gun; 
 
     bool isDashing;
     bool canDash;
 
-    public bool IsFacingRight { get; private set; } = true; // Property to check facing direction
+    //public bool IsFacingRight { get; private set; } = true; // Property to check facing direction
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
-        originalScale = transform.localScale;
+        playerAnimator = GetComponent<Animator>();
+        //originalScale = transform.localScale;
         spriteRenderer = GetComponent<SpriteRenderer>(); // Inicializar el SpriteRenderer
         GunSpriteRenderer = Gun.GetComponent<SpriteRenderer>();
         canDash = true;
@@ -40,38 +42,42 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (isDashing)
-        {
-            return;
-        }
-
         //inputs
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
 
+        playerAnimator.SetFloat("Horizontal", moveX);
+        playerAnimator.SetFloat("Vertical", moveY);
+        playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+
+        if (isDashing)
+        {
+            return;
+        }
+
         // Cambiar sprite si se presiona la tecla "arriba" o "W"
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            spriteRenderer.sprite = backSprite;
+            //spriteRenderer.sprite = backSprite;
 
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
-            spriteRenderer.sprite = sidesSprite;
+            //spriteRenderer.sprite = sidesSprite;
 
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
-            spriteRenderer.sprite = sidesSprites;
+            //spriteRenderer.sprite = sidesSprites;
 
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
         else
         {
-            spriteRenderer.sprite = defaultSprite;
+            //spriteRenderer.sprite = defaultSprite;
 
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
