@@ -18,7 +18,10 @@ public class NextStage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D Player)
     {
+        if(enemyCount == 0)
+        {
         changeLevel(levelIndex);
+        }
     }
 
     public void changeLevel(int levelIndex)

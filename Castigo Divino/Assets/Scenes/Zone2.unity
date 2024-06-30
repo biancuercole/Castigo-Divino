@@ -317,7 +317,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.5738, y: -15.7719, z: 0.13325137}
-  m_LocalScale: {x: 0.5510974, y: 0.6057028, z: 1}
+  m_LocalScale: {x: 2.5287657, y: 2.779328, z: 4.5886}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133504715}
@@ -1737,6 +1737,7 @@ GameObject:
   - component: {fileID: 1916445831}
   - component: {fileID: 1916445830}
   - component: {fileID: 1916445829}
+  - component: {fileID: 1916445835}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1822,10 +1823,6 @@ MonoBehaviour:
   dashSpeed: 22
   dashDuration: 0.3
   dashCoolDown: 1
-  defaultSprite: {fileID: 21300000, guid: 8dd53b67d3c9ef349b45cbfba857c066, type: 3}
-  backSprite: {fileID: 21300000, guid: 86e35d1cb884f7e448615fba3ef7c684, type: 3}
-  sidesSprite: {fileID: 21300000, guid: 08f921ed6cb0e6d4484d0314e48c3b76, type: 3}
-  sidesSprites: {fileID: 21300000, guid: 23f9e0a66216ad54f94de1216746e320, type: 3}
   Gun: {fileID: 1466601123}
 --- !u!212 &1916445832
 SpriteRenderer:
@@ -1922,6 +1919,27 @@ Transform:
   - {fileID: 1466601126}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1916445835
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916445828}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d68911b886a90114c913ac3ea8288962, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2114145784
 GameObject:
   m_ObjectHideFlags: 0
