@@ -24,6 +24,14 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.gameObject.CompareTag("Proyectil"))
+        {
+            // Ignorar colisión con objetos que tengan el tag "bala"
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            return;
+        }
+
         if (collision.gameObject.CompareTag("Player"))
         {
             return;

@@ -7,6 +7,8 @@ TagManager:
   - Machine
   - Shrine
   - EnemyShrine
+  - Bala
+  - Proyectil
   layers:
   - Default
   - TransparentFX

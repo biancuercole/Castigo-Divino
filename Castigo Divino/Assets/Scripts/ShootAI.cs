@@ -89,7 +89,7 @@ public class ShootAI : MonoBehaviour
         {
             Debug.Log("Shooting at target...");
             Instantiate(proyectilePrefab, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
         }
         isShooting = false;
     }
