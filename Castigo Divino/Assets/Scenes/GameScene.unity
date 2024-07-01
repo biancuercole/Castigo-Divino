@@ -12822,7 +12822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 1957976470}
   enemyCount: 7
-  levelIndex: 3
+  levelIndex: 4
   closedSprite: {fileID: 21300000, guid: bf5a64693e7560849911851963815b8c, type: 3}
   openSprite: {fileID: 21300000, guid: 5b49333067d9cff498ed97b2c70c9721, type: 3}
 --- !u!61 &1423538286
@@ -14051,7 +14051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10c4e577c0cd2c45985683ff52b63c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indiceNivel: 2
+  indiceNivel: 3
   maxHealth: 4
   changeHealth:
     m_PersistentCalls:
