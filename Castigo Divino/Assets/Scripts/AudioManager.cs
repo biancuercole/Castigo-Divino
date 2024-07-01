@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip cinematic;
     public AudioClip shot;
     public AudioClip enemyDeath;
+    public AudioClip victory;
+    public AudioClip gameOver;
 
     private void Start()
     {
@@ -37,11 +39,17 @@ public class AudioManager : MonoBehaviour
             case "Cinematics":
                 musicSource.clip = cinematic;
                 break;
-            default:
-                musicSource.clip = background; // Música por defecto
+            case "Victory":
+                soundSource.clip = victory;
                 break;
+            case "GameOver":
+                soundSource.clip = gameOver;
+                break;
+            /*default:
+                musicSource.clip = background; // Música por defecto
+                break;*/
         }
-
+        soundSource.Play();
         musicSource.Play();
     }
 

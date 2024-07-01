@@ -981,7 +981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1916445834}
-  shootDistance: 10
+  shootDistance: 15
   WayPoints:
   - {fileID: 536716561}
   - {fileID: 516014698}
@@ -1092,8 +1092,12 @@ MonoBehaviour:
   musicSource: {fileID: 1741241727}
   soundSource: {fileID: 996397534}
   background: {fileID: 8300000, guid: e561a59382a76cd49845f12dc08d1b5c, type: 3}
+  background2: {fileID: 8300000, guid: 3b4a4668101390e4c8b531b85d8774af, type: 3}
+  cinematic: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
   shot: {fileID: 8300000, guid: aa2798b6500864145896b48b69413669, type: 3}
   enemyDeath: {fileID: 8300000, guid: 3c04fcbdd388d4c489cec7169acac52d, type: 3}
+  victory: {fileID: 8300000, guid: acd479117fca73a4faeaea1517202f7d, type: 3}
+  gameOver: {fileID: 8300000, guid: b1b6fb3d3668f06498997f1e9150c7f9, type: 3}
 --- !u!4 &669272023
 Transform:
   m_ObjectHideFlags: 0
@@ -10646,7 +10650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1916445834}
-  shootDistance: 10
+  shootDistance: 15
   WayPoints:
   - {fileID: 2114145785}
   - {fileID: 40421173}
