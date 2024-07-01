@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 8
 --- !u!61 &55028965
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1631,7 +1631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 8
 --- !u!114 &338353986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11656,7 +11656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 8
 --- !u!114 &981309041
 MonoBehaviour:
   m_ObjectHideFlags: 0

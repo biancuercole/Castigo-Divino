@@ -1597,7 +1597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 6
 --- !u!61 &888583975
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1858,7 +1858,8 @@ Transform:
   m_LocalPosition: {x: -48.1, y: -6.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1081948009}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &900376819
@@ -2087,7 +2088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 6
 --- !u!61 &1024763008
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2509,12 +2510,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081948006}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.2, y: -6, z: -0.11223351}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.10000229, y: 0.3000002, z: 9.887767}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 900376818}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1171989130
 GameObject:
@@ -2761,8 +2762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4506aa193d92f6c4e833280323fadaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 80
-  indiceNivel: 2
+  maxHealth: 10
+  indiceNivel: 3
 --- !u!61 &1257774750
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2795,7 +2796,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.39020634, y: -0.06755197}
+  m_Offset: {x: 0.27551883, y: -0.19744474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2806,7 +2807,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.4564104, y: 2.5508072}
+  m_Size: {x: 1.3707005, y: 1.8363966}
   m_EdgeRadius: 0
 --- !u!50 &1257774751
 Rigidbody2D:
@@ -10576,7 +10577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 6
 --- !u!61 &1795864443
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11361,4 +11362,3 @@ SceneRoots:
   - {fileID: 942967589}
   - {fileID: 313543606}
   - {fileID: 2110615098}
-  - {fileID: 1081948009}

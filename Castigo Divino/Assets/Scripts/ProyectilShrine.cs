@@ -32,25 +32,24 @@ public class ProyectileShrine : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-       
-            ShrineHealth shrineHealth = collision.gameObject.GetComponent<ShrineHealth>();
-            if (shrineHealth != null)
-            {
-                Debug.Log("Se llama a GetDamage en " + collision.gameObject.name);
-                StartCoroutine(shrineHealth.GetDamage(damage));
-            }
-            else
-            {
-                Debug.Log("No se encontr� ShrineHealth en " + collision.gameObject.name);
-            }
-       
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-               playerHealth.GetDamage(damage);
-            }
+    { 
+        ShrineHealth shrineHealth = collision.gameObject.GetComponent<ShrineHealth>();
+        if (shrineHealth != null)
+        {
+            Debug.Log("Se llama a GetDamage en " + collision.gameObject.name);
+            StartCoroutine(shrineHealth.GetDamage(damage));
+        }
+        else
+        {
+            Debug.Log("No se encontr� ShrineHealth en " + collision.gameObject.name);
+        }
+    
+        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.GetDamage(damage);
+        }
 
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
