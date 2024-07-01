@@ -446,6 +446,8 @@ MonoBehaviour:
   cinematic: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
   shot: {fileID: 8300000, guid: aa2798b6500864145896b48b69413669, type: 3}
   enemyDeath: {fileID: 8300000, guid: 3c04fcbdd388d4c489cec7169acac52d, type: 3}
+  victory: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!4 &433240915
 Transform:
   m_ObjectHideFlags: 0
@@ -540,7 +542,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0

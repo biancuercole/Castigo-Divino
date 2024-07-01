@@ -13207,7 +13207,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.09, y: 0.09, z: 7.9776316}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.5191, y: 3.5191, z: 3.5191}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 295403467}
@@ -13253,7 +13253,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 4a2a0545e2e9e2243b8d99354602a126, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6aaef168ee5a895479921fdf0c846096, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -13814,6 +13814,8 @@ MonoBehaviour:
   cinematic: {fileID: 0}
   shot: {fileID: 8300000, guid: aa2798b6500864145896b48b69413669, type: 3}
   enemyDeath: {fileID: 8300000, guid: 3c04fcbdd388d4c489cec7169acac52d, type: 3}
+  victory: {fileID: 0}
+  gameOver: {fileID: 0}
 --- !u!4 &1881755048
 Transform:
   m_ObjectHideFlags: 0
