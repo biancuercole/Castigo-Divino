@@ -9,6 +9,7 @@ TagManager:
   - EnemyShrine
   - Bala
   - Proyectil
+  - Audio
   layers:
   - Default
   - TransparentFX

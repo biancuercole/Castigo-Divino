@@ -10,13 +10,17 @@ public class Bullets : MonoBehaviour
     private Rigidbody2D bulletRb;
     private float destroyDelay = 2f;
 
+    AudioManager audioManager;
+
     private void Awake()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         bulletRb = GetComponent<Rigidbody2D>();
     }
 
     public void LaunchBullet(Vector2 direction)
     {
+        audioManager.playSound(audioManager.shot);
         bulletRb.velocity = direction  * speed;
         Destroy(gameObject, destroyDelay);
         trail.emitting = true;
