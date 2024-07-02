@@ -1,4 +1,4 @@
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
@@ -21,7 +21,7 @@ public class Rotation : MonoBehaviour
         Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mouseWorldPoint - (Vector2)transform.position;
 
-        // Calcular el ángulo y ajustar la rotación
+        // Calcular el ï¿½ngulo y ajustar la rotaciï¿½n
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
