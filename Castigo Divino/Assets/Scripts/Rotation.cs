@@ -1,9 +1,14 @@
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
     [SerializeField] private Bullets bulletPrefab;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private Transform shootPosition;
+
+
+
     private Camera cam;
     void Start()
     {
@@ -15,12 +20,16 @@ public class Rotation : MonoBehaviour
     {
         Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mouseWorldPoint - (Vector2)transform.position;
-        transform.up = Vector2.MoveTowards(transform.up, direction, rotationSpeed * Time.deltaTime);
+
+        // Calcular el �ngulo y ajustar la rotaci�n
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
 
         if (Input.GetMouseButtonDown(0))
         {
-            Bullets bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
-            bullet.LaunchBullet(transform.up);
+            Bullets bullet = Instantiate(bulletPrefab, shootPosition.position, Quaternion.Euler(0, 0, angle));
+            bullet.LaunchBullet(direction.normalized);
         }
     }
 }

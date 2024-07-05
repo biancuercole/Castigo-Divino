@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 3e111a645e5be2044aa37fd03bc839ee
   - enabled: 1
+    path: Assets/Scenes/Cinematics.unity
+    guid: ccd9fe2913584da4f99a2262cec5d624
+  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: f1dd6e59247387f49a6bcbb90f45f99b
   - enabled: 1
@@ -20,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Zone2.unity
     guid: ab596c0ef2434e440a36013bb6957fec
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: fee414fd6ba00664fa5b0b61f3116211
+  - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: 7fff0dbb4642ba547aa7c3e17b035a2d
   m_configObjects: {}

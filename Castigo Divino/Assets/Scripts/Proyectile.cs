@@ -1,27 +1,28 @@
-
 using System.Collections;
 using UnityEngine;
-//using UnityEngine.WSA;
 
 public class Proyectile : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public int damage;
-    private Transform player; 
+    [SerializeField] private TrailRenderer trail;
+
+    private Transform player;
     private Rigidbody2D rb;
+
     void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
         rb = GetComponent<Rigidbody2D>();
 
-        LaunchProyectile(); 
+        LaunchProyectile();
     }
-
 
     private void LaunchProyectile()
     {
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
         rb.velocity = directionToPlayer * speed;
+        trail.emitting = true;
         StartCoroutine(DestroyProjectile());
     }
 
@@ -34,12 +35,18 @@ public class Proyectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Bala"))
+        {
+            // Ignorar colisión con objetos que tengan el tag "bala"
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            return;
+        }
+
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
             playerHealth.GetDamage(damage);
         }
-
 
         Destroy(gameObject);
     }

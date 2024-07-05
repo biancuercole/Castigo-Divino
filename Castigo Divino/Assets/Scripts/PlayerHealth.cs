@@ -18,9 +18,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
-
         changeHealth.Invoke(health);
-
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -28,7 +26,6 @@ public class PlayerHealth : MonoBehaviour
     {
         
         int temporaryHealth = health - damage;
-       
 
         if (temporaryHealth < 0)
         {
@@ -50,7 +47,6 @@ public class PlayerHealth : MonoBehaviour
     public void HealHealth(int healAmount)
     {
         int temporaryHealth = health + healAmount;
-
         if (temporaryHealth > maxHealth)
         {
             health = maxHealth;

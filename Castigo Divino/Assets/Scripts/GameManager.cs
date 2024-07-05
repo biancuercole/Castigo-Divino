@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,4 +25,4 @@ public class GameManager : MonoBehaviour
         coinCount++;
         Debug.Log("Total de monedas: " + coinCount);
     }
-}
+}*/
