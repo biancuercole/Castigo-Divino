@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7839923644265862680}
   - component: {fileID: 469329844589095416}
   - component: {fileID: -3959182823981059168}
+  - component: {fileID: 2161144692253460179}
   m_Layer: 0
   m_Name: LootPrefab
   m_TagString: Untagged
@@ -162,3 +163,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmount: 1
+--- !u!114 &2161144692253460179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2151628922429136476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d394543b2360a4f8fabfe18e2ba193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: {fileID: 0}
