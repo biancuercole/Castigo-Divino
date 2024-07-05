@@ -1486,7 +1486,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295403464}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &295403466
 Camera:
   m_ObjectHideFlags: 0
@@ -14221,6 +14221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indiceNivel: 2
+  inmunidadDuracion: 2
+  parpadeoIntervalo: 0.2
   maxHealth: 4
   changeHealth:
     m_PersistentCalls:
