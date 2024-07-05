@@ -312,7 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1957976470}
   minDistance: 15
-  speed: 13
+  chargeDistance: 8
   time: 0
   WayPoints:
   - {fileID: 1904670210}
@@ -522,8 +522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1957976470}
-  minDistance: 15
-  speed: 13
+  minDistance: 27
+  chargeDistance: 15
   time: 0
   WayPoints:
   - {fileID: 1149823285}
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1957976470}
   minDistance: 15
-  speed: 13
+  chargeDistance: 8
   time: 0
   WayPoints:
   - {fileID: 1590833587}
@@ -12371,7 +12371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1957976470}
   minDistance: 15
-  speed: 13
+  chargeDistance: 8
   time: 0
   WayPoints:
   - {fileID: 1590833587}

@@ -5,16 +5,20 @@ using UnityEngine.AI;
 public class EnemyPatroll : MonoBehaviour
 {
     [SerializeField] Transform target; 
-    [SerializeField] private float minDistance; 
-    [SerializeField] private float speed; //velocidad para persecución
+    private float minDistance = 27.0f; // Distancia mínima para iniciar la persecución
+    private float chargeDistance = 10.0f; // Distancia para iniciar la embestida
+    private float patrolSpeed = 10.0f; // Velocidad para patrullaje
+    private float followSpeed = 12.0f; // Velocidad para persecución
+    private float chargeSpeed = 45.0f; // Velocidad para embestida
     [SerializeField] private float time;
     [SerializeField] Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
     [SerializeField] public int damage;
-
+    
     NavMeshAgent agent;
     private bool isWaiting;
     private bool isFollowing; 
+    private bool isCharging = false; // Para controlar si está en embestida
 
     void Start()
     {
@@ -24,15 +28,25 @@ public class EnemyPatroll : MonoBehaviour
         isWaiting = false;
         isFollowing = false;
         agent.SetDestination(WayPoints[currentWaypoint].position);
+        agent.speed = patrolSpeed; // Establece la velocidad inicial de patrullaje
     }
 
     void Update()
     {
         float distanceToTarget = Vector2.Distance(transform.position, target.position);
         
-        if (distanceToTarget < minDistance)
+        if (distanceToTarget < chargeDistance)
+        {
+            if (!isCharging)
+            {
+                isCharging = true;
+                StartCoroutine(Charge());
+            }
+        }
+        else if (distanceToTarget < minDistance)
         {
             isFollowing = true;
+            agent.speed = followSpeed; // Velocidad de persecución
             agent.SetDestination(target.position);
         }
         else
@@ -41,6 +55,7 @@ public class EnemyPatroll : MonoBehaviour
             {
                 // Si estaba siguiendo al jugador y ahora se alejó, volver al waypoint
                 isFollowing = false;
+                agent.speed = patrolSpeed; // Velocidad de patrullaje
                 agent.SetDestination(WayPoints[currentWaypoint].position);
             }
 
@@ -67,7 +82,7 @@ public class EnemyPatroll : MonoBehaviour
         yield return new WaitForSeconds(time);
         
         // Solo cambiar al siguiente waypoint si no está siguiendo al jugador
-        if (!isFollowing)
+        if (!isFollowing && !isCharging)
         {
             currentWaypoint++;
             if (currentWaypoint == WayPoints.Length)
@@ -80,15 +95,31 @@ public class EnemyPatroll : MonoBehaviour
         isWaiting = false;
     }
 
+    IEnumerator Charge()
+    {
+        float highSpeedDuration = 3.0f;
+        agent.speed = chargeSpeed; // Cambiar a velocidad de embestida
+        agent.SetDestination(target.position);
+
+        yield return new WaitForSeconds(highSpeedDuration);
+
+        isCharging = false;
+        if (isFollowing)
+        {
+            agent.speed = followSpeed; // Volver a velocidad de persecución
+        }
+        else
+        {
+            agent.speed = patrolSpeed; // Volver a velocidad de patrullaje
+        }
+    }
+
     public void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-          playerHealth.GetDamage(damage);
+            playerHealth.GetDamage(damage);
         }
     }
 }
-
-
-
