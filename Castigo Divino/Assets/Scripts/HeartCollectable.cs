@@ -13,6 +13,5 @@ public class HeartCollectable : MonoBehaviour
             playerHealth.HealHealth(healAmount);
             Destroy(gameObject);
         }
-
     }
 }

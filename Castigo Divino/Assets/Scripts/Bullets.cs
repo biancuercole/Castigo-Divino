@@ -4,12 +4,10 @@ public class Bullets : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public float damage;
-    [SerializeField] private GameObject Coin;
+    //[SerializeField] private GameObject Coin;
     [SerializeField] private TrailRenderer trail;
-
     private Rigidbody2D bulletRb;
     private float destroyDelay = 2f;
-
     AudioManager audioManager;
 
     private void Awake()
@@ -28,7 +26,6 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag("Proyectil"))
         {
             // Ignorar colisión con objetos que tengan el tag "bala"
@@ -56,4 +53,3 @@ public class Bullets : MonoBehaviour
         Destroy(gameObject);
     }
 }
-
