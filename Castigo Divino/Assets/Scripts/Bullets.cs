@@ -4,10 +4,9 @@ public class Bullets : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public float damage;
-    //[SerializeField] private GameObject Coin;
     [SerializeField] private TrailRenderer trail;
     private Rigidbody2D bulletRb;
-    private float destroyDelay = 2f;
+    //private float destroyDelay = 2f;
     AudioManager audioManager;
 
     private void Awake()
@@ -19,9 +18,14 @@ public class Bullets : MonoBehaviour
     public void LaunchBullet(Vector2 direction)
     {
         audioManager.playSound(audioManager.shot);
-        bulletRb.velocity = direction  * speed;
-        Destroy(gameObject, destroyDelay);
-        trail.emitting = true;
+        bulletRb.velocity = direction * speed;
+     trail.emitting = true;
+    }
+
+    private void OnEnable()
+    {
+        bulletRb.velocity = Vector2.zero;  // Reset velocity on enable
+   // trail.Clear();  // Clear the trail on enable to avoid unwanted visual effects
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,6 +54,7 @@ public class Bullets : MonoBehaviour
             enemyHealth.TakeDamage(damage); // Llama al método TakeDamage
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        trail.emitting = false;
     }
 }

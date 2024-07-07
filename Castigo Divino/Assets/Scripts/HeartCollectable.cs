@@ -5,13 +5,22 @@ using UnityEngine;
 public class HeartCollectable : MonoBehaviour
 {
     public int healAmount;
-    public void OnCollisionEnter2D(Collision2D collision)
+    [SerializeField] private Loot loot;
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-        if (collision.gameObject.CompareTag("Player"))
+       
+
+        Debug.Log("HeartCollectable Triggered");
+        if (other.CompareTag("Player") && loot.lootName == "heart")
         {
-            playerHealth.HealHealth(healAmount);
-            Destroy(gameObject);
+            PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                Debug.Log("Recolectado: " + loot.lootName);
+                playerHealth.HealHealth(healAmount);
+                Destroy(gameObject);
+            }
         }
     }
 }

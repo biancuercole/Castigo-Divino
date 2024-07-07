@@ -18,6 +18,8 @@ public class CameraController : MonoBehaviour
     private float camHalfHeight;
     private float camHalfWidth;
 
+
+
     void Start()
     {
         // Calcular la mitad de la altura y el ancho de la cámara
@@ -36,5 +38,9 @@ public class CameraController : MonoBehaviour
         Vector3 clampedSpot = new Vector3(clampedX, clampedY, newSpot.z);
 
         transform.position = Vector3.Slerp(transform.position, clampedSpot, followSpeed * Time.deltaTime);
+
     }
+
+
+  
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7839923644265862680}
   - component: {fileID: 469329844589095416}
   - component: {fileID: -3959182823981059168}
-  - component: {fileID: 2161144692253460179}
+  - component: {fileID: 3637824674292579943}
   m_Layer: 0
   m_Name: LootPrefab
   m_TagString: Untagged
@@ -144,7 +144,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -163,7 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healAmount: 1
---- !u!114 &2161144692253460179
+  loot: {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
+--- !u!114 &3637824674292579943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +173,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2151628922429136476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97d394543b2360a4f8fabfe18e2ba193, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f35260ef2c33ab4e84c739dcbcaee90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: {fileID: 0}
+  amountPoints: 1
+  pointsUI: {fileID: 0}
+  loot: {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
