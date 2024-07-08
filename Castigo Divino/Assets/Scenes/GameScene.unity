@@ -7946,6 +7946,8 @@ MonoBehaviour:
   speed: 13
   amountPoints: 1
   pointsUI: {fileID: 0}
+  healAmount: 1
+  loot: {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
   dashSpeed: 22
   dashDuration: 0.3
   dashCoolDown: 1

@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer GunSpriteRenderer;
     [SerializeField] private float amountPoints;
     [SerializeField] private PointsUI pointsUI;
+    public int healAmount;
+    [SerializeField] private Loot loot;
 
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -23,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     bool isDashing;
     bool canDash;
 
+    private PlayerHealth playerHealth;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
@@ -31,9 +35,16 @@ public class PlayerMovement : MonoBehaviour
         GunSpriteRenderer = Gun.GetComponent<SpriteRenderer>();
         canDash = true;
         pointsUI = FindObjectOfType<PointsUI>();
+        playerHealth = GetComponent<PlayerHealth>();
+
         if (pointsUI == null)
         {
-            Debug.LogError("No se encontr� un componente PointsUI en la escena.");
+            Debug.LogError("No se encontró un componente PointsUI en la escena.");
+        }
+
+        if (playerHealth == null)
+        {
+            Debug.LogError("No se encontró un componente PlayerHealth en el jugador.");
         }
     }
 
@@ -93,12 +104,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Trigger detected with: " + other.gameObject.name);
         if (other.gameObject.CompareTag("coin"))
         {
             Destroy(other.gameObject); // Destruir la moneda
             pointsUI.takePoints(amountPoints);
         }
+        if (other.gameObject.CompareTag("heart"))
+        {
+            Debug.Log("Corazon");
+            if (playerHealth != null)
+            {
+                Debug.Log("Recolectado: " + loot.lootName);
+                playerHealth.HealHealth(healAmount);
+                Destroy(other.gameObject);
+            }
+        }
     }
-
 }
