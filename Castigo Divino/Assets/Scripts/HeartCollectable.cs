@@ -7,7 +7,7 @@ public class HeartCollectable : MonoBehaviour
     public int healAmount;
     [SerializeField] private Loot loot;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
        
 
@@ -22,5 +22,5 @@ public class HeartCollectable : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }
+    }*/
 }

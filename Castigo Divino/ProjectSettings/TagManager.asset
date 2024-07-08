@@ -10,6 +10,8 @@ TagManager:
   - Bala
   - Proyectil
   - Audio
+  - coin
+  - heart
   layers:
   - Default
   - TransparentFX

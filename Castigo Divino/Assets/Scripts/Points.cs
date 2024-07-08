@@ -13,11 +13,11 @@ public class Points : MonoBehaviour
         pointsUI = FindObjectOfType<PointsUI>();
         if (pointsUI == null)
         {
-            Debug.LogError("No se encontró un componente PointsUI en la escena.");
+            Debug.LogError("No se encontrï¿½ un componente PointsUI en la escena.");
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
        
         Debug.Log("Points Triggered");
@@ -27,5 +27,5 @@ public class Points : MonoBehaviour
             pointsUI.takePoints(amountPoints);
             Destroy(gameObject);
         }
-    }
+    }*/
 }
