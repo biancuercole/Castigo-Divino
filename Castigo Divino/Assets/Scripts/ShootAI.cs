@@ -17,14 +17,36 @@ public class ShootAI : MonoBehaviour
     private bool isPatrolling; //patrullaje waypoints
     private bool isWaiting; //espera waypoints
 
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player").transform; 
+    }
     void Start()
     {
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         isWaiting = false;
         agent.SetDestination(WayPoints[currentWaypoint].position); //va al waypoint 1
-    } 
+    }
+
+    void OnEnable()
+    {
+        if (agent == null || WayPoints == null || player == null)
+        {
+            Debug.LogError("One or more required components or references are not assigned.");
+            return;
+        }
+
+        // Restablecer estados y configuraciones al activarse
+        agent.SetDestination(WayPoints[currentWaypoint].position);
+        isShooting = false;
+        inRange = false;
+        isWaiting = false;
+    }
+
 
     void Update()
     {
@@ -88,8 +110,16 @@ public class ShootAI : MonoBehaviour
         while (inRange)
         {
             Debug.Log("Shooting at target...");
+           
+          
             Instantiate(proyectilePrefab, transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(2f);
+           
+            /*GameObject proyectile = ProyectilePool.Instance.RequestProyectile();
+            proyectile.transform.position = transform.position;
+            proyectile.transform.rotation = Quaternion.identity;
+            proyectile.GetComponent<Proyectiles>().LaunchProyectile();*/
+            
+            yield return new WaitForSeconds(1f);
         }
         isShooting = false;
     }

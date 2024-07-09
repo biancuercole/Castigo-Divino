@@ -6,7 +6,7 @@ public class EnemyPatroll : MonoBehaviour
 {
     [SerializeField] Transform target; 
     private float minDistance = 27.0f; // Distancia mínima para iniciar la persecución
-    private float chargeDistance = 10.0f; // Distancia para iniciar la embestida
+    private float chargeDistance = 3.0f; // Distancia para iniciar la embestida
     private float patrolSpeed = 10.0f; // Velocidad para patrullaje
     private float followSpeed = 12.0f; // Velocidad para persecución
     private float chargeSpeed = 45.0f; // Velocidad para embestida
@@ -20,6 +20,17 @@ public class EnemyPatroll : MonoBehaviour
     private bool isFollowing; 
     private bool isCharging = false; // Para controlar si está en embestida
 
+    void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent not found on " + gameObject.name);
+        }
+
+        // Inicializa cualquier otra variable necesaria en Awake
+    }
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -29,6 +40,32 @@ public class EnemyPatroll : MonoBehaviour
         isFollowing = false;
         agent.SetDestination(WayPoints[currentWaypoint].position);
         agent.speed = patrolSpeed; // Establece la velocidad inicial de patrullaje
+    }
+
+    void OnEnable()
+    {
+        // Verifica y configura el agente y los waypoints nuevamente al activarse
+        if (agent == null)
+        {
+            Debug.LogError("NavMeshAgent not assigned to " + gameObject.name);
+            return;
+        }
+
+        // Asegúrate de que haya al menos un waypoint asignado
+        if (WayPoints.Length > 0)
+        {
+            // Configura el destino al waypoint actual
+            agent.SetDestination(WayPoints[currentWaypoint].position);
+        }
+        else
+        {
+            Debug.LogWarning("No waypoints assigned to " + gameObject.name);
+        }
+
+        // Restablecer estados al activarse
+        isWaiting = false;
+        isFollowing = false;
+        isCharging = false;
     }
 
     void Update()

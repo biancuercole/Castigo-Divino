@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 3340023487959881223}
   - component: {fileID: 3965723390810674889}
   - component: {fileID: 6751529439880989342}
-  - component: {fileID: 6730410828163129734}
   - component: {fileID: -4923405617686318312}
+  - component: {fileID: -6959980696346051505}
   m_Layer: 0
   m_Name: Proyectile
-  m_TagString: Proyectil
+  m_TagString: Proyectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,21 +150,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6730410828163129734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2563805070802004030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1051855e2cc2a924bbd024b28581006a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 15
-  damage: 1
-  trail: {fileID: -4923405617686318312}
 --- !u!96 &-4923405617686318312
 TrailRenderer:
   serializedVersion: 3
@@ -278,3 +263,18 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-6959980696346051505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2563805070802004030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ea9685e65cd1340b28169eeb1d9876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
+  damage: 1
+  trail: {fileID: -4923405617686318312}

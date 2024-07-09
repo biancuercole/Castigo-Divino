@@ -8,10 +8,10 @@ TagManager:
   - Shrine
   - EnemyShrine
   - Bala
-  - Proyectil
   - Audio
   - coin
   - heart
+  - Proyectile
   layers:
   - Default
   - TransparentFX

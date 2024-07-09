@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
         }

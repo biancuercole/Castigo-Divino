@@ -15,6 +15,8 @@ public class EnemyHealth : MonoBehaviour
     AudioManager audioManager;
     private Animator animator; // Referencia al Animator
     private Collider2D enemyCollider; // Referencia al Collider
+   
+
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
         nextStage = FindObjectOfType<NextStage>(); // Encuentra el objeto con el script NextStage
         animator = GetComponent<Animator>(); // Obtén el componente Animator
         enemyCollider = GetComponent<Collider2D>(); // Obtén el componente Collider
+    
     }
 
     public void TakeDamage(float damage)

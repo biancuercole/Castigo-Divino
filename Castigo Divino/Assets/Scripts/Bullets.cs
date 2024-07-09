@@ -19,13 +19,12 @@ public class Bullets : MonoBehaviour
     {
         audioManager.playSound(audioManager.shot);
         bulletRb.velocity = direction * speed;
-     trail.emitting = true;
+        trail.emitting = true;
     }
 
     private void OnEnable()
     {
         bulletRb.velocity = Vector2.zero;  // Reset velocity on enable
-   // trail.Clear();  // Clear the trail on enable to avoid unwanted visual effects
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
