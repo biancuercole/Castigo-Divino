@@ -6,13 +6,20 @@ public class Bullets : MonoBehaviour
     [SerializeField] public float damage;
     [SerializeField] private TrailRenderer trail;
     private Rigidbody2D bulletRb;
-    //private float destroyDelay = 2f;
-    AudioManager audioManager;
+    private NextStage nextStage; 
+    private AudioManager audioManager;
+    private LootBag lootBag;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         bulletRb = GetComponent<Rigidbody2D>();
+        lootBag = FindObjectOfType<LootBag>();
+    }
+
+    void Start()
+    {
+        nextStage = FindObjectOfType<NextStage>();
     }
 
     public void LaunchBullet(Vector2 direction)
@@ -29,13 +36,6 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Proyectil"))
-        {
-            // Ignorar colisión con objetos que tengan el tag "bala"
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-            return;
-        }
-
         if (collision.gameObject.CompareTag("Player"))
         {
             return;
@@ -44,6 +44,7 @@ public class Bullets : MonoBehaviour
         if (collision.gameObject.CompareTag("Machine"))
         {
             // Destruir la máquina
+            nextStage.destroyMachine();
             Destroy(collision.gameObject);
         }
 

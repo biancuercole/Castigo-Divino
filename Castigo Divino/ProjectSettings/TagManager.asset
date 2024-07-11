@@ -12,6 +12,8 @@ TagManager:
   - coin
   - heart
   - Proyectile
+  - Enemy
+  - key
   layers:
   - Default
   - TransparentFX
