@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3081004531496171568}
   - component: {fileID: 4433001362744157472}
   - component: {fileID: 4521069247949163608}
-  - component: {fileID: 1447938242855510703}
   - component: {fileID: -4480293363023252426}
+  - component: {fileID: 2785183566058854180}
   m_Layer: 0
   m_Name: ProyectileShrine
   m_TagString: Untagged
@@ -150,21 +150,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1447938242855510703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6074909217324962438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45fb7d90af121c445b499b4b4178c326, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 15
-  damage: 1
-  trail: {fileID: -4480293363023252426}
 --- !u!96 &-4480293363023252426
 TrailRenderer:
   serializedVersion: 3
@@ -278,3 +263,18 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &2785183566058854180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6074909217324962438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ea9685e65cd1340b28169eeb1d9876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
+  damage: 1
+  trail: {fileID: -4480293363023252426}

@@ -8,6 +8,10 @@ public class NextStage : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] private int enemyCount; // Total de enemigos en la escena
     [SerializeField] private int levelIndex;
+    [SerializeField] private GameObject[] machines; 
+    public int machineCount; 
+    private GameObject door;
+    private Collider2D doorCollider;
 
     [Header("Sprites")]
     [SerializeField] private Sprite closedSprite; // Sprite cerrada
@@ -16,8 +20,11 @@ public class NextStage : MonoBehaviour
 
     void Start()
     {
+        door = GameObject.Find("Puerta1");
+        doorCollider = door.GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // Inicializar el SpriteRenderer
     }
+
 
     // Método para reducir el contador de enemigos
     public void EnemyDefeated()
@@ -26,23 +33,30 @@ public class NextStage : MonoBehaviour
         Debug.Log("Enemigos restantes: " + enemyCount);
     }
 
+    public void destroyMachine()
+    {
+        machineCount ++; 
+        Debug.Log("Maquina destruida");
+    }
+
     void Update()
     {
-        if(enemyCount == 0)
+        if(machineCount == 1)
         {
+            doorCollider.enabled = false;
             spriteRenderer.sprite = openSprite;
         } else
         {
             spriteRenderer.sprite = closedSprite;
         }
     }
-    private void OnCollisionEnter2D(Collision2D Player)
+    /*private void OnCollisionEnter2D(Collision2D Player)
     {
         if(enemyCount == 0)
         {
-            changeLevel(levelIndex);
+            doorCollider.enabled = false;
         }
-    }
+    }*/
 
     public void changeLevel(int levelIndex)
     {

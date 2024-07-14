@@ -8,7 +8,7 @@ public class LootBag : MonoBehaviour
     public GameObject droppedItemPrefab;
     public List<Loot> lootList = new List<Loot>();
 
-    Loot GetDroppedItem()
+    List<Loot> GetDroppedItems()
     {
         int randomNumber = Random.Range(1, 101);
         List<Loot> possibleItems = new List<Loot>();
@@ -21,24 +21,37 @@ public class LootBag : MonoBehaviour
         }
         if (possibleItems.Count > 0)
         {
-            Loot droppedItem = possibleItems[Random.Range(0,possibleItems.Count)];
-            return droppedItem;
+            return possibleItems;
         }
         Debug.Log("No loot dropped");
         return null;
     }
 
-    public void InstantiateLoot (Vector3 spwanposition)
+    public void InstantiateLoot(Vector3 spawnPosition)
     {
-        Loot droppedItem = GetDroppedItem();
-        if (droppedItem != null)
+        List<Loot> droppedItems = GetDroppedItems();
+        if (droppedItems != null)
         {
-            GameObject lootGameObject = Instantiate(droppedItemPrefab, spwanposition, Quaternion.identity);
-            lootGameObject.GetComponent<SpriteRenderer>().sprite = droppedItem.lootSprite;
+            foreach (Loot item in droppedItems)
+            {
+                Vector3 randomOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+                GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition + randomOffset, Quaternion.identity);
+                lootGameObject.GetComponent<SpriteRenderer>().sprite = item.lootSprite;
 
-            float dropForce = 3f;
-            Vector2 dropDirection = new Vector2(Random.Range(-1f,1f), Random.Range(-1f,1f));
-            lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
+                float dropForce = 3f;
+                Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+                lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
+
+                if(item.lootName == "heart")
+                {
+                    lootGameObject.tag = "heart";
+                }
+                if(item.lootName == "coin")
+                {
+                    lootGameObject.tag = "coin";
+                }
+            }
         }
     }
 }
+

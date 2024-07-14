@@ -8,41 +8,48 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
     private Animator playerAnimator;
-    private Vector3 originalScale;
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer GunSpriteRenderer;
+    [SerializeField] private float amountPoints;
+    [SerializeField] private PointsUI pointsUI;
+    public int healAmount;
+    [SerializeField] private Loot loot;
 
-   [Header("Dash Settings")]
+    [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
     [SerializeField] float dashCoolDown = 0.7f;
 
-    /*[Header("Sprites")]
-    [SerializeField] private Sprite defaultSprite; // Sprite por defecto
-    [SerializeField] private Sprite backSprite; // Sprite "sin brazos atras"
-    [SerializeField] private Sprite sidesSprite;
-    [SerializeField] private Sprite sidesSprites;*/
-
-    [SerializeField] private GameObject Gun; 
+    [SerializeField] private GameObject Gun;
 
     bool isDashing;
     bool canDash;
 
-    //public bool IsFacingRight { get; private set; } = true; // Property to check facing direction
+    private PlayerHealth playerHealth;
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
-        //originalScale = transform.localScale;
-        spriteRenderer = GetComponent<SpriteRenderer>(); // Inicializar el SpriteRenderer
+        spriteRenderer = GetComponent<SpriteRenderer>();
         GunSpriteRenderer = Gun.GetComponent<SpriteRenderer>();
         canDash = true;
+        pointsUI = FindObjectOfType<PointsUI>();
+        playerHealth = GetComponent<PlayerHealth>();
+
+        if (pointsUI == null)
+        {
+            Debug.LogError("No se encontró un componente PointsUI en la escena.");
+        }
+
+        if (playerHealth == null)
+        {
+            Debug.LogError("No se encontró un componente PlayerHealth en el jugador.");
+        }
     }
 
     void Update()
     {
-        //inputs
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
@@ -56,46 +63,16 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // Cambiar sprite si se presiona la tecla "arriba" o "W"
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            //spriteRenderer.sprite = backSprite;
-
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-        {
-            //spriteRenderer.sprite = sidesSprite;
-
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            //spriteRenderer.sprite = sidesSprites;
-
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-        }
         else
         {
-            //spriteRenderer.sprite = defaultSprite;
-
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
 
-        // Detectar posición del ratón relativa a la posición del jugador
-        /*Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (mousePosition.x < transform.position.x)
-        {
-            transform.localScale = new Vector3(originalScale.x, originalScale.y, originalScale.z);
-            IsFacingRight = false;
-        }
-        else
-        {
-            transform.localScale = new Vector3(-originalScale.x, originalScale.y, originalScale.z);
-            IsFacingRight = true;
-        }*/
-
-        if (Input.GetKeyDown(KeyCode.Space) && canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
         }
@@ -123,5 +100,24 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(dashCoolDown);
         canDash = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("coin"))
+        {
+            Destroy(other.gameObject); // Destruir la moneda
+            pointsUI.takePoints(amountPoints);
+        }
+        if (other.gameObject.CompareTag("heart"))
+        {
+            Debug.Log("Corazon");
+            if (playerHealth != null)
+            {
+                Debug.Log("Recolectado: " + loot.lootName);
+                playerHealth.HealHealth(healAmount);
+                Destroy(other.gameObject);
+            }
+        }
     }
 }

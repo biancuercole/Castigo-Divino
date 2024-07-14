@@ -20,7 +20,7 @@ public class ImageSequence : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) // Detectar si se presiona Enter
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) ) // Detectar si se presiona Enter
         {
             ShowNextImage(); // Mostrar la siguiente imagen
         }

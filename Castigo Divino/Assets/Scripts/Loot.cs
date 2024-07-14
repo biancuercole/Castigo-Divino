@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "Loot", menuName = "ScriptableObjects/Loot")]
+
 public class Loot : ScriptableObject
 {
     public Sprite lootSprite;

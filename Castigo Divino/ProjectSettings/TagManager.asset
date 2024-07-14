@@ -8,8 +8,12 @@ TagManager:
   - Shrine
   - EnemyShrine
   - Bala
-  - Proyectil
   - Audio
+  - coin
+  - heart
+  - Proyectile
+  - Enemy
+  - key
   layers:
   - Default
   - TransparentFX
@@ -18,8 +22,8 @@ TagManager:
   - Water
   - UI
   - Bullets
-  - 
-  - 
+  - Floor
+  - MiniMap
   - 
   - 
   - 

@@ -4,38 +4,38 @@ public class Bullets : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public float damage;
-    [SerializeField] private GameObject Coin;
     [SerializeField] private TrailRenderer trail;
-
     private Rigidbody2D bulletRb;
-    private float destroyDelay = 2f;
-
-    AudioManager audioManager;
+    private NextStage nextStage; 
+    private AudioManager audioManager;
+    private LootBag lootBag;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         bulletRb = GetComponent<Rigidbody2D>();
+        lootBag = FindObjectOfType<LootBag>();
+    }
+
+    void Start()
+    {
+        nextStage = FindObjectOfType<NextStage>();
     }
 
     public void LaunchBullet(Vector2 direction)
     {
         audioManager.playSound(audioManager.shot);
-        bulletRb.velocity = direction  * speed;
-        Destroy(gameObject, destroyDelay);
+        bulletRb.velocity = direction * speed;
         trail.emitting = true;
+    }
+
+    private void OnEnable()
+    {
+        bulletRb.velocity = Vector2.zero;  // Reset velocity on enable
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Proyectil"))
-        {
-            // Ignorar colisión con objetos que tengan el tag "bala"
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-            return;
-        }
-
         if (collision.gameObject.CompareTag("Player"))
         {
             return;
@@ -44,6 +44,7 @@ public class Bullets : MonoBehaviour
         if (collision.gameObject.CompareTag("Machine"))
         {
             // Destruir la máquina
+            nextStage.destroyMachine();
             Destroy(collision.gameObject);
         }
 
@@ -53,7 +54,7 @@ public class Bullets : MonoBehaviour
             enemyHealth.TakeDamage(damage); // Llama al método TakeDamage
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        trail.emitting = false;
     }
 }
-
