@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Bullets : MonoBehaviour
 {
@@ -27,6 +28,16 @@ public class Bullets : MonoBehaviour
         audioManager.playSound(audioManager.shot);
         bulletRb.velocity = direction * speed;
         trail.emitting = true;
+
+        StartCoroutine(DestroyProjectile());
+    }
+
+    IEnumerator DestroyProjectile()
+    {
+        float destroyTime = 2f;
+        yield return new WaitForSeconds(destroyTime);
+     
+        Destroy(gameObject);
     }
 
     private void OnEnable()
@@ -36,22 +47,27 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Proyectile"))
         {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
             return;
         }
 
-        if (collision.gameObject.CompareTag("Machine"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            // Destruir la máquina
-            nextStage.destroyMachine();
-            Destroy(collision.gameObject);
+            return;
         }
 
         EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
             enemyHealth.TakeDamage(damage); // Llama al método TakeDamage
+        }
+
+        MachineHealth machineHealth = collision.gameObject.GetComponent<MachineHealth>();
+        if (machineHealth != null)
+        {
+            machineHealth.machineDamage(); // Llama al método TakeDamage
         }
 
         gameObject.SetActive(false);

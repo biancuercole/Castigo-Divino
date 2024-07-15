@@ -50,6 +50,10 @@ public class LootBag : MonoBehaviour
                 {
                     lootGameObject.tag = "coin";
                 }
+                if(item.lootName == "key")
+                {
+                    lootGameObject.tag = "key";
+                }
             }
         }
     }

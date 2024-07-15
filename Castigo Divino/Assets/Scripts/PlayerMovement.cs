@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PointsUI pointsUI;
     public int healAmount;
     [SerializeField] private Loot loot;
+    private NextStage nextStage; 
 
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        nextStage = FindObjectOfType<NextStage>();
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -118,6 +120,11 @@ public class PlayerMovement : MonoBehaviour
                 playerHealth.HealHealth(healAmount);
                 Destroy(other.gameObject);
             }
+        }
+        if (other.gameObject.CompareTag("key"))
+        {
+            nextStage.collectKey();
+            Destroy(other.gameObject);
         }
     }
 }

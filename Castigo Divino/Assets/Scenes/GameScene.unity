@@ -1700,6 +1700,7 @@ GameObject:
   - component: {fileID: 326902209}
   - component: {fileID: 326902208}
   - component: {fileID: 326902207}
+  - component: {fileID: 326902210}
   m_Layer: 7
   m_Name: Zona1
   m_TagString: Untagged
@@ -1790,6 +1791,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1959398425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &326902210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326902206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &338353981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2402,8 +2415,9 @@ GameObject:
   - component: {fileID: 570377123}
   - component: {fileID: 570377122}
   - component: {fileID: 570377125}
-  - component: {fileID: 570377126}
   - component: {fileID: 570377127}
+  - component: {fileID: 570377129}
+  - component: {fileID: 570377128}
   m_Layer: 7
   m_Name: Maquina2
   m_TagString: Machine
@@ -2566,21 +2580,6 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!114 &570377126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570377120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
-  lootList:
-  - {fileID: 11400000, guid: 1320b3b9026952a4c9d41ac9219709ce, type: 2}
 --- !u!95 &570377127
 Animator:
   serializedVersion: 5
@@ -2602,6 +2601,117 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &570377128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570377120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+--- !u!114 &570377129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570377120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &719063996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 719063998}
+  - component: {fileID: 719063997}
+  m_Layer: 0
+  m_Name: Square
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &719063997
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719063996}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &719063998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719063996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -67.48, y: -172.21, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &729595152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,6 +2818,7 @@ MonoBehaviour:
   - {fileID: 869005859}
   - {fileID: 1781800485}
   machineCount: 0
+  keysCollected: 0
   closedSprite: {fileID: 21300000, guid: bf5a64693e7560849911851963815b8c, type: 3}
   openSprite: {fileID: 21300000, guid: 5b49333067d9cff498ed97b2c70c9721, type: 3}
 --- !u!61 &770201472
@@ -7335,6 +7446,8 @@ GameObject:
   - component: {fileID: 869005864}
   - component: {fileID: 869005863}
   - component: {fileID: 869005861}
+  - component: {fileID: 869005868}
+  - component: {fileID: 869005867}
   m_Layer: 7
   m_Name: Maquina3
   m_TagString: Machine
@@ -7518,6 +7631,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &869005867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869005859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+--- !u!114 &869005868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869005859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &904205112
 GameObject:
   m_ObjectHideFlags: 0
@@ -8815,8 +8955,9 @@ GameObject:
   - component: {fileID: 1239471365}
   - component: {fileID: 1239471364}
   - component: {fileID: 1239471367}
-  - component: {fileID: 1239471368}
   - component: {fileID: 1239471369}
+  - component: {fileID: 1239471371}
+  - component: {fileID: 1239471370}
   m_Layer: 7
   m_Name: Maquina1
   m_TagString: Machine
@@ -8979,21 +9120,6 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
---- !u!114 &1239471368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239471362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
-  lootList:
-  - {fileID: 11400000, guid: 1320b3b9026952a4c9d41ac9219709ce, type: 2}
 --- !u!95 &1239471369
 Animator:
   serializedVersion: 5
@@ -9015,6 +9141,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1239471370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239471362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+--- !u!114 &1239471371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239471362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1344092410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9662,8 +9815,9 @@ GameObject:
   - component: {fileID: 1781800491}
   - component: {fileID: 1781800490}
   - component: {fileID: 1781800489}
-  - component: {fileID: 1781800488}
   - component: {fileID: 1781800487}
+  - component: {fileID: 1781800494}
+  - component: {fileID: 1781800493}
   m_Layer: 7
   m_Name: Maquina4
   m_TagString: Machine
@@ -9707,21 +9861,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1781800488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781800485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
-  lootList:
-  - {fileID: 11400000, guid: 1320b3b9026952a4c9d41ac9219709ce, type: 2}
 --- !u!114 &1781800489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9862,6 +10001,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1781800493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781800485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+--- !u!114 &1781800494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781800485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1790807781
 GameObject:
   m_ObjectHideFlags: 0
@@ -10619,3 +10785,4 @@ SceneRoots:
   - {fileID: 1188332409}
   - {fileID: 1080024290}
   - {fileID: 1723446862}
+  - {fileID: 719063998}

@@ -12,6 +12,7 @@ public class NextStage : MonoBehaviour
     public int machineCount; 
     private GameObject door;
     private Collider2D doorCollider;
+    public int keysCollected; 
 
     [Header("Sprites")]
     [SerializeField] private Sprite closedSprite; // Sprite cerrada
@@ -33,10 +34,16 @@ public class NextStage : MonoBehaviour
         Debug.Log("Enemigos restantes: " + enemyCount);
     }
 
-    public void destroyMachine()
+    public void MachineDefeated()
     {
         machineCount ++; 
         Debug.Log("Maquina destruida");
+    }
+
+    public void collectKey()
+    {
+        keysCollected++;
+        Debug.Log("llaves colectadas " + keysCollected);
     }
 
     void Update()
@@ -50,13 +57,6 @@ public class NextStage : MonoBehaviour
             spriteRenderer.sprite = closedSprite;
         }
     }
-    /*private void OnCollisionEnter2D(Collision2D Player)
-    {
-        if(enemyCount == 0)
-        {
-            doorCollider.enabled = false;
-        }
-    }*/
 
     public void changeLevel(int levelIndex)
     {
