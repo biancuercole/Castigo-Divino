@@ -34,7 +34,7 @@ public class MachineHealth : MonoBehaviour
             Debug.Log("LootBag no encontrado en la máquina.");
         }
         
-        nextStage.MachineDefeated();
+        //nextStage.MachineDefeated();
         Destroy(gameObject);
     }
 }

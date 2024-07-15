@@ -2809,16 +2809,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b938aa65fd2deb419d9083cec705e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  enemyCount: 8
   levelIndex: 4
-  machines:
-  - {fileID: 1239471362}
-  - {fileID: 570377120}
-  - {fileID: 869005859}
-  - {fileID: 1781800485}
-  machineCount: 0
   keysCollected: 0
+  keysNeeded: 4
   closedSprite: {fileID: 21300000, guid: bf5a64693e7560849911851963815b8c, type: 3}
   openSprite: {fileID: 21300000, guid: 5b49333067d9cff498ed97b2c70c9721, type: 3}
 --- !u!61 &770201472

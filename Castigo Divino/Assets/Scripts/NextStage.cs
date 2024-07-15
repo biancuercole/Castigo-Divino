@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class NextStage : MonoBehaviour
 {
-    [SerializeField] private Transform Player;
-    [SerializeField] private int enemyCount; // Total de enemigos en la escena
+    //[SerializeField] private Transform Player;
+    //[SerializeField] private int enemyCount; // Total de enemigos en la escena
     [SerializeField] private int levelIndex;
-    [SerializeField] private GameObject[] machines; 
-    public int machineCount; 
+    //public int machineCount; 
     private GameObject door;
     private Collider2D doorCollider;
     public int keysCollected; 
+    [SerializeField] private int keysNeeded;
 
     [Header("Sprites")]
     [SerializeField] private Sprite closedSprite; // Sprite cerrada
@@ -28,17 +28,17 @@ public class NextStage : MonoBehaviour
 
 
     // Método para reducir el contador de enemigos
-    public void EnemyDefeated()
+    /*public void EnemyDefeated()
     {
         enemyCount--;
         Debug.Log("Enemigos restantes: " + enemyCount);
-    }
+    }*/
 
-    public void MachineDefeated()
+    /*public void MachineDefeated()
     {
         machineCount ++; 
         Debug.Log("Maquina destruida");
-    }
+    }*/
 
     public void collectKey()
     {
@@ -48,7 +48,7 @@ public class NextStage : MonoBehaviour
 
     void Update()
     {
-        if(machineCount == 1)
+        if(keysCollected >= keysNeeded)
         {
             doorCollider.enabled = false;
             spriteRenderer.sprite = openSprite;
