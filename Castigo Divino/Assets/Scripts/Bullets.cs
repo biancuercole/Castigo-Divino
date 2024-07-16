@@ -29,16 +29,16 @@ public class Bullets : MonoBehaviour
         bulletRb.velocity = direction * speed;
         trail.emitting = true;
 
-        StartCoroutine(DestroyProjectile());
+        //StartCoroutine(DestroyProjectile());
     }
 
-    IEnumerator DestroyProjectile()
+    /*IEnumerator DestroyProjectile()
     {
         float destroyTime = 2f;
         yield return new WaitForSeconds(destroyTime);
      
         Destroy(gameObject);
-    }
+    }*/
 
     private void OnEnable()
     {

@@ -14,6 +14,8 @@ TagManager:
   - Proyectile
   - Enemy
   - key
+  - entrada
+  - puerta
   layers:
   - Default
   - TransparentFX
