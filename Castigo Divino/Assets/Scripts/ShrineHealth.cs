@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class ShrineHealth : MonoBehaviour
 {
+
     [SerializeField] private float maxHealth;
     private float health;
+    [SerializeField] private HealthBar healthBar;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
 
@@ -14,12 +16,14 @@ public class ShrineHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+        healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public IEnumerator GetDamage(float damage)
     {
         health -= damage;
+        healthBar.UpdateHealthBar(maxHealth, health);
         if (health > 0)
         {
             if (damageCoroutine != null)

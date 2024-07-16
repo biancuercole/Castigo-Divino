@@ -53,7 +53,7 @@ public class Proyectiles: MonoBehaviour
 
     IEnumerator DestroyProjectile()
     {
-        float destroyTime = 5f;
+        float destroyTime = 3f;
         yield return new WaitForSeconds(destroyTime);
      
             Destroy(gameObject);
