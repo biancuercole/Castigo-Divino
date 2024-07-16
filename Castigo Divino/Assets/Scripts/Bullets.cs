@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Bullets : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     [SerializeField] public float damage;
     [SerializeField] private TrailRenderer trail;
     private Rigidbody2D bulletRb;
