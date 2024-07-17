@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private bool esInmune = false;
 
     public UnityEvent<int> changeHealth;
+   /* public UnityEvent<int> changeMaxHealth;  // Nuevo evento para maxHealth*/
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -65,6 +66,13 @@ public class PlayerHealth : MonoBehaviour
 
         changeHealth.Invoke(health);
     }
+
+    /*public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        changeMaxHealth.Invoke(maxHealth);  // Invocar el nuevo evento
+    }
+    */
 
     private void passLevel(int indice)
     {

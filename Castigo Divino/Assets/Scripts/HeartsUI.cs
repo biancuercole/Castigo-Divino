@@ -21,6 +21,7 @@ public class HeartsUI : MonoBehaviour
     private void Awake()
     {
         healthPlayer.changeHealth.AddListener(changeHeart);
+       /* healthPlayer.changeMaxHealth.AddListener(UpdateMaxHealth);*/
     }
 
     public void changeHeart(int health)
@@ -74,6 +75,12 @@ public class HeartsUI : MonoBehaviour
             listHearts [indexActual].sprite = heartFull;
         }
     }
+
+    /*public void UpdateMaxHealth(int maxHealth)
+    {
+        createHeart(maxHealth);  // Crear corazones adicionales si es necesario
+    }*/
+
 }
 
 
