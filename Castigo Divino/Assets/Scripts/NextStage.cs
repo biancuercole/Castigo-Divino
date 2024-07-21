@@ -12,8 +12,8 @@ public class NextStage : MonoBehaviour
     private int enemiesCount;
     private int keyCount;
 
-    private int enemiesNeeded;
-    private int keysNeeded;
+    [SerializeField] private int enemiesNeeded;
+    [SerializeField] private int keysNeeded;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite closedSprite;
@@ -31,7 +31,7 @@ public class NextStage : MonoBehaviour
         currentState = MachineState.Close;
 
         // Asignar las variables según el tag del GameObject
-        if (puertaTag == "Puerta1")
+        /*if (puertaTag == "Puerta1")
         {
             enemiesNeeded = 1;
             keysNeeded = 1;
@@ -45,11 +45,12 @@ public class NextStage : MonoBehaviour
         {
             enemiesNeeded = 3;
             keysNeeded = 1;
-        }
+        }*/
 
         // Suscribirse a eventos estáticos
         GameEvents.OnEnemyDefeated += EnemyDefeated;
         GameEvents.OnKeyCollected += CollectKey;
+        GameEvents.OnClosedDoor += closeDoor;
 
         StartCoroutine(StateMachine());
     }
@@ -59,6 +60,7 @@ public class NextStage : MonoBehaviour
         // Desuscribirse de eventos estáticos
         GameEvents.OnEnemyDefeated -= EnemyDefeated;
         GameEvents.OnKeyCollected -= CollectKey;
+        GameEvents.OnClosedDoor -= closeDoor;
     }
 
     public void EnemyDefeated()
@@ -73,6 +75,11 @@ public class NextStage : MonoBehaviour
         keyCount++;
         Debug.Log("Llaves colectadas: " + keyCount);
         CheckState();
+    }
+
+    public void closeDoor()
+    {
+        currentState = MachineState.Close; 
     }
 
     private void Update()
@@ -110,13 +117,13 @@ public class NextStage : MonoBehaviour
 
     private void Close()
     {
-        doorCollider.enabled = false;
+        doorCollider.enabled = true;
         spriteRenderer.sprite = closedSprite;
     }
 
     private void Open()
     {
-        doorCollider.enabled = true;
+        doorCollider.enabled = false;
         spriteRenderer.sprite = openSprite;
     }
 }
@@ -125,6 +132,7 @@ public static class GameEvents
 {
     public static System.Action OnEnemyDefeated;
     public static System.Action OnKeyCollected;
+    public static System.Action OnClosedDoor;
 
     public static void EnemyDefeated()
     {
@@ -134,5 +142,10 @@ public static class GameEvents
     public static void KeyCollected()
     {
         OnKeyCollected?.Invoke();
+    }
+
+    public static void ClosedDoor()
+    {
+        OnClosedDoor?.Invoke();
     }
 }

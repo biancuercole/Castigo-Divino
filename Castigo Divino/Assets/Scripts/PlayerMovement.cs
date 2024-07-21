@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("entrada"))
         {
-            //nextStage.closeDoor();
+            GameEvents.ClosedDoor();
             Destroy(other.gameObject);
         }
     }
