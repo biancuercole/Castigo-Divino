@@ -16,6 +16,9 @@ TagManager:
   - key
   - entrada
   - puerta
+  - Puerta1
+  - Puerta2
+  - Puerta3
   layers:
   - Default
   - TransparentFX

@@ -56,7 +56,7 @@ public class EnemyHealth : MonoBehaviour
             agent.isStopped = true;
             audioManager.playSound(audioManager.enemyDeath);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
-            nextStage.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
+            GameEvents.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
 
             // Desactivar el Collider del enemigo
             enemyCollider.enabled = false;

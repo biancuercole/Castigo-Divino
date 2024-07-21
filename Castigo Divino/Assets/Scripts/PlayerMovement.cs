@@ -123,12 +123,12 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("key"))
         {
-            nextStage.collectKey();
+            GameEvents.KeyCollected();
             Destroy(other.gameObject);
         }
         if (other.gameObject.CompareTag("entrada"))
         {
-            nextStage.closeDoor();
+            //nextStage.closeDoor();
             Destroy(other.gameObject);
         }
     }
