@@ -21,4 +21,21 @@ public class PointsUI : MonoBehaviour
             Debug.Log("Puntos: " + points);
         
     }
+
+    public bool SpendPoints(float amount)
+    {
+        if (points >= amount)
+        {
+            points -= amount;
+            UpdatePointsUI();
+            return true;
+        }
+        return false;
+    }
+
+    private void UpdatePointsUI()
+    {
+        textMesh.text = points.ToString("0");
+    }
+
 }
