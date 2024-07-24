@@ -19,6 +19,7 @@ TagManager:
   - Puerta1
   - Puerta2
   - Puerta3
+  - Humo
   layers:
   - Default
   - TransparentFX
