@@ -1494,7 +1494,7 @@ Transform:
   m_GameObject: {fileID: 295403464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223.7, y: -196, z: -10}
+  m_LocalPosition: {x: 267.4, y: -326.8, z: -10}
   m_LocalScale: {x: 1.4478534, y: 1.4478534, z: 1.4478534}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3394,7 +3394,7 @@ Transform:
   m_GameObject: {fileID: 774589732}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.77, z: 0}
+  m_LocalPosition: {x: -0.03, y: 1.07, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3782,7 +3782,6 @@ Transform:
   - {fileID: 1790807787}
   - {fileID: 338353982}
   - {fileID: 776930644}
-  - {fileID: 2104630007}
   - {fileID: 627769625}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8667,7 +8666,7 @@ GameObject:
   - component: {fileID: 985019112}
   m_Layer: 7
   m_Name: Entrada2
-  m_TagString: entrada
+  m_TagString: entradaBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8681,7 +8680,7 @@ Transform:
   m_GameObject: {fileID: 985019110}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7045284, w: 0.70967585}
-  m_LocalPosition: {x: 251.01, y: -254.57, z: 0}
+  m_LocalPosition: {x: 264.1, y: -329.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8932,7 +8931,7 @@ Transform:
   m_GameObject: {fileID: 1080024288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223.7, y: -196, z: -10}
+  m_LocalPosition: {x: 267.4, y: -326.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11793,6 +11792,7 @@ MonoBehaviour:
   pointsUI: {fileID: 0}
   healAmount: 1
   loot: {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
+  boss: {fileID: 2104630005}
   dashSpeed: 22
   dashDuration: 0.3
   dashCoolDown: 1
@@ -11885,7 +11885,7 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 223.7, y: -196, z: 0}
+  m_LocalPosition: {x: 267.4, y: -326.8, z: 0}
   m_LocalScale: {x: 1.7995871, y: 2.0680518, z: 4.353793}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12064,7 +12064,7 @@ GameObject:
   - component: {fileID: 1985266302}
   - component: {fileID: 1985266303}
   m_Layer: 7
-  m_Name: Entrada2 (1)
+  m_Name: Entrada1
   m_TagString: entrada
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12463,6 +12463,7 @@ MonoBehaviour:
   - {fileID: 657431642}
   - {fileID: 381469570}
   bulletPrefab: {fileID: 4328782979470278472, guid: 0023d4f83d99a9c43afb8e8e91e6b8c0, type: 3}
+  triplePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   bulletSpawnPoint: {fileID: 1583882559}
   player: {fileID: 1957976470}
   chargeSpeed: 20
@@ -12527,12 +12528,12 @@ Transform:
   m_GameObject: {fileID: 2104630002}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 298.156, y: -355.71927, z: 0.33031052}
+  m_LocalPosition: {x: 287.37076, y: -326.65088, z: 0}
   m_LocalScale: {x: 3.9699, y: 3.9699, z: 3.9699}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1583882559}
-  m_Father: {fileID: 814462769}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &2104630008
 NavMeshAgent:
@@ -12717,6 +12718,7 @@ SceneRoots:
   - {fileID: 1165152423}
   - {fileID: 1236039930}
   - {fileID: 474290875}
+  - {fileID: 2104630007}
   - {fileID: 814462769}
   - {fileID: 1881755048}
   - {fileID: 858790497}

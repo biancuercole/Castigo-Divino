@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public int healAmount;
     [SerializeField] private Loot loot;
     private NextStage nextStage; 
+    [SerializeField] private BossMachine boss;
 
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -47,6 +48,11 @@ public class PlayerMovement : MonoBehaviour
         if (playerHealth == null)
         {
             Debug.LogError("No se encontró un componente PlayerHealth en el jugador.");
+        }
+
+        if (boss == null)
+        {
+            Debug.LogError("No se encontró un componente BossMachine en el jugador.");
         }
     }
 
@@ -129,6 +135,19 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("entrada"))
         {
             GameEvents.ClosedDoor();
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("entradaBoss"))
+        {
+            Debug.Log("Activando jefe");
+            if (boss != null)
+            {
+                boss.OnActive();
+            }
+            else
+            {
+                Debug.LogError("BossMachine no está asignado");
+            }
             Destroy(other.gameObject);
         }
     }

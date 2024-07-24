@@ -17,9 +17,8 @@ TagManager:
   - entrada
   - puerta
   - Puerta1
-  - Puerta2
-  - Puerta3
   - Humo
+  - entradaBoss
   layers:
   - Default
   - TransparentFX

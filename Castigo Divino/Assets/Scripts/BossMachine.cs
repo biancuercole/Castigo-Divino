@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class BossMachine : MonoBehaviour
 {
-    public enum BossState { Patrol, Attack, Charge }
+    public enum BossState { Patrol, Attack, Charge, TripleAttack }
     public BossState currentState;
 
     public Transform[] waypoints;
@@ -13,6 +13,7 @@ public class BossMachine : MonoBehaviour
     private NavMeshAgent agent;
 
     public GameObject bulletPrefab;
+    public GameObject triplePrefab;
     public Transform bulletSpawnPoint;
     public Transform player;
     public float chargeSpeed = 20f;
@@ -22,6 +23,12 @@ public class BossMachine : MonoBehaviour
     private float shootCooldown = 5f; // Tiempo entre disparos
     private float nextShootTime = 0f; // Próximo tiempo en el que puede disparar
 
+    private void Awake()
+    {
+        // Inicialmente el jefe está inactivo
+        gameObject.SetActive(false);
+    }
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -29,6 +36,11 @@ public class BossMachine : MonoBehaviour
         currentWaypointIndex = 0;
         StartCoroutine(StateMachine());
         isWaiting = false;
+    }
+
+    public void OnActive()
+    {
+        gameObject.SetActive(true);
     }
 
     private void Update()
@@ -44,6 +56,9 @@ public class BossMachine : MonoBehaviour
             case BossState.Charge:
                 Charge();
                 break;
+            case BossState.TripleAttack:
+                TripleAttack();
+                break;
         }
 
         // Asegurarse de que el jefe no gire en los ejes X e Y
@@ -58,12 +73,13 @@ public class BossMachine : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(5f);
-            currentState = (BossState)(((int)currentState + 1) % 3);
+            currentState = (BossState)(((int)currentState + 1) % 4);
         }
     }
 
     private void Patrol()
     {
+        agent.isStopped = false;
         if (waypoints.Length == 0)
             return;
 
@@ -84,6 +100,16 @@ public class BossMachine : MonoBehaviour
         if (Time.time >= nextShootTime && !isShooting)
         {
             StartCoroutine(Shoot());
+            nextShootTime = Time.time + shootCooldown;
+        }
+    }
+
+    private void TripleAttack()
+    {
+        agent.isStopped = true;
+        if (Time.time >= nextShootTime && !isShooting)
+        {
+            StartCoroutine(TripleShoot());
             nextShootTime = Time.time + shootCooldown;
         }
     }
@@ -117,7 +143,7 @@ public class BossMachine : MonoBehaviour
     {
         isWaiting = true;
         yield return new WaitForSeconds(1f);
-        
+
         // Solo cambiar al siguiente waypoint si no está siguiendo al jugador
         currentWaypointIndex++;
         if (currentWaypointIndex == waypoints.Length)
@@ -141,8 +167,28 @@ public class BossMachine : MonoBehaviour
         {
             Debug.LogError("bulletPrefab o bulletSpawnPoint no asignado");
         }
-            
+
         yield return new WaitForSeconds(0.5f); // Tiempo de espera para simular la animación del disparo
         isShooting = false;
+    }
+
+    IEnumerator TripleShoot()
+    {
+        isShooting = true;
+            // Disparar 3 balas en diferentes direcciones
+            Vector2 directionToPlayer = (player.position - transform.position).normalized;
+            ShootProyectile(directionToPlayer);
+            ShootProyectile(Quaternion.Euler(0, 0, 45) * directionToPlayer); // 45° arriba
+            ShootProyectile(Quaternion.Euler(0, 0, -45) * directionToPlayer); // 45° abajo
+
+            yield return new WaitForSeconds(5f);
+        isShooting = false;
+    }
+
+    void ShootProyectile(Vector2 direction)
+    {
+        GameObject proyectile = Instantiate(triplePrefab, transform.position, Quaternion.identity);
+        TripleBullet proyectileScript = proyectile.GetComponent<TripleBullet>();
+        proyectileScript.SetDirection(direction);
     }
 }
