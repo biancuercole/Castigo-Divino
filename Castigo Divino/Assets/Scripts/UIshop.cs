@@ -8,10 +8,9 @@ public class UIshop : MonoBehaviour
 {
     private Transform container;
     private Transform shopItemTemplate;
-    public PointsUI pointsUI; // Referencia al CoinManager
+    public PointsUI pointsUI; 
     public PowerUpEffect[] powerUps;
-  
-
+    public GameObject[] weaponUpgradeItems;
     private void Awake()
     {
         container = transform.Find("Container");
@@ -21,10 +20,10 @@ public class UIshop : MonoBehaviour
 
     private void Start()
     {
-        CreateItemButton("Speed + 5", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton("BDamage + 5", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
-        CreateItemButton("Heart + 1", Item.GetCost(Item.ItemType.Heart), 2, powerUps[2]);
-        CreateItemButton("BSpeed + 5", Item.GetCost(Item.ItemType.BulletSpeed), 3, powerUps[3]);
+        CreateItemButton("Velocidad + 2", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
+        CreateItemButton("Daño + 2", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton("Corazón + 1", Item.GetCost(Item.ItemType.Heart), 2, powerUps[2]);
+        CreateItemButton("Velocidad Bala + 3", Item.GetCost(Item.ItemType.BulletSpeed), 3, powerUps[3]);
     }
 
     private void CreateItemButton(string itemName, int itemCost, int positionIndex, PowerUpEffect powerUp)
@@ -41,24 +40,51 @@ public class UIshop : MonoBehaviour
 
         Button button = shopItemTransform.GetComponent<Button>();
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => TryBuyItem(itemCost, powerUp, button));
-
-
+        button.onClick.AddListener(() => TryBuyItem(itemCost, powerUp, button, shopItemTransform));
     }
 
-    private void TryBuyItem(int itemCost, PowerUpEffect powerUp, Button button)
+    private void TryBuyItem(int itemCost, PowerUpEffect powerUp, Button button, Transform shopItemTransform)
     {
         if (pointsUI.SpendPoints(itemCost))
         {
-            Debug.Log("Purchased: " + powerUp.name);
-            // Assuming the player object has a tag "Player"
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            powerUp.Apply(player);
-            button.interactable = false;
+            if (powerUp is PowerUpEffect)
+            {
+                EnableWeaponUpgradeItem(powerUp);
+                button.interactable = false;
+            }
+            else
+            {
+                // Aplica la mejora automáticamente si no es para el arma
+                GameObject player = GameObject.FindGameObjectWithTag("Player");
+                powerUp.Apply(player);
+                button.interactable = false;
+            }
+
+
+            foreach (Transform child in shopItemTransform)
+            {
+                Image childImage = child.GetComponent<Image>();
+                if (childImage != null)
+                {
+                    childImage.color = Color.grey;
+                }
+            }
+
         }
         else
         {
             Debug.Log("Not enough coins");
+        }
+    }
+
+    private void EnableWeaponUpgradeItem(PowerUpEffect powerUp)
+    {
+        foreach (GameObject item in weaponUpgradeItems)
+        {
+            if (item.GetComponent<PowerUp>().powerUpEffect == powerUp)
+            {
+                item.SetActive(true);
+            }
         }
     }
 

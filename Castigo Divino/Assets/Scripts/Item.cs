@@ -18,7 +18,7 @@ public class Item
             case ItemType.Speed:  return 1;
             case ItemType.BulletDamage: return 2;
             case ItemType.BulletSpeed: return 3;
-            case ItemType.Heart: return 5;
+            case ItemType.Heart: return 1;
       
         } 
     }

@@ -11,4 +11,9 @@ public class SpeedBuff : PowerUpEffect
     {
         target.GetComponent<PlayerMovement>().speed += amount;
     }
+
+    public override void Remove(GameObject target)
+    {
+        target.GetComponent<PlayerMovement>().speed -= amount;
+    }
 }

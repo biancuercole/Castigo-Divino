@@ -28,7 +28,6 @@ public class Bullets : MonoBehaviour
         audioManager.playSound(audioManager.shot);
         bulletRb.velocity = direction * speed;
         trail.emitting = true;
-
         StartCoroutine(DestroyProjectile());
     }
 

@@ -5,12 +5,26 @@ using UnityEngine;
 public class ShopTrigger : MonoBehaviour
 {
     [SerializeField] private UIshop uiShop;
+    [SerializeField] private ItemSlot item;
+  //  [SerializeField] private ItemSlot itemSlot;
+
+    private void Start()
+    {
+        uiShop.Hide();
+    }
     private void OnTriggerEnter2D(Collider2D collider)
     {
 
         if (collider.CompareTag("Player"))
         {
-            uiShop.Show();
+            if (this.gameObject.CompareTag("Shop"))
+            {
+                uiShop.Show();
+            }
+            else
+            {
+                item.Show();
+            }
         }
 
     }
@@ -19,7 +33,14 @@ public class ShopTrigger : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            uiShop.Hide();
+            if (this.gameObject.CompareTag("Shop"))
+            {
+                uiShop.Hide();
+            }
+            else
+            {
+                item.Hide();
+            }
         }
     }
 }

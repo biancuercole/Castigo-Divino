@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d77d0d7120d9644a897a12ce6f93a40, type: 3}
-  m_Name: MajorBulletSpeed
+  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Name: PP Profile
   m_EditorClassIdentifier: 
-  amount: 3
+  settings: []

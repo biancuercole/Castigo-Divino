@@ -19,6 +19,7 @@ TagManager:
   - Puerta1
   - Humo
   - entradaBoss
+  - Shop
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Bullets
   - Floor
   - MiniMap
-  - 
+  - Post Processing
   - 
   - 
   - 

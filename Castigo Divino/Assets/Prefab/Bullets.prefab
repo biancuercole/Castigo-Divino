@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4441423085399254658}
   - component: {fileID: 6322463129351073117}
   - component: {fileID: 5127848264444652930}
-  - component: {fileID: -4074694872234757267}
   - component: {fileID: -1553128002689690625}
   m_Layer: 6
   m_Name: Bullets
@@ -166,21 +165,6 @@ MonoBehaviour:
   speed: 3
   damage: 1
   trail: {fileID: -1553128002689690625}
---- !u!114 &-4074694872234757267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3423878006308847333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
-  lootList:
-  - {fileID: 11400000, guid: 1320b3b9026952a4c9d41ac9219709ce, type: 2}
 --- !u!96 &-1553128002689690625
 TrailRenderer:
   serializedVersion: 3
@@ -233,7 +217,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5
+        value: 0.5243912
         inSlope: 0
         outSlope: 0
         tangentMode: 0
