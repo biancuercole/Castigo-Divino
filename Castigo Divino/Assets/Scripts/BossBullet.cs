@@ -69,6 +69,7 @@ public class BossBullet: MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.GetDamage(damage);
+            CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
         }
       
             Destroy(gameObject);
