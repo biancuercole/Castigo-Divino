@@ -130,6 +130,12 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(other.gameObject);
             }
         }
+
+        if (other.gameObject.CompareTag("altarVida"))
+        {
+            Debug.Log("salud recuperada");
+            //playerHealth.HealHealth(4);
+        }
         if (other.gameObject.CompareTag("key"))
         {
             GameEvents.KeyCollected();
