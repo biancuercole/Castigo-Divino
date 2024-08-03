@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
     [SerializeField] float dashCoolDown = 0.7f;
-    [SerializeField] private TrailRenderer trail;
+    //[SerializeField] private TrailRenderer trail;
     [SerializeField] private GameObject Gun;
 
     bool isDashing;
@@ -74,18 +74,18 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
-            trail.emitting = false;
+            //trail.emitting = false;
         }
         else
         {
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-            trail.emitting = false;
+            //trail.emitting = false;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
-            trail.emitting = true;
+            //trail.emitting = true;
         }
     }
 

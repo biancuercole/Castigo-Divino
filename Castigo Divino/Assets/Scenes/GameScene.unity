@@ -18746,7 +18746,6 @@ MonoBehaviour:
   dashSpeed: 22
   dashDuration: 0.3
   dashCoolDown: 1
-  trail: {fileID: 1957976477}
   Gun: {fileID: 2033237688}
 --- !u!212 &1957976468
 SpriteRenderer:
@@ -19861,11 +19860,11 @@ SceneRoots:
   - {fileID: 1165152423}
   - {fileID: 1236039930}
   - {fileID: 474290875}
+  - {fileID: 684482176}
+  - {fileID: 1061856850}
   - {fileID: 814462769}
   - {fileID: 1881755048}
   - {fileID: 858790497}
   - {fileID: 2104630007}
   - {fileID: 1188332409}
   - {fileID: 1080024290}
-  - {fileID: 684482176}
-  - {fileID: 1061856850}
