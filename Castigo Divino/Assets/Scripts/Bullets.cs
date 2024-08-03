@@ -62,6 +62,11 @@ public class Bullets : MonoBehaviour
         {
             enemyHealth.TakeDamage(damage); // Llama al método TakeDamage
         }
+        BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();
+        if (bossHealth != null)
+        {
+            bossHealth.TakeDamage(damage); // Llama al método TakeDamage
+        }
 
         MachineHealth machineHealth = collision.gameObject.GetComponent<MachineHealth>();
         if (machineHealth != null)
