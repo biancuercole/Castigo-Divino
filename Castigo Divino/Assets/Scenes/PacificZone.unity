@@ -2872,8 +2872,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listHearts: []
   heartPrefab: {fileID: 6420308125987306334, guid: 5531be5d4bfac584d8440a213ff49305, type: 3}
-  healthPlayer: {fileID: 0}
-  indexActual: 0
+  healthPlayer: {fileID: 1916445829}
+  indexActual: 2
   heartFull: {fileID: 21300000, guid: 3712eb4dc39562247b378e9d73e2e20e, type: 3}
   heartEmpty: {fileID: 21300000, guid: ccf98cdea5ec404419534c895cb6f299, type: 3}
 --- !u!114 &1120902999
