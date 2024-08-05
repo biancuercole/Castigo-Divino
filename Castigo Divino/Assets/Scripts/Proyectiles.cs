@@ -9,7 +9,11 @@ public class Proyectiles: MonoBehaviour
     private GameObject shrine;
     private Transform player;
     private Rigidbody2D rb;
-
+    private AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +34,7 @@ public class Proyectiles: MonoBehaviour
 
     public void LaunchProyectile()
     {
+        audioManager.playSound(audioManager.enemyShot);
         Debug.Log("Launching projectile. Object tag: " + this.gameObject.tag);
 
         if (this.gameObject.CompareTag("Proyectile"))

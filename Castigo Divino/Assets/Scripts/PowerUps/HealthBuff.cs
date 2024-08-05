@@ -9,6 +9,7 @@ public class HealthBuff : PowerUpEffect
     public override void Apply(GameObject target)
     {
         target.GetComponent<PlayerHealth>().IncreaseMaxHealth(amount);
+        Debug.Log("Incresed health");
     }
 
     public override void Remove(GameObject target)

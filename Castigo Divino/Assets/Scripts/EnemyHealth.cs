@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 10f; 
+    [SerializeField] private float maxHealth = 10f;
+    [SerializeField] private HealthBar healthBar;
     private float health;
     private SpriteRenderer spriteRenderer;
     private NextStage nextStage;
@@ -68,6 +69,7 @@ public class EnemyHealth : MonoBehaviour
             yield return new WaitForSeconds(1.0f); // Ajusta el tiempo según la duración de la animación
 
             Destroy(gameObject);
+            healthBar.HideBar();
         }
     }
 }

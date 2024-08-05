@@ -5,28 +5,26 @@ using TMPro;
 
 public class PointsUI : MonoBehaviour
 {
-    private float points;
     private TextMeshProUGUI textMesh;
 
     void Start()
     {
         textMesh = GetComponent<TextMeshProUGUI>();
+        ManagerData.Instance.LoadPoints();
+        UpdatePointsUI();
     }
 
     public void takePoints(float pointsNow)
     {
-       
-            points += pointsNow;
-            textMesh.text = points.ToString("0");
-            Debug.Log("Puntos: " + points);
-        
+        ManagerData.Instance.AddPoints(pointsNow);
+        UpdatePointsUI();
+        Debug.Log("Puntos: " + ManagerData.Instance.points);
     }
 
     public bool SpendPoints(float amount)
     {
-        if (points >= amount)
+        if (ManagerData.Instance.SpendPoints(amount))
         {
-            points -= amount;
             UpdatePointsUI();
             return true;
         }
@@ -35,7 +33,7 @@ public class PointsUI : MonoBehaviour
 
     private void UpdatePointsUI()
     {
-        textMesh.text = points.ToString("0");
+        textMesh.text = ManagerData.Instance.points.ToString("0");
     }
 
 }

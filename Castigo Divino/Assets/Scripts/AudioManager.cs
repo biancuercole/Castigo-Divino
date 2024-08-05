@@ -10,12 +10,14 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip background;
     public AudioClip background2;
+    public AudioClip ambientSound;
     public AudioClip cinematic;
     public AudioClip shot;
+    public AudioClip steps;
     public AudioClip enemyDeath;
     public AudioClip victory;
     public AudioClip gameOver;
-
+    public AudioClip enemyShot;
     private void Start()
     {
         SetBackgroundMusic();

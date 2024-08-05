@@ -12,7 +12,7 @@ public class ShrineHealth : MonoBehaviour
     [SerializeField] private int indiceNivel;
 
     private Coroutine damageCoroutine;
-
+    public float showTimer;
     void Start()
     {
         health = maxHealth;
@@ -20,12 +20,23 @@ public class ShrineHealth : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void Update()
+    {
+        showTimer -= Time.deltaTime;
+        if (showTimer <= 0)
+        {
+            healthBar.HideBar();
+        }
+    }
+
     public IEnumerator GetDamage(float damage)
     {
+        showTimer = 5;
         health -= damage;
         healthBar.UpdateHealthBar(maxHealth, health);
         if (health > 0)
         {
+            healthBar.ShowBar();
             if (damageCoroutine != null)
             {
                 StopCoroutine(damageCoroutine);
@@ -34,6 +45,7 @@ public class ShrineHealth : MonoBehaviour
         }
         else
         {
+           // healthBar.HideBar();
             Debug.Log("Santuario destruido.");
             SceneManager.LoadScene(indiceNivel);
         }

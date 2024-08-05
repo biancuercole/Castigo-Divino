@@ -10,6 +10,7 @@ public class SpeedBuff : PowerUpEffect
     public override void Apply(GameObject target)
     {
         target.GetComponent<PlayerMovement>().speed += amount;
+        Debug.Log("Incresed speed");
     }
 
     public override void Remove(GameObject target)

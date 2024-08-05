@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,7 +15,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup canvasGroup;
     private PowerUpManager playerPowerUpManager;
     private Vector2 originalPosition;
-
+    public string messeage;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -54,6 +55,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        ToolTipManager.instance.SetAndShowToolTip(messeage);
         Debug.Log("OnPointerDown");
     }
 

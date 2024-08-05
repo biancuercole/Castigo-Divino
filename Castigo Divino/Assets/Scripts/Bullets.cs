@@ -9,13 +9,13 @@ public class Bullets : MonoBehaviour
     private Rigidbody2D bulletRb;
     private NextStage nextStage; 
     private AudioManager audioManager;
-    private LootBag lootBag;
+   // private LootBag lootBag;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         bulletRb = GetComponent<Rigidbody2D>();
-        lootBag = FindObjectOfType<LootBag>();
+       // lootBag = FindObjectOfType<LootBag>();
     }
 
     void Start()
@@ -25,6 +25,7 @@ public class Bullets : MonoBehaviour
 
     public void LaunchBullet(Vector2 direction)
     {
+
         audioManager.playSound(audioManager.shot);
         bulletRb.velocity = direction * speed;
         trail.emitting = true;

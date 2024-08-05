@@ -14,7 +14,8 @@ public class EnemyPatroll : MonoBehaviour
     [SerializeField] Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
     [SerializeField] public int damage;
-    
+    [SerializeField] public TrailRenderer trail;
+
     NavMeshAgent agent;
     private bool isWaiting;
     private bool isFollowing; 
@@ -137,7 +138,6 @@ public class EnemyPatroll : MonoBehaviour
         float highSpeedDuration = 3.0f;
         agent.speed = chargeSpeed; // Cambiar a velocidad de embestida
         agent.SetDestination(target.position);
-
         yield return new WaitForSeconds(highSpeedDuration);
 
         isCharging = false;

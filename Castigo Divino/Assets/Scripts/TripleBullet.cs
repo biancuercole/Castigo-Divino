@@ -5,6 +5,7 @@ public class TripleBullet : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] public int damage;
+    [SerializeField] private TrailRenderer trail;
     private Rigidbody2D rb;
 
     void Start()
@@ -20,6 +21,7 @@ public class TripleBullet : MonoBehaviour
         }
 
         rb.velocity = direction * speed;
+        trail.emitting = true;
         StartCoroutine(DestroyProjectile());
     }
 

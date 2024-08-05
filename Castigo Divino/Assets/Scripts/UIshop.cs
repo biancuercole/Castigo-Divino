@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class UIshop : MonoBehaviour
     public PointsUI pointsUI; 
     public PowerUpEffect[] powerUps;
     public GameObject[] weaponUpgradeItems;
+    public string messeage;
     private void Awake()
     {
         container = transform.Find("Container");
@@ -21,9 +23,9 @@ public class UIshop : MonoBehaviour
     private void Start()
     {
         CreateItemButton("Velocidad + 2", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton("Daño + 2", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton("Daño + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
         CreateItemButton("Corazón + 1", Item.GetCost(Item.ItemType.Heart), 2, powerUps[2]);
-        CreateItemButton("Velocidad Bala + 3", Item.GetCost(Item.ItemType.BulletSpeed), 3, powerUps[3]);
+        CreateItemButton("Velocidad Bala + 2", Item.GetCost(Item.ItemType.BulletSpeed), 3, powerUps[3]);
     }
 
     private void CreateItemButton(string itemName, int itemCost, int positionIndex, PowerUpEffect powerUp)
@@ -47,32 +49,38 @@ public class UIshop : MonoBehaviour
     {
         if (pointsUI.SpendPoints(itemCost))
         {
-            if (powerUp is PowerUpEffect)
+            if (powerUp != null)
             {
-                EnableWeaponUpgradeItem(powerUp);
+                // Verifica si el PowerUp es para el arma o para el jugador
+                if (System.Array.Exists(weaponUpgradeItems, item => item.GetComponent<PowerUp>().powerUpEffect == powerUp))
+                {
+                    EnableWeaponUpgradeItem(powerUp);
+                }
+                else
+                {
+                    // Aplica la mejora automáticamente si no es para el arma
+                    GameObject player = GameObject.FindGameObjectWithTag("Player");
+                    if (player != null)
+                    {
+                        powerUp.Apply(player);
+                    }
+                    else
+                    {
+                        Debug.LogError("Player not found");
+                    }
+                }
+
                 button.interactable = false;
+                UpdateButtonAppearance(shopItemTransform);
             }
             else
             {
-                // Aplica la mejora automáticamente si no es para el arma
-                GameObject player = GameObject.FindGameObjectWithTag("Player");
-                powerUp.Apply(player);
-                button.interactable = false;
+                Debug.LogError("PowerUpEffect is null");
             }
-
-
-            foreach (Transform child in shopItemTransform)
-            {
-                Image childImage = child.GetComponent<Image>();
-                if (childImage != null)
-                {
-                    childImage.color = Color.grey;
-                }
-            }
-
         }
         else
         {
+            ToolTipManager.instance.SetAndShowToolTip(messeage);
             Debug.Log("Not enough coins");
         }
     }
@@ -84,6 +92,18 @@ public class UIshop : MonoBehaviour
             if (item.GetComponent<PowerUp>().powerUpEffect == powerUp)
             {
                 item.SetActive(true);
+            }
+        }
+    }
+
+    private void UpdateButtonAppearance(Transform shopItemTransform)
+    {
+        foreach (Transform child in shopItemTransform)
+        {
+            Image childImage = child.GetComponent<Image>();
+            if (childImage != null)
+            {
+                childImage.color = Color.grey;
             }
         }
     }
