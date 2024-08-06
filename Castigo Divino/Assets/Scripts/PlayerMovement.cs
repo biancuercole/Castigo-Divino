@@ -153,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("entradaBoss"))
         {
+            GameEvents.ClosedDoor();
             Debug.Log("Activando jefe");
             if (boss != null)
             {

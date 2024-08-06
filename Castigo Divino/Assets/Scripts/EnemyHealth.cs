@@ -63,7 +63,7 @@ public class EnemyHealth : MonoBehaviour
             enemyCollider.enabled = false;
 
             // Reproduce la animación de explosión
-            animator.SetTrigger("Explode");
+            //animator.SetTrigger("Explode");
 
             // Esperar a que la animación de explosión termine
             yield return new WaitForSeconds(1.0f); // Ajusta el tiempo según la duración de la animación
