@@ -995,6 +995,7 @@ GameObject:
   - component: {fileID: 102294420}
   - component: {fileID: 102294419}
   - component: {fileID: 102294418}
+  - component: {fileID: 102294424}
   m_Layer: 0
   m_Name: Triple2
   m_TagString: Humo
@@ -1187,6 +1188,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &102294424
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102294416}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74f836dbc3f91984e887afa064a3f112, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &119936056
 GameObject:
   m_ObjectHideFlags: 0
@@ -2320,7 +2342,7 @@ Transform:
   m_GameObject: {fileID: 295403464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -94.1, y: -151.2, z: -10}
+  m_LocalPosition: {x: 233.4, y: -176.4, z: -10}
   m_LocalScale: {x: 1.4478534, y: 1.4478534, z: 1.4478534}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4183,6 +4205,7 @@ GameObject:
   - component: {fileID: 627769627}
   - component: {fileID: 627769626}
   - component: {fileID: 627769631}
+  - component: {fileID: 627769632}
   m_Layer: 0
   m_Name: Triple1
   m_TagString: Humo
@@ -4369,12 +4392,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 40
+  shootDistance: 10
   WayPoints:
   - {fileID: 796491312}
   - {fileID: 396851553}
   currentWaypoint: 0
   waitTime: 0
+--- !u!95 &627769632
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627769624}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 74f836dbc3f91984e887afa064a3f112, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &631595264
 GameObject:
   m_ObjectHideFlags: 0
@@ -21800,7 +21844,7 @@ Transform:
   m_GameObject: {fileID: 1080024288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -94.1, y: -151.2, z: -10}
+  m_LocalPosition: {x: 233.4, y: -176.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26844,7 +26888,7 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -94.1, y: -151.2, z: 0}
+  m_LocalPosition: {x: 233.4, y: -176.4, z: 0}
   m_LocalScale: {x: 1.7995871, y: 2.0680518, z: 4.353793}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -27625,7 +27669,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b246158f4708d994bb2e8804d05f5cfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
