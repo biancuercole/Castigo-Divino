@@ -12,6 +12,9 @@ public class BossMachine : MonoBehaviour
     private int currentWaypointIndex;
     private NavMeshAgent agent;
 
+    private Animator bossAnimator;
+    private Vector2 moveInput;
+
     public GameObject bulletPrefab;
     public GameObject triplePrefab;
     public Transform bulletSpawnPoint;
@@ -36,6 +39,7 @@ public class BossMachine : MonoBehaviour
         currentWaypointIndex = 0;
         StartCoroutine(StateMachine());
         isWaiting = false;
+        bossAnimator = GetComponent<Animator>();
     }
 
     public void OnActive()
@@ -45,6 +49,14 @@ public class BossMachine : MonoBehaviour
 
     private void Update()
     {
+        Vector3 velocity = agent.velocity;
+        Vector2 moveDirection = new Vector2(velocity.x, velocity.z).normalized;
+
+        bossAnimator.SetFloat("Horizontal", moveDirection.x);
+        bossAnimator.SetFloat("Vertical", moveDirection.y);
+        bossAnimator.SetFloat("Speed", moveDirection.sqrMagnitude);
+
+
         switch (currentState)
         {
             case BossState.Patrol:
@@ -65,6 +77,7 @@ public class BossMachine : MonoBehaviour
         Vector3 eulerRotation = transform.eulerAngles;
         eulerRotation.x = 0f;
         eulerRotation.y = 0f;
+        eulerRotation.z = 0f;
         transform.eulerAngles = eulerRotation;
     }
 
