@@ -21,6 +21,7 @@ TagManager:
   - entradaBoss
   - Shop
   - altarVida
+  - GM
   layers:
   - Default
   - TransparentFX

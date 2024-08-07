@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float speed = 3f;
+    private GameMaster gm;
 
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
@@ -36,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
+        transform.position = gm.lastCheckpoint;
         nextStage = FindObjectOfType<NextStage>();
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
