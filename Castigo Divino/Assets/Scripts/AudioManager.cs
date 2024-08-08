@@ -39,8 +39,8 @@ public class AudioManager : MonoBehaviour
                 musicSource.clip = background2;
                 break;
             case "PacificZone":
-            musicSource.clip = background2;
-            break;
+                musicSource.clip = background2;
+                break;
             case "Cinematics":
                 musicSource.clip = cinematic;
                 break;
