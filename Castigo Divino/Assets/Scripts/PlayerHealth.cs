@@ -28,6 +28,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!esInmune)
         {
+            CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
+            
             int temporaryHealth = health - damage;
 
             if (temporaryHealth < 0)
