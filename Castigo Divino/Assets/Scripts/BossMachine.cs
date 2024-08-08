@@ -85,7 +85,7 @@ public class BossMachine : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
             currentState = (BossState)(((int)currentState + 1) % 4);
         }
     }
