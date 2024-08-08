@@ -15,10 +15,10 @@ public class Item
     public static int GetCost(ItemType itemType) { 
         switch (itemType) {
         default:
-            case ItemType.Speed:  return 10;
-            case ItemType.BulletDamage: return 10;
-            case ItemType.BulletSpeed: return 10;
-            case ItemType.Heart: return 10;
+            case ItemType.Speed:  return 30;
+            case ItemType.BulletDamage: return 30;
+            case ItemType.BulletSpeed: return 30;
+            case ItemType.Heart: return 30;
       
         } 
     }

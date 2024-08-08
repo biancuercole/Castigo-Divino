@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float speed = 3f;
-    private GameMaster gm;
+    //private GameMaster gm;
 
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
@@ -33,20 +34,44 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        // Inicializa el AudioManager
+        audioManager = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("No se encontró un AudioManager en la escena.");
+        }
     }
+
     void Start()
     {
-        gm = GameObject.FindGameObjectWithTag("GM").GetComponent<GameMaster>();
-        transform.position = gm.lastCheckpoint;
+        // Inicializa el GameMaster
+        //gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
+        /*f (gm == null)
+        {
+            Debug.LogError("No se encontró un GameMaster en la escena.");
+            return;
+        }*/
+        //transform.position = gm.lastCheckpoint;
+        playerRb = GetComponent<Rigidbody2D>();
+        if (playerRb == null)
+        {
+            Debug.LogError("No se encontró un componente Rigidbody2D en el jugador.");
+        }
+        // Inicializa otros componentes
         nextStage = FindObjectOfType<NextStage>();
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        GunSpriteRenderer = Gun.GetComponent<SpriteRenderer>();
-        canDash = true;
-        pointsUI = FindObjectOfType<PointsUI>();
+        GunSpriteRenderer = Gun?.GetComponent<SpriteRenderer>();
         playerHealth = GetComponent<PlayerHealth>();
+        pointsUI = FindObjectOfType<PointsUI>();
+        canDash = true;
+
+        // Verifica si los componentes clave están asignados
+        if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null || trail == null)
+        {
+            Debug.LogError("Uno o más componentes no están asignados correctamente.");
+        }
 
         if (pointsUI == null)
         {
@@ -70,9 +95,12 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
 
-        playerAnimator.SetFloat("Horizontal", moveX);
-        playerAnimator.SetFloat("Vertical", moveY);
-        playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetFloat("Horizontal", moveX);
+            playerAnimator.SetFloat("Vertical", moveY);
+            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+        }
 
         if (isDashing)
         {
@@ -81,12 +109,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+            if (GunSpriteRenderer != null && spriteRenderer != null)
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+            }
             trail.emitting = false;
         }
         else
         {
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            if (GunSpriteRenderer != null && spriteRenderer != null)
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
             trail.emitting = false;
         }
 
@@ -99,6 +133,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (playerRb == null)
+        {
+            Debug.LogError("playerRb no está asignado.");
+            return;
+        }
+
         if (isDashing)
         {
             playerRb.velocity = moveInput * dashSpeed;
@@ -167,6 +207,10 @@ public class PlayerMovement : MonoBehaviour
                 Debug.LogError("BossMachine no está asignado");
             }
             Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Level1"))
+        {
+            SceneManager.LoadScene("GameScene");
         }
     }
 }
