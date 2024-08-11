@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private bool esInmune = false;
 
     public UnityEvent<int> changeHealth;
+
     private SpriteRenderer spriteRenderer;
 
     void Start()
@@ -27,6 +28,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!esInmune)
         {
+            CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
+            
             int temporaryHealth = health - damage;
 
             if (temporaryHealth < 0)
@@ -64,6 +67,13 @@ public class PlayerHealth : MonoBehaviour
         }
 
         changeHealth.Invoke(health);
+    }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        health = maxHealth; 
+        changeHealth.Invoke(maxHealth);
     }
 
     private void passLevel(int indice)

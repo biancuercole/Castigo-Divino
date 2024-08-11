@@ -31,19 +31,22 @@ public class HeartsUI : MonoBehaviour
         }
         else
         {
+            if (health > listHearts.Count)
+            {
+                createHeart(health - listHearts.Count);
+            }
             changeHealth(health);
         }
     }
-    public void createHeart(int AmountMaxhealth)
+    public void createHeart(int additionalHearts)
     {
-        for (int i = 0; i < AmountMaxhealth; i++)
+        for (int i = 0; i < additionalHearts; i++)
         {
             GameObject heart = Instantiate(heartPrefab, transform);
-
             listHearts.Add(heart.GetComponent<Image>());
         }
 
-        indexActual = AmountMaxhealth - 1;
+        indexActual = listHearts.Count - 1;
     }
     public void changeHealth(int health)
     {
@@ -74,6 +77,7 @@ public class HeartsUI : MonoBehaviour
             listHearts [indexActual].sprite = heartFull;
         }
     }
+
 }
 
 

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BulletPool : MonoBehaviour
 {
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private int poolSize =  10;
-    [SerializeField] private List<GameObject> bulletList;
+    [SerializeField] public GameObject bulletPrefab;
+    [SerializeField] public int poolSize =  10;
+    [SerializeField] public List<GameObject> bulletList;
 
-    private static BulletPool instance;
+    public static BulletPool instance;
     public static BulletPool Instance {  get { return instance; } }
 
-    private void Awake()
+    public void Awake()
     {
         if(instance == null)
         {
@@ -28,7 +28,7 @@ public class BulletPool : MonoBehaviour
         AddBulletToPool(poolSize);
     }
 
-    private void AddBulletToPool( int amount )
+    public void AddBulletToPool( int amount )
     {
         for (int i = 0; i < amount; i++)
         {

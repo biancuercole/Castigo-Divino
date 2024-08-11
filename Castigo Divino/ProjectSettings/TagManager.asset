@@ -14,6 +14,15 @@ TagManager:
   - Proyectile
   - Enemy
   - key
+  - entrada
+  - puerta
+  - Puerta1
+  - Humo
+  - entradaBoss
+  - Shop
+  - altarVida
+  - GM
+  - Level1
   layers:
   - Default
   - TransparentFX
@@ -24,7 +33,7 @@ TagManager:
   - Bullets
   - Floor
   - MiniMap
-  - 
+  - Post Processing
   - 
   - 
   - 

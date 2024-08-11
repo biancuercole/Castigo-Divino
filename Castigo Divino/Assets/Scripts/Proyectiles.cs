@@ -9,7 +9,11 @@ public class Proyectiles: MonoBehaviour
     private GameObject shrine;
     private Transform player;
     private Rigidbody2D rb;
-
+    private AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +34,7 @@ public class Proyectiles: MonoBehaviour
 
     public void LaunchProyectile()
     {
+        audioManager.playSound(audioManager.enemyShot);
         Debug.Log("Launching projectile. Object tag: " + this.gameObject.tag);
 
         if (this.gameObject.CompareTag("Proyectile"))
@@ -53,7 +58,7 @@ public class Proyectiles: MonoBehaviour
 
     IEnumerator DestroyProjectile()
     {
-        float destroyTime = 5f;
+        float destroyTime = 3f;
         yield return new WaitForSeconds(destroyTime);
      
             Destroy(gameObject);
@@ -62,6 +67,13 @@ public class Proyectiles: MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.gameObject.CompareTag("Bala"))
+        {
+            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
+            return;
+        }
+
         ShrineHealth shrineHealth = collision.gameObject.GetComponent<ShrineHealth>();
         if (shrineHealth != null)
         {

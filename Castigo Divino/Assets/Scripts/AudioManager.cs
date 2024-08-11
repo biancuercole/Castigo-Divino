@@ -10,12 +10,14 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip background;
     public AudioClip background2;
+    public AudioClip ambientSound;
     public AudioClip cinematic;
     public AudioClip shot;
+    public AudioClip steps;
     public AudioClip enemyDeath;
     public AudioClip victory;
     public AudioClip gameOver;
-
+    public AudioClip enemyShot;
     private void Start()
     {
         SetBackgroundMusic();
@@ -34,6 +36,9 @@ public class AudioManager : MonoBehaviour
                 musicSource.clip = background;
                 break;
             case "Zone2":
+                musicSource.clip = background2;
+                break;
+            case "PacificZone":
                 musicSource.clip = background2;
                 break;
             case "Cinematics":

@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 100f; 
+    [SerializeField] private float maxHealth = 10f;
+    [SerializeField] private HealthBar healthBar;
     private float health;
     private SpriteRenderer spriteRenderer;
     private NextStage nextStage;
@@ -56,18 +57,23 @@ public class EnemyHealth : MonoBehaviour
             agent.isStopped = true;
             audioManager.playSound(audioManager.enemyDeath);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
-            nextStage.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
+            GameEvents.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
 
             // Desactivar el Collider del enemigo
             enemyCollider.enabled = false;
 
             // Reproduce la animación de explosión
-            animator.SetTrigger("Explode");
+            if (!gameObject.CompareTag("Humo"))
+            {
+                animator.SetTrigger("Explode");
+            }
+
 
             // Esperar a que la animación de explosión termine
             yield return new WaitForSeconds(1.0f); // Ajusta el tiempo según la duración de la animación
 
             Destroy(gameObject);
+            healthBar.HideBar();
         }
     }
 }

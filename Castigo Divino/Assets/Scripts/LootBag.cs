@@ -34,11 +34,12 @@ public class LootBag : MonoBehaviour
         {
             foreach (Loot item in droppedItems)
             {
-                Vector3 randomOffset = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0);
+             
+                Vector3 randomOffset = new Vector3(Random.Range(-2f, 1f), Random.Range(-2f, 1f), 0);
                 GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition + randomOffset, Quaternion.identity);
                 lootGameObject.GetComponent<SpriteRenderer>().sprite = item.lootSprite;
 
-                float dropForce = 3f;
+                float dropForce = 300f;
                 Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
                 lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
 
@@ -49,6 +50,10 @@ public class LootBag : MonoBehaviour
                 if(item.lootName == "coin")
                 {
                     lootGameObject.tag = "coin";
+                }
+                if(item.lootName == "key")
+                {
+                    lootGameObject.tag = "key";
                 }
             }
         }

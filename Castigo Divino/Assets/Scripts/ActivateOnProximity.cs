@@ -3,7 +3,7 @@ using UnityEngine;
 public class ActivateOnProximity : MonoBehaviour
 {
     public Transform player; 
-    public float activationDistance = 10f; // Distancia máxima a la que se activarán los enemigos
+    public float activationDistance = 10f; // Distancia mï¿½xima a la que se activarï¿½n los enemigos
 
     void OnDrawGizmosSelected()
     {
@@ -23,7 +23,7 @@ public class ActivateOnProximity : MonoBehaviour
             return;
         }
 
-        // Iterar a través de todos los hijos de Enemies
+        // Iterar a travï¿½s de todos los hijos de Enemies
         foreach (Transform child in transform)
         {
             // Calcular la distancia entre el jugador y cada hijo de Enemies
