@@ -5,8 +5,9 @@ using UnityEngine.AI;
 
 public class BossMachine : MonoBehaviour
 {
-    public enum BossState { Patrol, Attack, Charge, TripleAttack }
+    public enum BossState { Patrol, Attack, Charge, TripleAttack, MinionRelease }
     public BossState currentState;
+    public MinionsBoss minionBoss;
 
     public Transform[] waypoints;
     private int currentWaypointIndex;
@@ -34,6 +35,7 @@ public class BossMachine : MonoBehaviour
 
     private void Start()
     {
+        minionBoss = FindObjectOfType<MinionsBoss>();
         agent = GetComponent<NavMeshAgent>();
         currentState = BossState.Patrol;
         currentWaypointIndex = 0;
@@ -49,6 +51,10 @@ public class BossMachine : MonoBehaviour
 
     private void Update()
     {
+        if(currentState != BossState.MinionRelease)
+        {
+            minionBoss.DeactivateMinion();
+        }
         Vector3 velocity = agent.velocity;
         Vector2 moveDirection = new Vector2(velocity.x, velocity.z).normalized;
 
@@ -71,6 +77,9 @@ public class BossMachine : MonoBehaviour
             case BossState.TripleAttack:
                 TripleAttack();
                 break;
+            case BossState.MinionRelease:
+                MinionRelease();
+                break;
         }
 
         // Asegurarse de que el jefe no gire en los ejes X e Y
@@ -86,8 +95,14 @@ public class BossMachine : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(3f);
-            currentState = (BossState)(((int)currentState + 1) % 4);
+            currentState = (BossState)(((int)currentState + 1) % 5);
         }
+    }
+
+    public void MinionRelease()
+    {
+        minionBoss = FindObjectOfType<MinionsBoss>();
+        minionBoss.ActivateMinions();
     }
 
     private void Patrol()
