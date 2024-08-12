@@ -1,21 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MinionsBoss : MonoBehaviour
 {
-    public void DeactivateMinion()
+    private float minX, maxX, minY, maxY;
+    [SerializeField] private Transform[] points; 
+    [SerializeField] private GameObject[] enemies;
+    [SerializeField] private float timeEnemies;
+    private float timeNextEnemy; 
+
+    private void Start()
     {
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+        maxX = points.Max(point => point.position.x);
+        maxY = points.Max(point => point.position.y);
+        minX = points.Min(point => point.position.x);
+        minY = points.Min(point => point.position.y);
     }
+
+    private void Update()
+    {
+        timeNextEnemy += Time.deltaTime;
+    }
+
     public void ActivateMinions()
     {
-        foreach (Transform child in transform)
+        int numEnemy = Random.Range(0 , enemies.Length);
+        Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+        
+        if (timeNextEnemy >= timeEnemies)
         {
-            child.gameObject.SetActive(true);
+            timeNextEnemy = 0;
+            Instantiate(enemies[numEnemy], randomPosition, Quaternion.identity);
         }
     }
 }

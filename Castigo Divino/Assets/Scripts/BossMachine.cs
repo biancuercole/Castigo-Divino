@@ -51,10 +51,6 @@ public class BossMachine : MonoBehaviour
 
     private void Update()
     {
-        if(currentState != BossState.MinionRelease)
-        {
-            minionBoss.DeactivateMinion();
-        }
         Vector3 velocity = agent.velocity;
         Vector2 moveDirection = new Vector2(velocity.x, velocity.z).normalized;
 
