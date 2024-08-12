@@ -1584,7 +1584,6 @@ MonoBehaviour:
   enemies:
   - {fileID: 7023738380881837008, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
   - {fileID: 7233229279830062428, guid: b36349a9f02367046b4079ab959d6120, type: 3}
-  - {fileID: 647574484710258157, guid: 55a3841a997543f4fabaebb59489e334, type: 3}
   timeEnemies: 3
 --- !u!1 &246869740
 GameObject:
