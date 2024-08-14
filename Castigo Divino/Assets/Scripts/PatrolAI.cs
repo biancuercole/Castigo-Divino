@@ -29,6 +29,11 @@ public class EnemyPatroll : MonoBehaviour
             Debug.LogError("NavMeshAgent not found on " + gameObject.name);
         }
 
+        if (target == null)
+        {
+            target = GameObject.FindWithTag("Player").transform;
+        }
+
         // Inicializa cualquier otra variable necesaria en Awake
     }
 

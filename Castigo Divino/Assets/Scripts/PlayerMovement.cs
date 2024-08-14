@@ -19,12 +19,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Loot loot;
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
-
+    [SerializeField] public GameObject itemPowerUp;
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
     [SerializeField] float dashCoolDown = 0.7f;
     [SerializeField] private TrailRenderer trail;
+    [SerializeField] private GameObject dashEffect;
     [SerializeField] private GameObject Gun;
 
     bool isDashing;
@@ -128,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Dash());
             trail.emitting = true;
+            Instantiate(dashEffect,transform.position, Quaternion.identity);
         }
     }
 
@@ -177,6 +179,11 @@ public class PlayerMovement : MonoBehaviour
                 playerHealth.HealHealth(healAmount);
                 Destroy(other.gameObject);
             }
+        }
+        if (other.gameObject.CompareTag("bulletPowerUp"))
+        {
+            Destroy(other.gameObject); 
+            itemPowerUp.SetActive(true);
         }
 
         if (other.gameObject.CompareTag("altarVida"))

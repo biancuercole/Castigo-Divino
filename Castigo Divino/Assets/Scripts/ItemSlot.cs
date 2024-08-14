@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour, IDropHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -88,7 +89,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler, IBeginDragHandler, IEndDrag
         PowerUp powerUp = item.GetComponent<PowerUp>();
         if (powerUp != null)
         {
-           PowerUpManager.RemovePowerUp(powerUp.powerUpEffect);
+            PowerUpManager.RemovePowerUp(powerUp.powerUpEffect);
         }
     }
 

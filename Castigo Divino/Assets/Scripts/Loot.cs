@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Loot", menuName = "ScriptableObjects/Loot")]
@@ -15,4 +16,6 @@ public class Loot : ScriptableObject
         this.lootName = lootName;   
         this.dropChance = dropChance;
     }
+
 }
+

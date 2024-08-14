@@ -10,7 +10,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 {
     [SerializeField] private Canvas canvas;
     [SerializeField] private GridLayoutGroup gridLayerGroup; // Agrega una referencia al GridLayerGroup
-  
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private PowerUpManager playerPowerUpManager;
@@ -21,7 +20,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         playerPowerUpManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PowerUpManager>();
-       // canvas.gameObject.SetActive(false);
+        // canvas.gameObject.SetActive(false);
         originalPosition = rectTransform.anchoredPosition;
     }
 
@@ -49,8 +48,9 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         if (IsInGrid())
         {
             RemovePowerUpEffect();
+            rectTransform.SetParent(transform);
         }
-       
+
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -60,11 +60,11 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     }
 
     private bool IsInGrid()
-    { 
+    {
         RectTransform gridRectTransform = gridLayerGroup.GetComponent<RectTransform>();
         return RectTransformUtility.RectangleContainsScreenPoint(gridRectTransform, rectTransform.position, null);
     }
-   
+
     private void RemovePowerUpEffect()
     {
         PowerUp powerUp = GetComponent<PowerUp>();
@@ -73,13 +73,4 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
             playerPowerUpManager.RemovePowerUp(powerUp.powerUpEffect);
         }
     }
-
-   /* public void Show()
-    {
-        canvas.gameObject.SetActive(true);
-    }
-    public void Hide()
-    {
-        canvas.gameObject.SetActive(false);
-    }*/
 }

@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 846fecea1bcc24640b749ec0f24172b6, type: 3}
-  m_Name: bulletPowerUp
+  m_Script: {fileID: 11500000, guid: f1ceedc8f9737f045a4acc1e3a15d3d9, type: 3}
+  m_Name: TripleBullet
   m_EditorClassIdentifier: 
-  lootSprite: {fileID: 7482667652216324306, guid: c71632cc1a917d042a6c217dafdc4468, type: 3}
-  lootName: bulletPowerUp
-  dropChance: 100

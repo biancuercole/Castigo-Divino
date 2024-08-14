@@ -192,9 +192,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   time: 0
-  WayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  WayPoints: []
   currentWaypoint: 3
   damage: 1
   trail: {fileID: 7154348103456422536}

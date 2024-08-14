@@ -39,7 +39,7 @@ public class LootBag : MonoBehaviour
                 GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition + randomOffset, Quaternion.identity);
                 lootGameObject.GetComponent<SpriteRenderer>().sprite = item.lootSprite;
 
-                float dropForce = 300f;
+                float dropForce = 3f;
                 Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
                 lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
 
@@ -54,6 +54,10 @@ public class LootBag : MonoBehaviour
                 if(item.lootName == "key")
                 {
                     lootGameObject.tag = "key";
+                }
+                if (item.lootName == "bulletPowerUp")
+                {
+                    lootGameObject.tag = "bulletPowerUp";
                 }
             }
         }

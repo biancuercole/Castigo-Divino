@@ -150,9 +150,7 @@ MonoBehaviour:
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 0}
   shootDistance: 12
-  WayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  WayPoints: []
   currentWaypoint: 0
   waitTime: 0
 --- !u!114 &6582203629545758462
@@ -185,6 +183,7 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
 --- !u!195 &1025677144846384058
 NavMeshAgent:
   m_ObjectHideFlags: 0
