@@ -5373,7 +5373,7 @@ Transform:
   m_GameObject: {fileID: 272181224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1, y: -23.3, z: -0.5723061}
+  m_LocalPosition: {x: 15.1, y: -31.56, z: -0.5723061}
   m_LocalScale: {x: 10, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6369,9 +6369,9 @@ MonoBehaviour:
   m_Follow: {fileID: 1916445834}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 10
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    OrthographicSize: 22
+    NearClipPlane: 1.08
+    FarClipPlane: 1000.07
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -6596,7 +6596,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 25}
-  m_LocalScale: {x: 40, y: 25, z: 1}
+  m_LocalScale: {x: 90, y: 60, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 907312324}
@@ -7114,11 +7114,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 1.08
+  far clip plane: 1000.07
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 22
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7304,7 +7304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &907312324
 Transform:
   m_ObjectHideFlags: 0
@@ -8456,7 +8456,7 @@ Transform:
   m_GameObject: {fileID: 1241022661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.8, y: -23.2, z: -0.5723061}
+  m_LocalPosition: {x: -14.94, y: -31.63, z: -0.5723061}
   m_LocalScale: {x: 10, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8880,7 +8880,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.139, y: -0.029999906, z: 0}
-  m_LocalScale: {x: 0.9095941, y: 0.85276526, z: 0.25679332}
+  m_LocalScale: {x: 1.600522, y: 1.439063, z: 0.25679332}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 776635458}
@@ -10379,7 +10379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1873595163
 Transform:
   m_ObjectHideFlags: 0

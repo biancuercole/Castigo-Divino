@@ -2067,7 +2067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &232474838
 Transform:
   m_ObjectHideFlags: 0
@@ -2894,7 +2894,7 @@ Camera:
   far clip plane: 1000.07
   field of view: 60
   orthographic: 1
-  orthographic size: 18.65
+  orthographic size: 22
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2919,7 +2919,7 @@ Transform:
   m_GameObject: {fileID: 295403464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 578, y: -145, z: -10}
+  m_LocalPosition: {x: 554.2991, y: -166.61267, z: -10}
   m_LocalScale: {x: 1.4478534, y: 1.4478534, z: 1.4478534}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3655,7 +3655,7 @@ GameObject:
   - component: {fileID: 378357818}
   - component: {fileID: 378357820}
   - component: {fileID: 378357819}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: bosquePiso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4628,7 +4628,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 25}
-  m_LocalScale: {x: 40, y: 25, z: 1}
+  m_LocalScale: {x: 70, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 956209724}
@@ -5259,7 +5259,7 @@ GameObject:
   - component: {fileID: 637147133}
   - component: {fileID: 637147132}
   - component: {fileID: 637147131}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: desniveles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7501,7 +7501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &774589733
 Transform:
   m_ObjectHideFlags: 0
@@ -8303,7 +8303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1957976470}
-  activationDistance: 30
+  activationDistance: 40
 --- !u!1 &814714063
 GameObject:
   m_ObjectHideFlags: 3
@@ -8628,7 +8628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 12
+  shootDistance: 35
   WayPoints:
   - {fileID: 1145493627}
   - {fileID: 386756125}
@@ -14241,7 +14241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &956209724
 Transform:
   m_ObjectHideFlags: 0
@@ -20151,7 +20151,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1957976470}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 18.65
+    OrthographicSize: 22
     NearClipPlane: 1.08
     FarClipPlane: 1000.07
     Dutch: 0
@@ -20177,7 +20177,7 @@ Transform:
   m_GameObject: {fileID: 1080024288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 578, y: -145, z: -10}
+  m_LocalPosition: {x: 529.9, y: -165.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22202,7 +22202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1331395201
 Transform:
   m_ObjectHideFlags: 0
@@ -22307,7 +22307,7 @@ Transform:
   m_GameObject: {fileID: 1340965682}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.1, y: -20, z: 0}
+  m_LocalPosition: {x: 770.4, y: -179.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22408,7 +22408,7 @@ Transform:
   m_GameObject: {fileID: 1351354037}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.8, y: -1.2, z: 0}
+  m_LocalPosition: {x: 817.4, y: -232.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22593,7 +22593,7 @@ GameObject:
   - component: {fileID: 1411138247}
   - component: {fileID: 1411138246}
   - component: {fileID: 1411138245}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: bosqueArboles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37786,7 +37786,7 @@ Transform:
   m_GameObject: {fileID: 1616516466}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.4, y: 14.03, z: 0}
+  m_LocalPosition: {x: 732.1, y: -235, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39742,7 +39742,7 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 578, y: -145, z: 0}
+  m_LocalPosition: {x: 529.9, y: -165.8, z: 0}
   m_LocalScale: {x: 1.7995871, y: 2.0680518, z: 4.353793}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39793,7 +39793,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.85, y: 1.5}
+  m_Size: {x: 1.5, y: 4}
   m_EdgeRadius: 0
 --- !u!114 &1957976474
 MonoBehaviour:
@@ -40136,8 +40136,8 @@ Transform:
   m_GameObject: {fileID: 2033237688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.139, y: -0.0227, z: 0}
-  m_LocalScale: {x: 0.9095941, y: 0.8754488, z: 0.25679332}
+  m_LocalPosition: {x: -0.13, y: -0.08, z: 0}
+  m_LocalScale: {x: 1.6005218, y: 1.4390628, z: 0.25679332}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 804777718}
@@ -40447,7 +40447,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.80914307, y: -0.028900146}
+  m_Offset: {x: 1.9, y: 5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -40458,7 +40458,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 7.357483, y: 11.576538}
+  m_Size: {x: 22, y: 30}
   m_EdgeRadius: 0
 --- !u!114 &2104630005
 MonoBehaviour:
@@ -40544,7 +40544,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1053.7, y: -521.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1583882559}
@@ -40611,7 +40611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 1539106571}
-  maxHealth: 1
+  maxHealth: 10
   healthBar: {fileID: 1620495930}
   indiceNivel: 3
 --- !u!95 &2104630011
