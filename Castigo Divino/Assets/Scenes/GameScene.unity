@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 450
+  shootDistance: 40
   WayPoints:
   - {fileID: 142770041}
   - {fileID: 41707347}
@@ -2919,7 +2919,7 @@ Transform:
   m_GameObject: {fileID: 295403464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 554.26373, y: -166.6115, z: -10}
+  m_LocalPosition: {x: 554.2991, y: -166.61267, z: -10}
   m_LocalScale: {x: 1.4478534, y: 1.4478534, z: 1.4478534}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5114,7 +5114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 450
+  shootDistance: 40
   WayPoints:
   - {fileID: 796491312}
   - {fileID: 396851553}
@@ -39648,7 +39648,7 @@ MonoBehaviour:
   loot: {fileID: 11400000, guid: 7205779c01259024e8e6e65da9627dc7, type: 2}
   boss: {fileID: 2104630005}
   itemPowerUp: {fileID: 105051730}
-  dashSpeed: 23
+  dashSpeed: 50
   dashDuration: 0.3
   dashCoolDown: 1
   trail: {fileID: 1957976477}
@@ -39958,7 +39958,7 @@ TrailRenderer:
   m_MinVertexDistance: 1
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1 &1959398424
 GameObject:
@@ -40136,8 +40136,8 @@ Transform:
   m_GameObject: {fileID: 2033237688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15333, y: -0.08, z: 0}
-  m_LocalScale: {x: 2.3541229, y: 2.1166413, z: 0.37770373}
+  m_LocalPosition: {x: 0.01, y: 0.22, z: 0}
+  m_LocalScale: {x: 2.8, y: 2.6, z: 0.37770373}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 804777718}
@@ -40544,7 +40544,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1053.7, y: -521.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1583882559}
