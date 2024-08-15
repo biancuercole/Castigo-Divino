@@ -123,8 +123,8 @@ public class NextStage : MonoBehaviour
 
     private void Open()
     {
+        spriteRenderer.sprite = null;
         doorCollider.enabled = false;
-        spriteRenderer.sprite = openSprite;
     }
 }
 

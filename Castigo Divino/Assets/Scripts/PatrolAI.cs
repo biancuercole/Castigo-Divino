@@ -5,11 +5,11 @@ using UnityEngine.AI;
 public class EnemyPatroll : MonoBehaviour
 {
     [SerializeField] Transform target; 
-    private float minDistance = 27.0f; // Distancia mínima para iniciar la persecución
-    private float chargeDistance = 3.0f; // Distancia para iniciar la embestida
-    private float patrolSpeed = 10.0f; // Velocidad para patrullaje
-    private float followSpeed = 12.0f; // Velocidad para persecución
-    private float chargeSpeed = 45.0f; // Velocidad para embestida
+    private float minDistance = 32.0f; // Distancia mínima para iniciar la persecución
+    private float chargeDistance = 10.0f; // Distancia para iniciar la embestida
+    private float patrolSpeed = 20.0f; // Velocidad para patrullaje
+    private float followSpeed = 22.0f; // Velocidad para persecución
+    private float chargeSpeed = 50.0f; // Velocidad para embestida
     [SerializeField] private float time;
     [SerializeField] Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
