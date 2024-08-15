@@ -90,48 +90,45 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Update()
+void Update()
+{
+    float moveX = Input.GetAxisRaw("Horizontal");
+    float moveY = Input.GetAxisRaw("Vertical");
+    moveInput = new Vector2(moveX, moveY).normalized;
+
+    // Invertir el sprite cuando el personaje se mueve a la izquierda
+    if (moveX < 0)
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        moveInput = new Vector2(moveX, moveY).normalized;
-
-        if (playerAnimator != null)
-        {
-            playerAnimator.SetFloat("Horizontal", moveX);
-            playerAnimator.SetFloat("Vertical", moveY);
-            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
-        }
-
-        if (isDashing)
-        {
-            return;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            if (GunSpriteRenderer != null && spriteRenderer != null)
-            {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
-            }
-            trail.emitting = false;
-        }
-        else
-        {
-            if (GunSpriteRenderer != null && spriteRenderer != null)
-            {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-            }
-            trail.emitting = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            StartCoroutine(Dash());
-            trail.emitting = true;
-            Instantiate(dashEffect,transform.position, Quaternion.identity);
-        }
+        transform.localScale = new Vector3(-1, 1, 1); // Voltea el sprite horizontalmente
     }
+    else if (moveX > 0)
+    {
+        transform.localScale = new Vector3(1, 1, 1); // Mantiene el sprite normal
+    }
+
+    if (playerAnimator != null)
+    {
+        playerAnimator.SetFloat("Horizontal", moveX);
+        playerAnimator.SetFloat("Vertical", moveY);
+        playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+    }
+
+    if (isDashing)
+    {
+        return;
+    }
+
+    if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+    {
+        if (GunSpriteRenderer != null && spriteRenderer != null)
+        {
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+        }
+    } else
+    {
+        GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+    }
+}
 
     private void FixedUpdate()
     {
