@@ -13,9 +13,11 @@ public class BossHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
+    public BossMachine bossMachine;
 
     void Start()
     {
+        bossMachine = GetComponent<BossMachine>();
         health = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,6 +33,7 @@ public class BossHealth : MonoBehaviour
         healthBar.ShowBar();
         health -= damage;
         healthBar.UpdateHealthBar(maxHealth, health);
+
         if (health > 0)
         {
             if (damageCoroutine != null)
@@ -38,6 +41,13 @@ public class BossHealth : MonoBehaviour
                 StopCoroutine(damageCoroutine);
             }
             damageCoroutine = StartCoroutine(FlashDamage());
+
+            // Cambia el estado si la salud ha disminuido al menos 2.5 puntos desde la última vez
+            if ((maxHealth - health) >= 2.5f)
+            {
+                bossMachine.StateMachine(); // Esta línea debe ser solo una llamada a método, sin asignación
+                maxHealth = health; // Actualiza el máximo temporal
+            }
         }
         else
         {
