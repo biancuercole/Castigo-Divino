@@ -21,8 +21,9 @@ public class PlayerHealth : MonoBehaviour
 
     private KnocKBack KnocKBack;
 
-   // [SerializeField] private GameObject  PrefabProyectile;
+    public ManagerData managerData;
 
+    public GameObject damageParticle;
     void Start()
     {
         health = maxHealth;
@@ -36,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
         if (!esInmune)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 1f);
+            Instantiate(damageParticle, transform.position, Quaternion.identity);
             KnocKBack.KnockBacK(damageSource);
             int temporaryHealth = health - damage;
 
@@ -53,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
             if (temporaryHealth <= 0)
             {
                 passLevel(indiceNivel);
+                managerData.ResetPoints();
             }
             else
             {

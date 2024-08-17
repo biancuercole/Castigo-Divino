@@ -132,7 +132,6 @@ void Update()
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            Instantiate(dashEffect, transform.position, Quaternion.identity);
             StartCoroutine(Dash());
         }
 }
@@ -148,6 +147,7 @@ void Update()
         if (isDashing)
         {
             playerRb.velocity = moveInput * dashSpeed;
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
         }
         else
         {

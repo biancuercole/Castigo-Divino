@@ -8,7 +8,7 @@ public class Rotation : MonoBehaviour
     [SerializeField] private bool tripleShotEnabled = false;
     private Camera cam;
     private float lastShootTime; // Tiempo del último disparo
-
+    public bool canShoot = true;
     void Start()
     {
         cam = Camera.main;
@@ -51,7 +51,7 @@ public class Rotation : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-        if (Input.GetMouseButtonDown(0) && Time.time >= lastShootTime + shootCooldown)
+        if (Input.GetMouseButtonDown(0) && Time.time >= lastShootTime + shootCooldown && canShoot)
         {
             lastShootTime = Time.time;
 

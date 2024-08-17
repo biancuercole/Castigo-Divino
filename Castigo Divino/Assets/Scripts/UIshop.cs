@@ -13,6 +13,7 @@ public class UIshop : MonoBehaviour
     public PowerUpEffect[] powerUps;
     public GameObject[] weaponUpgradeItems;
     public string messeage;
+    public Rotation rotation;
     private void Awake()
     {
         container = transform.Find("Container");
@@ -111,13 +112,14 @@ public class UIshop : MonoBehaviour
     public void Show()
     {
         container.gameObject.SetActive(true);
+        rotation.canShoot = false;
     }
 
     public void Hide()
     {
        
         container.gameObject.SetActive(false);
-
+        rotation.canShoot = true;
     }
 
 }
