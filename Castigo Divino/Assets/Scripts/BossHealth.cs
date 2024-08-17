@@ -14,7 +14,8 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
     public BossMachine bossMachine;
-
+    public GameObject damageParticle;
+    public GameObject explosionParticle;
     void Start()
     {
         bossMachine = GetComponent<BossMachine>();
@@ -51,6 +52,8 @@ public class BossHealth : MonoBehaviour
         }
         else
         {
+            CameraMovement.Instance.MoveCamera(5, 5, 1f);
+            Instantiate(explosionParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
             healthBar.HideBar();
             portal.EnablePortal();
@@ -64,8 +67,9 @@ public class BossHealth : MonoBehaviour
 
     private IEnumerator FlashDamage()
     {
-        float damageDuration = 1f;
-        spriteRenderer.color = Color.red;
+        Instantiate(damageParticle, transform.position, Quaternion.identity);
+        float damageDuration = 0.15f;
+        spriteRenderer.color = Color.clear;
         yield return new WaitForSeconds(damageDuration);
         spriteRenderer.color = Color.white;
     }

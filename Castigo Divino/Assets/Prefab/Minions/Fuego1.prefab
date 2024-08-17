@@ -168,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 6
   healthBar: {fileID: 0}
+  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  explosionPaticle: {fileID: 1470179279396867778, guid: 636f849900566fa40af387c40d8d4fda, type: 3}
 --- !u!114 &4881195611665725593
 MonoBehaviour:
   m_ObjectHideFlags: 0

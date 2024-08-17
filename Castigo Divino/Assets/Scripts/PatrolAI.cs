@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class EnemyPatroll : MonoBehaviour
 {
@@ -161,7 +162,7 @@ public class EnemyPatroll : MonoBehaviour
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.GetDamage(damage);
+            playerHealth.GetDamage(damage, this.gameObject);
         }
     }
 }

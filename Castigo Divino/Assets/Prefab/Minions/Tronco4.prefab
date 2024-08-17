@@ -133,6 +133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 8
   healthBar: {fileID: 0}
+  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  explosionPaticle: {fileID: 1470179279396867778, guid: 636f849900566fa40af387c40d8d4fda, type: 3}
 --- !u!61 &658559962649469209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,7 +171,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.4, y: 7}
+    oldSize: {x: 0.74, y: 0.7}
     newSize: {x: 7.4, y: 7}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,11 +21,11 @@ public class PlayerMovement : MonoBehaviour
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
     [SerializeField] public GameObject itemPowerUp;
+    [SerializeField] public GameObject newItem;
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
-    [SerializeField] float dashCoolDown = 0.7f;
-    [SerializeField] private TrailRenderer trail;
+    [SerializeField] float dashCoolDown = 1f;
     [SerializeField] private GameObject dashEffect;
     [SerializeField] private GameObject Gun;
 
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
 
         // Verifica si los componentes clave están asignados
-        if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null || trail == null)
+        if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null)
         {
             Debug.LogError("Uno o más componentes no están asignados correctamente.");
         }
@@ -124,10 +125,16 @@ void Update()
         {
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
         }
-    } else
-    {
-        GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-    }
+    }   else
+        {
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
+            StartCoroutine(Dash());
+        }
 }
 
     private void FixedUpdate()
@@ -179,8 +186,8 @@ void Update()
         }
         if (other.gameObject.CompareTag("bulletPowerUp"))
         {
-            Destroy(other.gameObject); 
-            itemPowerUp.SetActive(true);
+            Destroy(other.gameObject);
+           StartCoroutine(PowerUpUnlocked());
         }
 
         if (other.gameObject.CompareTag("altarVida"))
@@ -216,5 +223,13 @@ void Update()
         {
             SceneManager.LoadScene("GameScene");
         }
+    }
+
+    private IEnumerator PowerUpUnlocked()
+    {
+        itemPowerUp.SetActive(true);
+        newItem.SetActive(true);
+        yield return new WaitForSeconds(5);
+        newItem.SetActive(false);
     }
 }

@@ -43,7 +43,7 @@ public class TripleBullet : MonoBehaviour
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.GetDamage(damage);
+            playerHealth.GetDamage(damage, this.gameObject);
         }
 
         Destroy(gameObject);
