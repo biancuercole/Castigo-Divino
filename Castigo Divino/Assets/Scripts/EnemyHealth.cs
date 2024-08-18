@@ -58,7 +58,6 @@ public class EnemyHealth : MonoBehaviour
             CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
             Instantiate(explosionPaticle, transform.position, Quaternion.identity);
             isDead = true; // Marcar al enemigo como muerto para evitar que se procese varias veces
-
             agent.isStopped = true;
             audioManager.playSound(audioManager.enemyDeath);
             GetComponent<LootBag>().InstantiateLoot(transform.position);

@@ -26,12 +26,13 @@ public class Bullets : MonoBehaviour
 
     public void LaunchBullet(Vector2 direction)
     {
-        Debug.Log($"Launching bullet with direction: {direction.normalized} and speed: {speed}");
+       // Debug.Log($"Launching bullet with direction: {direction.normalized} and speed: {speed}");
         bulletRb.velocity = direction * speed;
         trail.emitting = true;
+        audioManager.playSound(audioManager.shot);
         StartCoroutine(DestroyProjectile());
 
-        Debug.Log($"Bullet velocity after launch: {bulletRb.velocity}");
+      //  Debug.Log($"Bullet velocity after launch: {bulletRb.velocity}");
     }
 
     IEnumerator DestroyProjectile()

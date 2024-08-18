@@ -28735,6 +28735,8 @@ MonoBehaviour:
   changeHealth:
     m_PersistentCalls:
       m_Calls: []
+  managerData: {fileID: 0}
+  damageParticle: {fileID: 0}
 --- !u!61 &1916445830
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28804,6 +28806,7 @@ MonoBehaviour:
   dashDuration: 0.3
   dashCoolDown: 1
   dashEffect: {fileID: 2974914889407992469, guid: 1e663cfa58a3b8440bc383bd0db0331f, type: 3}
+  trail: {fileID: 1916445836}
   Gun: {fileID: 1466601123}
 --- !u!212 &1916445832
 SpriteRenderer:

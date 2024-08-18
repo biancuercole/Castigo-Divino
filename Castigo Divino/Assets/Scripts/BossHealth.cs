@@ -67,9 +67,11 @@ public class BossHealth : MonoBehaviour
 
     private IEnumerator FlashDamage()
     {
+        Color customColor;
+        ColorUtility.TryParseHtmlString("#FFBD00", out customColor);
         Instantiate(damageParticle, transform.position, Quaternion.identity);
         float damageDuration = 0.15f;
-        spriteRenderer.color = Color.clear;
+        spriteRenderer.color = customColor;
         yield return new WaitForSeconds(damageDuration);
         spriteRenderer.color = Color.white;
     }

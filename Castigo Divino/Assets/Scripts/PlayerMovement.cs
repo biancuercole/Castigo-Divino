@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,25 +15,19 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer GunSpriteRenderer;
     private AudioManager audioManager;
-    [SerializeField] private float amountPoints;
-    [SerializeField] private PointsUI pointsUI;
-    public int healAmount;
-    [SerializeField] private Loot loot;
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
-    [SerializeField] public GameObject itemPowerUp;
-    [SerializeField] public GameObject newItem;
+  
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
     [SerializeField] float dashCoolDown = 1f;
     [SerializeField] private GameObject dashEffect;
+    [SerializeField] private TrailRenderer trail;
     [SerializeField] private GameObject Gun;
-
     bool isDashing;
     bool canDash;
 
-    private PlayerHealth playerHealth;
 
     private void Awake()
     {
@@ -65,24 +60,12 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         GunSpriteRenderer = Gun?.GetComponent<SpriteRenderer>();
-        playerHealth = GetComponent<PlayerHealth>();
-        pointsUI = FindObjectOfType<PointsUI>();
         canDash = true;
 
         // Verifica si los componentes clave están asignados
         if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null)
         {
             Debug.LogError("Uno o más componentes no están asignados correctamente.");
-        }
-
-        if (pointsUI == null)
-        {
-            Debug.LogError("No se encontró un componente PointsUI en la escena.");
-        }
-
-        if (playerHealth == null)
-        {
-            Debug.LogError("No se encontró un componente PlayerHealth en el jugador.");
         }
 
         if (boss == null)
@@ -148,11 +131,13 @@ void Update()
         {
             playerRb.velocity = moveInput * dashSpeed;
             Instantiate(dashEffect, transform.position, Quaternion.identity);
+            trail.emitting = true;
         }
         else
         {
             playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
-        }
+            trail.emitting = false;
+        }  
     }
 
     private IEnumerator Dash()
@@ -169,37 +154,6 @@ void Update()
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("coin"))
-        {
-            Destroy(other.gameObject); // Destruir la moneda
-            pointsUI.takePoints(amountPoints);
-        }
-        if (other.gameObject.CompareTag("heart"))
-        {
-            Debug.Log("Corazon");
-            if (playerHealth != null)
-            {
-                Debug.Log("Recolectado: " + loot.lootName);
-                playerHealth.HealHealth(healAmount);
-                Destroy(other.gameObject);
-            }
-        }
-        if (other.gameObject.CompareTag("bulletPowerUp"))
-        {
-            Destroy(other.gameObject);
-           StartCoroutine(PowerUpUnlocked());
-        }
-
-        if (other.gameObject.CompareTag("altarVida"))
-        {
-            Debug.Log("salud recuperada");
-            //playerHealth.HealHealth(4);
-        }
-        if (other.gameObject.CompareTag("key"))
-        {
-            GameEvents.KeyCollected();
-            Destroy(other.gameObject);
-        }
         if (other.gameObject.CompareTag("entrada"))
         {
             GameEvents.ClosedDoor();
@@ -224,12 +178,5 @@ void Update()
             SceneManager.LoadScene("GameScene");
         }
     }
-
-    private IEnumerator PowerUpUnlocked()
-    {
-        itemPowerUp.SetActive(true);
-        newItem.SetActive(true);
-        yield return new WaitForSeconds(5);
-        newItem.SetActive(false);
-    }
+     
 }
