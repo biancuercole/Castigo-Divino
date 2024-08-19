@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.VersionControl;
+//using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,8 +24,8 @@ public class UIshop : MonoBehaviour
     private void Start()
     {
         CreateItemButton("Velocidad + 2", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton("Daño + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
-        CreateItemButton("Corazón + 1", Item.GetCost(Item.ItemType.Heart), 2, powerUps[2]);
+        CreateItemButton("Daï¿½o + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton("Corazï¿½n + 1", Item.GetCost(Item.ItemType.Heart), 2, powerUps[2]);
         CreateItemButton("Velocidad Bala + 2", Item.GetCost(Item.ItemType.BulletSpeed), 3, powerUps[3]);
     }
 
@@ -59,7 +59,7 @@ public class UIshop : MonoBehaviour
                 }
                 else
                 {
-                    // Aplica la mejora automáticamente si no es para el arma
+                    // Aplica la mejora automï¿½ticamente si no es para el arma
                     GameObject player = GameObject.FindGameObjectWithTag("Player");
                     if (player != null)
                     {

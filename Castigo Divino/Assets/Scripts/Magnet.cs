@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+//using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class Magnet : MonoBehaviour
@@ -24,12 +24,12 @@ public class Magnet : MonoBehaviour
 
         if (pointsUI == null)
         {
-            Debug.LogError("No se encontró un componente PointsUI en la escena.");
+            Debug.LogError("No se encontrï¿½ un componente PointsUI en la escena.");
         }
 
         if (playerHealth == null)
         {
-            Debug.LogError("No se encontró un componente PlayerHealth en el jugador.");
+            Debug.LogError("No se encontrï¿½ un componente PlayerHealth en el jugador.");
         }
     }
     void Update()

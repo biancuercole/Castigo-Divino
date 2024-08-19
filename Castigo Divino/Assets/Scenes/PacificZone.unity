@@ -6267,9 +6267,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1741241727}
   soundSource: {fileID: 996397534}
-  background: {fileID: 0}
-  background2: {fileID: 0}
-  ambientSound: {fileID: 0}
+  background: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
+  background2: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
+  ambientSound: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
   cinematic: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
   shot: {fileID: 8300000, guid: e186865efd9dbfc4e89db2766598ee46, type: 3}
   steps: {fileID: 0}
@@ -28795,13 +28795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
-  amountPoints: 1
-  pointsUI: {fileID: 0}
-  healAmount: 1
-  loot: {fileID: 0}
   boss: {fileID: 0}
-  itemPowerUp: {fileID: 1125371149}
-  newItem: {fileID: 0}
   dashSpeed: 50
   dashDuration: 0.3
   dashCoolDown: 1
