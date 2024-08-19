@@ -194,9 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   time: 0
-  WayPoints:
-  - {fileID: 6361119142974631350, guid: 3a665324c075b8647b6bd8774ec6742e, type: 3}
-  - {fileID: 5881433524614564468, guid: 9a127680e50285441a442d8135cc8be2, type: 3}
+  WayPoints: []
   currentWaypoint: 3
   damage: 1
   trail: {fileID: 7154348103456422536}
