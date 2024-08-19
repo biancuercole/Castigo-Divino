@@ -16,9 +16,9 @@ public class EnemyHealth : MonoBehaviour
     AudioManager audioManager;
     private Animator animator; // Referencia al Animator
     private Collider2D enemyCollider; // Referencia al Collider
-   
-
-
+    public GameObject damageParticle;
+    public GameObject explosionPaticle;
+    
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -32,12 +32,12 @@ public class EnemyHealth : MonoBehaviour
         nextStage = FindObjectOfType<NextStage>(); // Encuentra el objeto con el script NextStage
         animator = GetComponent<Animator>(); // Obtén el componente Animator
         enemyCollider = GetComponent<Collider2D>(); // Obtén el componente Collider
-    
     }
 
     public void TakeDamage(float damage)
     {
         StartCoroutine(GetDamage(damage));
+
     }
 
     private IEnumerator GetDamage(float damage)
@@ -45,15 +45,19 @@ public class EnemyHealth : MonoBehaviour
         health -= damage;
         if (health > 0)
         {
-            float damageDuration = 1f;
-            spriteRenderer.color = Color.red;
+            Color customColor;
+            ColorUtility.TryParseHtmlString("#FFBD00", out customColor);
+            Instantiate(damageParticle, transform.position, Quaternion.identity);
+            float damageDuration = 0.15f;
+            spriteRenderer.color = customColor;
             yield return new WaitForSeconds(damageDuration);
             spriteRenderer.color = Color.white;
         }
         if (health <= 0 && !isDead)
         {
+            CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
+            Instantiate(explosionPaticle, transform.position, Quaternion.identity);
             isDead = true; // Marcar al enemigo como muerto para evitar que se procese varias veces
-
             agent.isStopped = true;
             audioManager.playSound(audioManager.enemyDeath);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
@@ -63,14 +67,14 @@ public class EnemyHealth : MonoBehaviour
             enemyCollider.enabled = false;
 
             // Reproduce la animación de explosión
-            if (!gameObject.CompareTag("Humo"))
+            /*if (!gameObject.CompareTag("Humo"))
             {
                 animator.SetTrigger("Explode");
-            }
+            }*/
 
 
             // Esperar a que la animación de explosión termine
-            yield return new WaitForSeconds(1.0f); // Ajusta el tiempo según la duración de la animación
+           // yield return new WaitForSeconds(1.0f); // Ajusta el tiempo según la duración de la animación
 
             Destroy(gameObject);
             healthBar.HideBar();

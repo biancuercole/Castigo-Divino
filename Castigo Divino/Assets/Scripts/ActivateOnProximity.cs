@@ -19,8 +19,10 @@ public class ActivateOnProximity : MonoBehaviour
     {
         if (player == null)
         {
+            player = GameObject.FindWithTag("Player").transform;
             Debug.LogWarning("No se ha asignado el jugador al script ActivateOnProximity.");
             return;
+           
         }
 
         // Iterar a trav�s de todos los hijos de Enemies

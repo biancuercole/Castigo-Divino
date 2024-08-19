@@ -1,7 +1,9 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -17,19 +19,26 @@ public class PlayerHealth : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private KnocKBack KnocKBack;
+
+    public ManagerData managerData;
+
+    public GameObject damageParticle;
     void Start()
     {
         health = maxHealth;
         changeHealth.Invoke(health);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        KnocKBack = GetComponent<KnocKBack>();
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage, GameObject damageSource)
     {
         if (!esInmune)
         {
-            CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
-            
+            CameraMovement.Instance.MoveCamera(5, 5, 1f);
+            Instantiate(damageParticle, transform.position, Quaternion.identity);
+            KnocKBack.KnockBacK(damageSource);
             int temporaryHealth = health - damage;
 
             if (temporaryHealth < 0)
@@ -46,6 +55,7 @@ public class PlayerHealth : MonoBehaviour
             if (temporaryHealth <= 0)
             {
                 passLevel(indiceNivel);
+                managerData.ResetPoints();
             }
             else
             {

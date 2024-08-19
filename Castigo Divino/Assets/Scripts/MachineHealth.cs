@@ -8,7 +8,8 @@ public class MachineHealth : MonoBehaviour
     private NextStage nextStage;
     private Collider2D machineCollider; 
     private LootBag lootBag; // Añadido para referencia a LootBag
-    
+    public GameObject damageParticle;
+    public GameObject explosionPaticle;
     void Start()
     {
         machineSprite = GetComponent<SpriteRenderer>(); 
@@ -33,7 +34,8 @@ public class MachineHealth : MonoBehaviour
         {
             Debug.Log("LootBag no encontrado en la máquina.");
         }
-        
+        CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
+        Instantiate(explosionPaticle, transform.position, Quaternion.identity);
         //nextStage.MachineDefeated();
         Destroy(gameObject);
     }

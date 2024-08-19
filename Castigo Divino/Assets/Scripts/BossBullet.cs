@@ -68,7 +68,7 @@ public class BossBullet: MonoBehaviour
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.GetDamage(damage);
+            playerHealth.GetDamage(damage, this.gameObject);
             //CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
         }
       

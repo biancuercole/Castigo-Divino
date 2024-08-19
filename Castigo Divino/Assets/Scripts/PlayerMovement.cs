@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,24 +15,19 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer GunSpriteRenderer;
     private AudioManager audioManager;
-    [SerializeField] private float amountPoints;
-    [SerializeField] private PointsUI pointsUI;
-    public int healAmount;
-    [SerializeField] private Loot loot;
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
-
+  
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
-    [SerializeField] float dashCoolDown = 0.7f;
+    [SerializeField] float dashCoolDown = 1f;
+    [SerializeField] private GameObject dashEffect;
     [SerializeField] private TrailRenderer trail;
     [SerializeField] private GameObject Gun;
-
     bool isDashing;
     bool canDash;
 
-    private PlayerHealth playerHealth;
 
     private void Awake()
     {
@@ -63,24 +60,12 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         GunSpriteRenderer = Gun?.GetComponent<SpriteRenderer>();
-        playerHealth = GetComponent<PlayerHealth>();
-        pointsUI = FindObjectOfType<PointsUI>();
         canDash = true;
 
         // Verifica si los componentes clave están asignados
-        if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null || trail == null)
+        if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null)
         {
             Debug.LogError("Uno o más componentes no están asignados correctamente.");
-        }
-
-        if (pointsUI == null)
-        {
-            Debug.LogError("No se encontró un componente PointsUI en la escena.");
-        }
-
-        if (playerHealth == null)
-        {
-            Debug.LogError("No se encontró un componente PlayerHealth en el jugador.");
         }
 
         if (boss == null)
@@ -89,47 +74,50 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Update()
+void Update()
+{
+    float moveX = Input.GetAxisRaw("Horizontal");
+    float moveY = Input.GetAxisRaw("Vertical");
+    moveInput = new Vector2(moveX, moveY).normalized;
+
+    // Invertir el sprite cuando el personaje se mueve a la izquierda
+    if (moveX < 0)
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        moveInput = new Vector2(moveX, moveY).normalized;
+        transform.localScale = new Vector3(-1, 1, 1); // Voltea el sprite horizontalmente
+    }
+    else if (moveX > 0)
+    {
+        transform.localScale = new Vector3(1, 1, 1); // Mantiene el sprite normal
+    }
 
-        if (playerAnimator != null)
-        {
-            playerAnimator.SetFloat("Horizontal", moveX);
-            playerAnimator.SetFloat("Vertical", moveY);
-            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
-        }
+    if (playerAnimator != null)
+    {
+        playerAnimator.SetFloat("Horizontal", moveX);
+        playerAnimator.SetFloat("Vertical", moveY);
+        playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+    }
 
-        if (isDashing)
-        {
-            return;
-        }
+    if (isDashing)
+    {
+        return;
+    }
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+    if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+    {
+        if (GunSpriteRenderer != null && spriteRenderer != null)
         {
-            if (GunSpriteRenderer != null && spriteRenderer != null)
-            {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
-            }
-            trail.emitting = false;
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
         }
-        else
+    }   else
         {
-            if (GunSpriteRenderer != null && spriteRenderer != null)
-            {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-            }
-            trail.emitting = false;
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
-            trail.emitting = true;
         }
-    }
+}
 
     private void FixedUpdate()
     {
@@ -142,11 +130,14 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             playerRb.velocity = moveInput * dashSpeed;
+            Instantiate(dashEffect, transform.position, Quaternion.identity);
+            trail.emitting = true;
         }
         else
         {
             playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
-        }
+            trail.emitting = false;
+        }  
     }
 
     private IEnumerator Dash()
@@ -163,32 +154,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("coin"))
-        {
-            Destroy(other.gameObject); // Destruir la moneda
-            pointsUI.takePoints(amountPoints);
-        }
-        if (other.gameObject.CompareTag("heart"))
-        {
-            Debug.Log("Corazon");
-            if (playerHealth != null)
-            {
-                Debug.Log("Recolectado: " + loot.lootName);
-                playerHealth.HealHealth(healAmount);
-                Destroy(other.gameObject);
-            }
-        }
-
-        if (other.gameObject.CompareTag("altarVida"))
-        {
-            Debug.Log("salud recuperada");
-            //playerHealth.HealHealth(4);
-        }
-        if (other.gameObject.CompareTag("key"))
-        {
-            GameEvents.KeyCollected();
-            Destroy(other.gameObject);
-        }
         if (other.gameObject.CompareTag("entrada"))
         {
             GameEvents.ClosedDoor();
@@ -213,4 +178,5 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene("GameScene");
         }
     }
+     
 }

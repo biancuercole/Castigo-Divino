@@ -18,6 +18,7 @@ public class Bullets : MonoBehaviour
        // lootBag = FindObjectOfType<LootBag>();
     }
 
+
     void Start()
     {
         nextStage = FindObjectOfType<NextStage>();
@@ -25,11 +26,13 @@ public class Bullets : MonoBehaviour
 
     public void LaunchBullet(Vector2 direction)
     {
-
-        audioManager.playSound(audioManager.shot);
+       // Debug.Log($"Launching bullet with direction: {direction.normalized} and speed: {speed}");
         bulletRb.velocity = direction * speed;
         trail.emitting = true;
+        audioManager.playSound(audioManager.shot);
         StartCoroutine(DestroyProjectile());
+
+      //  Debug.Log($"Bullet velocity after launch: {bulletRb.velocity}");
     }
 
     IEnumerator DestroyProjectile()
@@ -75,7 +78,15 @@ public class Bullets : MonoBehaviour
             machineHealth.machineDamage(); // Llama al método TakeDamage
         }
 
-        gameObject.SetActive(false);
-        trail.emitting = false;
+        if (collision.gameObject.CompareTag("Bala"))
+        {
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            trail.emitting = false;
+        }
+      
     }
 }

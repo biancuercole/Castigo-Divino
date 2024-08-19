@@ -23,6 +23,7 @@ TagManager:
   - altarVida
   - GM
   - Level1
+  - bulletPowerUp
   layers:
   - Default
   - TransparentFX

@@ -1,77 +1,42 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ItemSlot : MonoBehaviour, IDropHandler, IBeginDragHandler, IEndDragHandler
+public class ItemSlot : MonoBehaviour
 {
-
-    [SerializeField] private Canvas canvas;
-    public GameObject currentItem;
-    private PowerUpManager PowerUpManager;
-    private Vector2 originalPosition;
-    private void Start()
+    [SerializeField] private int maxUpgrades = 3; // Límite de mejoras que se pueden aplicar
+    private List<GameObject> appliedUpgrades = new List<GameObject>();
+    private PowerUpManager powerUpManager;
+    public Canvas canvas;
+    public Rotation rotation;
+    private void Awake()
     {
-        PowerUpManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PowerUpManager>();
         canvas.gameObject.SetActive(false);
     }
-
-    public void OnDrop(PointerEventData eventData)
+    private void Start()
     {
-        if (eventData.pointerDrag != null)
+        powerUpManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PowerUpManager>();
+    }
+
+    public void OnItemClick(GameObject item)
+    {
+        if (appliedUpgrades.Contains(item))
         {
-            // Check if the current slot already has an item
-            if (currentItem != null)
+            // Si la mejora ya está aplicada, la removemos
+            RemovePowerUpEffect(item);
+            appliedUpgrades.Remove(item);
+            DeselectItem(item);
+        }
+        else
+        {
+            // Si no está aplicada y aún no alcanzamos el límite, la aplicamos
+            if (appliedUpgrades.Count < maxUpgrades)
             {
-                RemovePowerUpEffect(currentItem);
-            }
-
-            // Set the new item and apply its power-up effect
-            currentItem = eventData.pointerDrag;
-            ApplyPowerUpEffect(currentItem);
-
-            // Set the position of the dragged item to the position of this slot
-            RectTransform itemRectTransform = currentItem.GetComponent<RectTransform>();
-            itemRectTransform.SetParent(transform); // Ensure the item is a child of the slot
-            itemRectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-            itemRectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-            itemRectTransform.pivot = new Vector2(0.5f, 0.5f);
-            itemRectTransform.anchoredPosition = Vector2.zero; // Center it in the slot
-        }
-    }
-
-    public void RemoveCurrentItem()
-    {
-        if (currentItem != null)
-        {
-            RemovePowerUpEffect(currentItem);
-            currentItem = null;
-        }
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (currentItem != null)
-        {
-            RemovePowerUpEffect(currentItem);
-            currentItem.GetComponent<RectTransform>().SetParent(canvas.transform);
-        }
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        // If the item is dropped outside of any slot, return it to its original position
-        if (currentItem != null)
-        {
-            RectTransform rectTransform = currentItem.GetComponent<RectTransform>();
-            if (rectTransform.parent == canvas.transform)
-            {
-                rectTransform.anchoredPosition = originalPosition;
-                rectTransform.SetParent(GameObject.Find("Grid").transform); // Replace with the actual grid object name
-                ApplyPowerUpEffect(currentItem); // Apply the effect if it's still in the original slot
+                ApplyPowerUpEffect(item);
+                appliedUpgrades.Add(item);
+                SelectItem(item);
             }
         }
-
     }
 
     private void ApplyPowerUpEffect(GameObject item)
@@ -79,26 +44,43 @@ public class ItemSlot : MonoBehaviour, IDropHandler, IBeginDragHandler, IEndDrag
         PowerUp powerUp = item.GetComponent<PowerUp>();
         if (powerUp != null)
         {
-            PowerUpManager.ApplyPowerUp(powerUp.powerUpEffect);
+            powerUpManager.ApplyPowerUp(powerUp.powerUpEffect);
         }
     }
 
-    public void RemovePowerUpEffect(GameObject item)
+    private void RemovePowerUpEffect(GameObject item)
     {
         PowerUp powerUp = item.GetComponent<PowerUp>();
         if (powerUp != null)
         {
-           PowerUpManager.RemovePowerUp(powerUp.powerUpEffect);
+            powerUpManager.RemovePowerUp(powerUp.powerUpEffect);
         }
     }
+
+    private void SelectItem(GameObject item)
+    {
+        // Cambia visualmente el item para mostrar que está seleccionado
+        item.GetComponent<Image>().color = Color.green; // Cambia el color o usa otra indicación visual
+    }
+
+    private void DeselectItem(GameObject item)
+    {
+        // Restablece el estado visual del item
+        item.GetComponent<Image>().color = Color.white; // Color original o lo que prefieras
+    }
+
 
     public void Show()
     {
         canvas.gameObject.SetActive(true);
+        rotation.canShoot = false;
     }
     public void Hide()
     {
         canvas.gameObject.SetActive(false);
+        rotation.canShoot = true;
     }
 }
+
+
 

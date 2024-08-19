@@ -1,7 +1,10 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class LootBag : MonoBehaviour
 {
@@ -35,11 +38,11 @@ public class LootBag : MonoBehaviour
             foreach (Loot item in droppedItems)
             {
              
-                Vector3 randomOffset = new Vector3(Random.Range(-2f, 1f), Random.Range(-2f, 1f), 0);
+                Vector3 randomOffset = new Vector3(Random.Range(-3f, 1f), Random.Range(-3f, 1f), 0);
                 GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition + randomOffset, Quaternion.identity);
                 lootGameObject.GetComponent<SpriteRenderer>().sprite = item.lootSprite;
 
-                float dropForce = 300f;
+                float dropForce = 5f;
                 Vector2 dropDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
                 lootGameObject.GetComponent<Rigidbody2D>().AddForce(dropDirection * dropForce, ForceMode2D.Impulse);
 
@@ -55,8 +58,13 @@ public class LootBag : MonoBehaviour
                 {
                     lootGameObject.tag = "key";
                 }
+                if (item.lootName == "bulletPowerUp")
+                {
+                    lootGameObject.tag = "bulletPowerUp";
+                }
             }
         }
     }
+
 }
 
