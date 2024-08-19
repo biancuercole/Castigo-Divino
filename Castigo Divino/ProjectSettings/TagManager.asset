@@ -24,6 +24,7 @@ TagManager:
   - GM
   - Level1
   - bulletPowerUp
+  - entrada2
   layers:
   - Default
   - TransparentFX

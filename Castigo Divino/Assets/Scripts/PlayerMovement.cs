@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float speed = 3f;
-    //private GameMaster gm;
+    private GameMaster gm;
 
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
@@ -42,13 +42,21 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         // Inicializa el GameMaster
-        //gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
+        gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
         /*f (gm == null)
         {
             Debug.LogError("No se encontró un GameMaster en la escena.");
             return;
         }*/
-        //transform.position = gm.lastCheckpoint;
+        if (gm != null && gm.lastCheckpoint != Vector2.zero)
+        {
+            transform.position = gm.lastCheckpoint;
+        }
+        else
+        {
+            // Si lastCheckpoint es Vector2.zero, utilizar la posición inicial manualmente
+            transform.position = new Vector2(525, -170); // Reemplaza (0, 0) por la posición inicial deseada
+        }
         playerRb = GetComponent<Rigidbody2D>();
         if (playerRb == null)
         {
@@ -157,11 +165,13 @@ void Update()
         if (other.gameObject.CompareTag("entrada"))
         {
             GameEvents.ClosedDoor();
-            Destroy(other.gameObject);
+        }
+        if(other.gameObject.CompareTag("entrada2"))
+        {
+            GameEvents.ClosedDoor();
         }
         if (other.gameObject.CompareTag("entradaBoss"))
         {
-            GameEvents.ClosedDoor();
             Debug.Log("Activando jefe");
             if (boss != null)
             {

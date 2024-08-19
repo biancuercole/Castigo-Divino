@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
-    private static GameMaster instance; 
+    private static GameMaster instance;
     public Vector2 lastCheckpoint;
 
     void Awake()
@@ -13,10 +13,19 @@ public class GameMaster : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(instance);
-        } else {
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }
 
-
+    void Start()
+    {
+        // Inicializa lastCheckpoint con una posición segura (por ejemplo, la posición inicial del jugador)
+        if (lastCheckpoint == Vector2.zero)
+        {
+            lastCheckpoint = new Vector2(525, -170); // Reemplaza (0, 0) por la posición inicial deseada del jugador
+        }
+    }
 }

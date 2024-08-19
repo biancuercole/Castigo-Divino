@@ -151,7 +151,9 @@ MonoBehaviour:
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 0}
   shootDistance: 35
-  WayPoints: []
+  WayPoints:
+  - {fileID: 158912003431506923, guid: 980d15191e798bb4bb038a4d323a4307, type: 3}
+  - {fileID: 5281472253704273769, guid: 0fb080bb427a1c74b9902cd07565e569, type: 3}
   currentWaypoint: 0
   waitTime: 0
 --- !u!114 &6582203629545758462

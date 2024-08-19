@@ -16,6 +16,7 @@ public class Checkpoints : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             gm.lastCheckpoint = transform.position;
+            Debug.Log("Checkpoint actualizado: " + gm.lastCheckpoint);
         }
     }
 }
