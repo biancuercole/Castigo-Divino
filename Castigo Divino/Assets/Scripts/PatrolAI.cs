@@ -10,7 +10,7 @@ public class EnemyPatroll : MonoBehaviour
     private float chargeDistance = 10.0f; // Distancia para iniciar la embestida
     private float patrolSpeed = 20.0f; // Velocidad para patrullaje
     private float followSpeed = 22.0f; // Velocidad para persecución
-    private float chargeSpeed = 50.0f; // Velocidad para embestida
+    private float chargeSpeed = 55.0f; // Velocidad para embestida
     [SerializeField] private float time;
     [SerializeField] Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
