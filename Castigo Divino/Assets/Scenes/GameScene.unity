@@ -21435,6 +21435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
+  playerHealth: 0
+  playerMaxHealth: 0
 --- !u!4 &1362526665
 Transform:
   m_ObjectHideFlags: 0
@@ -38499,10 +38501,10 @@ MonoBehaviour:
   inmunidadDuracion: 2
   parpadeoIntervalo: 0.2
   maxHealth: 4
+  health: 0
   changeHealth:
     m_PersistentCalls:
       m_Calls: []
-  managerData: {fileID: 1362526664}
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
 --- !u!95 &1957976475
 Animator:

@@ -5889,6 +5889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
+  playerHealth: 0
 --- !u!4 &466434710
 Transform:
   m_ObjectHideFlags: 0
@@ -28735,7 +28736,7 @@ MonoBehaviour:
   changeHealth:
     m_PersistentCalls:
       m_Calls: []
-  managerData: {fileID: 0}
+  managerData: {fileID: 466434709}
   damageParticle: {fileID: 0}
 --- !u!61 &1916445830
 BoxCollider2D:

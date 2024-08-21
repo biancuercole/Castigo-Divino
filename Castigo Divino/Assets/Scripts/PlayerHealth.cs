@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float parpadeoIntervalo = 0.2f; // Intervalo de parpadeo
 
     public int maxHealth;
-    private int health;
+    public int health;
     private bool esInmune = false;
 
     public UnityEvent<int> changeHealth;
