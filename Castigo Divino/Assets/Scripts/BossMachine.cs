@@ -38,6 +38,7 @@ public class BossMachine : MonoBehaviour
         currentState = BossState.Charge;
         StateMachine();
         bossAnimator = GetComponent<Animator>();
+        agent.SetDestination(player.position);
     }
 
     public void OnActive()
@@ -91,8 +92,6 @@ public class BossMachine : MonoBehaviour
 
     private void Attack()
     {
-        agent.isStopped = true;
-
         // Solo dispara si ha pasado suficiente tiempo desde el último disparo
         if (Time.time >= nextShootTime && !isShooting)
         {
@@ -103,7 +102,6 @@ public class BossMachine : MonoBehaviour
 
     private void TripleAttack()
     {
-        agent.isStopped = true;
         if (Time.time >= nextShootTime && !isShooting)
         {
             StartCoroutine(TripleShoot());

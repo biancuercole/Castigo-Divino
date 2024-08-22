@@ -24,8 +24,12 @@ public class PlayerHealth : MonoBehaviour
     public ManagerData managerData;
 
     public GameObject damageParticle;
+
+    private NextStage nextStage;
+
     void Start()
     {
+        nextStage = FindObjectOfType<NextStage>();
         health = maxHealth;
         changeHealth.Invoke(health);
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -56,6 +60,8 @@ public class PlayerHealth : MonoBehaviour
             {
                 passLevel(indiceNivel);
                 managerData.ResetPoints();
+                nextStage.enemiesCount = 0;
+                nextStage.keyCount = 0;
             }
             else
             {

@@ -41,28 +41,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        // Inicializa el GameMaster
+        string sceneName = SceneManager.GetActiveScene().name;
         gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
-        /*f (gm == null)
-        {
-            Debug.LogError("No se encontró un GameMaster en la escena.");
-            return;
-        }*/
         if (gm != null && gm.lastCheckpoint != Vector2.zero)
         {
             transform.position = gm.lastCheckpoint;
-        }
-        else
+        } else
         {
-            // Si lastCheckpoint es Vector2.zero, utilizar la posición inicial manualmente
-            transform.position = new Vector2(525, -170); // Reemplaza (0, 0) por la posición inicial deseada
+            transform.position = new Vector2(525, -170); 
         }
+
+        if (sceneName == "PacificZone")
+        {
+            transform.position = new Vector2(525, -170); 
+            Debug.Log("ZONA PACIFICATION");
+        }
+
         playerRb = GetComponent<Rigidbody2D>();
-        if (playerRb == null)
-        {
-            Debug.LogError("No se encontró un componente Rigidbody2D en el jugador.");
-        }
-        // Inicializa otros componentes
+
         nextStage = FindObjectOfType<NextStage>();
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
@@ -87,16 +83,6 @@ void Update()
     float moveX = Input.GetAxisRaw("Horizontal");
     float moveY = Input.GetAxisRaw("Vertical");
     moveInput = new Vector2(moveX, moveY).normalized;
-
-    // Invertir el sprite cuando el personaje se mueve a la izquierda
-    if (moveX < 0)
-    {
-        transform.localScale = new Vector3(-1, 1, 1); // Voltea el sprite horizontalmente
-    }
-    else if (moveX > 0)
-    {
-        transform.localScale = new Vector3(1, 1, 1); // Mantiene el sprite normal
-    }
 
     if (playerAnimator != null)
     {

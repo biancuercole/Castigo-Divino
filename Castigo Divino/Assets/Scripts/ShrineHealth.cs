@@ -13,8 +13,11 @@ public class ShrineHealth : MonoBehaviour
 
     private Coroutine damageCoroutine;
     public float showTimer;
+    private NextStage nextStage;
+
     void Start()
     {
+        nextStage = FindObjectOfType<NextStage>();
         health = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -46,8 +49,9 @@ public class ShrineHealth : MonoBehaviour
         else
         {
            // healthBar.HideBar();
-            Debug.Log("Santuario destruido.");
             SceneManager.LoadScene(indiceNivel);
+            nextStage.enemiesCount = 0;
+            nextStage.keyCount = 0;
         }
 
         Debug.Log("Vida altar: " + health);
