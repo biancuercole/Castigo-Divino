@@ -9,11 +9,11 @@ public class NextStage : MonoBehaviour
 
     public Transform player;
 
-    private int enemiesCount;
-    private int keyCount;
+    public int enemiesCount;
+    public int keyCount;
 
-    [SerializeField] private int enemiesNeeded;
-    [SerializeField] private int keysNeeded;
+    [SerializeField] public int enemiesNeeded;
+    [SerializeField] public int keysNeeded;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField] private Sprite closedSprite;
@@ -79,6 +79,8 @@ public class NextStage : MonoBehaviour
 
     public void closeDoor()
     {
+        enemiesCount = 0;
+        keyCount = 0;
         currentState = MachineState.Close; 
     }
 

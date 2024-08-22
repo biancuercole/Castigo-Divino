@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float speed = 3f;
-    //private GameMaster gm;
+    private GameMaster gm;
 
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
@@ -41,20 +41,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        // Inicializa el GameMaster
-        //gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
-        /*f (gm == null)
+        string sceneName = SceneManager.GetActiveScene().name;
+        gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
+        if (gm != null && gm.lastCheckpoint != Vector2.zero)
         {
-            Debug.LogError("No se encontró un GameMaster en la escena.");
-            return;
-        }*/
-        //transform.position = gm.lastCheckpoint;
-        playerRb = GetComponent<Rigidbody2D>();
-        if (playerRb == null)
+            transform.position = gm.lastCheckpoint;
+        } else
         {
-            Debug.LogError("No se encontró un componente Rigidbody2D en el jugador.");
+            transform.position = new Vector2(525, -170); 
         }
-        // Inicializa otros componentes
+
+        if (sceneName == "PacificZone")
+        {
+            transform.position = new Vector2(525, -170); 
+            Debug.Log("ZONA PACIFICATION");
+        }
+
+        playerRb = GetComponent<Rigidbody2D>();
+
         nextStage = FindObjectOfType<NextStage>();
         playerRb = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
@@ -79,16 +83,6 @@ void Update()
     float moveX = Input.GetAxisRaw("Horizontal");
     float moveY = Input.GetAxisRaw("Vertical");
     moveInput = new Vector2(moveX, moveY).normalized;
-
-    // Invertir el sprite cuando el personaje se mueve a la izquierda
-    if (moveX < 0)
-    {
-        transform.localScale = new Vector3(-1, 1, 1); // Voltea el sprite horizontalmente
-    }
-    else if (moveX > 0)
-    {
-        transform.localScale = new Vector3(1, 1, 1); // Mantiene el sprite normal
-    }
 
     if (playerAnimator != null)
     {
@@ -157,11 +151,13 @@ void Update()
         if (other.gameObject.CompareTag("entrada"))
         {
             GameEvents.ClosedDoor();
-            Destroy(other.gameObject);
+        }
+        if(other.gameObject.CompareTag("entrada2"))
+        {
+            GameEvents.ClosedDoor();
         }
         if (other.gameObject.CompareTag("entradaBoss"))
         {
-            GameEvents.ClosedDoor();
             Debug.Log("Activando jefe");
             if (boss != null)
             {

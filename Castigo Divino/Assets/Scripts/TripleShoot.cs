@@ -115,7 +115,7 @@ public class TripleShoot : MonoBehaviour
             ShootProyectile(Quaternion.Euler(0, 0, 45) * directionToPlayer); // 45° arriba
             ShootProyectile(Quaternion.Euler(0, 0, -45) * directionToPlayer); // 45° abajo
 
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(2f);
         }
         isShooting = false;
     }

@@ -5,12 +5,12 @@ using UnityEngine.UIElements;
 
 public class EnemyPatroll : MonoBehaviour
 {
-    [SerializeField] Transform target; 
-    private float minDistance = 32.0f; // Distancia mínima para iniciar la persecución
-    private float chargeDistance = 10.0f; // Distancia para iniciar la embestida
-    private float patrolSpeed = 20.0f; // Velocidad para patrullaje
-    private float followSpeed = 22.0f; // Velocidad para persecución
-    private float chargeSpeed = 50.0f; // Velocidad para embestida
+    [SerializeField] Transform target;
+    [SerializeField] private float minDistance = 32.0f; // Distancia mínima para iniciar la persecución
+    [SerializeField] private float chargeDistance = 10.0f; // Distancia para iniciar la embestida
+    [SerializeField] private float patrolSpeed = 20.0f; // Velocidad para patrullaje
+    [SerializeField] private float followSpeed = 22.0f; // Velocidad para persecución
+    [SerializeField] private float chargeSpeed = 55.0f; // Velocidad para embestida
     [SerializeField] private float time;
     [SerializeField] Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
@@ -45,7 +45,14 @@ public class EnemyPatroll : MonoBehaviour
         agent.updateUpAxis = false;
         isWaiting = false;
         isFollowing = false;
-        agent.SetDestination(WayPoints[currentWaypoint].position);
+        if (WayPoints.Length > 0 && currentWaypoint < WayPoints.Length)
+        {
+            agent.SetDestination(WayPoints[currentWaypoint].position);
+        }
+        else
+        {
+            Debug.LogWarning("currentWaypoint está fuera de rango o no hay waypoints asignados.");
+        }
         agent.speed = patrolSpeed; // Establece la velocidad inicial de patrullaje
     }
 
@@ -58,15 +65,13 @@ public class EnemyPatroll : MonoBehaviour
             return;
         }
 
-        // Asegúrate de que haya al menos un waypoint asignado
-        if (WayPoints.Length > 0)
+        if (WayPoints.Length > 0 && currentWaypoint < WayPoints.Length)
         {
-            // Configura el destino al waypoint actual
             agent.SetDestination(WayPoints[currentWaypoint].position);
         }
         else
         {
-            Debug.LogWarning("No waypoints assigned to " + gameObject.name);
+            Debug.LogWarning("currentWaypoint está fuera de rango o no hay waypoints asignados.");
         }
 
         // Restablecer estados al activarse
@@ -128,12 +133,12 @@ public class EnemyPatroll : MonoBehaviour
         // Solo cambiar al siguiente waypoint si no está siguiendo al jugador
         if (!isFollowing && !isCharging)
         {
-            currentWaypoint++;
-            if (currentWaypoint == WayPoints.Length)
-            {
-                currentWaypoint = 0;
-            }
-            agent.SetDestination(WayPoints[currentWaypoint].position);
+        currentWaypoint++;
+        if (currentWaypoint >= WayPoints.Length)
+        {
+            currentWaypoint = 0;
+        }
+        agent.SetDestination(WayPoints[currentWaypoint].position);
         }
 
         isWaiting = false;

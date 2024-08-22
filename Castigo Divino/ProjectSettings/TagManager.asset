@@ -24,6 +24,10 @@ TagManager:
   - GM
   - Level1
   - bulletPowerUp
+  - entrada2
+  - tronco
+  - fuego
+  - humo
   layers:
   - Default
   - TransparentFX

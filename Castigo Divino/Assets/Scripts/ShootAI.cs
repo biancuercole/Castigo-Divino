@@ -119,7 +119,7 @@ public class ShootAI : MonoBehaviour
             proyectile.transform.rotation = Quaternion.identity;
             proyectile.GetComponent<Proyectiles>().LaunchProyectile();*/
             
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1.5f);
         }
         isShooting = false;
     }
