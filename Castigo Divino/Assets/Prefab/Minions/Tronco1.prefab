@@ -153,7 +153,7 @@ SpriteRenderer:
   m_Size: {x: 7.4, y: 7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &5116981067897838673
@@ -257,6 +257,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  minDistance: 60
+  chargeDistance: 30
+  patrolSpeed: 30
+  followSpeed: 35
+  chargeSpeed: 80
   time: 0
   WayPoints:
   - {fileID: 1092605515026212596}

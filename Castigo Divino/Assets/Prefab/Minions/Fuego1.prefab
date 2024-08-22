@@ -89,7 +89,7 @@ SpriteRenderer:
   m_Size: {x: 8.1, y: 9.3}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &7583454386879274911
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 0}
-  shootDistance: 30
+  shootDistance: 60
   WayPoints:
   - {fileID: 6165520929967303348}
   - {fileID: 6481571961572151451}
