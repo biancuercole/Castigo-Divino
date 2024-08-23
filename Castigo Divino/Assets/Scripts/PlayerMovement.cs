@@ -98,6 +98,7 @@ void Update()
 
     if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
     {
+        Debug.Log("Arriba");
         if (GunSpriteRenderer != null && spriteRenderer != null)
         {
             GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
