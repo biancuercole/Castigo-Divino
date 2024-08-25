@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 public class MenuPause : MonoBehaviour
 {
     [SerializeField] GameObject menuPause;
-
+    [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
 
+    private void Start()
+    {
+     managerData = FindObjectOfType<ManagerData>(); 
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -43,8 +47,27 @@ public class MenuPause : MonoBehaviour
     public void Menu()
     {
         Debug.Log("Salir al menu");
+        PlayerPrefs.DeleteAll();
+        managerData.ResetPoints();
+        managerData.isBulletPowerUpCollected = false;
+        managerData.isTripleShotBought = false;
+        managerData.speed = 25;
+        managerData.speedBullet = 3;
+        managerData.damageBullet = 1;
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1f;
     }
 
-
+    public void ResetGame()
+    {
+        PlayerPrefs.DeleteAll();
+        managerData.ResetPoints();
+        managerData.isBulletPowerUpCollected = false;
+        managerData.isTripleShotBought= false;
+        managerData.speed = 25;
+        managerData.speedBullet= 3;
+        managerData.damageBullet = 1;   
+        SceneManager.LoadScene("PacificZone");
+        Time.timeScale = 1f;
+    }
 }

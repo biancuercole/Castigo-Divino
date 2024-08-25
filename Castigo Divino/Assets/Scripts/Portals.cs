@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class Portals : MonoBehaviour
 {
     private PlayerMovement player;
-
     void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
@@ -24,6 +23,7 @@ public class Portals : MonoBehaviour
         if (player != null)
         {
             SceneManager.LoadScene("PacificZone");
+            Debug.Log("Pasaron Datos");
         }
     }
 }

@@ -7,9 +7,12 @@ public class BBspeed : PowerUpEffect
 {
     public float amount;
 
+    public ManagerData managerData;
     public override void Apply(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
+        managerData = FindObjectOfType<ManagerData>();
+        managerData.AddSpeedBullet(amount);
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)
@@ -36,6 +39,8 @@ public class BBspeed : PowerUpEffect
     public override void Remove(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
+        managerData = FindObjectOfType<ManagerData>();
+        managerData.TakeSpeedBullet(amount);
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)

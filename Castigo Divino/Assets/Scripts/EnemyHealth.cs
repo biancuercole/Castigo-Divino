@@ -46,9 +46,9 @@ public class EnemyHealth : MonoBehaviour
         if (health > 0)
         {
             Color customColor;
-            ColorUtility.TryParseHtmlString("#FFBD00", out customColor);
+            ColorUtility.TryParseHtmlString("#FFFFF", out customColor);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
-            float damageDuration = 0.15f;
+            float damageDuration = 0.5f;
             spriteRenderer.color = customColor;
             yield return new WaitForSeconds(damageDuration);
             spriteRenderer.color = Color.white;

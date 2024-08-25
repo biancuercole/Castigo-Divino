@@ -7,9 +7,12 @@ public class BulletBuffDamage : PowerUpEffect
 {
     public float amount;
 
+    public ManagerData managerData;
     public override void Apply(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
+        managerData = FindObjectOfType<ManagerData>();
+        managerData.AddDamageBullet(amount);
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)

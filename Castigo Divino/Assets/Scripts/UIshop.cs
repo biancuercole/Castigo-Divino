@@ -24,9 +24,9 @@ public class UIshop : MonoBehaviour
     private void Start()
     {
         CreateItemButton("Velocidad + 2", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton("Da�o + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
-        CreateItemButton("Coraz�n + 1", Item.GetCost(Item.ItemType.Heart), 2, powerUps[2]);
-        CreateItemButton("Velocidad Bala + 2", Item.GetCost(Item.ItemType.BulletSpeed), 3, powerUps[3]);
+        CreateItemButton("Daño + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton("Velocidad Bala + 2", Item.GetCost(Item.ItemType.BulletSpeed), 2, powerUps[3]);
+        // CreateItemButton("Triple", Item.GetCost(Item.ItemType.TripleShot), 2, powerUps[2]);
     }
 
     private void CreateItemButton(string itemName, int itemCost, int positionIndex, PowerUpEffect powerUp)
@@ -65,6 +65,7 @@ public class UIshop : MonoBehaviour
                     {
                         powerUp.Apply(player);
                     }
+
                     else
                     {
                         Debug.LogError("Player not found");

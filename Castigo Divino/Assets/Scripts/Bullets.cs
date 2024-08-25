@@ -9,8 +9,9 @@ public class Bullets : MonoBehaviour
     private Rigidbody2D bulletRb;
     private NextStage nextStage; 
     private AudioManager audioManager;
-   // private LootBag lootBag;
+    // private LootBag lootBag;
 
+    public ManagerData managerData;
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -22,6 +23,16 @@ public class Bullets : MonoBehaviour
     void Start()
     {
         nextStage = FindObjectOfType<NextStage>();
+        managerData = FindObjectOfType<ManagerData>();
+        managerData = ManagerData.Instance;
+        if (managerData == null)
+        {
+            Debug.LogError("No se encontró ManagerData en la escena.");
+            return;
+        }
+
+        speed = managerData.speedBullet;
+        damage = managerData.damageBullet;
     }
 
     public void LaunchBullet(Vector2 direction)
