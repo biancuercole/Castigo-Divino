@@ -8,8 +8,8 @@ public class SceneFlow : MonoBehaviour
 {
     [SerializeField] private bool pasarNivel;
     [SerializeField] private int indiceNivel;
-
-    [SerializeField] private ManagerData managerData;
+    public float DamageBullet, SpeedBullet;
+   [SerializeField] private ManagerData managerData;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class SceneFlow : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+       if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
         {
             CambiarNivel(indiceNivel);
         }
@@ -34,13 +34,13 @@ public class SceneFlow : MonoBehaviour
     {
         if (managerData != null)
         {
-
+            managerData.ResetGameData();
         }
         else
         {
             Debug.LogError("ManagerData no está asignado.");
         }
-
+        managerData.ResetGameData();
         SceneManager.LoadScene(indice);
     }
 }

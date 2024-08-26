@@ -8,11 +8,14 @@ public class BBspeed : PowerUpEffect
     public float amount;
 
     public ManagerData managerData;
+
     public override void Apply(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
-        managerData = FindObjectOfType<ManagerData>();
-        managerData.AddSpeedBullet(amount);
+        if (managerData != null)
+        {
+            managerData.AddSpeedBullet(CurrentSpeedBonus);  // Aplica el bono en ManagerData
+        }
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)
@@ -20,27 +23,19 @@ public class BBspeed : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    Debug.Log($"Bullet speed before: {bullet.speed}");
-                    bullet.speed += amount;
-                    Debug.Log($"Bullet speed after: {bullet.speed}");
-                }
-                else
-                {
-                    Debug.LogWarning("Bullet component not found on bullet object.");
+                    bullet.speed += CurrentSpeedBonus;  // Aplica el bono actual
                 }
             }
-        }
-        else
-        {
-            Debug.LogWarning("BulletPool instance not found.");
         }
     }
 
     public override void Remove(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
-        managerData = FindObjectOfType<ManagerData>();
-        managerData.TakeSpeedBullet(amount);
+        if (managerData != null)
+        {
+            managerData.TakeSpeedBullet(CurrentSpeedBonus); // Revertir el bono en ManagerData
+        }
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)
@@ -48,20 +43,10 @@ public class BBspeed : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    Debug.Log($"Bullet speed before: {bullet.speed}");
-                    bullet.speed -= amount;
-                    Debug.Log($"Bullet speed after: {bullet.speed}");
-                }
-                else
-                {
-                    Debug.LogWarning("Bullet component not found on bullet object.");
+                    bullet.speed -= CurrentSpeedBonus; // Remover el bono actual
                 }
             }
         }
-        else
-        {
-            Debug.LogWarning("BulletPool instance not found.");
-        }
+        CurrentSpeedBonus = 0; // Restablecer el bono
     }
-
 }

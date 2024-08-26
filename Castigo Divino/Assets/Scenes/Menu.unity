@@ -349,6 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pasarNivel: 0
   indiceNivel: 4
+  DamageBullet: 0
+  SpeedBullet: 0
   managerData: {fileID: 2026762561}
 --- !u!4 &308843115
 Transform:
@@ -1170,7 +1172,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   points: 0
   health: 0
+  isTripleShotBought: 0
   isBulletPowerUpCollected: 0
+  isSpeedBulletBought: 0
+  isDamageBulletBought: 0
+  speed: 0
+  speedBullet: 0
+  damageBullet: 0
+  rotation: {fileID: 0}
+  uiShop: {fileID: 0}
 --- !u!4 &2026762562
 Transform:
   m_ObjectHideFlags: 0
