@@ -4,17 +4,21 @@ public class Rotation : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform shootPosition;
-    [SerializeField] private float shootCooldown = 1f; // Cooldown de 3 segundos
+    [SerializeField] private float shootCooldown = 1f; // Cooldown de 1 segundo
     [SerializeField] private bool tripleShotEnabled = false;
     [SerializeField] private ManagerData managerData;
     private Camera cam;
     private float lastShootTime; // Tiempo del último disparo
     public bool canShoot = true;
+    private Animator animator; // Referencia al Animator
+    [SerializeField] private float shootAnimationDuration; // Duración de la animación de disparo
+
     void Start()
     {
         cam = Camera.main;
         lastShootTime = -shootCooldown; // Permite disparar inmediatamente al iniciar
         managerData = FindObjectOfType<ManagerData>();
+        animator = GetComponent<Animator>(); // Obtén el componente Animator
     }
 
     void Update()
@@ -45,15 +49,19 @@ public class Rotation : MonoBehaviour
         GameObject bullet = BulletPool.Instance.RequestBullet();
         if (bullet != null)
         {
+            animator.SetBool("Shooting", true); // Activa la animación de disparo
             bullet.transform.position = shootPosition.position;
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
             bullet.GetComponent<Bullets>().LaunchBullet(direction);
+
+            Invoke("ResetShootingAnimation", shootAnimationDuration); // Resetea la animación después de la duración
         }
         else
         {
             Debug.LogWarning("No bullet available to shoot");
         }
     }
+
     private void ShootMultipleBullets(Vector2 direction, float angle)
     {
         float[] angleOffsets = {0f, 30f, -30f}; // Desplazamientos de ángulo para las tres balas
@@ -76,6 +84,14 @@ public class Rotation : MonoBehaviour
                 Debug.LogWarning("No bullet available to shoot");
             }
         }
+
+        animator.SetBool("Shooting", true); // Activa la animación de disparo
+        Invoke("ResetShootingAnimation", shootAnimationDuration); // Resetea la animación después de la duración
+    }
+
+    private void ResetShootingAnimation()
+    {
+        animator.SetBool("Shooting", false); // Desactiva la animación de disparo
     }
 
     public void EnableTripleShot()

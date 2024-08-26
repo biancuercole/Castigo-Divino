@@ -3144,7 +3144,7 @@ Transform:
   m_GameObject: {fileID: 295403464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1192.4, y: -497, z: -10}
+  m_LocalPosition: {x: 559.5362, y: -166.17378, z: -10}
   m_LocalScale: {x: 1.4478534, y: 1.4478534, z: 1.4478534}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7889,7 +7889,7 @@ Transform:
   m_GameObject: {fileID: 804777717}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.446, y: -0.053, z: 0}
+  m_LocalPosition: {x: -3.08, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34260,7 +34260,7 @@ Transform:
   m_GameObject: {fileID: 1080024288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1192.4, y: -497, z: -10}
+  m_LocalPosition: {x: 530.3, y: -165.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36756,6 +36756,7 @@ MonoBehaviour:
   isTripleShotBought: 0
   isBulletPowerUpCollected: 0
   isSpeedBulletBought: 0
+  isDamageBulletBought: 0
   speed: 25
   speedBullet: 0
   damageBullet: 0
@@ -39923,7 +39924,7 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1192.4, y: -497, z: 0}
+  m_LocalPosition: {x: 530.3, y: -165.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40516,6 +40517,7 @@ GameObject:
   - component: {fileID: 2033237689}
   - component: {fileID: 2033237691}
   - component: {fileID: 2033237690}
+  - component: {fileID: 2033237692}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -40532,7 +40534,7 @@ Transform:
   m_GameObject: {fileID: 2033237688}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.082, y: 1.592, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -40557,6 +40559,7 @@ MonoBehaviour:
   tripleShotEnabled: 0
   managerData: {fileID: 0}
   canShoot: 1
+  shootAnimationDuration: 0.4
 --- !u!212 &2033237691
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40598,7 +40601,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 49da3237e1bbc7e498ca351dc76888a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e32c86916c2ef8042a7dfe9c7c2a78bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -40609,6 +40612,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &2033237692
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033237688}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f154a4a61a2044f4a80b4d889d9b11be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2033379981
 GameObject:
   m_ObjectHideFlags: 0
