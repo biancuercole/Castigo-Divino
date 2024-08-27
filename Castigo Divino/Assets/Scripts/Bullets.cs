@@ -61,7 +61,7 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Proyectile"))
+        if (collision.gameObject.CompareTag("Proyectile") || collision.gameObject.CompareTag("ProyectileShrine") || collision.gameObject.CompareTag("TripleBullet"))
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
             return;

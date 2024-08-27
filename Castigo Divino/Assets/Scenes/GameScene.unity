@@ -41090,7 +41090,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 1539106571}
-  maxHealth: 5
+  maxHealth: 15
+  health: 0
   healthBar: {fileID: 1620495930}
   indiceNivel: 3
   bossMachine: {fileID: 0}

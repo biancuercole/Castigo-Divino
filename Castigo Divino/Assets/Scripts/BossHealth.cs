@@ -8,7 +8,7 @@ public class BossHealth : MonoBehaviour
 {
     [SerializeField] private Portals portal;
     [SerializeField] private float maxHealth;
-    private float health;
+    [SerializeField] private float health;
     [SerializeField] private HealthBar healthBar;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
@@ -47,6 +47,7 @@ public class BossHealth : MonoBehaviour
             if ((maxHealth - health) >= 2.5f)
             {
                 bossMachine.StateMachine(); // Esta línea debe ser solo una llamada a método, sin asignación
+                health = health + 1; 
                 maxHealth = health; // Actualiza el máximo temporal
             }
         }
