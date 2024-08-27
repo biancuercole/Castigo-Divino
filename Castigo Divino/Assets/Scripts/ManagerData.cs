@@ -18,6 +18,8 @@ public class ManagerData : MonoBehaviour
     public float speed = 25;
     public float speedBullet = 3;
     public float damageBullet = 1;
+    public float CurrentDamageBonus = 0;
+    public float CurrentSpeedBonus = 0;
 
     [SerializeField] private Rotation rotation;
     [SerializeField] private UIshop uiShop;
@@ -207,57 +209,34 @@ public class ManagerData : MonoBehaviour
         }
     }
 
-    private void ApplyActivePowerUps()
-    {
-        if (isSpeedBulletBought)
-        {
-            ApplySpeedBulletPowerUp();
-        }
-
-        if (isDamageBulletBought)
-        {
-            ApplyDamageBulletPowerUp();
-        }
-
-        // Aplica otros power-ups aquí si es necesario
-    }
-
-    private void ApplySpeedBulletPowerUp()
-    {
-        // Aplica la mejora de velocidad de bala aquí
-        var bbSpeed = ScriptableObject.CreateInstance<BBspeed>();
-        bbSpeed.Apply(null);  // Aplica el bono al personaje o balas
-    }
-
-    private void ApplyDamageBulletPowerUp()
-    {
-        // Aplica la mejora de daño de bala aquí
-        var bulletBuffDamage = ScriptableObject.CreateInstance<BulletBuffDamage>();
-        bulletBuffDamage.Apply(null);  // Aplica el bono al personaje o balas
-    }
-
     public void ResetGameData()
     {
-        // Inicializa los valores predeterminados
-        points = 0;
-        health = 4;
-        speed = 25;
-        speedBullet = 3;
-        damageBullet = 1;
+        if (uiShop != null)
+        {
+            uiShop.ResetShop();
+        }
+        else
+        {
+            Debug.LogError("uiShop no está inicializado.");
+        }
 
-        // Restablece el estado de las mejoras
+        // Reinicia otros valores a sus estados predeterminados
+        points = 0;
+        health = 4; // O el valor que consideres por defecto
         isTripleShotBought = false;
         isBulletPowerUpCollected = false;
         isSpeedBulletBought = false;
         isDamageBulletBought = false;
+        speed = 25;
+        speedBullet = 3;
+        damageBullet = 1;
+        CurrentDamageBonus = 0;
+        CurrentSpeedBonus = 0;
 
         // Limpia los items comprados
         boughtItems.Clear();
         SaveBoughtItems();
-
-        // Reaplicar las mejoras activas si las ha
-        ApplyActivePowerUps();
-
+    
         PlayerPrefs.DeleteAll();
         Debug.Log("Datos del juego reiniciados.");
     }

@@ -12,10 +12,12 @@ public class BulletBuffDamage : PowerUpEffect
     public override void Apply(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
+        managerData = FindObjectOfType<ManagerData>();
         if (managerData != null)
         {
-            managerData.AddDamageBullet(CurrentDamageBonus);  // Aplica el bono en ManagerData 
-        }
+            managerData.AddDamageBullet(amount - managerData.CurrentDamageBonus); // Ajustar el daño según el nuevo bono
+            Debug.Log("Damage Bonus " + managerData.CurrentDamageBonus + "Amount "+ amount);
+        } 
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)
@@ -23,10 +25,13 @@ public class BulletBuffDamage : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    bullet.damage += CurrentDamageBonus;  // Aplica el bono actual
+                    bullet.damage -= managerData.CurrentDamageBonus; // Revertir cualquier bono anterior
+                    bullet.damage += amount; // Aplicar el nuevo bono
                 }
             }
         }
+        managerData.CurrentDamageBonus = amount; // Guardar el bono actual
+        Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
     }
 
     public override void Remove(GameObject target)
@@ -34,7 +39,7 @@ public class BulletBuffDamage : PowerUpEffect
         BulletPool bulletPool = BulletPool.Instance;
         if (managerData != null)
         {
-            managerData.TakeDamageBullet(CurrentDamageBonus); // Revertir el bono en ManagerData 
+            managerData.TakeDamageBullet(managerData.CurrentDamageBonus); // Revertir el bono en ManagerData 
         }
         if (bulletPool != null)
         {
@@ -43,10 +48,11 @@ public class BulletBuffDamage : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    bullet.damage -= CurrentDamageBonus; // Remover el bono actual
+                    bullet.damage -= managerData.CurrentDamageBonus; // Remover el bono actual
                 }
             }
         }
-        CurrentDamageBonus = 0; // Restablecer el bono
+        managerData.CurrentDamageBonus = 0; // Restablecer el bono
+        Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
     }
 }
