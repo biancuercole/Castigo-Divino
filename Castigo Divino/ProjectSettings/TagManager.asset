@@ -28,6 +28,7 @@ TagManager:
   - tronco
   - fuego
   - humo
+  - Level2
   layers:
   - Default
   - TransparentFX

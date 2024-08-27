@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(525, -170); 
         }
 
-        if (sceneName == "PacificZone")
+        if (sceneName == "PacificZone" || sceneName == "EnemyLevel")
         {
             transform.position = new Vector2(525, -170); 
             Debug.Log("ZONA PACIFICATION");
@@ -189,6 +189,10 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Level1"))
         {
             SceneManager.LoadScene("GameScene");
+        }
+        if (other.gameObject.CompareTag("Level2"))
+        {
+            SceneManager.LoadScene("EnemyLevel");
         }
     }
 }

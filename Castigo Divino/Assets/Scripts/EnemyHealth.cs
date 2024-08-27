@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
+    private EnemyLevel enemyLevel;
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private HealthBar healthBar;
     private float health;
@@ -26,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
+        enemyLevel = FindObjectOfType<EnemyLevel>();
         agent = GetComponent<NavMeshAgent>();
         health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -62,6 +65,10 @@ public class EnemyHealth : MonoBehaviour
             audioManager.playSound(audioManager.enemyDeath);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             GameEvents.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
+            if (SceneManager.GetActiveScene().name == "EnemyLevel")
+            {
+                enemyLevel.EnemyDefeated();
+            }
 
             // Desactivar el Collider del enemigo
             enemyCollider.enabled = false;
@@ -71,8 +78,6 @@ public class EnemyHealth : MonoBehaviour
             {
                 animator.SetTrigger("Explode");
             }*/
-
-
             // Esperar a que la animación de explosión termine
            // yield return new WaitForSeconds(1.0f); // Ajusta el tiempo según la duración de la animación
 
