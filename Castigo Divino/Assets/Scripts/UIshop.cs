@@ -16,7 +16,7 @@ public class UIshop : MonoBehaviour
     public GameObject[] weaponUpgradeItems;
     public string messeage;
     public Rotation rotation;
-    private bool isBought; 
+   private bool isBought; 
 
     private ManagerData managerData;
     private void Awake()

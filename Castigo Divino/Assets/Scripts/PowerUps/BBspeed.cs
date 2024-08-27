@@ -12,9 +12,11 @@ public class BBspeed : PowerUpEffect
     public override void Apply(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
+        managerData = FindObjectOfType<ManagerData>();
         if (managerData != null)
         {
-            managerData.AddSpeedBullet(CurrentSpeedBonus);  // Aplica el bono en ManagerData
+            managerData.AddSpeedBullet(amount - managerData.CurrentSpeedBonus); // Ajustar la velocidad según el nuevo bono
+            Debug.Log("Damage Bonus " + managerData.CurrentSpeedBonus + "Amount " + amount);
         }
         if (bulletPool != null)
         {
@@ -23,10 +25,13 @@ public class BBspeed : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    bullet.speed += CurrentSpeedBonus;  // Aplica el bono actual
+                    bullet.speed -= managerData.CurrentSpeedBonus; // Revertir cualquier bono anterior
+                    bullet.speed += amount; // Aplicar el nuevo bono
                 }
             }
         }
+        managerData.CurrentSpeedBonus = amount; // Guardar el bono actual
+        Debug.Log("CurrentSpeedBonuts " + managerData.CurrentSpeedBonus);
     }
 
     public override void Remove(GameObject target)
@@ -34,7 +39,7 @@ public class BBspeed : PowerUpEffect
         BulletPool bulletPool = BulletPool.Instance;
         if (managerData != null)
         {
-            managerData.TakeSpeedBullet(CurrentSpeedBonus); // Revertir el bono en ManagerData
+            managerData.TakeSpeedBullet(managerData.CurrentSpeedBonus); // Revertir el bono en ManagerData
         }
         if (bulletPool != null)
         {
@@ -43,10 +48,11 @@ public class BBspeed : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    bullet.speed -= CurrentSpeedBonus; // Remover el bono actual
+                    bullet.speed -= managerData.CurrentSpeedBonus; // Remover el bono actual
                 }
             }
         }
-        CurrentSpeedBonus = 0; // Restablecer el bono
+        managerData.CurrentSpeedBonus = 0; // Restablecer el bono
+        Debug.Log("CurrentSpeedBonuts " + managerData.CurrentSpeedBonus);
     }
 }
