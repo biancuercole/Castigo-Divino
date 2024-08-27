@@ -39992,7 +39992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10c4e577c0cd2c45985683ff52b63c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  indiceNivel: 2
+  indiceNivel: 3
   inmunidadDuracion: 2
   parpadeoIntervalo: 0.2
   maxHealth: 4
