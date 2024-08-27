@@ -36760,6 +36760,8 @@ MonoBehaviour:
   speed: 25
   speedBullet: 0
   damageBullet: 0
+  CurrentDamageBonus: 0
+  CurrentSpeedBonus: 0
   rotation: {fileID: 2033237690}
   uiShop: {fileID: 775675061}
 --- !u!4 &1362526665
@@ -41091,7 +41093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portal: {fileID: 1539106571}
   maxHealth: 15
-  health: 0
+  health: 15
   healthBar: {fileID: 1620495930}
   indiceNivel: 3
   bossMachine: {fileID: 0}
