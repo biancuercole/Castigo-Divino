@@ -5738,6 +5738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 129152627}
+  maxBar: 15
 --- !u!114 &443053329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6385,6 +6386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 2011269789}
+  maxBar: 15
 --- !u!114 &764333628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6700,6 +6702,8 @@ MonoBehaviour:
   speed: 25
   speedBullet: 0
   damageBullet: 0
+  CurrentDamageBonus: 0
+  CurrentSpeedBonus: 0
   rotation: {fileID: 904613152}
   uiShop: {fileID: 1688210075}
 --- !u!4 &891128285
@@ -7341,8 +7345,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: ded68a13da350e7418347f1ab8c0c77e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7361,13 +7365,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936941132}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 563.4, y: -225.1, z: 0}
-  m_LocalScale: {x: 57.15897, y: 4.352544, z: 3.36}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 565.3, y: -230.2, z: 0}
+  m_LocalScale: {x: 0.870223, y: 0.870223, z: 0.870223}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &936941136
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7404,7 +7408,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 21.466667, y: 52.4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
