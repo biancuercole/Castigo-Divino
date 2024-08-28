@@ -24,7 +24,7 @@ public class BossMachine : MonoBehaviour
     private bool isShooting = false;
     private float shootCooldown = 5f;
     private float nextShootTime = 0f;
-
+    public float barTimer; 
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -77,6 +77,13 @@ public class BossMachine : MonoBehaviour
         eulerRotation.y = 0f;
         eulerRotation.z = 0f;
         transform.eulerAngles = eulerRotation;
+
+        barTimer -= Time.deltaTime; 
+        if (barTimer < 0)
+        {
+            bossHealth.UpdateHealthBoss();
+            barTimer = 5;
+        }
     }
 
     public void StateMachine()
