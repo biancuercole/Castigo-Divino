@@ -10,6 +10,7 @@ public class TripleShoot : MonoBehaviour
     [SerializeField] private Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
     [SerializeField] private float waitTime;
+    private Animator smokeAnimator;
 
     NavMeshAgent agent;
     private bool isShooting;
@@ -25,6 +26,7 @@ public class TripleShoot : MonoBehaviour
 
     void Start()
     {
+        smokeAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -75,13 +77,9 @@ public class TripleShoot : MonoBehaviour
             StartCoroutine(Wait());
         }
 
-        if (agent.velocity.x < 0.1f)
+        if (smokeAnimator != null)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        else if (agent.velocity.x > -0.1f)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            smokeAnimator.SetFloat("Horizontal", agent.velocity.x);
         }
     }
 

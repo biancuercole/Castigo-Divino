@@ -17,6 +17,7 @@ public class EnemyPatroll : MonoBehaviour
     [SerializeField] private int currentWaypoint;
     [SerializeField] public int damage;
     [SerializeField] public TrailRenderer trail;
+    private Animator logAnimator; 
 
     [SerializeField] private GameObject circlePrefab;
 
@@ -43,6 +44,7 @@ public class EnemyPatroll : MonoBehaviour
 
     void Start()
     {
+        logAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -120,13 +122,9 @@ public class EnemyPatroll : MonoBehaviour
             }
         }
         
-        if (agent.velocity.x < 0.1f)
+        if (logAnimator != null)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        else if (agent.velocity.x > -0.1f)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            logAnimator.SetFloat("Horizontal", agent.velocity.x);
         }
     }
 
