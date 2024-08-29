@@ -1,9 +1,9 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+//using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 using UnityEngine.UI;
 
 public class ManagerData : MonoBehaviour
@@ -217,7 +217,7 @@ public class ManagerData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("uiShop no está inicializado.");
+            Debug.LogError("uiShop no estï¿½ inicializado.");
         }
 
         // Reinicia otros valores a sus estados predeterminados
