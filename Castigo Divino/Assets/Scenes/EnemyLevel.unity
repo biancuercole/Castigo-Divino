@@ -6776,6 +6776,7 @@ MonoBehaviour:
   managerData: {fileID: 0}
   canShoot: 1
   shootAnimationDuration: 0.4
+  selectedBulletType: 0
 --- !u!95 &904613153
 Animator:
   serializedVersion: 5
@@ -7265,7 +7266,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ded68a13da350e7418347f1ab8c0c77e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7292,8 +7293,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &936941136
-BoxCollider2D:
+--- !u!70 &936941136
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7325,18 +7326,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 21.466667, y: 52.4}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 21.466665, y: 52.399998}
+  m_Direction: 0
 --- !u!1 &962047217
 GameObject:
   m_ObjectHideFlags: 0
@@ -7665,10 +7656,9 @@ MonoBehaviour:
   - {fileID: 104165728}
   - {fileID: 1745232514}
   enemies:
-  - {fileID: 5347165147909718649, guid: 54d97305a034ba94d81ae1cbaac1511f, type: 3}
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
-  - {fileID: 5474861607113767795, guid: 55c7a11f4de653544b100b1eb47e8470, type: 3}
   timeEnemies: 5
+  portal: {fileID: 936941133}
   enemyNeeded: 5
 --- !u!1 &1094551708
 GameObject:

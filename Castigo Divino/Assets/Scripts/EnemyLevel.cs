@@ -10,13 +10,12 @@ public class EnemyLevel : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private float timeEnemies;
     private float timeNextEnemy; 
-    private Portals portal;
+    [SerializeField] private Portals portal;
     [SerializeField] private int enemyNeeded; 
     private int enemyCount = 0; 
 
     private void Start()
     {
-        portal = FindObjectOfType<Portals>();
         maxX = points.Max(point => point.position.x);
         maxY = points.Max(point => point.position.y);
         minX = points.Min(point => point.position.x);

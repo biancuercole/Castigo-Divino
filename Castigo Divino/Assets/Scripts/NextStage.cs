@@ -107,7 +107,7 @@ public class NextStage : MonoBehaviour
 
     private void CheckState()
     {
-        if (enemiesCount == enemiesNeeded && keyCount == keysNeeded)
+        if (enemiesCount >= enemiesNeeded && keyCount >= keysNeeded)
         {
             currentState = MachineState.Open;
         }

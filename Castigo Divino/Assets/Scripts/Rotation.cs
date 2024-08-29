@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
+    public enum BulletType { Celeste, Roja, Verde }
+    
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform shootPosition;
     [SerializeField] private float shootCooldown = 1f; // Cooldown de 1 segundo
@@ -13,6 +15,8 @@ public class Rotation : MonoBehaviour
     private Animator animator; // Referencia al Animator
     [SerializeField] private float shootAnimationDuration; // Duración de la animación de disparo
 
+    public BulletType selectedBulletType = BulletType.Celeste;
+
     void Start()
     {
         cam = Camera.main;
@@ -23,6 +27,20 @@ public class Rotation : MonoBehaviour
 
     void Update()
     {
+        // Detectar la selección de balas
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            selectedBulletType = BulletType.Celeste;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            selectedBulletType = BulletType.Roja;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            selectedBulletType = BulletType.Verde;
+        }
+
         Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mouseWorldPoint - (Vector2)transform.position;
 
@@ -54,6 +72,9 @@ public class Rotation : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
             bullet.GetComponent<Bullets>().LaunchBullet(direction);
 
+            // Cambiar el color de la bala según el tipo seleccionado
+            SetBulletColor(bullet);
+
             Invoke("ResetShootingAnimation", shootAnimationDuration); // Resetea la animación después de la duración
         }
         else
@@ -77,6 +98,9 @@ public class Rotation : MonoBehaviour
                 Vector2 adjustedDirection = Quaternion.Euler(0, 0, offset) * direction;
                 bullet.GetComponent<Bullets>().LaunchBullet(adjustedDirection);
 
+                // Cambiar el color de la bala según el tipo seleccionado
+                SetBulletColor(bullet);
+
                 Debug.Log($"Bullet spawned at {bullet.transform.position} with direction {adjustedDirection}");
             }
             else
@@ -87,6 +111,24 @@ public class Rotation : MonoBehaviour
 
         animator.SetBool("Shooting", true); // Activa la animación de disparo
         Invoke("ResetShootingAnimation", shootAnimationDuration); // Resetea la animación después de la duración
+    }
+
+    private void SetBulletColor(GameObject bullet)
+    {
+        SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
+
+        switch (selectedBulletType)
+        {
+            case BulletType.Celeste:
+                spriteRenderer.color = Color.cyan;
+                break;
+            case BulletType.Roja:
+                spriteRenderer.color = Color.red;
+                break;
+            case BulletType.Verde:
+                spriteRenderer.color = Color.green;
+                break;
+        }
     }
 
     private void ResetShootingAnimation()

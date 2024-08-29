@@ -15067,7 +15067,7 @@ Transform:
   m_GameObject: {fileID: 985019110}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7045284, w: 0.70967585}
-  m_LocalPosition: {x: 1136.8, y: -512.4, z: 0}
+  m_LocalPosition: {x: 1120.5, y: -516.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -36278,7 +36278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1331395201
 Transform:
   m_ObjectHideFlags: 0
@@ -37078,12 +37078,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539106568}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1009, y: -537.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1012.5176, y: -522.2653, z: -0.13325137}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1959398425}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1539106571
 MonoBehaviour:
@@ -37137,7 +37137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ded68a13da350e7418347f1ab8c0c77e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -39927,7 +39927,6 @@ Transform:
   - {fileID: 770201470}
   - {fileID: 1550972380}
   - {fileID: 1628823369}
-  - {fileID: 1539106569}
   - {fileID: 421825399}
   - {fileID: 987635978}
   - {fileID: 662001458}
@@ -40260,6 +40259,7 @@ MonoBehaviour:
   managerData: {fileID: 0}
   canShoot: 1
   shootAnimationDuration: 0.4
+  selectedBulletType: 0
 --- !u!212 &2033237691
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -40702,7 +40702,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: a3152b9644af8654fba7eca494facf1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -41422,6 +41422,7 @@ SceneRoots:
   - {fileID: 1165152423}
   - {fileID: 1959398425}
   - {fileID: 1236039930}
+  - {fileID: 1539106569}
   - {fileID: 474290875}
   - {fileID: 814462769}
   - {fileID: 1881755048}
