@@ -7,6 +7,7 @@ public class Portals : MonoBehaviour
 {
     private PlayerMovement player;
     private Collider2D portalCollider;
+    [SerializeField] private int level;
 
     void Start()
     {
@@ -36,7 +37,7 @@ public class Portals : MonoBehaviour
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            SceneManager.LoadScene("PacificZone");
+            SceneManager.LoadScene(level);
             Debug.Log("Pasaron Datos");
         }
     }
