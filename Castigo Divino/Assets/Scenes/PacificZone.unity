@@ -5648,7 +5648,7 @@ Transform:
   m_GameObject: {fileID: 272181224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 500.1, y: -139.9, z: -0.5723061}
+  m_LocalPosition: {x: 507.2, y: -146.6, z: -0.5723061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6461,7 +6461,7 @@ Transform:
   m_GameObject: {fileID: 510174258}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 521.7, y: -200.5, z: -0.23994902}
+  m_LocalPosition: {x: 526.5, y: -206.7, z: -0.23994902}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6495,7 +6495,7 @@ Transform:
   m_GameObject: {fileID: 584258399}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -54.7, y: -37.3, z: 0.13325137}
+  m_LocalPosition: {x: -54.2, y: -41.1, z: 0.13325137}
   m_LocalScale: {x: 0.68181, y: 0.68181, z: 0.68181}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7121,7 +7121,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dc2f7729678fa024690b79b57b72dd35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8126,7 +8126,7 @@ Transform:
   m_GameObject: {fileID: 1051948355}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.8, y: -35.6, z: 0.13325137}
+  m_LocalPosition: {x: 30.7, y: -42.3, z: 0.13325137}
   m_LocalScale: {x: 0.6818, y: 0.6818, z: 0.6818}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8753,7 +8753,7 @@ Transform:
   m_GameObject: {fileID: 1241022661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 553, y: -136.3, z: -0.5723061}
+  m_LocalPosition: {x: 550.1, y: -143.4, z: -0.5723061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9506,7 +9506,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 446.4, y: 301.6}
+    oldSize: {x: 343.3846, y: 232}
     newSize: {x: 22.32, y: 15.083438}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
