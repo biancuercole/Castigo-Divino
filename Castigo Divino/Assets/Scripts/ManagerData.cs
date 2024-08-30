@@ -20,6 +20,7 @@ public class ManagerData : MonoBehaviour
     public float damageBullet = 1;
     public float CurrentDamageBonus = 0;
     public float CurrentSpeedBonus = 0;
+    private GameMaster gm;
 
     [SerializeField] private Rotation rotation;
     [SerializeField] private UIshop uiShop;
@@ -44,6 +45,7 @@ public class ManagerData : MonoBehaviour
 
     private void Start()
     {
+        gm = FindObjectOfType<GameMaster>();
         if (points == 0 && health == 0)
         {
             LoadPoints();
@@ -239,5 +241,6 @@ public class ManagerData : MonoBehaviour
     
         PlayerPrefs.DeleteAll();
         Debug.Log("Datos del juego reiniciados.");
+        gm.lastCheckpoint = new Vector2(525, -170);
     }
 }

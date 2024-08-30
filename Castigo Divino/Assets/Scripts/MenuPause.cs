@@ -14,7 +14,7 @@ public class MenuPause : MonoBehaviour
         managerData = FindObjectOfType<ManagerData>();
         if (managerData == null)
         {
-            Debug.LogError("No se encontró una instancia de ManagerData en la escena.");
+            Debug.LogError("No se encontrï¿½ una instancia de ManagerData en la escena.");
         }
     }
     private void Update()
