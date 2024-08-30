@@ -20,7 +20,49 @@ public class HeartsUI : MonoBehaviour
 
     private void Awake()
     {
-        healthPlayer.changeHealth.AddListener(changeHeart);
+        healthPlayer.changeHealth.AddListener(UpdateHeartsUI);
+    }
+
+    private void Start()
+    {
+        InitializeHeartsUI(healthPlayer.maxHealth); // Inicializar UI con el maxHealth cargado
+        UpdateHeartsUI(healthPlayer.health);
+    }
+
+    public void InitializeHeartsUI(int maxHealth)
+    {
+        // Limpiar la lista existente de corazones si es necesario
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        listHearts.Clear();
+
+        // Crear corazones (vacíos inicialmente)
+        for (int i = 0; i < maxHealth; i++)
+        {
+            GameObject heart = Instantiate(heartPrefab, transform);
+            listHearts.Add(heart.GetComponent<Image>());
+            listHearts[i].sprite = heartEmpty;
+        }
+
+        // Actualizar la UI para reflejar la vida actual del jugador
+        UpdateHeartsUI(healthPlayer.health);
+    }
+
+    public void UpdateHeartsUI(int currentHealth)
+    {
+        for (int i = 0; i < listHearts.Count; i++)
+        {
+            if (i < currentHealth)
+            {
+                listHearts[i].sprite = heartFull;
+            }
+            else
+            {
+                listHearts[i].sprite = heartEmpty;
+            }
+        }
     }
 
     public void changeHeart(int health)

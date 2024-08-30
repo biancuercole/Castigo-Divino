@@ -50,6 +50,9 @@ public class AudioManager : MonoBehaviour
             case "GameOver":
                 soundSource.clip = gameOver;
                 break;
+            case "EnemyLevel":
+            soundSource.clip = background;
+            break;
             /*default:
                 musicSource.clip = background; // Música por defecto
                 break;*/

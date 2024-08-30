@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
     [SerializeField] private int maxUpgrades = 3; // Límite de mejoras que se pueden aplicar
-    private List<GameObject> appliedUpgrades = new List<GameObject>();
+    public List<GameObject> appliedUpgrades = new List<GameObject>();
     private PowerUpManager powerUpManager;
     public Canvas canvas;
     public Rotation rotation;
@@ -57,18 +57,35 @@ public class ItemSlot : MonoBehaviour
         }
     }
 
-    private void SelectItem(GameObject item)
+    public void SelectItem(GameObject item)
     {
-        // Cambia visualmente el item para mostrar que está seleccionado
-        item.GetComponent<Image>().color = Color.green; // Cambia el color o usa otra indicación visual
+        Color selectedColor = Color.green;
+        item.GetComponent<Image>().color = selectedColor;
+
+        // Guarda el color en PlayerPrefs usando el nombre del item como clave
+        string itemName = item.name;
+        PlayerPrefs.SetString(itemName + "_Color", ColorUtility.ToHtmlStringRGBA(selectedColor));
+        PlayerPrefs.Save();
     }
 
     private void DeselectItem(GameObject item)
     {
-        // Restablece el estado visual del item
-        item.GetComponent<Image>().color = Color.white; // Color original o lo que prefieras
+        item.GetComponent<Image>().color = Color.white;
+
+        // Elimina el color guardado en PlayerPrefs
+        string itemName = item.name;
+        PlayerPrefs.DeleteKey(itemName + "_Color");
+        PlayerPrefs.Save();
     }
 
+    public void ClearAppliedUpgrades()
+    {
+        foreach (GameObject upgrade in appliedUpgrades)
+        {
+            RemovePowerUpEffect(upgrade);
+        }
+        appliedUpgrades.Clear();
+    }
 
     public void Show()
     {

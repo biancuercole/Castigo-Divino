@@ -9,30 +9,35 @@ public class Bullets : MonoBehaviour
     private Rigidbody2D bulletRb;
     private NextStage nextStage; 
     private AudioManager audioManager;
-   // private LootBag lootBag;
+    public ManagerData managerData;
 
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         bulletRb = GetComponent<Rigidbody2D>();
-       // lootBag = FindObjectOfType<LootBag>();
     }
-
 
     void Start()
     {
         nextStage = FindObjectOfType<NextStage>();
+        managerData = FindObjectOfType<ManagerData>();
+        managerData = ManagerData.Instance;
+        if (managerData == null)
+        {
+            Debug.LogError("No se encontró ManagerData en la escena.");
+            return;
+        }
+
+        speed = managerData.speedBullet;
+        damage = managerData.damageBullet;
     }
 
     public void LaunchBullet(Vector2 direction)
     {
-       // Debug.Log($"Launching bullet with direction: {direction.normalized} and speed: {speed}");
         bulletRb.velocity = direction * speed;
         trail.emitting = true;
         audioManager.playSound(audioManager.shot);
         StartCoroutine(DestroyProjectile());
-
-      //  Debug.Log($"Bullet velocity after launch: {bulletRb.velocity}");
     }
 
     IEnumerator DestroyProjectile()
@@ -50,7 +55,7 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Proyectile"))
+        if (collision.gameObject.CompareTag("Proyectile") || collision.gameObject.CompareTag("ProyectileShrine") || collision.gameObject.CompareTag("TripleBullet"))
         {
             Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
             return;
@@ -87,6 +92,5 @@ public class Bullets : MonoBehaviour
             gameObject.SetActive(false);
             trail.emitting = false;
         }
-      
     }
 }

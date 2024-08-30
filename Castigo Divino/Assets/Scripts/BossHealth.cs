@@ -8,7 +8,7 @@ public class BossHealth : MonoBehaviour
 {
     [SerializeField] private Portals portal;
     [SerializeField] private float maxHealth;
-    private float health;
+    [SerializeField] private float health;
     [SerializeField] private HealthBar healthBar;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
@@ -16,6 +16,7 @@ public class BossHealth : MonoBehaviour
     public BossMachine bossMachine;
     public GameObject damageParticle;
     public GameObject explosionParticle;
+
     void Start()
     {
         bossMachine = GetComponent<BossMachine>();
@@ -44,11 +45,13 @@ public class BossHealth : MonoBehaviour
             damageCoroutine = StartCoroutine(FlashDamage());
 
             // Cambia el estado si la salud ha disminuido al menos 2.5 puntos desde la última vez
-            if ((maxHealth - health) >= 2.5f)
+           /* if ((maxHealth - health) >= 2.5f)
             {
                 bossMachine.StateMachine(); // Esta línea debe ser solo una llamada a método, sin asignación
-                maxHealth = health; // Actualiza el máximo temporal
-            }
+                health = health + 1; 
+                maxHealth = health; // Actualiza el máximo temporal 
+                healthBar.UpdateHealth(maxHealth);
+            }*/
         }
         else
         {
@@ -74,5 +77,17 @@ public class BossHealth : MonoBehaviour
         spriteRenderer.color = customColor;
         yield return new WaitForSeconds(damageDuration);
         spriteRenderer.color = Color.white;
+    }
+
+    public void UpdateHealthBoss()
+    {
+       // healthBar.UpdateHealth(maxHealth);
+
+        if ((maxHealth - health) >= 2.5f)
+        {
+            bossMachine.StateMachine(); // Cambiar el estado del jefe
+            health = Mathf.Min(health + 1, maxHealth); // Aumentar la salud, sin exceder el máximo
+            healthBar.UpdateHealthBar(maxHealth, health);
+        }
     }
 }

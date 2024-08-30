@@ -1,28 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragDrop : MonoBehaviour, IPointerClickHandler
+public class DragDrop : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private ItemSlot itemSlot;
-
     public string message;
 
     private void Start()
     {
-        itemSlot = FindObjectOfType<ItemSlot>(); 
+        itemSlot = FindObjectOfType<ItemSlot>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         itemSlot.OnItemClick(gameObject);
-        ToolTipManager.instance.SetAndShowToolTip(message);
+        // Aquí puedes mostrar el mensaje de error temporal si es necesario
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        ToolTipManager.instance.ShowItemToolTip(message);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        ToolTipManager.instance.HideToolTip();
     }
 }
-
-
-
 
 

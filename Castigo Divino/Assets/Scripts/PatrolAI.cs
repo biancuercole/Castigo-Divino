@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -16,12 +17,15 @@ public class EnemyPatroll : MonoBehaviour
     [SerializeField] private int currentWaypoint;
     [SerializeField] public int damage;
     [SerializeField] public TrailRenderer trail;
+    private Animator logAnimator; 
+
+    [SerializeField] private GameObject circlePrefab;
 
     NavMeshAgent agent;
     private bool isWaiting;
     private bool isFollowing; 
     private bool isCharging = false; // Para controlar si está en embestida
-
+    private bool isAttacking = false;
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -40,11 +44,13 @@ public class EnemyPatroll : MonoBehaviour
 
     void Start()
     {
+        logAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         isWaiting = false;
         isFollowing = false;
+        isAttacking = false; 
         if (WayPoints.Length > 0 && currentWaypoint < WayPoints.Length)
         {
             agent.SetDestination(WayPoints[currentWaypoint].position);
@@ -78,6 +84,7 @@ public class EnemyPatroll : MonoBehaviour
         isWaiting = false;
         isFollowing = false;
         isCharging = false;
+        isAttacking = false;
     }
 
     void Update()
@@ -115,19 +122,15 @@ public class EnemyPatroll : MonoBehaviour
             }
         }
         
-        if (agent.velocity.x < 0.1f)
+        if (logAnimator != null)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        else if (agent.velocity.x > -0.1f)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            logAnimator.SetFloat("Horizontal", agent.velocity.x);
         }
     }
 
     IEnumerator Wait()
     {
-        isWaiting = true;
+        isWaiting = true; 
         yield return new WaitForSeconds(time);
         
         // Solo cambiar al siguiente waypoint si no está siguiendo al jugador
@@ -142,6 +145,12 @@ public class EnemyPatroll : MonoBehaviour
         }
 
         isWaiting = false;
+
+        // Llamar a Attack después de la espera
+       /* if (isCharging)
+        {
+            StartCoroutine(Attack());
+        }*/
     }
 
     IEnumerator Charge()
@@ -161,6 +170,21 @@ public class EnemyPatroll : MonoBehaviour
             agent.speed = patrolSpeed; // Volver a velocidad de patrullaje
         }
     }
+
+   /* IEnumerator Attack() 
+    {
+        isAttacking = true;
+
+        // Aquí puedes agregar un retraso si es necesario antes del ataque
+        yield return new WaitForSeconds(0.5f);
+
+        // Instanciar el círculo en la posición del jugador
+        Instantiate(circlePrefab, target.position, Quaternion.identity);
+
+        // Asegúrate de que el enemigo no ataque inmediatamente después de este ataque
+        isAttacking = false;
+        Debug.Log("tronco attack");
+    }*/
 
     public void OnCollisionEnter2D(Collision2D collision)
     {

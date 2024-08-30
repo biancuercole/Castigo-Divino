@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: MajorBulletSpeed
   m_EditorClassIdentifier: 
   amount: 2
+  managerData: {fileID: 0}

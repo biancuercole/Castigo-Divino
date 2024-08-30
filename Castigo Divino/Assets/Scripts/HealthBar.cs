@@ -7,13 +7,19 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image barImage;
 
+    [SerializeField] public float maxBar = 15;
     private void Start()
     {
         gameObject.SetActive(false);
     }
-    public void UpdateHealthBar(float maxHealth, float health)
+    public void UpdateHealthBar(float maxBar, float health)
     {
-        barImage.fillAmount = health / maxHealth;
+        barImage.fillAmount = health / maxBar;
+    }
+
+    public void UpdateHealth(float health, float maxBar)
+    {
+        barImage.fillAmount = health / maxBar;
     }
 
     public void ShowBar()

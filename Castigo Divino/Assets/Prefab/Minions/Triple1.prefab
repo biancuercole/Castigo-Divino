@@ -143,12 +143,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d6bdb61fe8084da428bceb17926b844b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ddb0a1caf80c1949b94676846cd3a26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 1.09}
+  m_Size: {x: 21.857143, y: 17.714285}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -186,18 +186,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6482239, y: -0.6050186}
+  m_Offset: {x: 0.83950806, y: 0.76117706}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 13.625}
-    newSize: {x: 0.64, y: 1.09}
+    oldSize: {x: 21.857143, y: 17.714285}
+    newSize: {x: 21.857143, y: 17.714285}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.716614, y: 6.3587494}
+  m_Size: {x: 5.099182, y: 9.091141}
   m_EdgeRadius: 0
 --- !u!195 &5492733977764980813
 NavMeshAgent:
@@ -235,8 +235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 7
   healthBar: {fileID: 0}
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
-  explosionPaticle: {fileID: 1470179279396867778, guid: 636f849900566fa40af387c40d8d4fda, type: 3}
+  damageParticle: {fileID: 6091795626626106997, guid: c616331cfc5bbb2458a3da54d1efd57d, type: 3}
+  explosionPaticle: {fileID: 7718005538264979190, guid: 7571fd388eb56aa4c8a87ab8bae71f85, type: 3}
 --- !u!114 &4740694140154247232
 MonoBehaviour:
   m_ObjectHideFlags: 0

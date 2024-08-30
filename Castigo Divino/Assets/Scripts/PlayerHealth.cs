@@ -27,22 +27,38 @@ public class PlayerHealth : MonoBehaviour
 
     private NextStage nextStage;
 
+    private HeartsUI heartsUI;
     void Start()
     {
         nextStage = FindObjectOfType<NextStage>();
-        health = maxHealth;
-        changeHealth.Invoke(health);
+       // health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         KnocKBack = GetComponent<KnocKBack>();
+        heartsUI = GetComponent<HeartsUI>();
+        managerData.LoadPoints();
+       // maxHealth = managerData.LoadMaxHealth();
+        health = managerData.health;
+        if (health <= 0)
+        {
+            health = maxHealth;
+        }
+
+        // Inicializar la UI de corazones con el maxHealth actual
+       /* heartsUI.InitializeHeartsUI(maxHealth);
+
+        // Actualizar la UI para reflejar la vida actual del jugador
+        heartsUI.UpdateHeartsUI(health);*/
+        changeHealth.Invoke(health);
     }
 
     public void GetDamage(int damage, GameObject damageSource)
     {
         if (!esInmune)
         {
-            CameraMovement.Instance.MoveCamera(5, 5, 1f);
+            CameraMovement.Instance.MoveCamera(5, 5, 2f);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
             KnocKBack.KnockBacK(damageSource);
+
             int temporaryHealth = health - damage;
 
             if (temporaryHealth < 0)
@@ -55,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
             }
 
             changeHealth.Invoke(health);
+            managerData.AddHealth(health);
 
             if (temporaryHealth <= 0)
             {
@@ -83,6 +100,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         changeHealth.Invoke(health);
+        managerData.AddHealth(health);
     }
 
     public void IncreaseMaxHealth(int amount)
@@ -90,10 +108,14 @@ public class PlayerHealth : MonoBehaviour
         maxHealth += amount;
         health = maxHealth; 
         changeHealth.Invoke(maxHealth);
+        managerData.AddHealth(health);
+        //managerData.AddMaxHealth(maxHealth);
+        heartsUI.UpdateHeartsUI(maxHealth);
     }
 
     private void passLevel(int indice)
     {
+        managerData.AddHealth(health);
         SceneManager.LoadScene(indice);
     }
 

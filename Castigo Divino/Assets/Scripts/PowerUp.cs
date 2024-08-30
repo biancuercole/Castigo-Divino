@@ -11,7 +11,7 @@ public class PowerUp : MonoBehaviour
 
         Debug.Log($"Applying power-up to {collision.gameObject.name}");
         powerUpEffect.Apply(collision.gameObject);
-         Destroy(gameObject);
+        Destroy(gameObject);
         
     }
 }

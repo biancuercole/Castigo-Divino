@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c674d9e60d2eb824d831fa12e3cdefba, type: 3}
   m_Name: MajorSpeedBuff
   m_EditorClassIdentifier: 
-  amount: 2
+  amount: 10
+  managerData: {fileID: 0}

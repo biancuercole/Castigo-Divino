@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] public float speed = 3f;
+    [SerializeField] public float speed;
     private GameMaster gm;
 
     private Rigidbody2D playerRb;
@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     bool isDashing;
     bool canDash;
 
+    public ManagerData managerData;
+
 
     private void Awake()
     {
@@ -41,6 +43,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        managerData = ManagerData.Instance;
+        if (managerData == null)
+        {
+            Debug.LogError("No se encontró ManagerData en la escena.");
+            return;
+        }
+
+        // Carga la velocidad desde ManagerData, que debería haber cargado desde PlayerPrefs
+        speed = managerData.speed;
+
         string sceneName = SceneManager.GetActiveScene().name;
         gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
         if (gm != null && gm.lastCheckpoint != Vector2.zero)
@@ -51,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(525, -170); 
         }
 
-        if (sceneName == "PacificZone")
+        if (sceneName == "PacificZone" || sceneName == "EnemyLevel")
         {
             transform.position = new Vector2(525, -170); 
             Debug.Log("ZONA PACIFICATION");
@@ -76,43 +88,47 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("No se encontró un componente BossMachine en el jugador.");
         }
+
+        /*managerData.LoadPoints();
+        speed = managerData.speed;*/
     }
 
-void Update()
-{
-    float moveX = Input.GetAxisRaw("Horizontal");
-    float moveY = Input.GetAxisRaw("Vertical");
-    moveInput = new Vector2(moveX, moveY).normalized;
-
-    if (playerAnimator != null)
+    void Update()
     {
-        playerAnimator.SetFloat("Horizontal", moveX);
-        playerAnimator.SetFloat("Vertical", moveY);
-        playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+        moveInput = new Vector2(moveX, moveY).normalized;
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetFloat("Horizontal", moveX);
+            playerAnimator.SetFloat("Vertical", moveY);
+            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+        }
+
+        if (isDashing)
+        {
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        {
+           // Debug.Log("Arriba");
+            if (GunSpriteRenderer != null && spriteRenderer != null)
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+            }
+        } 
+            else
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+            {
+                StartCoroutine(Dash());
+            }
     }
-
-    if (isDashing)
-    {
-        return;
-    }
-
-    if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-    {
-        Debug.Log("Arriba");
-        if (GunSpriteRenderer != null && spriteRenderer != null)
-        {
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
-        }
-    }   else
-        {
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            StartCoroutine(Dash());
-        }
-}
 
     private void FixedUpdate()
     {
@@ -174,6 +190,9 @@ void Update()
         {
             SceneManager.LoadScene("GameScene");
         }
+        if (other.gameObject.CompareTag("Level2"))
+        {
+            SceneManager.LoadScene("EnemyLevel");
+        }
     }
-     
 }

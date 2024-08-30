@@ -1,50 +1,52 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Rotation : MonoBehaviour
 {
+    public enum BulletType { Celeste, Roja, Verde }
+
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform shootPosition;
-    [SerializeField] private float shootCooldown = 1f; // Cooldown de 3 segundos
+    [SerializeField] private float shootCooldown = 1f;
     [SerializeField] private bool tripleShotEnabled = false;
+    [SerializeField] private ManagerData managerData;
     private Camera cam;
-    private float lastShootTime; // Tiempo del último disparo
+    private float lastShootTime;
     public bool canShoot = true;
+    private Animator animator;
+    [SerializeField] private float shootAnimationDuration;
+    [SerializeField] private Image bulletColorUI;
+
+    public BulletType selectedBulletType = BulletType.Celeste;
+
     void Start()
     {
         cam = Camera.main;
-        lastShootTime = -shootCooldown; // Permite disparar inmediatamente al iniciar
+        lastShootTime = -shootCooldown;
+        managerData = FindObjectOfType<ManagerData>();
+        animator = GetComponent<Animator>();
+
+        UpdateBulletUIColor();
     }
-
-    /*void Update()
-    {
-        Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mouseWorldPoint - (Vector2)transform.position;
-
-        // Calcular el ángulo y ajustar la rotación
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-
-        // Verificar si el tiempo actual es mayor al último tiempo de disparo más el cooldown
-        if (Input.GetMouseButtonDown(0) && Time.time >= lastShootTime + shootCooldown)
-        {
-            lastShootTime = Time.time; // Actualizar el tiempo del último disparo
-
-            GameObject bullet = BulletPool.Instance.RequestBullet();
-            if (bullet != null)
-            {
-                bullet.transform.position = shootPosition.position;
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-                bullet.GetComponent<Bullets>().LaunchBullet(direction);
-            }
-            else
-            {
-                Debug.LogWarning("No bullet available to shoot");
-            }
-        }
-    }*/
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            selectedBulletType = BulletType.Celeste;
+            UpdateBulletUIColor();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            selectedBulletType = BulletType.Roja;
+            UpdateBulletUIColor();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            selectedBulletType = BulletType.Verde;
+            UpdateBulletUIColor();
+        }
+
         Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mouseWorldPoint - (Vector2)transform.position;
 
@@ -66,23 +68,45 @@ public class Rotation : MonoBehaviour
         }
     }
 
+    private void UpdateBulletUIColor()
+    {
+        switch (selectedBulletType)
+        {
+            case BulletType.Celeste:
+                bulletColorUI.color = Color.cyan;
+                break;
+            case BulletType.Roja:
+                bulletColorUI.color = Color.red;
+                break;
+            case BulletType.Verde:
+                bulletColorUI.color = Color.green;
+                break;
+        }
+    }
+
     private void ShootSingleBullet(Vector2 direction, float angle)
     {
         GameObject bullet = BulletPool.Instance.RequestBullet();
         if (bullet != null)
         {
+            animator.SetBool("Shooting", true);
             bullet.transform.position = shootPosition.position;
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
             bullet.GetComponent<Bullets>().LaunchBullet(direction);
+
+            SetBulletColor(bullet);
+
+            Invoke("ResetShootingAnimation", shootAnimationDuration);
         }
         else
         {
             Debug.LogWarning("No bullet available to shoot");
         }
     }
+
     private void ShootMultipleBullets(Vector2 direction, float angle)
     {
-        float[] angleOffsets = {0f, 30f, -30f}; // Desplazamientos de ángulo para las tres balas
+        float[] angleOffsets = { 0f, 30f, -30f };
 
         foreach (float offset in angleOffsets)
         {
@@ -95,6 +119,8 @@ public class Rotation : MonoBehaviour
                 Vector2 adjustedDirection = Quaternion.Euler(0, 0, offset) * direction;
                 bullet.GetComponent<Bullets>().LaunchBullet(adjustedDirection);
 
+                SetBulletColor(bullet);
+
                 Debug.Log($"Bullet spawned at {bullet.transform.position} with direction {adjustedDirection}");
             }
             else
@@ -102,15 +128,43 @@ public class Rotation : MonoBehaviour
                 Debug.LogWarning("No bullet available to shoot");
             }
         }
+
+        animator.SetBool("Shooting", true);
+        Invoke("ResetShootingAnimation", shootAnimationDuration);
+    }
+
+    private void SetBulletColor(GameObject bullet)
+    {
+        SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
+
+        switch (selectedBulletType)
+        {
+            case BulletType.Celeste:
+                spriteRenderer.color = Color.cyan;
+                break;
+            case BulletType.Roja:
+                spriteRenderer.color = Color.red;
+                break;
+            case BulletType.Verde:
+                spriteRenderer.color = Color.green;
+                break;
+        }
+    }
+
+    private void ResetShootingAnimation()
+    {
+        animator.SetBool("Shooting", false);
     }
 
     public void EnableTripleShot()
     {
         tripleShotEnabled = true;
+        managerData.isTripleShotBought = true;
     }
 
     public void DisableTripleShot()
     {
         tripleShotEnabled = false;
+        managerData.isTripleShotBought = false;
     }
 }

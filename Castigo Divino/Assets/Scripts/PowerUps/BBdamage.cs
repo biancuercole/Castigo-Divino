@@ -7,9 +7,17 @@ public class BulletBuffDamage : PowerUpEffect
 {
     public float amount;
 
+    public ManagerData managerData;
+
     public override void Apply(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
+        managerData = FindObjectOfType<ManagerData>();
+        if (managerData != null)
+        {
+            managerData.AddDamageBullet(amount - managerData.CurrentDamageBonus); // Ajustar el daño según el nuevo bono
+            Debug.Log("Damage Bonus " + managerData.CurrentDamageBonus + "Amount "+ amount);
+        } 
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)
@@ -17,25 +25,22 @@ public class BulletBuffDamage : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    Debug.Log($"Bullet speed before: {bullet.damage}");
-                    bullet.damage += amount;
-                    Debug.Log($"Bullet speed after: {bullet.damage}");
-                }
-                else
-                {
-                    Debug.LogWarning("Bullet component not found on bullet object.");
+                    bullet.damage -= managerData.CurrentDamageBonus; // Revertir cualquier bono anterior
+                    bullet.damage += amount; // Aplicar el nuevo bono
                 }
             }
         }
-        else
-        {
-            Debug.LogWarning("BulletPool instance not found.");
-        }
+        managerData.CurrentDamageBonus = amount; // Guardar el bono actual
+        Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
     }
 
     public override void Remove(GameObject target)
     {
         BulletPool bulletPool = BulletPool.Instance;
+        if (managerData != null)
+        {
+            managerData.TakeDamageBullet(managerData.CurrentDamageBonus); // Revertir el bono en ManagerData 
+        }
         if (bulletPool != null)
         {
             foreach (var bulletObject in bulletPool.bulletList)
@@ -43,19 +48,11 @@ public class BulletBuffDamage : PowerUpEffect
                 Bullets bullet = bulletObject.GetComponent<Bullets>();
                 if (bullet != null)
                 {
-                    Debug.Log($"Bullet speed before: {bullet.speed}");
-                    bullet.speed -= amount;
-                    Debug.Log($"Bullet speed after: {bullet.speed}");
-                }
-                else
-                {
-                    Debug.LogWarning("Bullet component not found on bullet object.");
+                    bullet.damage -= managerData.CurrentDamageBonus; // Remover el bono actual
                 }
             }
         }
-        else
-        {
-            Debug.LogWarning("BulletPool instance not found.");
-        }
+        managerData.CurrentDamageBonus = 0; // Restablecer el bono
+        Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
     }
 }

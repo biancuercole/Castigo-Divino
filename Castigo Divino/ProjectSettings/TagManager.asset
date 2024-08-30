@@ -28,6 +28,10 @@ TagManager:
   - tronco
   - fuego
   - humo
+  - Level2
+  - TripleBullet
+  - ProyectileShrine
+  - BossBullet
   layers:
   - Default
   - TransparentFX

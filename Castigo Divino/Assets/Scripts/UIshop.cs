@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
+
 //using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,19 +16,23 @@ public class UIshop : MonoBehaviour
     public GameObject[] weaponUpgradeItems;
     public string messeage;
     public Rotation rotation;
+   private bool isBought; 
+
+    private ManagerData managerData;
     private void Awake()
     {
         container = transform.Find("Container");
         shopItemTemplate = container.Find("ShopItemTemplate");
         shopItemTemplate.gameObject.SetActive(false);
+        managerData = ManagerData.Instance;
     }
 
     private void Start()
     {
         CreateItemButton("Velocidad + 2", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton("Da�o + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
-        CreateItemButton("Coraz�n + 1", Item.GetCost(Item.ItemType.Heart), 2, powerUps[2]);
-        CreateItemButton("Velocidad Bala + 2", Item.GetCost(Item.ItemType.BulletSpeed), 3, powerUps[3]);
+        CreateItemButton("Daño + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton("Velocidad Bala + 2", Item.GetCost(Item.ItemType.BulletSpeed), 2, powerUps[3]);
+        // CreateItemButton("Triple", Item.GetCost(Item.ItemType.TripleShot), 2, powerUps[2]);
     }
 
     private void CreateItemButton(string itemName, int itemCost, int positionIndex, PowerUpEffect powerUp)
@@ -44,6 +50,12 @@ public class UIshop : MonoBehaviour
         Button button = shopItemTransform.GetComponent<Button>();
         button.onClick.RemoveAllListeners();
         button.onClick.AddListener(() => TryBuyItem(itemCost, powerUp, button, shopItemTransform));
+
+        if (managerData.IsItemBought(itemName))
+        {
+            button.interactable = false;
+            UpdateButtonAppearance(shopItemTransform);
+        }
     }
 
     private void TryBuyItem(int itemCost, PowerUpEffect powerUp, Button button, Transform shopItemTransform)
@@ -65,12 +77,14 @@ public class UIshop : MonoBehaviour
                     {
                         powerUp.Apply(player);
                     }
+
                     else
                     {
                         Debug.LogError("Player not found");
                     }
                 }
 
+                managerData.MarkItemAsBought(shopItemTransform.Find("ItemName").GetComponent<TextMeshProUGUI>().text);
                 button.interactable = false;
                 UpdateButtonAppearance(shopItemTransform);
             }
@@ -93,6 +107,7 @@ public class UIshop : MonoBehaviour
             if (item.GetComponent<PowerUp>().powerUpEffect == powerUp)
             {
                 item.SetActive(true);
+                managerData.IsBought();
             }
         }
     }
@@ -107,6 +122,35 @@ public class UIshop : MonoBehaviour
                 childImage.color = Color.grey;
             }
         }
+    }
+
+    public void ResetShop()
+    {
+        foreach (Transform shopItemTransform in container)
+        {
+            if (shopItemTransform == null) continue; // Verificar si el objeto aún existe
+
+            Button button = shopItemTransform.GetComponent<Button>();
+            if (button != null)
+            {
+                button.interactable = true;
+            }
+
+            // Restaurar la apariencia original del botón
+            foreach (Transform child in shopItemTransform)
+            {
+                if (child == null) continue; // Verificar si el objeto aún existe
+
+                Image childImage = child.GetComponent<Image>();
+                if (childImage != null)
+                {
+                    childImage.color = Color.white; // O el color original
+                }
+            }
+        }
+
+        // Reiniciar el estado de isBought
+        isBought = false;
     }
 
     public void Show()

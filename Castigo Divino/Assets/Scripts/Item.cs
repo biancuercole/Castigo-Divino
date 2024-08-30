@@ -9,16 +9,16 @@ public class Item
         Speed,
         BulletDamage,
         BulletSpeed,
-        Heart
+        //TripleShot
     }
 
     public static int GetCost(ItemType itemType) { 
         switch (itemType) {
         default:
-            case ItemType.Speed:  return 10;
-            case ItemType.BulletDamage: return 10;
-            case ItemType.BulletSpeed: return 10;
-            case ItemType.Heart: return 10;
+            case ItemType.Speed:  return 20;
+            case ItemType.BulletDamage: return 50;
+            case ItemType.BulletSpeed: return 30;
+           // case ItemType.TripleShot: return 0;
       
         } 
     }

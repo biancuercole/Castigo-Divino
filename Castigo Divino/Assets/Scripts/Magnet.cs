@@ -11,16 +11,18 @@ public class Magnet : MonoBehaviour
     [SerializeField] private float amountPoints;
     [SerializeField] private PointsUI pointsUI;
     [SerializeField] private Loot loot;
- 
-    [SerializeField] public GameObject itemPowerUp;
+
     [SerializeField] public GameObject newItem;
 
     [SerializeField] public PlayerHealth playerHealth;
     public int healAmount;
+
+   private ManagerData managerData;
     private void Start()
     {
         pointsUI = FindObjectOfType<PointsUI>();
 
+        managerData = FindObjectOfType<ManagerData>();
 
         if (pointsUI == null)
         {
@@ -97,7 +99,7 @@ public class Magnet : MonoBehaviour
 
     private IEnumerator PowerUpUnlocked()
     {
-        itemPowerUp.SetActive(true);
+        managerData.ItemSetActive();
         newItem.SetActive(true);
         yield return new WaitForSeconds(5);
         newItem.SetActive(false);

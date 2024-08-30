@@ -10,7 +10,7 @@ public class ShootAI : MonoBehaviour
     [SerializeField] private Transform[] WayPoints;
     [SerializeField] private int currentWaypoint;
     [SerializeField] private float waitTime;
-
+    private Animator fireAnimator;
     NavMeshAgent agent;
     private bool isShooting; //disparo
     private bool inRange; //disparo
@@ -24,7 +24,7 @@ public class ShootAI : MonoBehaviour
     }
     void Start()
     {
-
+        fireAnimator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -76,13 +76,9 @@ public class ShootAI : MonoBehaviour
             StartCoroutine(Wait()); //cuando está en un waypoint
         }
 
-        if (agent.velocity.x < 0.1f)
+        if (fireAnimator != null)
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        }
-        else if (agent.velocity.x > -0.1f)
-        {
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            fireAnimator.SetFloat("Horizontal", agent.velocity.x);
         }
     }
 
