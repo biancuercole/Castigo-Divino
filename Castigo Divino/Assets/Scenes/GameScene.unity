@@ -2570,7 +2570,10 @@ MonoBehaviour:
   - {fileID: 240431691}
   - {fileID: 2032026380}
   - {fileID: 619623014}
-  enemies: []
+  enemies:
+  - {fileID: 5474861607113767795, guid: 55c7a11f4de653544b100b1eb47e8470, type: 3}
+  - {fileID: 5347165147909718649, guid: 54d97305a034ba94d81ae1cbaac1511f, type: 3}
+  - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
   timeEnemies: 3
 --- !u!1 &240431690
 GameObject:
@@ -44987,7 +44990,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957976466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
