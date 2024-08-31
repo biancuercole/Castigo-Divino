@@ -35,17 +35,17 @@ public class Proyectiles: MonoBehaviour
     public void LaunchProyectile()
     {
         audioManager.playSound(audioManager.enemyShot);
-        Debug.Log("Launching projectile. Object tag: " + this.gameObject.tag);
+       // Debug.Log("Launching projectile. Object tag: " + this.gameObject.tag);
 
         if (this.gameObject.CompareTag("Proyectile"))
         {
-            Debug.Log("Targeting player");
+           // Debug.Log("Targeting player");
             Vector2 directionToPlayer = (player.position - transform.position).normalized;
             rb.velocity = directionToPlayer * speed;
         }
         else
         {
-            Debug.Log("Targeting shrine");
+           // Debug.Log("Targeting shrine");
             Vector2 directionToShrine = (shrine.transform.position - transform.position).normalized;
             rb.velocity = directionToShrine * speed;
             
@@ -77,12 +77,12 @@ public class Proyectiles: MonoBehaviour
         ShrineHealth shrineHealth = collision.gameObject.GetComponent<ShrineHealth>();
         if (shrineHealth != null)
         {
-            Debug.Log("Se llama a GetDamage en " + collision.gameObject.name);
+           // Debug.Log("Se llama a GetDamage en " + collision.gameObject.name);
             StartCoroutine(shrineHealth.GetDamage(damage));
         }
         else
         {
-            Debug.Log("No se encontr? ShrineHealth en " + collision.gameObject.name);
+           // Debug.Log("No se encontr? ShrineHealth en " + collision.gameObject.name);
         }
 
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();

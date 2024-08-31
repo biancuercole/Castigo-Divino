@@ -8,7 +8,7 @@ public class Magnet : MonoBehaviour
     public float magnetStrength = 5f;  
     public float magnetRange = 5f;    
 
-    [SerializeField] private float amountPoints;
+    [SerializeField] private int amountPoints;
     [SerializeField] private PointsUI pointsUI;
     [SerializeField] private Loot loot;
 

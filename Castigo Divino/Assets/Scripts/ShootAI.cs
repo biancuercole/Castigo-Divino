@@ -105,7 +105,7 @@ public class ShootAI : MonoBehaviour
     {
         while (inRange)
         {
-            Debug.Log("Shooting at target...");
+           // Debug.Log("Shooting at target...");
            
           
             Instantiate(proyectilePrefab, transform.position, Quaternion.identity);

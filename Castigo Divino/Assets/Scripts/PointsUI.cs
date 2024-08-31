@@ -14,14 +14,14 @@ public class PointsUI : MonoBehaviour
         UpdatePointsUI();
     }
 
-    public void takePoints(float pointsNow)
+    public void takePoints(int pointsNow)
     {
         ManagerData.Instance.AddPoints(pointsNow);
         UpdatePointsUI();
         Debug.Log("Puntos: " + ManagerData.Instance.points);
     }
 
-    public bool SpendPoints(float amount)
+    public bool SpendPoints(int amount)
     {
         if (ManagerData.Instance.SpendPoints(amount))
         {

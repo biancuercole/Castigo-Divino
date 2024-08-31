@@ -27,7 +27,7 @@ public class KnocKBack : MonoBehaviour
             direction = (transform.position - sender.transform.position).normalized;
         }
 
-        Debug.Log("Dirección del Knockback: " + direction);
+       // Debug.Log("Dirección del Knockback: " + direction);
 
         rb.AddForce(direction * strength, ForceMode2D.Impulse);
         StartCoroutine(Reset());

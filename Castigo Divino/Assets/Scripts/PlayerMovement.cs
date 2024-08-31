@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        Debug.Log("dashing");
+      //  Debug.Log("dashing");
         canDash = false;
         isDashing = true;
         yield return new WaitForSeconds(dashDuration);

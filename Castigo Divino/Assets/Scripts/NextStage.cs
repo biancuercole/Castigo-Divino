@@ -66,14 +66,14 @@ public class NextStage : MonoBehaviour
     public void EnemyDefeated()
     {
         enemiesCount++;
-        Debug.Log("Enemigos derrotados: " + enemiesCount);
+       // Debug.Log("Enemigos derrotados: " + enemiesCount);
         CheckState();
     }
 
     public void CollectKey()
     {
         keyCount++;
-        Debug.Log("Llaves colectadas: " + keyCount);
+      //  Debug.Log("Llaves colectadas: " + keyCount);
         CheckState();
     }
 

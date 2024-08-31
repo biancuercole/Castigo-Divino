@@ -27,13 +27,13 @@ public class GameMaster : MonoBehaviour
         {
             lastCheckpoint = new Vector2(525, -170); // Reemplaza (0, 0) por la posición inicial deseada del jugador
         }
-        checkpointCoins = 0; // Inicializa con 0 monedas por defecto
+       // checkpointCoins = 0; // Inicializa con 0 monedas por defecto
     }
 
     public void SetCheckpoint(Vector2 position, int coins)
     {
         lastCheckpoint = position;
-        checkpointCoins = coins;
-        Debug.Log("Checkpoint actualizado: " + lastCheckpoint + ", Monedas: " + checkpointCoins);
+       // checkpointCoins = coins;
+       Debug.Log("Checkpoint actualizado: " + lastCheckpoint + ", Monedas: " + checkpointCoins);
     }
 }

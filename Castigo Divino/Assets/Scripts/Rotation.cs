@@ -106,7 +106,7 @@ public class Rotation : MonoBehaviour
 
     private void ShootMultipleBullets(Vector2 direction, float angle)
     {
-        float[] angleOffsets = { 0f, 30f, -30f };
+        float[] angleOffsets = { 0f, 30f, -40f };
 
         foreach (float offset in angleOffsets)
         {
@@ -121,7 +121,7 @@ public class Rotation : MonoBehaviour
 
                 SetBulletColor(bullet);
 
-                Debug.Log($"Bullet spawned at {bullet.transform.position} with direction {adjustedDirection}");
+              // Debug.Log($"Bullet spawned at {bullet.transform.position} with direction {adjustedDirection}");
             }
             else
             {

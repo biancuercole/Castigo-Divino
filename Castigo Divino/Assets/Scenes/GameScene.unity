@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 1973054711}
   - {fileID: 1350092103}
@@ -3256,7 +3256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 1858748941}
   - {fileID: 1381426754}
@@ -3780,7 +3780,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c7a649982e3b8d54fb60f9657f5efde9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9680,7 +9680,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a8810a5d47dbd094b9f2754181db9d0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -9717,7 +9717,7 @@ Transform:
   m_GameObject: {fileID: 619623013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.8, y: -34.5, z: 0}
+  m_LocalPosition: {x: -47.4, y: -40.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9928,7 +9928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 796491312}
   - {fileID: 396851553}
@@ -12609,7 +12609,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c7a649982e3b8d54fb60f9657f5efde9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -12885,7 +12885,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 2135086647}
   - {fileID: 11171417}
@@ -13435,7 +13435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 1145493627}
   - {fileID: 386756125}
@@ -13834,8 +13834,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.4509804, g: 0.8117647, b: 0.35686275, a: 1}
-      maxColor: {r: 0.4509804, g: 0.8117647, b: 0.35686275, a: 1}
+      minColor: {r: 0.36078432, g: 0.7764706, b: 0.9647059, a: 1}
+      maxColor: {r: 0.36078432, g: 0.7764706, b: 0.9647059, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 1}
@@ -14920,7 +14920,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.31764707, g: 0.5921569, b: 0.94509804, a: 1}
+        key0: {r: 0.36078432, g: 0.7764706, b: 0.9647059, a: 1}
         key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -18810,7 +18810,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a8810a5d47dbd094b9f2754181db9d0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19608,7 +19608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 1537535611}
   - {fileID: 1063107765}
@@ -38993,7 +38993,7 @@ Transform:
   m_GameObject: {fileID: 1080024288}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1102.3, y: -489.7, z: -10}
+  m_LocalPosition: {x: 520.1, y: -168.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39726,7 +39726,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c7a649982e3b8d54fb60f9657f5efde9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -40637,7 +40637,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 2122827290}
   - {fileID: 1087335963}
@@ -41860,7 +41860,7 @@ Transform:
   m_GameObject: {fileID: 1477722381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 505.38242, y: -184.7347, z: -1.298712}
+  m_LocalPosition: {x: 493.6, y: -184.7347, z: -1.298712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42126,7 +42126,7 @@ Transform:
   m_GameObject: {fileID: 1539106568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1012.5176, y: -522.2653, z: -0.13325137}
+  m_LocalPosition: {x: 978.4, y: -497.3, z: -0.13325137}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42185,7 +42185,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ded68a13da350e7418347f1ab8c0c77e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -42230,7 +42230,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 21.466667, y: 52.4}
+  m_Size: {x: 10, y: 30}
   m_Direction: 0
 --- !u!1 &1550972375
 GameObject:
@@ -43658,7 +43658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 804949231}
   - {fileID: 350122123}
@@ -43946,7 +43946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 45
+  shootDistance: 50
   WayPoints:
   - {fileID: 1323227750}
   - {fileID: 1646184104}
@@ -44758,7 +44758,7 @@ Transform:
   m_GameObject: {fileID: 1957976466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1102.3, y: -489.7, z: 0}
+  m_LocalPosition: {x: 520.1, y: -168.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45537,7 +45537,7 @@ Transform:
   m_GameObject: {fileID: 2013154344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1102.3, y: -489.7, z: -10}
+  m_LocalPosition: {x: 549.71735, y: -168.23824, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45570,7 +45570,7 @@ Transform:
   m_GameObject: {fileID: 2032026379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 47, y: -57, z: 0}
+  m_LocalPosition: {x: 47, y: -45.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45736,7 +45736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.0738252, g: 0.15684173, b: 0.745283, a: 1}
+  m_Color: {r: 0.36078432, g: 0.7764706, b: 0.9647059, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -46000,7 +46000,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.987915, y: 2.2277527}
+  m_Offset: {x: -5, y: 2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -46011,7 +46011,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 21.524902, y: 32.2193}
+  m_Size: {x: 22, y: 32}
   m_EdgeRadius: 0
 --- !u!114 &2104630005
 MonoBehaviour:
@@ -46138,6 +46138,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
