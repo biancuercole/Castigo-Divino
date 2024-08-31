@@ -1,17 +1,21 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
+using UnityEngine.UI;
 
 public class ShrineHealth : MonoBehaviour
 {
-
     [SerializeField] private float maxHealth;
     private float health;
     [SerializeField] private HealthBar healthBar;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
-
     private Coroutine damageCoroutine;
+
+    [SerializeField] private Image redTint;  // Imagen roja para el tinte
+    [SerializeField] private CinemachineVirtualCamera cinemachineCamera;  // Referencia a la cámara de Cinemachine
+    [SerializeField] private Transform waypoint;  // El waypoint al que quieres que la cámara se dirija
     public float showTimer;
     private NextStage nextStage;
 
@@ -21,6 +25,7 @@ public class ShrineHealth : MonoBehaviour
         health = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        redTint.gameObject.SetActive(false);  // Asegúrate de que el tinte rojo esté desactivado al inicio
     }
 
     private void Update()
@@ -48,10 +53,8 @@ public class ShrineHealth : MonoBehaviour
         }
         else
         {
-           // healthBar.HideBar();
-            SceneManager.LoadScene(indiceNivel);
-            nextStage.enemiesCount = 0;
-            nextStage.keyCount = 0;
+            // Cuando la salud llegue a cero
+            StartCoroutine(DestroyShrineSequence());
         }
 
         Debug.Log("Vida altar: " + health);
@@ -64,5 +67,22 @@ public class ShrineHealth : MonoBehaviour
         spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(damageDuration);
         spriteRenderer.color = Color.white;
+    }
+
+    private IEnumerator DestroyShrineSequence()
+    {
+        // Mostrar tinte rojo
+        redTint.gameObject.SetActive(true);
+
+        // Mover la cámara (esto no funcionará bien con Time.timeScale = 0f a menos que esté configurado para usar tiempos reales)
+        CameraMovement.Instance.MoveCamera(5, 5, 2f);
+
+        // Esperar un momento para que el efecto rojo sea visible (sin afectar Time.timeScale)
+        yield return new WaitForSecondsRealtime(5.5f); // 3.5 segundos de espera en tiempo real
+
+        // Reiniciar el nivel
+        SceneManager.LoadScene(indiceNivel);
+        nextStage.enemiesCount = 0;
+        nextStage.keyCount = 0;
     }
 }

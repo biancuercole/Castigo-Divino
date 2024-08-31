@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float inmunidadDuracion = 2.0f; // Duración de la inmunidad en segundos
     [SerializeField] private float parpadeoIntervalo = 0.2f; // Intervalo de parpadeo
 
+    [SerializeField] private Image redTint;  // Imagen roja para el tinte
     public int maxHealth;
     public int health;
     private bool esInmune = false;
@@ -51,40 +52,50 @@ public class PlayerHealth : MonoBehaviour
         changeHealth.Invoke(health);
     }
 
-    public void GetDamage(int damage, GameObject damageSource)
+public void GetDamage(int damage, GameObject damageSource)
+{
+    if (!esInmune)
     {
-        if (!esInmune)
+        CameraMovement.Instance.MoveCamera(5, 5, 2f);
+        Instantiate(damageParticle, transform.position, Quaternion.identity);
+        KnocKBack.KnockBacK(damageSource);
+
+        int temporaryHealth = health - damage;
+
+        if (temporaryHealth < 0)
+        {
+            health = 0;
+        }
+        else
+        {
+            health = temporaryHealth;
+        }
+
+        changeHealth.Invoke(health);
+        managerData.AddHealth(health);
+
+        if (temporaryHealth <= 0)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
-            Instantiate(damageParticle, transform.position, Quaternion.identity);
-            KnocKBack.KnockBacK(damageSource);
-
-            int temporaryHealth = health - damage;
-
-            if (temporaryHealth < 0)
-            {
-                health = 0;
-            }
-            else
-            {
-                health = temporaryHealth;
-            }
-
-            changeHealth.Invoke(health);
-            managerData.AddHealth(health);
-
-            if (temporaryHealth <= 0)
-            {
-                passLevel(indiceNivel);
-                managerData.ResetPoints();
-                nextStage.enemiesCount = 0;
-                nextStage.keyCount = 0;
-            }
-            else
-            {
-                StartCoroutine(InmunidadCoroutine());
-            }
+            StartCoroutine(HandleLevelTransition());
         }
+        else
+        {
+            StartCoroutine(InmunidadCoroutine());
+        }
+    }
+}
+
+    private IEnumerator HandleLevelTransition()
+    {
+        yield return new WaitForSecondsRealtime(1.5f); // 5.5 segundos de espera en tiempo real
+
+        // Reinicia el nivel y carga las monedas del checkpoint
+        passLevel(indiceNivel);
+        ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
+        ManagerData.Instance.AddPoints(GameMaster.instance.checkpointCoins); // Establece las monedas del checkpoint
+        nextStage.enemiesCount = 0;
+        nextStage.keyCount = 0;
     }
 
     public void HealHealth(int healAmount)
