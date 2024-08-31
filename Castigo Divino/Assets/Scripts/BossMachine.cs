@@ -22,7 +22,7 @@ public class BossMachine : MonoBehaviour
     public float chargeSpeed = 20f;
     private bool isCharging = false;
     private bool isShooting = false;
-    private float shootCooldown = 5f;
+    private float shootCooldown = 1.5f;
     private float nextShootTime = 0f;
     public float barTimer; 
     private void Awake()

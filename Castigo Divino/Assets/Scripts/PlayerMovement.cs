@@ -194,5 +194,9 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene("EnemyLevel");
         }
+        if (other.gameObject.CompareTag("Retorno"))
+        {
+            SceneManager.LoadScene("PacificZone");
+        }
     }
 }

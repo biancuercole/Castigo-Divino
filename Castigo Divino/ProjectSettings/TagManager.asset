@@ -32,6 +32,7 @@ TagManager:
   - TripleBullet
   - ProyectileShrine
   - BossBullet
+  - Retorno
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,19 +16,22 @@ public class BossHealth : MonoBehaviour
     public GameObject damageParticle;
     public GameObject explosionParticle;
 
+    private float lastHealthThreshold; // Nueva variable
+
     void Start()
     {
         bossMachine = GetComponent<BossMachine>();
         health = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
+        lastHealthThreshold = maxHealth; // Inicializar con la salud máxima
     }
 
     public void TakeDamage(float damage)
     {
         StartCoroutine(GetDamage(damage));
     }
-    
+
     public IEnumerator GetDamage(float damage)
     {
         healthBar.ShowBar();
@@ -44,14 +46,7 @@ public class BossHealth : MonoBehaviour
             }
             damageCoroutine = StartCoroutine(FlashDamage());
 
-            // Cambia el estado si la salud ha disminuido al menos 2.5 puntos desde la última vez
-           /* if ((maxHealth - health) >= 2.5f)
-            {
-                bossMachine.StateMachine(); // Esta línea debe ser solo una llamada a método, sin asignación
-                health = health + 1; 
-                maxHealth = health; // Actualiza el máximo temporal 
-                healthBar.UpdateHealth(maxHealth);
-            }*/
+            UpdateHealthBoss(); // Llama a la función para verificar si se debe cambiar el estado
         }
         else
         {
@@ -81,12 +76,10 @@ public class BossHealth : MonoBehaviour
 
     public void UpdateHealthBoss()
     {
-       // healthBar.UpdateHealth(maxHealth);
-
-        if ((maxHealth - health) >= 2.5f)
+        if ((lastHealthThreshold - health) >= 10f)
         {
             bossMachine.StateMachine(); // Cambiar el estado del jefe
-            health = Mathf.Min(health + 1, maxHealth); // Aumentar la salud, sin exceder el máximo
+            lastHealthThreshold = health; // Actualiza el umbral de salud
             healthBar.UpdateHealthBar(maxHealth, health);
         }
     }
