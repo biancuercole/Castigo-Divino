@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4521069247949163608}
   - component: {fileID: -4480293363023252426}
   - component: {fileID: 2785183566058854180}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ProyectileShrine
   m_TagString: ProyectileShrine
   m_Icon: {fileID: 0}

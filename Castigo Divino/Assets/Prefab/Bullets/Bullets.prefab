@@ -130,6 +130,7 @@ MonoBehaviour:
   speed: 3
   damage: 1
   trail: {fileID: -1553128002689690625}
+  managerData: {fileID: 0}
 --- !u!96 &-1553128002689690625
 TrailRenderer:
   serializedVersion: 3
