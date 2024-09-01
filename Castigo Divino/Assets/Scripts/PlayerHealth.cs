@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float inmunidadDuracion = 2.0f; // Duración de la inmunidad en segundos
     [SerializeField] private float parpadeoIntervalo = 0.2f; // Intervalo de parpadeo
 
-    [SerializeField] private Image redTint;  // Imagen roja para el tinte
+    [SerializeField] private UnityEngine.UI.Image redTint;
     public int maxHealth;
     public int health;
     private bool esInmune = false;
@@ -31,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
     private HeartsUI heartsUI;
     void Start()
     {
+        redTint.gameObject.SetActive(false);
         nextStage = FindObjectOfType<NextStage>();
        // health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -77,6 +79,7 @@ public void GetDamage(int damage, GameObject damageSource)
         if (temporaryHealth <= 0)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
+            redTint.gameObject.SetActive(true);
             StartCoroutine(HandleLevelTransition());
         }
         else
