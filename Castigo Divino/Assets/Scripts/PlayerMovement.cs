@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private AudioManager audioManager;
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
+    private SceneFlow sceneFlow;
   
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        sceneFlow = FindObjectOfType<SceneFlow>();
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
@@ -188,15 +190,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Level1"))
         {
-            SceneManager.LoadScene("GameScene");
+            sceneFlow.CambiarNivel(3);
         }
         if (other.gameObject.CompareTag("Level2"))
         {
-            SceneManager.LoadScene("EnemyLevel");
+            sceneFlow.CambiarNivel(1);
         }
         if (other.gameObject.CompareTag("Retorno"))
         {
-            SceneManager.LoadScene("PacificZone");
+            sceneFlow.CambiarNivel(5);
         }
     }
 }

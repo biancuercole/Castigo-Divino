@@ -12,6 +12,7 @@ public class ShrineHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
+    private SceneFlow sceneFlow;
 
     [SerializeField] private Image redTint;  // Imagen roja para el tinte
     [SerializeField] private CinemachineVirtualCamera cinemachineCamera;  // Referencia a la cámara de Cinemachine
@@ -21,6 +22,7 @@ public class ShrineHealth : MonoBehaviour
 
     void Start()
     {
+        sceneFlow = FindObjectOfType<SceneFlow>();
         nextStage = FindObjectOfType<NextStage>();
         health = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, health);
@@ -81,7 +83,7 @@ public class ShrineHealth : MonoBehaviour
         yield return new WaitForSecondsRealtime(5.5f); // 3.5 segundos de espera en tiempo real
 
         // Reiniciar el nivel
-        SceneManager.LoadScene(indiceNivel);
+        sceneFlow.CambiarNivel(3);
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
     }

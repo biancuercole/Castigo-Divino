@@ -10,9 +10,11 @@ public class SceneFlow : MonoBehaviour
     [SerializeField] private int indiceNivel;
     public float DamageBullet, SpeedBullet;
    [SerializeField] private ManagerData managerData;
+   private Animator transition;
 
     private void Start()
     {
+        transition = GetComponentInChildren<Animator>();
         /*if (managerData == null)
         {*/
             managerData = FindObjectOfType<ManagerData>();
@@ -38,9 +40,16 @@ public class SceneFlow : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ManagerData no está asignado.");
+            Debug.LogError("ManagerData no estï¿½ asignado.");
         }
-        managerData.ResetGameData();
+        //managerData.ResetGameData();
+        StartCoroutine(SceneLoad(indice));
+    }
+
+    public IEnumerator SceneLoad(int indice)
+    {
+        transition.SetTrigger("StartTransition");
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(indice);
     }
 }

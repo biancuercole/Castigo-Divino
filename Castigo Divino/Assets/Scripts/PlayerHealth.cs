@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
     public int health;
     private bool esInmune = false;
+    private SceneFlow sceneFlow;
 
     public UnityEvent<int> changeHealth;
 
@@ -32,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
     private HeartsUI heartsUI;
     void Start()
     {
+        sceneFlow = FindObjectOfType<SceneFlow>();
         redTint.gameObject.SetActive(false);
         nextStage = FindObjectOfType<NextStage>();
        // health = maxHealth;
@@ -91,15 +93,27 @@ public void GetDamage(int damage, GameObject damageSource)
 
     private IEnumerator HandleLevelTransition()
     {
-        yield return new WaitForSecondsRealtime(1.5f); // 5.5 segundos de espera en tiempo real
+        // Mueve la cámara durante 1 segundo antes de pausar
+        CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
+        
+        // Espera en tiempo real para permitir que la vibración ocurra
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        // Pausa el juego después de la vibración
+        Time.timeScale = 0;
+
+        yield return new WaitForSecondsRealtime(0.5f); // Un pequeño retraso antes de cargar la nueva escena
+
+        Time.timeScale = 1;  // Reanuda el juego antes de cargar la nueva escena
 
         // Reinicia el nivel y carga las monedas del checkpoint
-        passLevel(indiceNivel);
+        sceneFlow.CambiarNivel(3); 
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
         ManagerData.Instance.AddPoints(GameMaster.instance.checkpointCoins); // Establece las monedas del checkpoint
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
     }
+
 
     public void HealHealth(int healAmount)
     {
