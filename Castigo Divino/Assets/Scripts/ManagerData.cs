@@ -67,6 +67,7 @@ public class ManagerData : MonoBehaviour
             {
                 item.GetComponent<Image>().color = color;
             }
+            Debug.Log(itemName + "_Color " + item.GetComponent<Image>().color + " managerData");
         }
     }
 
@@ -219,7 +220,7 @@ public class ManagerData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("uiShop no est� inicializado.");
+            Debug.LogError("uiShop no esta inicializado.");
         }
 
         // Reinicia otros valores a sus estados predeterminados

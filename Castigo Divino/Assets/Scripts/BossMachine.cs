@@ -19,12 +19,19 @@ public class BossMachine : MonoBehaviour
     public GameObject triplePrefab;
     public Transform bulletSpawnPoint;
     public Transform player;
-    public float chargeSpeed = 20f;
+    public float chargeSpeed = 30f;
     private bool isCharging = false;
     private bool isShooting = false;
-    private float shootCooldown = 1.5f;
+    private float shootCooldown = 1.1f;
     private float nextShootTime = 0f;
-    public float barTimer; 
+    public float barTimer;
+
+    [SerializeField] private Transform[] WayPoints;
+    [SerializeField] private int currentWaypoint;
+    [SerializeField] private float waitTime;
+    private bool isWaiting; //espera waypoints
+
+    [SerializeField] public int damage;
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -39,6 +46,8 @@ public class BossMachine : MonoBehaviour
         StateMachine();
         bossAnimator = GetComponent<Animator>();
         agent.SetDestination(player.position);
+        isWaiting = false;
+       // agent.SetDestination(WayPoints[currentWaypoint].position);
     }
 
     public void OnActive()
@@ -82,7 +91,8 @@ public class BossMachine : MonoBehaviour
         if (barTimer < 0)
         {
             bossHealth.UpdateHealthBoss();
-            barTimer = 5;
+            StartCoroutine(WaitAndRelease());
+            barTimer = 10;
         }
     }
 
@@ -163,10 +173,11 @@ public class BossMachine : MonoBehaviour
             // Disparar 3 balas en diferentes direcciones
             Vector2 directionToPlayer = (player.position - transform.position).normalized;
             ShootProyectile(directionToPlayer);
-            ShootProyectile(Quaternion.Euler(0, 0, 45) * directionToPlayer); // 45° arriba
+            ShootProyectile(Quaternion.Euler(0, 0, 45) * directionToPlayer); // 45° abajo
+          //  ShootProyectile(Quaternion.Euler(0, 0, 25) * directionToPlayer); // 45° arriba
+           // ShootProyectile(Quaternion.Euler(0, 0, -25) * directionToPlayer); // 45° abajo
             ShootProyectile(Quaternion.Euler(0, 0, -45) * directionToPlayer); // 45° abajo
-
-            yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(5f);
         isShooting = false;
     }
 
@@ -175,5 +186,31 @@ public class BossMachine : MonoBehaviour
         GameObject proyectile = Instantiate(triplePrefab, transform.position, Quaternion.identity);
         TripleBullet proyectileScript = proyectile.GetComponent<TripleBullet>();
         proyectileScript.SetDirection(direction);
+    }
+
+    IEnumerator WaitAndRelease()
+    {
+        isWaiting = true;
+        yield return new WaitForSeconds(waitTime);
+
+            currentWaypoint++;
+            if (currentWaypoint == WayPoints.Length)
+            {
+                currentWaypoint = 0;
+            }
+        agent.speed = chargeSpeed;
+        agent.SetDestination(WayPoints[currentWaypoint].position);
+
+        isWaiting = false;
+        MinionRelease();
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+        {
+            playerHealth.GetDamage(damage, this.gameObject);
+        }
     }
 }

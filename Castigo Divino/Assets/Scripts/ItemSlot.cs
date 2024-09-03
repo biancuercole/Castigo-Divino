@@ -12,6 +12,7 @@ public class ItemSlot : MonoBehaviour
     private void Awake()
     {
         canvas.gameObject.SetActive(false);
+        LoadItemColors();
     }
     private void Start()
     {
@@ -66,6 +67,7 @@ public class ItemSlot : MonoBehaviour
         string itemName = item.name;
         PlayerPrefs.SetString(itemName + "_Color", ColorUtility.ToHtmlStringRGBA(selectedColor));
         PlayerPrefs.Save();
+        Debug.Log(itemName + "_Color " + selectedColor);
     }
 
     private void DeselectItem(GameObject item)
@@ -76,15 +78,27 @@ public class ItemSlot : MonoBehaviour
         string itemName = item.name;
         PlayerPrefs.DeleteKey(itemName + "_Color");
         PlayerPrefs.Save();
+        Debug.Log(itemName + "_Color " + item.GetComponent<Image>().color);
     }
 
-    public void ClearAppliedUpgrades()
+    private void LoadItemColors()
     {
-        foreach (GameObject upgrade in appliedUpgrades)
+        foreach (Transform child in transform)
         {
-            RemovePowerUpEffect(upgrade);
+            GameObject item = child.gameObject;
+            string itemName = item.name;
+            string savedColor = PlayerPrefs.GetString(itemName + "_Color", null);
+
+            if (!string.IsNullOrEmpty(savedColor))
+            {
+                Color loadedColor;
+                if (ColorUtility.TryParseHtmlString("#" + savedColor, out loadedColor))
+                {
+                    item.GetComponent<Image>().color = loadedColor;
+                }
+            }
         }
-        appliedUpgrades.Clear();
+
     }
 
     public void Show()

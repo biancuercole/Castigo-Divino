@@ -50,7 +50,7 @@ public class BossHealth : MonoBehaviour
         }
         else
         {
-            CameraMovement.Instance.MoveCamera(5, 5, 1f);
+            CameraMovement.Instance.MoveCamera(7, 5, 3f);
             Instantiate(explosionParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
             healthBar.HideBar();

@@ -22,7 +22,7 @@ public class EnemyLevel : MonoBehaviour
     {
         while (currentRound < totalRounds)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
 
             for (int i = 0; i < points.Length; i++)
             {

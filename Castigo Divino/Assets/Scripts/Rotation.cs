@@ -17,7 +17,7 @@ public class Rotation : MonoBehaviour
     [SerializeField] private float shootAnimationDuration;
     [SerializeField] private Image bulletColorUI;
 
-    public BulletType selectedBulletType = BulletType.Celeste;
+  //  public BulletType selectedBulletType = BulletType.Celeste;
 
     void Start()
     {
@@ -26,12 +26,12 @@ public class Rotation : MonoBehaviour
         managerData = FindObjectOfType<ManagerData>();
         animator = GetComponent<Animator>();
 
-        UpdateBulletUIColor();
+     //   UpdateBulletUIColor();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+       /* if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             selectedBulletType = BulletType.Celeste;
             UpdateBulletUIColor();
@@ -45,7 +45,7 @@ public class Rotation : MonoBehaviour
         {
             selectedBulletType = BulletType.Verde;
             UpdateBulletUIColor();
-        }
+        }*/
 
         Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mouseWorldPoint - (Vector2)transform.position;
@@ -68,7 +68,7 @@ public class Rotation : MonoBehaviour
         }
     }
 
-    private void UpdateBulletUIColor()
+   /* private void UpdateBulletUIColor()
     {
         switch (selectedBulletType)
         {
@@ -82,7 +82,7 @@ public class Rotation : MonoBehaviour
                 bulletColorUI.color = Color.green;
                 break;
         }
-    }
+    }*/
 
     private void ShootSingleBullet(Vector2 direction, float angle)
     {
@@ -94,7 +94,7 @@ public class Rotation : MonoBehaviour
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
             bullet.GetComponent<Bullets>().LaunchBullet(direction);
 
-            SetBulletColor(bullet);
+           // SetBulletColor(bullet);
 
             Invoke("ResetShootingAnimation", shootAnimationDuration);
         }
@@ -119,7 +119,7 @@ public class Rotation : MonoBehaviour
                 Vector2 adjustedDirection = Quaternion.Euler(0, 0, offset) * direction;
                 bullet.GetComponent<Bullets>().LaunchBullet(adjustedDirection);
 
-                SetBulletColor(bullet);
+              //  SetBulletColor(bullet);
 
               // Debug.Log($"Bullet spawned at {bullet.transform.position} with direction {adjustedDirection}");
             }
@@ -133,7 +133,7 @@ public class Rotation : MonoBehaviour
         Invoke("ResetShootingAnimation", shootAnimationDuration);
     }
 
-    private void SetBulletColor(GameObject bullet)
+   /* private void SetBulletColor(GameObject bullet)
     {
         SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
 
@@ -149,7 +149,7 @@ public class Rotation : MonoBehaviour
                 spriteRenderer.color = Color.green;
                 break;
         }
-    }
+    }*/
 
     private void ResetShootingAnimation()
     {

@@ -33,6 +33,7 @@ TagManager:
   - ProyectileShrine
   - BossBullet
   - Retorno
+  - Minions
   layers:
   - Default
   - TransparentFX

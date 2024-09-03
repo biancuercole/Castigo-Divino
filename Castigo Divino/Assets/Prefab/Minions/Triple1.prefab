@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 8586521077220338864}
   m_Layer: 0
   m_Name: Triple1
-  m_TagString: Humo
+  m_TagString: Minions
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
