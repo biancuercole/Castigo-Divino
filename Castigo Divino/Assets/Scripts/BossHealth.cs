@@ -15,11 +15,15 @@ public class BossHealth : MonoBehaviour
     public BossMachine bossMachine;
     public GameObject damageParticle;
     public GameObject explosionParticle;
+    private PlayerMovement playerMovement; 
+    private ManagerData managerData;
 
     private float lastHealthThreshold; // Nueva variable
 
     void Start()
     {
+        managerData = FindObjectOfType<ManagerData>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
         bossMachine = GetComponent<BossMachine>();
         health = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, health);
@@ -50,6 +54,7 @@ public class BossHealth : MonoBehaviour
         }
         else
         {
+            managerData.level1Finished = true; // Asigna directamente el booleano
             CameraMovement.Instance.MoveCamera(7, 5, 3f);
             Instantiate(explosionParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);

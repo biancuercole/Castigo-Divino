@@ -99,13 +99,6 @@ public void GetDamage(int damage, GameObject damageSource)
         // Espera en tiempo real para permitir que la vibración ocurra
         yield return new WaitForSecondsRealtime(1.5f);
 
-        // Pausa el juego después de la vibración
-        Time.timeScale = 0;
-
-        yield return new WaitForSecondsRealtime(0.5f); // Un pequeño retraso antes de cargar la nueva escena
-
-        Time.timeScale = 1;  // Reanuda el juego antes de cargar la nueva escena
-
         // Reinicia el nivel y carga las monedas del checkpoint
         sceneFlow.CambiarNivel(3); 
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0

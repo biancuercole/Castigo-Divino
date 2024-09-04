@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
     private SceneFlow sceneFlow;
+    private Portals portals; 
   
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        portals = FindObjectOfType<Portals>();
         sceneFlow = FindObjectOfType<SceneFlow>();
         managerData = ManagerData.Instance;
         if (managerData == null)
@@ -63,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             transform.position = new Vector2(525, -170); 
+            Debug.Log("gm nulo");
         }
 
         if (sceneName == "PacificZone" || sceneName == "EnemyLevel")
@@ -194,7 +197,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Level2"))
         {
-            sceneFlow.CambiarNivel(1);
+            if(managerData.level1Finished)
+            {
+                sceneFlow.CambiarNivel(1);
+            }
         }
         if (other.gameObject.CompareTag("Retorno"))
         {

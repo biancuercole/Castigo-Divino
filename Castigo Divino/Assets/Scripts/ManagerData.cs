@@ -21,6 +21,7 @@ public class ManagerData : MonoBehaviour
     public float CurrentDamageBonus = 0;
     public float CurrentSpeedBonus = 0;
     private GameMaster gm;
+    public bool level1Finished = false;
 
     [SerializeField] private Rotation rotation;
     [SerializeField] private UIshop uiShop;
@@ -242,6 +243,5 @@ public class ManagerData : MonoBehaviour
     
         PlayerPrefs.DeleteAll();
         Debug.Log("Datos del juego reiniciados.");
-        gm.lastCheckpoint = new Vector2(525, -170);
     }
 }

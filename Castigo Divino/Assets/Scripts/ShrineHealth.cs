@@ -13,6 +13,7 @@ public class ShrineHealth : MonoBehaviour
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
     private SceneFlow sceneFlow;
+    [SerializeField] private ManagerData ManagerData;
 
     [SerializeField] private Image redTint;  // Imagen roja para el tinte
     [SerializeField] private CinemachineVirtualCamera cinemachineCamera;  // Referencia a la cámara de Cinemachine
@@ -86,5 +87,7 @@ public class ShrineHealth : MonoBehaviour
         sceneFlow.CambiarNivel(3);
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
+        ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
+        ManagerData.Instance.AddPoints(GameMaster.instance.checkpointCoins); // Establece las monedas del checkpoint
     }
 }

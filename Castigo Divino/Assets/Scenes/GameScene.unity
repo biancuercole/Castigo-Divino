@@ -13769,7 +13769,7 @@ Transform:
   m_GameObject: {fileID: 970048731}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 62.7, y: -86.3, z: 0}
+  m_LocalPosition: {x: 57.6, y: -86.5, z: 0}
   m_LocalScale: {x: 4.4648, y: 4.4648, z: 4.4648}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13917,7 +13917,7 @@ Transform:
   m_GameObject: {fileID: 975187688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 919.1, y: -235, z: 0}
+  m_LocalPosition: {x: 905.8, y: -239.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13958,7 +13958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
   player: {fileID: 1957976470}
-  shootDistance: 60
+  shootDistance: 40
   WayPoints:
   - {fileID: 250624257}
   - {fileID: 1323227750}
@@ -30077,6 +30077,7 @@ MonoBehaviour:
   maxHealth: 10
   healthBar: {fileID: 1832812988}
   indiceNivel: 3
+  managerData: {fileID: 1362526664}
   redTint: {fileID: 361694193}
   cinemachineCamera: {fileID: 1080024289}
   waypoint: {fileID: 0}

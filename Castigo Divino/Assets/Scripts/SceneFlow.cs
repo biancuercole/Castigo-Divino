@@ -34,14 +34,6 @@ public class SceneFlow : MonoBehaviour
 
     public void CambiarNivel(int indice)
     {
-        if (managerData != null)
-        {
-            managerData.ResetGameData();
-        }
-        else
-        {
-            Debug.LogError("ManagerData no est� asignado.");
-        }
         //managerData.ResetGameData();
         StartCoroutine(SceneLoad(indice));
     }
