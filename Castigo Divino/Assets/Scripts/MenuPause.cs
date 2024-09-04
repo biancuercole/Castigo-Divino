@@ -11,10 +11,11 @@ public class MenuPause : MonoBehaviour
 
     private void Start()
     {
+        gamePaused = false;
         managerData = FindObjectOfType<ManagerData>();
         if (managerData == null)
         {
-            Debug.LogError("No se encontró una instancia de ManagerData en la escena.");
+            Debug.LogError("No se encontrï¿½ una instancia de ManagerData en la escena.");
         }
     }
     private void Update()
@@ -50,22 +51,17 @@ public class MenuPause : MonoBehaviour
 
     public void Menu()
     {
+        Time.timeScale = 1f;
         Debug.Log("Salir al menu");
         managerData.ResetGameData();
         SceneManager.LoadScene("Menu");
-        Time.timeScale = 1f;
     }
 
     public void ResetGame()
     {
-        /* managerData.ResetPoints();
-         managerData.isBulletPowerUpCollected = false;
-         managerData.isTripleShotBought= false;
-         managerData.speed = 25;
-         managerData.speedBullet= 3;
-         managerData.damageBullet = 1;   */
+        Time.timeScale = 1f;
+        Debug.Log("reset");
         managerData.ResetGameData();
         SceneManager.LoadScene("PacificZone");
-        Time.timeScale = 1f;
     }
 }

@@ -10,6 +10,7 @@ public class Bullets : MonoBehaviour
     private NextStage nextStage; 
     private AudioManager audioManager;
     public ManagerData managerData;
+    private Transform bullet;
 
     private void Awake()
     {
@@ -55,12 +56,6 @@ public class Bullets : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Proyectile") || collision.gameObject.CompareTag("ProyectileShrine") || collision.gameObject.CompareTag("TripleBullet"))
-        {
-            Physics2D.IgnoreCollision(collision.collider, GetComponent<Collider2D>());
-            return;
-        }
-
         if (collision.gameObject.CompareTag("Player"))
         {
             return;

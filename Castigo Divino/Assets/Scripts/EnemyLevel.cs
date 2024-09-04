@@ -5,49 +5,44 @@ using System.Linq;
 
 public class EnemyLevel : MonoBehaviour
 {
-    private float minX, maxX, minY, maxY;
     [SerializeField] private Transform[] points; 
     [SerializeField] private GameObject[] enemies;
-    [SerializeField] private float timeEnemies;
-    private float timeNextEnemy; 
+    [SerializeField] private int totalRounds = 3; 
     [SerializeField] private Portals portal;
-    [SerializeField] private int enemyNeeded; 
-    private int enemyCount = 0; 
+
+    private int currentRound = 0;
+    private int defeatedEnemies = 0;
 
     private void Start()
     {
-        maxX = points.Max(point => point.position.x);
-        maxY = points.Max(point => point.position.y);
-        minX = points.Min(point => point.position.x);
-        minY = points.Min(point => point.position.y);
+        StartCoroutine(SpawnEnemies());
     }
 
-    private void Update()
+    private IEnumerator SpawnEnemies()
     {
-        timeNextEnemy += Time.deltaTime;
-
-        if (timeNextEnemy >= timeEnemies)
+        while (currentRound < totalRounds)
         {
-            ActivateMinions();
+            yield return new WaitForSeconds(5f);
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                int numEnemy = Random.Range(0, enemies.Length);
+                Instantiate(enemies[numEnemy], points[i].position, Quaternion.identity);
+            }
+
+            while (defeatedEnemies < points.Length * (currentRound + 1))
+            {
+                yield return null;
+            }
+
+            currentRound++;
         }
-    }
-
-    public void ActivateMinions()
-    {
-        int numEnemy = Random.Range(0, enemies.Length);
-        Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-
-        timeNextEnemy = 0;
-        Instantiate(enemies[numEnemy], randomPosition, Quaternion.identity);
+        portal.EnablePortal();
+        Destroy(gameObject);
     }
 
     public void EnemyDefeated()
     {
-        enemyCount ++; 
-        if (enemyCount >= enemyNeeded)
-        {
-            portal.EnablePortal();
-            Destroy(gameObject); 
-        }
+        defeatedEnemies++;
     }
 }

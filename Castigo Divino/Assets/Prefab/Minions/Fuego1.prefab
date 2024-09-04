@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7918184683738202883}
   m_Layer: 0
   m_Name: Fuego1
-  m_TagString: Untagged
+  m_TagString: Minions
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3c36b32e0378eda4583e987032ff2e93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,7 +135,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.2841797, y: 6.880417}
+  m_Size: {x: 5.293335, y: 6.880417}
   m_EdgeRadius: 0
 --- !u!114 &8852067775631776650
 MonoBehaviour:
@@ -189,6 +189,7 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
 --- !u!195 &6435595119755233567
 NavMeshAgent:
   m_ObjectHideFlags: 0

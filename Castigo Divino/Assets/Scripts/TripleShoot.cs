@@ -105,7 +105,7 @@ public class TripleShoot : MonoBehaviour
     {
         while (inRange)
         {
-            Debug.Log("Shooting at target...");
+           // Debug.Log("Shooting at target...");
 
             // Disparar 3 balas en diferentes direcciones
             Vector2 directionToPlayer = (player.position - transform.position).normalized;

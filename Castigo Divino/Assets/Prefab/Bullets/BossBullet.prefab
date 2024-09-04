@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -9083608873029378877}
   - component: {fileID: -8118044966509671196}
   - component: {fileID: -2415663064296706440}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BossBullet
   m_TagString: BossBullet
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f158d86a9537e48ae5523c11aac68a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
+  speed: 55
   damage: 1
 --- !u!96 &-2415663064296706440
 TrailRenderer:

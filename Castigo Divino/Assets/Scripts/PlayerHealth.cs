@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float inmunidadDuracion = 2.0f; // Duración de la inmunidad en segundos
     [SerializeField] private float parpadeoIntervalo = 0.2f; // Intervalo de parpadeo
 
+    [SerializeField] private UnityEngine.UI.Image redTint;
     public int maxHealth;
     public int health;
     private bool esInmune = false;
+    private SceneFlow sceneFlow;
 
     public UnityEvent<int> changeHealth;
 
@@ -30,6 +33,8 @@ public class PlayerHealth : MonoBehaviour
     private HeartsUI heartsUI;
     void Start()
     {
+        sceneFlow = FindObjectOfType<SceneFlow>();
+        redTint.gameObject.SetActive(false);
         nextStage = FindObjectOfType<NextStage>();
        // health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -51,41 +56,63 @@ public class PlayerHealth : MonoBehaviour
         changeHealth.Invoke(health);
     }
 
-    public void GetDamage(int damage, GameObject damageSource)
+public void GetDamage(int damage, GameObject damageSource)
+{
+    if (!esInmune)
     {
-        if (!esInmune)
+        CameraMovement.Instance.MoveCamera(5, 5, 2f);
+        Instantiate(damageParticle, transform.position, Quaternion.identity);
+        KnocKBack.KnockBacK(damageSource);
+
+        int temporaryHealth = health - damage;
+
+        if (temporaryHealth < 0)
+        {
+            health = 0;
+        }
+        else
+        {
+            health = temporaryHealth;
+        }
+
+        changeHealth.Invoke(health);
+        managerData.AddHealth(health);
+
+        if (temporaryHealth <= 0)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
-            Instantiate(damageParticle, transform.position, Quaternion.identity);
-            KnocKBack.KnockBacK(damageSource);
-
-            int temporaryHealth = health - damage;
-
-            if (temporaryHealth < 0)
-            {
-                health = 0;
-            }
-            else
-            {
-                health = temporaryHealth;
-            }
-
-            changeHealth.Invoke(health);
-            managerData.AddHealth(health);
-
-            if (temporaryHealth <= 0)
-            {
-                passLevel(indiceNivel);
-                managerData.ResetPoints();
-                nextStage.enemiesCount = 0;
-                nextStage.keyCount = 0;
-            }
-            else
-            {
-                StartCoroutine(InmunidadCoroutine());
-            }
+            redTint.gameObject.SetActive(true);
+            StartCoroutine(HandleLevelTransition());
+        }
+        else
+        {
+            StartCoroutine(InmunidadCoroutine());
         }
     }
+}
+
+    private IEnumerator HandleLevelTransition()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        // Mueve la cámara durante 1 segundo antes de pausar
+        CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
+        
+        // Espera en tiempo real para permitir que la vibración ocurra
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        // Reinicia el nivel y carga las monedas del checkpoint
+        if(sceneName == "GameScene")
+        {
+            SceneManager.LoadScene("GameScene"); 
+        } else if (sceneName == "EnemyLevel")
+        {
+            SceneManager.LoadScene("EnemyLevel");
+        }
+        ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
+        nextStage.enemiesCount = 0;
+        nextStage.keyCount = 0;
+    }
+
 
     public void HealHealth(int healAmount)
     {

@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private AudioManager audioManager;
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
+    private SceneFlow sceneFlow;
+    private Portals portals; 
   
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -29,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     bool canDash;
 
     public ManagerData managerData;
-
-
+    public HeartsUI heartsUI;
+    private int currentHealth;
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -43,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        portals = FindObjectOfType<Portals>();
+        sceneFlow = FindObjectOfType<SceneFlow>();
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
@@ -61,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             transform.position = new Vector2(525, -170); 
+            Debug.Log("gm nulo");
         }
 
         if (sceneName == "PacificZone" || sceneName == "EnemyLevel")
@@ -153,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        Debug.Log("dashing");
+      //  Debug.Log("dashing");
         canDash = false;
         isDashing = true;
         yield return new WaitForSeconds(dashDuration);
@@ -189,10 +194,28 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Level1"))
         {
             SceneManager.LoadScene("GameScene");
+            //sceneFlow.CambiarNivel(3);
         }
         if (other.gameObject.CompareTag("Level2"))
         {
-            SceneManager.LoadScene("EnemyLevel");
+            if(managerData.level1Finished)
+            {
+                SceneManager.LoadScene("EnemyLevel");
+                // sceneFlow.CambiarNivel(1);
+            }
+        }
+        if (other.gameObject.CompareTag("Retorno"))
+        {
+            // sceneFlow.CambiarNivel(5);
+            SceneManager.LoadScene("PacificZone");
+        }
+        if (other.gameObject.CompareTag("altarVida"))
+        {
+            managerData.health = 4;
+            currentHealth = managerData.health;
+            PlayerPrefs.SetInt("PlayerHealth", managerData.health);
+            managerData.LoadPoints();
+            heartsUI.UpdateHeartsUI(currentHealth); 
         }
     }
 }

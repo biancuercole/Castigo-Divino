@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4521069247949163608}
   - component: {fileID: -4480293363023252426}
   - component: {fileID: 2785183566058854180}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ProyectileShrine
   m_TagString: ProyectileShrine
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.07
+  m_Radius: 0.4
 --- !u!50 &4521069247949163608
 Rigidbody2D:
   serializedVersion: 4
@@ -275,6 +275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ea9685e65cd1340b28169eeb1d9876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 20
   damage: 1
   trail: {fileID: -4480293363023252426}

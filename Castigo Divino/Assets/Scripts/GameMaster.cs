@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
-    private static GameMaster instance;
+    public static GameMaster instance;
     public Vector2 lastCheckpoint;
+    public int checkpointCoins; // Añadido para guardar las monedas del checkpoint
 
     void Awake()
     {
@@ -22,10 +23,17 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
-        // Inicializa lastCheckpoint con una posición segura (por ejemplo, la posición inicial del jugador)
         if (lastCheckpoint == Vector2.zero)
         {
             lastCheckpoint = new Vector2(525, -170); // Reemplaza (0, 0) por la posición inicial deseada del jugador
         }
+       // checkpointCoins = 0; // Inicializa con 0 monedas por defecto
+    }
+
+    public void SetCheckpoint(Vector2 position, int coins)
+    {
+        lastCheckpoint = position;
+       // checkpointCoins = coins;
+       Debug.Log("Checkpoint actualizado: " + lastCheckpoint + ", Monedas: " + checkpointCoins);
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class ManagerData : MonoBehaviour
 {
     public static ManagerData Instance;
-    public float points;
+    public int points;
     public int health;
     public bool isTripleShotBought;
     public bool isBulletPowerUpCollected;
@@ -20,6 +20,8 @@ public class ManagerData : MonoBehaviour
     public float damageBullet = 1;
     public float CurrentDamageBonus = 0;
     public float CurrentSpeedBonus = 0;
+    private GameMaster gm;
+    public bool level1Finished = false;
 
     [SerializeField] private Rotation rotation;
     [SerializeField] private UIshop uiShop;
@@ -44,6 +46,7 @@ public class ManagerData : MonoBehaviour
 
     private void Start()
     {
+        gm = FindObjectOfType<GameMaster>();
         if (points == 0 && health == 0)
         {
             LoadPoints();
@@ -65,20 +68,21 @@ public class ManagerData : MonoBehaviour
             {
                 item.GetComponent<Image>().color = color;
             }
+            Debug.Log(itemName + "_Color " + item.GetComponent<Image>().color + " managerData");
         }
     }
 
     public void ResetPoints()
     {
-        points = 0;
-        PlayerPrefs.SetFloat("PlayerPoints", points);
+        points = points / 2;
+        PlayerPrefs.SetInt("PlayerPoints", points);
     }
 
 
-    public void AddPoints(float pointsToAdd)
+    public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
-        PlayerPrefs.SetFloat("PlayerPoints", points);
+        PlayerPrefs.SetInt("PlayerPoints", points);
     }
 
     public void AddHealth(int currentHealth)
@@ -130,12 +134,12 @@ public class ManagerData : MonoBehaviour
          PlayerPrefs.SetInt("PlayerMaxHealth", maxHealth);
      }*/
 
-    public bool SpendPoints(float amount)
+    public bool SpendPoints(int amount)
     {
         if (points >= amount)
         {
             points -= amount;
-            PlayerPrefs.SetFloat("PlayerPoints", points);
+            PlayerPrefs.SetInt("PlayerPoints", points);
             return true;
         }
         return false;
@@ -147,7 +151,7 @@ public class ManagerData : MonoBehaviour
     }*/
     public void LoadPoints()
     {
-        points = PlayerPrefs.GetFloat("PlayerPoints", points);
+        points = PlayerPrefs.GetInt("PlayerPoints", points);
         health = PlayerPrefs.GetInt("PlayerHealth", health);
         speed = PlayerPrefs.GetFloat("PlayerSpeed", speed);
         speedBullet = PlayerPrefs.GetFloat("BulletSpeed", speedBullet);
@@ -217,7 +221,7 @@ public class ManagerData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("uiShop no est� inicializado.");
+            Debug.LogError("uiShop no esta inicializado.");
         }
 
         // Reinicia otros valores a sus estados predeterminados

@@ -32,6 +32,8 @@ TagManager:
   - TripleBullet
   - ProyectileShrine
   - BossBullet
+  - Retorno
+  - Minions
   layers:
   - Default
   - TransparentFX
@@ -43,11 +45,11 @@ TagManager:
   - Floor
   - MiniMap
   - Post Processing
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Bullet
+  - Proyectil
+  - BalaAltar
+  - BalaJefe
+  - BalaTriple
   - 
   - 
   - 

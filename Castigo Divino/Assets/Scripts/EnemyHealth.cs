@@ -58,7 +58,7 @@ public class EnemyHealth : MonoBehaviour
         }
         if (health <= 0 && !isDead)
         {
-            CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
+            CameraMovement.Instance.MoveCamera(5, 5, 1f);
             Instantiate(explosionPaticle, transform.position, Quaternion.identity);
             isDead = true; // Marcar al enemigo como muerto para evitar que se procese varias veces
             agent.isStopped = true;

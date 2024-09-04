@@ -7,7 +7,7 @@ public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Image barImage;
 
-    [SerializeField] public float maxBar = 15;
+    [SerializeField] public float maxBar = 40;
     private void Start()
     {
         gameObject.SetActive(false);

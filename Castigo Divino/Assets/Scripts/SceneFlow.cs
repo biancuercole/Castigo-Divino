@@ -9,10 +9,12 @@ public class SceneFlow : MonoBehaviour
     [SerializeField] private bool pasarNivel;
     [SerializeField] private int indiceNivel;
     public float DamageBullet, SpeedBullet;
-   [SerializeField] private ManagerData managerData;
+    [SerializeField] private ManagerData managerData;
+    private Animator transition;
 
     private void Start()
     {
+        transition = GetComponentInChildren<Animator>();
         /*if (managerData == null)
         {*/
             managerData = FindObjectOfType<ManagerData>();
@@ -29,6 +31,19 @@ public class SceneFlow : MonoBehaviour
             CambiarNivel(indiceNivel);
         }
     }
+
+    /* public void CambiarNivel(int indice)
+     {
+         //managerData.ResetGameData();
+         StartCoroutine(SceneLoad(indice));
+     }
+
+     public IEnumerator SceneLoad(int indice)
+     {
+         transition.SetTrigger("StartTransition");
+         yield return new WaitForSeconds(1f);
+         SceneManager.LoadScene(indice);
+     }*/
 
     public void CambiarNivel(int indice)
     {

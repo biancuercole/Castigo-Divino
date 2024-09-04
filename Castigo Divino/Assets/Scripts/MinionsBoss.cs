@@ -9,6 +9,7 @@ public class MinionsBoss : MonoBehaviour
     [SerializeField] private Transform[] points; 
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private float timeEnemies;
+    [SerializeField] private int maxMinions = 5;
     private float timeNextEnemy; 
 
     private void Start()
@@ -28,8 +29,10 @@ public class MinionsBoss : MonoBehaviour
     {
         int numEnemy = Random.Range(0 , enemies.Length);
         Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        
-        if (timeNextEnemy >= timeEnemies)
+
+        int currentMinions = GameObject.FindGameObjectsWithTag("Minions").Length; 
+
+        if (timeNextEnemy >= timeEnemies && currentMinions < maxMinions)
         {
             timeNextEnemy = 0;
             Instantiate(enemies[numEnemy], randomPosition, Quaternion.identity);
