@@ -31,8 +31,8 @@ public class PlayerMovement : MonoBehaviour
     bool canDash;
 
     public ManagerData managerData;
-
-
+    public HeartsUI heartsUI;
+    private int currentHealth;
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -193,18 +193,29 @@ public class PlayerMovement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Level1"))
         {
-            sceneFlow.CambiarNivel(3);
+            SceneManager.LoadScene("GameScene");
+            //sceneFlow.CambiarNivel(3);
         }
         if (other.gameObject.CompareTag("Level2"))
         {
             if(managerData.level1Finished)
             {
-                sceneFlow.CambiarNivel(1);
+                SceneManager.LoadScene("EnemyLevel");
+                // sceneFlow.CambiarNivel(1);
             }
         }
         if (other.gameObject.CompareTag("Retorno"))
         {
-            sceneFlow.CambiarNivel(5);
+            // sceneFlow.CambiarNivel(5);
+            SceneManager.LoadScene("PacificZone");
+        }
+        if (other.gameObject.CompareTag("altarVida"))
+        {
+            managerData.health = 4;
+            currentHealth = managerData.health;
+            PlayerPrefs.SetInt("PlayerHealth", managerData.health);
+            managerData.LoadPoints();
+            heartsUI.UpdateHeartsUI(currentHealth); 
         }
     }
 }

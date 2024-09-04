@@ -102,7 +102,6 @@ public void GetDamage(int damage, GameObject damageSource)
         // Reinicia el nivel y carga las monedas del checkpoint
         sceneFlow.CambiarNivel(3); 
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
-        ManagerData.Instance.AddPoints(GameMaster.instance.checkpointCoins); // Establece las monedas del checkpoint
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
     }

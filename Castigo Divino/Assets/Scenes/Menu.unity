@@ -1227,6 +1227,7 @@ MonoBehaviour:
   damageBullet: 0
   CurrentDamageBonus: 0
   CurrentSpeedBonus: 0
+  level1Finished: 0
   rotation: {fileID: 0}
   uiShop: {fileID: 0}
 --- !u!4 &2026762562

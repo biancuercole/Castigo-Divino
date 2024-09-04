@@ -30074,10 +30074,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4506aa193d92f6c4e833280323fadaaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 20
   healthBar: {fileID: 1832812988}
   indiceNivel: 3
-  managerData: {fileID: 1362526664}
+  managerData: {fileID: 0}
   redTint: {fileID: 361694193}
   cinemachineCamera: {fileID: 1080024289}
   waypoint: {fileID: 0}
@@ -31051,6 +31051,7 @@ MonoBehaviour:
   damageBullet: 0
   CurrentDamageBonus: 0
   CurrentSpeedBonus: 0
+  level1Finished: 0
   rotation: {fileID: 2033237690}
   uiShop: {fileID: 775675061}
 --- !u!4 &1362526665
@@ -44409,6 +44410,8 @@ MonoBehaviour:
   trail: {fileID: 1957976479}
   Gun: {fileID: 2033237688}
   managerData: {fileID: 1362526664}
+  heartsUI: {fileID: 1451445120}
+  currentHealth: 0
 --- !u!212 &1957976468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -46359,6 +46362,10 @@ PrefabInstance:
     - target: {fileID: 2989942017778281951, guid: 00087aab4d06c8846bee82e3313ce848, type: 3}
       propertyPath: m_Name
       value: SceneLoadManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2989942017778281951, guid: 00087aab4d06c8846bee82e3313ce848, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8205378648090216729, guid: 00087aab4d06c8846bee82e3313ce848, type: 3}
       propertyPath: managerData

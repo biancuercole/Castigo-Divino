@@ -5695,6 +5695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneLoadManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2989942017778281951, guid: 00087aab4d06c8846bee82e3313ce848, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7152,6 +7156,7 @@ MonoBehaviour:
   damageBullet: 0
   CurrentDamageBonus: 0
   CurrentSpeedBonus: 0
+  level1Finished: 0
   rotation: {fileID: 904613152}
   uiShop: {fileID: 1688210075}
 --- !u!4 &891128285
