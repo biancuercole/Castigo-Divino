@@ -84,7 +84,7 @@ public class ShrineHealth : MonoBehaviour
         yield return new WaitForSecondsRealtime(3.5f); // 3.5 segundos de espera en tiempo real
 
         // Reiniciar el nivel
-        sceneFlow.CambiarNivel(3);
+        SceneManager.LoadScene("GameScene");
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0

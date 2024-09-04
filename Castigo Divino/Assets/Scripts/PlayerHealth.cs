@@ -93,6 +93,7 @@ public void GetDamage(int damage, GameObject damageSource)
 
     private IEnumerator HandleLevelTransition()
     {
+        string sceneName = SceneManager.GetActiveScene().name;
         // Mueve la cámara durante 1 segundo antes de pausar
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         
@@ -100,7 +101,13 @@ public void GetDamage(int damage, GameObject damageSource)
         yield return new WaitForSecondsRealtime(1.5f);
 
         // Reinicia el nivel y carga las monedas del checkpoint
-        sceneFlow.CambiarNivel(3); 
+        if(sceneName == "GameScene")
+        {
+            SceneManager.LoadScene("GameScene"); 
+        } else if (sceneName == "EnemyLevel")
+        {
+            SceneManager.LoadScene("EnemyLevel");
+        }
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
