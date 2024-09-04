@@ -53,7 +53,7 @@ public class SceneFlow : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ManagerData no est· asignado.");
+            Debug.LogError("ManagerData no est√° asignado.");
         }
         managerData.ResetGameData();
         SceneManager.LoadScene(indice);

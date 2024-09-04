@@ -327,7 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 308843115}
-  - component: {fileID: 308843114}
+  - component: {fileID: 308843116}
   m_Layer: 0
   m_Name: CambiarNivel
   m_TagString: Untagged
@@ -335,23 +335,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &308843114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308843113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d529912e0f2f68648859be33a76915f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pasarNivel: 0
-  indiceNivel: 4
-  DamageBullet: 0
-  SpeedBullet: 0
-  managerData: {fileID: 2026762561}
 --- !u!4 &308843115
 Transform:
   m_ObjectHideFlags: 0
@@ -367,6 +350,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &308843116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 308843113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55207e1563897c4e93b806e2a57c4bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animacionFinal: {fileID: 0}
 --- !u!1 &810915297
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +503,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 308843114}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneFlow, Assembly-CSharp
         m_MethodName: CambiarNivel
         m_Mode: 3
@@ -1009,8 +1005,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 308843114}
-        m_TargetAssemblyTypeName: SceneFlow, Assembly-CSharp
+      - m_Target: {fileID: 308843116}
+        m_TargetAssemblyTypeName: TransicionEscena, Assembly-CSharp
         m_MethodName: CambiarNivel
         m_Mode: 3
         m_Arguments:

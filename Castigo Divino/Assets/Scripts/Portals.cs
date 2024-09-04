@@ -8,9 +8,11 @@ public class Portals : MonoBehaviour
     private PlayerMovement player;
     private Collider2D portalCollider;
     [SerializeField] private int level;
+    private TransicionEscena transition;
 
     void Start()
     {
+        transition = FindObjectOfType<TransicionEscena>();
         player = FindObjectOfType<PlayerMovement>();
 
         // Obtén el collider del portal
@@ -37,7 +39,7 @@ public class Portals : MonoBehaviour
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            SceneManager.LoadScene(level);
+            transition.SiguienteNivel("PacificZone");
             Debug.Log("Pasaron Datos");
         }
     }

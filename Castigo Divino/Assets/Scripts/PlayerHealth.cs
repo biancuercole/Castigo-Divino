@@ -16,24 +16,19 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
     public int health;
     private bool esInmune = false;
-    private SceneFlow sceneFlow;
 
     public UnityEvent<int> changeHealth;
-
     private SpriteRenderer spriteRenderer;
-
     private KnocKBack KnocKBack;
-
     public ManagerData managerData;
-
     public GameObject damageParticle;
-
     private NextStage nextStage;
-
     private HeartsUI heartsUI;
+    private TransicionEscena transition;
+
     void Start()
     {
-        sceneFlow = FindObjectOfType<SceneFlow>();
+        transition = FindObjectOfType<TransicionEscena>();
         redTint.gameObject.SetActive(false);
         nextStage = FindObjectOfType<NextStage>();
        // health = maxHealth;
@@ -103,10 +98,10 @@ public void GetDamage(int damage, GameObject damageSource)
         // Reinicia el nivel y carga las monedas del checkpoint
         if(sceneName == "GameScene")
         {
-            SceneManager.LoadScene("GameScene"); 
+            transition.SiguienteNivel("GameScene"); 
         } else if (sceneName == "EnemyLevel")
         {
-            SceneManager.LoadScene("EnemyLevel");
+            transition.SiguienteNivel("EnemyLevel");
         }
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
         nextStage.enemiesCount = 0;
