@@ -20,7 +20,7 @@ public class NextStage : MonoBehaviour
     [SerializeField] private Sprite openSprite;
     private Collider2D doorCollider;
 
-    [SerializeField] private string puertaTag; // Nueva variable para especificar el tag de la puerta en el Inspector
+    [SerializeField] private string puertaTag; 
 
     private void Start()
     {

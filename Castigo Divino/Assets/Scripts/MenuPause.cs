@@ -8,9 +8,11 @@ public class MenuPause : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
+    private GameMaster gm;
 
     private void Start()
     {
+        gm = FindObjectOfType<GameMaster>();
         gamePaused = false;
         managerData = FindObjectOfType<ManagerData>();
         if (managerData == null)
@@ -63,5 +65,6 @@ public class MenuPause : MonoBehaviour
         Debug.Log("reset");
         managerData.ResetGameData();
         SceneManager.LoadScene("PacificZone");
+        gm.lastCheckpoint = Vector2.zero;
     }
 }

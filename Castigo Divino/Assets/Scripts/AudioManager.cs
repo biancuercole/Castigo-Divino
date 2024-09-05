@@ -18,6 +18,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip victory;
     public AudioClip gameOver;
     public AudioClip enemyShot;
+    public AudioClip openDoor;
+    public AudioClip bossMusic;
     private void Start()
     {
         SetBackgroundMusic();
@@ -65,5 +67,14 @@ public class AudioManager : MonoBehaviour
     {
         soundSource.PlayOneShot(clip);
     }
+
+    public void ChangeBackgroundMusic(AudioClip newMusic)
+    {
+        // Cambia el clip y reproduce la nueva música
+        musicSource.Stop();
+        musicSource.clip = newMusic;
+        musicSource.Play();
+    }
+
 }
 

@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
             if (boss != null)
             {
                 boss.OnActive();
+                audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             }
             else
             {
@@ -191,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
-        if (other.gameObject.CompareTag("Level1"))
+        /*if (other.gameObject.CompareTag("Level1"))
         {
             transicion.SiguienteNivel("GameScene");
             //SceneManager.LoadScene("GameScene");
@@ -202,10 +203,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 transicion.SiguienteNivel("EnemyLevel");
             }
-        }
+        }*/
         if (other.gameObject.CompareTag("Retorno"))
         {
             transicion.SiguienteNivel("PacificZone");
+            gm.lastCheckpoint = Vector2.zero;
         }
         if (other.gameObject.CompareTag("altarVida"))
         {

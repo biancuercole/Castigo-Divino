@@ -44544,7 +44544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 382093188}
   soundSource: {fileID: 263163215}
-  background: {fileID: 8300000, guid: 68e44e634b22ec74f877d4b562033ff4, type: 3}
+  background: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
   background2: {fileID: 0}
   ambientSound: {fileID: 0}
   cinematic: {fileID: 0}
@@ -44554,6 +44554,8 @@ MonoBehaviour:
   victory: {fileID: 0}
   gameOver: {fileID: 0}
   enemyShot: {fileID: 0}
+  openDoor: {fileID: 8300000, guid: 18ac4368d89e13c498a014f1f02eb5d8, type: 3}
+  bossMusic: {fileID: 8300000, guid: 454c2d6a50c60984b801d493d3b74d93, type: 3}
 --- !u!4 &1881755048
 Transform:
   m_ObjectHideFlags: 0
@@ -45923,8 +45925,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portal: {fileID: 1539106571}
-  maxHealth: 65
-  health: 65
+  maxHealth: 2
+  health: 2
   healthBar: {fileID: 1620495930}
   indiceNivel: 3
   bossMachine: {fileID: 0}

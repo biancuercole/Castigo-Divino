@@ -9,9 +9,11 @@ public class Entrances : MonoBehaviour
     [SerializeField] private Sprite openSprite;
     private Collider2D portalCollider;
     private ManagerData managerData;
+    private TransicionEscena transicion; 
     // Start is called before the first frame update
     void Start()
     {
+        transicion = FindObjectOfType<TransicionEscena>();
         managerData = FindObjectOfType<ManagerData>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         portalCollider = GetComponent<Collider2D>();
@@ -36,6 +38,21 @@ public class Entrances : MonoBehaviour
                 spriteRenderer.sprite = openSprite;
                 portalCollider.enabled = true;
             } 
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if(gameObject.CompareTag("Level1"))
+            {
+                transicion.SiguienteNivel("GameScene");
+            } else if (gameObject.CompareTag("Level2"))
+            {
+                transicion.SiguienteNivel("EnemyLevel");
+            }
         }
     }
 }

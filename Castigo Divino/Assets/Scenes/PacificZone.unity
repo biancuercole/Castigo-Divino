@@ -6586,7 +6586,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -9.682664, y: 0}
@@ -6799,7 +6799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1741241727}
   soundSource: {fileID: 996397534}
-  background: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
+  background: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
   background2: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
   ambientSound: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
   cinematic: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
@@ -6809,6 +6809,8 @@ MonoBehaviour:
   victory: {fileID: 8300000, guid: acd479117fca73a4faeaea1517202f7d, type: 3}
   gameOver: {fileID: 8300000, guid: b1b6fb3d3668f06498997f1e9150c7f9, type: 3}
   enemyShot: {fileID: 0}
+  openDoor: {fileID: 0}
+  bossMusic: {fileID: 0}
 --- !u!4 &669272023
 Transform:
   m_ObjectHideFlags: 0
@@ -12911,7 +12913,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -9.740295, y: 0}

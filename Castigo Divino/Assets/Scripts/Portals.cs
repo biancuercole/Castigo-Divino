@@ -13,9 +13,11 @@ public class Portals : MonoBehaviour
     [SerializeField] private Sprite closedSprite;
     [SerializeField] private Sprite openSprite;
     private Collider2D portalCollider;
+    private GameMaster gm;
 
     void Start()
     {
+        gm = FindObjectOfType<GameMaster>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         portalCollider = GetComponent<Collider2D>();
 
@@ -53,6 +55,7 @@ public class Portals : MonoBehaviour
         {
             transition.SiguienteNivel("PacificZone");
             Debug.Log("Pasaron Datos");
+            gm.lastCheckpoint = Vector2.zero;
         }
     }
 }
