@@ -29,23 +29,24 @@ public class UIshop : MonoBehaviour
 
     private void Start()
     {
-        CreateItemButton("Velocidad + 2", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton("Daño + 1", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
-        CreateItemButton("Velocidad Bala + 2", Item.GetCost(Item.ItemType.BulletSpeed), 2, powerUps[3]);
+        CreateItemButton(Item.GetSprite(Item.ItemType.Speed),"Velocidad", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
+        CreateItemButton(Item.GetSprite(Item.ItemType.BulletDamage),"Daño", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton(Item.GetSprite(Item.ItemType.BulletSpeed), "Velocidad Bala", Item.GetCost(Item.ItemType.BulletSpeed), 2, powerUps[3]);
         // CreateItemButton("Triple", Item.GetCost(Item.ItemType.TripleShot), 2, powerUps[2]);
     }
 
-    private void CreateItemButton(string itemName, int itemCost, int positionIndex, PowerUpEffect powerUp)
+    private void CreateItemButton(Sprite itemSprite, string itemName, int itemCost, int positionIndex, PowerUpEffect powerUp)
     {
         Transform shopItemTransform = Instantiate(shopItemTemplate, container);
         shopItemTransform.gameObject.SetActive(true);
         RectTransform shopItemReactTransform = shopItemTransform.GetComponent<RectTransform>();
 
-        float shopItemHeight = 100;
-        shopItemReactTransform.anchoredPosition = new Vector2(0, -shopItemHeight * positionIndex);
+        float shopItemWidth = 350;  
+        shopItemReactTransform.anchoredPosition = new Vector2(shopItemWidth * positionIndex, 0);  
 
         shopItemTransform.Find("ItemName").GetComponent<TextMeshProUGUI>().SetText(itemName);
         shopItemTransform.Find("ItemCost").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
+        shopItemTransform.Find("itemImage").GetComponent<Image>().sprite = itemSprite;
 
         Button button = shopItemTransform.GetComponent<Button>();
         button.onClick.RemoveAllListeners();
@@ -99,7 +100,7 @@ public class UIshop : MonoBehaviour
             Debug.Log("Not enough coins");
         }
     }
-
+    
     private void EnableWeaponUpgradeItem(PowerUpEffect powerUp)
     {
         foreach (GameObject item in weaponUpgradeItems)

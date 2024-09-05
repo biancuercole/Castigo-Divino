@@ -22,4 +22,23 @@ public class Item
       
         } 
     }
+
+
+    public static Sprite GetSprite(ItemType itemType)
+    {
+        if (UIassets.i == null)
+        {
+            Debug.LogError("UIassets instance is null. Check if the prefab is correctly loaded.");
+            return null;  // Retorna null o un sprite por defecto
+        }
+
+        switch (itemType)
+        {
+            default:
+            case ItemType.Speed: return UIassets.i.Speed;
+            case ItemType.BulletDamage: return UIassets.i.BulletDamage;
+            case ItemType.BulletSpeed: return UIassets.i.BulletSpeed;
+        }
+
+    }
 }

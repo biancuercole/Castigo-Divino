@@ -8197,7 +8197,7 @@ MonoBehaviour:
   - {fileID: 5347165147909718649, guid: 54d97305a034ba94d81ae1cbaac1511f, type: 3}
   - {fileID: 5474861607113767795, guid: 55c7a11f4de653544b100b1eb47e8470, type: 3}
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
-  totalRounds: 1
+  totalRounds: 3
   portal: {fileID: 936941133}
 --- !u!1 &1094551708
 GameObject:

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846fecea1bcc24640b749ec0f24172b6, type: 3}
   m_Name: bulletPowerUp
   m_EditorClassIdentifier: 
-  lootSprite: {fileID: 7482667652216324306, guid: c71632cc1a917d042a6c217dafdc4468, type: 3}
+  lootSprite: {fileID: 21300000, guid: 215f84f76fdd9574da81dd9e8c37a514, type: 3}
   lootName: bulletPowerUp
   dropChance: 100
