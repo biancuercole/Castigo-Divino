@@ -9,10 +9,16 @@ public class EnemyLevel : MonoBehaviour
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private int totalRounds = 3; 
     [SerializeField] private Portals portal;
+    private AudioManager audioManager;
 
     private int currentRound = 0;
     private int defeatedEnemies = 0;
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+        
     private void Start()
     {
         StartCoroutine(SpawnEnemies());
@@ -38,6 +44,7 @@ public class EnemyLevel : MonoBehaviour
             currentRound++;
         }
         portal.EnablePortal();
+        audioManager.playSound(audioManager.openDoor);
         Destroy(gameObject);
     }
 
