@@ -17,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private AudioManager audioManager;
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
-    private SceneFlow sceneFlow;
     private Portals portals; 
+    private TransicionEscena transicion; 
   
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -45,8 +45,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        transicion = FindObjectOfType<TransicionEscena>();
         portals = FindObjectOfType<Portals>();
-        sceneFlow = FindObjectOfType<SceneFlow>();
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
             if (boss != null)
             {
                 boss.OnActive();
+                audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             }
             else
             {
@@ -191,23 +192,22 @@ public class PlayerMovement : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
-        if (other.gameObject.CompareTag("Level1"))
+        /*if (other.gameObject.CompareTag("Level1"))
         {
-            SceneManager.LoadScene("GameScene");
-            //sceneFlow.CambiarNivel(3);
+            transicion.SiguienteNivel("GameScene");
+            //SceneManager.LoadScene("GameScene");
         }
         if (other.gameObject.CompareTag("Level2"))
         {
             if(managerData.level1Finished)
             {
-                SceneManager.LoadScene("EnemyLevel");
-                // sceneFlow.CambiarNivel(1);
+                transicion.SiguienteNivel("EnemyLevel");
             }
-        }
+        }*/
         if (other.gameObject.CompareTag("Retorno"))
         {
-            // sceneFlow.CambiarNivel(5);
-            SceneManager.LoadScene("PacificZone");
+            transicion.SiguienteNivel("PacificZone");
+            gm.lastCheckpoint = Vector2.zero;
         }
         if (other.gameObject.CompareTag("altarVida"))
         {

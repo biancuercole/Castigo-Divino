@@ -17,8 +17,14 @@ public class BossHealth : MonoBehaviour
     public GameObject explosionParticle;
     private PlayerMovement playerMovement; 
     private ManagerData managerData;
+    private AudioManager audioManager;
 
     private float lastHealthThreshold; // Nueva variable
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -54,6 +60,7 @@ public class BossHealth : MonoBehaviour
         }
         else
         {
+            audioManager.playSound(audioManager.openDoor);
             managerData.level1Finished = true; // Asigna directamente el booleano
             CameraMovement.Instance.MoveCamera(7, 5, 3f);
             Instantiate(explosionParticle, transform.position, Quaternion.identity);

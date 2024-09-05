@@ -6,28 +6,44 @@ using UnityEngine.SceneManagement;
 public class Portals : MonoBehaviour
 {
     private PlayerMovement player;
-    private Collider2D portalCollider;
     [SerializeField] private int level;
+    private TransicionEscena transition;
+    
+    private SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite closedSprite;
+    [SerializeField] private Sprite openSprite;
+    private Collider2D portalCollider;
+    private GameMaster gm;
 
     void Start()
     {
+        gm = FindObjectOfType<GameMaster>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        portalCollider = GetComponent<Collider2D>();
+
+        spriteRenderer.sprite = closedSprite;
+        portalCollider.enabled = false;
+
+        transition = FindObjectOfType<TransicionEscena>();
         player = FindObjectOfType<PlayerMovement>();
 
         // Obtén el collider del portal
         portalCollider = GetComponent<Collider2D>();
 
-        // Desactiva el portal (incluye el collider y el renderer)
-        gameObject.SetActive(false);
+        /* Desactiva el portal (incluye el collider y el renderer)
+        gameObject.SetActive(false);*/
         Debug.Log("Portal inactivo al inicio");
     }
 
     public void EnablePortal()
     {
-        // Activa el portal (incluye el collider y el renderer)
-        gameObject.SetActive(true);
+        /* Activa el portal (incluye el collider y el renderer)
+        gameObject.SetActive(true);*/
 
         // Activa el collider y cambia la capa
+
         portalCollider.enabled = true;
+        spriteRenderer.sprite = openSprite;
         gameObject.layer = 3; // Cambia "3" por la capa que desees
         Debug.Log("Portal activado y capa cambiada");
     }
@@ -37,8 +53,9 @@ public class Portals : MonoBehaviour
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            SceneManager.LoadScene(level);
+            transition.SiguienteNivel("PacificZone");
             Debug.Log("Pasaron Datos");
+            gm.lastCheckpoint = Vector2.zero;
         }
     }
 }

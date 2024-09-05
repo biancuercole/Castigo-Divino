@@ -12,7 +12,6 @@ public class ShrineHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
-    private SceneFlow sceneFlow;
     [SerializeField] private ManagerData managerData;
 
     [SerializeField] private Image redTint;  // Imagen roja para el tinte
@@ -20,10 +19,11 @@ public class ShrineHealth : MonoBehaviour
     [SerializeField] private Transform waypoint;  // El waypoint al que quieres que la cámara se dirija
     public float showTimer;
     private NextStage nextStage;
+    private TransicionEscena transition;
 
     void Start()
     {
-        sceneFlow = FindObjectOfType<SceneFlow>();
+        transition = FindObjectOfType<TransicionEscena>();
         nextStage = FindObjectOfType<NextStage>();
         health = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, health);
@@ -84,7 +84,7 @@ public class ShrineHealth : MonoBehaviour
         yield return new WaitForSecondsRealtime(3.5f); // 3.5 segundos de espera en tiempo real
 
         // Reiniciar el nivel
-        SceneManager.LoadScene("GameScene");
+        transition.SiguienteNivel("GameScene");
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
