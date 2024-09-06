@@ -22,7 +22,7 @@ public class MenuPause : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (gamePaused) 
             {
@@ -57,6 +57,7 @@ public class MenuPause : MonoBehaviour
         Debug.Log("Salir al menu");
         managerData.ResetGameData();
         SceneManager.LoadScene("Menu");
+        gm.lastCheckpoint = Vector2.zero;
     }
 
     public void ResetGame()
