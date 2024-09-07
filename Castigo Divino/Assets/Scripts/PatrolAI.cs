@@ -25,7 +25,7 @@ public class EnemyPatroll : MonoBehaviour
     private bool isWaiting;
     private bool isFollowing; 
     private bool isCharging = false; // Para controlar si está en embestida
-    private bool isAttacking = false;
+    //private bool isAttacking = false;
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -50,7 +50,7 @@ public class EnemyPatroll : MonoBehaviour
         agent.updateUpAxis = false;
         isWaiting = false;
         isFollowing = false;
-        isAttacking = false; 
+       // isAttacking = false; 
         if (WayPoints.Length > 0 && currentWaypoint < WayPoints.Length)
         {
             agent.SetDestination(WayPoints[currentWaypoint].position);
@@ -84,7 +84,7 @@ public class EnemyPatroll : MonoBehaviour
         isWaiting = false;
         isFollowing = false;
         isCharging = false;
-        isAttacking = false;
+      //  isAttacking = false;
     }
 
     void Update()

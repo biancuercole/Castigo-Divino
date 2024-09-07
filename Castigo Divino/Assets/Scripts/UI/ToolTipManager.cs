@@ -9,7 +9,7 @@ public class ToolTipManager : MonoBehaviour
     public TextMeshProUGUI textComponent;
     public float showTimer;
     private bool isItemTooltipActive = false; // Flag to track item tooltip state
-
+    [SerializeField] private GameObject position;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -62,7 +62,14 @@ public class ToolTipManager : MonoBehaviour
         isItemTooltipActive = true;
         transform.position = Input.mousePosition;
     }
-
+    public void ShowTriggerToolTip(string message, Vector3 position)
+    {
+        gameObject.SetActive(true);
+        textComponent.text = message;
+        transform.position = position;  // Posicionar el tooltip en la pantalla
+        isItemTooltipActive = true;
+        Debug.Log("ToolTipShowManager");
+    }
     public void HideToolTip()
     {
         gameObject.SetActive(false);

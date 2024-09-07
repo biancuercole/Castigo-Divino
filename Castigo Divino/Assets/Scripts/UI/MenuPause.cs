@@ -9,7 +9,9 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
     private GameMaster gm;
+    [SerializeField] BoxCollider2D playerBC;
 
+    private bool inmortality = false;
     private void Start()
     {
         gm = FindObjectOfType<GameMaster>();
@@ -67,5 +69,21 @@ public class MenuPause : MonoBehaviour
         managerData.ResetGameData();
         SceneManager.LoadScene("PacificZone");
         gm.lastCheckpoint = Vector2.zero;
+    }
+
+    public void Inmortality()
+    {
+        inmortality = !inmortality; 
+
+        if (inmortality)
+        {
+            playerBC.isTrigger = true;  
+            Debug.Log("Inmortalidad activada");
+        }
+        else
+        {
+            playerBC.isTrigger = false; 
+            Debug.Log("Inmortalidad desactivada");
+        }
     }
 }

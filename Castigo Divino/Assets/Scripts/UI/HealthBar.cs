@@ -8,6 +8,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField] private Image barImage;
 
     [SerializeField] public float maxBar = 40;
+
+    private float currentPower = 0f;
     private void Start()
     {
         gameObject.SetActive(false);
@@ -31,4 +33,5 @@ public class HealthBar : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
 }

@@ -62,6 +62,10 @@ public class LootBag : MonoBehaviour
                 {
                     lootGameObject.tag = "bulletPowerUp";
                 }
+                if (item.lootName == "powerLeaf")
+                {
+                    lootGameObject.tag = "powerLeaf";
+                }
             }
         }
     }

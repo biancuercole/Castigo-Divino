@@ -74,10 +74,10 @@ GameObject:
   - component: {fileID: 140618521556749218}
   - component: {fileID: 1794356433333684325}
   - component: {fileID: 5492733977764980813}
-  - component: {fileID: 6378118140123878002}
-  - component: {fileID: 4740694140154247232}
-  - component: {fileID: 4749158963953655847}
   - component: {fileID: 8586521077220338864}
+  - component: {fileID: 6460734871151332169}
+  - component: {fileID: 4749158963953655847}
+  - component: {fileID: 4740694140154247232}
   m_Layer: 0
   m_Name: Triple1
   m_TagString: Minions
@@ -221,60 +221,6 @@ NavMeshAgent:
   m_BaseOffset: 0.49999997
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6378118140123878002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5474861607113767795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dda6cfb74d21cf49ab12e385dec7649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 7
-  healthBar: {fileID: 0}
-  damageParticle: {fileID: 6091795626626106997, guid: c616331cfc5bbb2458a3da54d1efd57d, type: 3}
-  explosionPaticle: {fileID: 7718005538264979190, guid: 7571fd388eb56aa4c8a87ab8bae71f85, type: 3}
---- !u!114 &4740694140154247232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5474861607113767795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
-  lootList:
-  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
-  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
-  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
-  - {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
---- !u!114 &4749158963953655847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5474861607113767795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 805abbbdc5b264f42b356e5542140b14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
-  player: {fileID: 0}
-  shootDistance: 60
-  WayPoints:
-  - {fileID: 9040902110859634019}
-  - {fileID: 6479824151787222751}
-  currentWaypoint: 0
-  waitTime: 0
 --- !u!95 &8586521077220338864
 Animator:
   serializedVersion: 5
@@ -296,3 +242,64 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6460734871151332169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474861607113767795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05cee5e991d7f724f8514456a32f7061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 7
+  healthBar: {fileID: 0}
+  damageParticle: {fileID: 6091795626626106997, guid: c616331cfc5bbb2458a3da54d1efd57d, type: 3}
+  explosionParticle: {fileID: 7718005538264979190, guid: 7571fd388eb56aa4c8a87ab8bae71f85, type: 3}
+  health: 0
+  portal: {fileID: 0}
+  indiceNivel: 0
+  bossMachine: {fileID: 0}
+--- !u!114 &4749158963953655847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474861607113767795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805abbbdc5b264f42b356e5542140b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
+  player: {fileID: 0}
+  shootDistance: 60
+  WayPoints:
+  - {fileID: 9040902110859634019}
+  - {fileID: 6479824151787222751}
+  currentWaypoint: 0
+  waitTime: 0
+--- !u!114 &4740694140154247232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5474861607113767795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06fbc238e6e61e44180a9c56b34ef3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
+  lootList:
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}

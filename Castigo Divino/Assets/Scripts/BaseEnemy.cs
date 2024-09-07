@@ -1,48 +1,87 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-/*public class BossHealth : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour, IDamageType
 {
-    [SerializeField] private Portals portal;
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float health;
+    [SerializeField] private float maxHealth = 10f;
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private GameObject damageParticle;
+    [SerializeField] private GameObject explosionParticle;
+    public float health;
+    private bool isDead = false;
+    private AudioManager audioManager;
+    private Collider2D enemyCollider;
+    [SerializeField] private Portals portal;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
     public BossMachine bossMachine;
-    public GameObject damageParticle;
-    public GameObject explosionParticle;
-    private PlayerMovement playerMovement; 
+
+    private PlayerMovement playerMovement;
     private ManagerData managerData;
-    private AudioManager audioManager;
+
 
     private float lastHealthThreshold; // Nueva variable
-
-    private void Awake()
+    protected virtual void Start()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
+        health = maxHealth;
+        audioManager = FindObjectOfType<AudioManager>();
+        enemyCollider = GetComponent<Collider2D>();
 
-    void Start()
-    {
         managerData = FindObjectOfType<ManagerData>();
         playerMovement = FindObjectOfType<PlayerMovement>();
         bossMachine = GetComponent<BossMachine>();
         health = maxHealth;
-        healthBar.UpdateHealthBar(maxHealth, health);
+        //healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        lastHealthThreshold = maxHealth; // Inicializar con la salud mÃ¡xima
+        lastHealthThreshold = maxHealth; // Inicializar con la salud máxima
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage, BulletType bulletType)
     {
         StartCoroutine(GetDamage(damage));
     }
 
-    public IEnumerator GetDamage(float damage)
+    public virtual void TakeDamageBoss(float damage, BulletType bulletType)
+    {
+        StartCoroutine(GetDamageBoss(damage));
+    }
+
+    private IEnumerator GetDamage(float damage)
+    {
+        health -= damage;
+
+        if (health > 0)
+        {
+            Instantiate(damageParticle, transform.position, Quaternion.identity);
+
+            yield return new WaitForSeconds(0.5f);
+
+        }
+
+        if (health <= 0 && !isDead)
+        {
+            isDead = true;
+            HandleDeath();
+        }
+    }
+
+    protected virtual void HandleDeath()
+    {
+        Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        audioManager.playSound(audioManager.enemyDeath);
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
+        GameEvents.EnemyDefeated();
+        enemyCollider.enabled = false;
+
+
+        Destroy(gameObject);
+        // healthBar.HideBar(); 
+    }
+
+    //Manejo de daño del boss
+    private IEnumerator GetDamageBoss(float damage)
     {
         healthBar.ShowBar();
         health -= damage;
@@ -56,7 +95,7 @@ using UnityEngine.SceneManagement;
             }
             damageCoroutine = StartCoroutine(FlashDamage());
 
-            UpdateHealthBoss(); // Llama a la funciÃ³n para verificar si se debe cambiar el estado
+            UpdateHealthBoss(); // Llama a la función para verificar si se debe cambiar el estado
         }
         else
         {
@@ -71,7 +110,7 @@ using UnityEngine.SceneManagement;
             GetComponent<LootBag>().InstantiateLoot(transform.position);
         }
 
-        Debug.Log("Vida altar: " + health);
+        Debug.Log("Vida JEFE " + health);
         yield return null;
     }
 
@@ -94,26 +133,7 @@ using UnityEngine.SceneManagement;
             lastHealthThreshold = health; // Actualiza el umbral de salud
             healthBar.UpdateHealthBar(maxHealth, health);
         }
-    }*/
-    
-    public class BossHealth : BaseEnemy
-    {
-
-        public override void TakeDamage(float damage, BulletType bulletType)
-        {
-            switch (bulletType)
-            {
-                case BulletType.Fire:
-                    damage *= 2f; // Resistencia al fuego
-                    break;
-                case BulletType.Water:
-                    damage *= 0.5f; // Vulnerabilidad al agua
-                    break;
-            }
-
-             base.TakeDamageBoss(damage, bulletType);
-           /// StartCoroutine(GetDamage(damage));
-
-        }
     }
+}
+
 

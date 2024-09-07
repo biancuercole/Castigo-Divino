@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 55
   damage: 1
+  trail: {fileID: -2415663064296706440}
 --- !u!96 &-2415663064296706440
 TrailRenderer:
   serializedVersion: 3
