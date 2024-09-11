@@ -197,7 +197,7 @@ public class Rotation : MonoBehaviour
     }
     private void Update()
     {
-        // Cambia el tipo de bala seg�n la tecla presionada
+        // Cambia el tipo de bala seg�n la tecla presionada
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             selectedBulletType = BulletType.Water;
@@ -259,34 +259,35 @@ public class Rotation : MonoBehaviour
             }
     }
 
-    private void ShootMultipleBullets(Vector2 direction, float angle)
+private void ShootMultipleBullets(Vector2 direction, float angle)
+{
+    float[] angleOffsets = { 0f, 30f, -30f };
+    float bulletSpacing = 0.5f; // La distancia entre las balas
+
+    for (int i = 0; i < angleOffsets.Length; i++)
     {
-        float[] angleOffsets = { 0f, 30f, -40f };
-
-        foreach (float offset in angleOffsets)
+        GameObject bullet = BulletPool.Instance.RequestBullet();
+        if (bullet != null)
         {
-            GameObject bullet = BulletPool.Instance.RequestBullet();
-            if (bullet != null)
-            {
-                bullet.transform.position = shootPosition.position;
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle + offset);
+            // Ajusta la posición de las balas para que no todas salgan del mismo punto
+            Vector3 bulletPositionOffset = shootPosition.right * (i - 1) * bulletSpacing; // Desplaza en el eje X
+            bullet.transform.position = shootPosition.position + bulletPositionOffset;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle + angleOffsets[i]);
 
-                // Configura el tipo de bala en el componente Bullets
-                Bullets bulletComponent = bullet.GetComponent<Bullets>();
-                bulletComponent.bulletType = selectedBulletType;
-
-                Vector2 adjustedDirection = Quaternion.Euler(0, 0, offset) * direction;
-                bulletComponent.LaunchBullet(adjustedDirection);
-            }
-            else
-            {
-                Debug.LogWarning("No bullet available to shoot");
-            }
+            // Configura la dirección ajustada de cada bala
+            Vector2 adjustedDirection = Quaternion.Euler(0, 0, angleOffsets[i]) * direction;
+            bullet.GetComponent<Bullets>().LaunchBullet(adjustedDirection);
         }
-
-        animator.SetBool("Shooting", true);
-        Invoke("ResetShootingAnimation", shootAnimationDuration);
+        else
+        {
+            Debug.LogWarning("No bullet available to shoot");
+        }
     }
+
+    animator.SetBool("Shooting", true);
+    Invoke("ResetShootingAnimation", shootAnimationDuration);
+}
+
 
     private void UpdateBulletUIColor()
     {
