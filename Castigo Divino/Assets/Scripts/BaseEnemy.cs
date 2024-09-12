@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamageType
 {
@@ -12,6 +13,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     private bool isDead = false;
     private AudioManager audioManager;
     private Collider2D enemyCollider;
+    private EnemyLevel enemyLevel;
     [SerializeField] private Portals portal;
     private SpriteRenderer spriteRenderer;
     [SerializeField] private int indiceNivel;
@@ -28,7 +30,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         health = maxHealth;
         audioManager = FindObjectOfType<AudioManager>();
         enemyCollider = GetComponent<Collider2D>();
-
+        enemyLevel = FindObjectOfType<EnemyLevel>();
         managerData = FindObjectOfType<ManagerData>();
         playerMovement = FindObjectOfType<PlayerMovement>();
         bossMachine = GetComponent<BossMachine>();
@@ -70,9 +72,15 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     protected virtual void HandleDeath()
     {
         Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         audioManager.playSound(audioManager.enemyDeath);
         GetComponent<LootBag>().InstantiateLoot(transform.position);
-        GameEvents.EnemyDefeated();
+        GameEvents.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
+        if (SceneManager.GetActiveScene().name == "EnemyLevel")
+        {
+            enemyLevel.EnemyDefeated();
+        }
+
         enemyCollider.enabled = false;
 
 

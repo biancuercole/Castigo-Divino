@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image redTint;
     public int maxHealth;
     public int health;
-    private bool esInmune = false;
+    public bool esInmune = false;
 
     public UnityEvent<int> changeHealth;
     private SpriteRenderer spriteRenderer;
@@ -104,6 +104,7 @@ public void GetDamage(int damage, GameObject damageSource)
             transition.SiguienteNivel("EnemyLevel");
         }
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
+        ManagerData.Instance.ResetCurrentPower();
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
     }

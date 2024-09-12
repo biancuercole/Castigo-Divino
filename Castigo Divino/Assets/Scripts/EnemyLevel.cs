@@ -42,6 +42,7 @@ public class EnemyLevel : MonoBehaviour
             }
 
             currentRound++;
+            Debug.Log("Ronda " + currentRound);
         }
         portal.EnablePortal();
         audioManager.playSound(audioManager.openDoor);
@@ -51,5 +52,6 @@ public class EnemyLevel : MonoBehaviour
     public void EnemyDefeated()
     {
         defeatedEnemies++;
+        Debug.Log("Enemigos derrotados " + defeatedEnemies);
     }
 }

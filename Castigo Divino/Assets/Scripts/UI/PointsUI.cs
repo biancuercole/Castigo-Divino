@@ -14,7 +14,7 @@ public class PointsUI : MonoBehaviour
         UpdatePointsUI();
     }
 
-    public void takePoints(int pointsNow)
+    public void TakePoints(int pointsNow)
     {
         ManagerData.Instance.AddPoints(pointsNow);
         UpdatePointsUI();

@@ -36,6 +36,7 @@ TagManager:
   - Minions
   - GestionMejoras
   - powerLeaf
+  - Level3
   layers:
   - Default
   - TransparentFX

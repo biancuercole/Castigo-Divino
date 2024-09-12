@@ -19,7 +19,7 @@ public class Magnet : MonoBehaviour
     private ManagerData managerData;
 
     [SerializeField] public PowerOfGod powerUpBar;
-
+    [SerializeField] private float Power;
     private void Start()
     {
         pointsUI = FindObjectOfType<PointsUI>();
@@ -79,7 +79,7 @@ public class Magnet : MonoBehaviour
      if (other.gameObject.CompareTag("coin"))
         {
             Destroy(other.gameObject);
-            pointsUI.takePoints(amountPoints);
+            pointsUI.TakePoints(amountPoints);
         }
         if (other.gameObject.CompareTag("heart"))
         {
@@ -100,7 +100,7 @@ public class Magnet : MonoBehaviour
         if (other.gameObject.CompareTag("powerLeaf"))
         {
             Destroy(other.gameObject);
-            powerUpBar.UpdatePowerUpBar(1);
+            powerUpBar.TakePower(Power);
         }
 
         if (other.gameObject.CompareTag("key"))

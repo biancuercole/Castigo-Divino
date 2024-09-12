@@ -6,6 +6,8 @@ public class Trigger : MonoBehaviour
 {
     [SerializeField] private UIshop uiShop;
     [SerializeField] private ItemSlot item;
+    [SerializeField] private Entrances entrances;
+    [SerializeField] private Portals portals;
     public string message;
     public ManagerData managerData;
     public HeartsUI heartsUI;
@@ -16,18 +18,20 @@ public class Trigger : MonoBehaviour
     private bool itemOpen = false;
 
     public Vector3 messeagePosition;
+
+    
     private void Start()
     {
-        uiShop.Hide();  // Ocultar al inicio
+        uiShop.Hide();  
         item.Hide();
     }
 
     private void Update()
     {
         // Detectar cuando el jugador presiona 'F' dentro del rango
-        if (playerInRange && Input.GetKeyDown(KeyCode.F))
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            HandleInteraction(); // Delegamos a un método que maneja las interacciones
+            HandleInteraction(); // método que maneja las interacciones
         }
     }
 
@@ -45,6 +49,10 @@ public class Trigger : MonoBehaviour
         if (gameObject.CompareTag("altarVida"))
         {
             RecoverHealth();
+        }
+        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2") || gameObject.CompareTag("Level3"))
+        {
+            Portals();
         }
     }
 
@@ -89,13 +97,25 @@ public class Trigger : MonoBehaviour
         heartsUI.UpdateHeartsUI(currentHealth);
     }
 
+    private void Portals()
+    {
+        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2"))
+        {
+            entrances.ChangeScene();
+        }
+        else
+        {
+            portals.ChangeScenesPortal();
+        }
+        Debug.Log("se presiono E para cambiar de escena");
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
         {
             playerInRange = true;
-            Vector3 worldPosition = transform.position + messeagePosition;  // Posición del objeto en el mundo (encima del objeto)
-           // Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);  // Convertir a coordenadas de pantalla
+            Vector3 worldPosition = transform.position + messeagePosition;
             ToolTipManager.instance.ShowTriggerToolTip(message, worldPosition);
             Debug.Log("ToolTipShow");
         }
@@ -106,8 +126,8 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = false;
-            ToolTipManager.instance.HideToolTip();  // Ocultar tooltip
-            CloseAllInteractions(); // Cerrar todas las interacciones activas
+            ToolTipManager.instance.HideToolTip();
+            CloseAllInteractions(); 
         }
     }
 

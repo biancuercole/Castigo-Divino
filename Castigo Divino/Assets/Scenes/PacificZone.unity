@@ -292,6 +292,7 @@ MonoBehaviour:
   playerHealth: {fileID: 1916445829}
   healAmount: 1
   powerUpBar: {fileID: 163902609}
+  Power: 0
 --- !u!58 &15949105
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5594,7 +5595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 998783673}
-  maxBar: 40
+  maxBar: 5
   currentPower: 0
 --- !u!114 &163902610
 MonoBehaviour:
@@ -5880,6 +5881,7 @@ GameObject:
   - component: {fileID: 272181227}
   - component: {fileID: 272181226}
   - component: {fileID: 272181225}
+  - component: {fileID: 272181229}
   m_Layer: 0
   m_Name: WeaponShop
   m_TagString: GestionMejoras
@@ -5901,7 +5903,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiShop: {fileID: 2112475134}
   item: {fileID: 1850652053}
-  message: Presionar F para gestionar armas
+  entrances: {fileID: 0}
+  portals: {fileID: 0}
+  message: Presionar E para gestionar armas
   managerData: {fileID: 0}
   heartsUI: {fileID: 0}
   messeagePosition: {x: 300, y: 800, z: 0}
@@ -6017,6 +6021,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &272181229
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272181224}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 2, y: 5}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 40.227272, y: 34.545456}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 33, y: 15}
+  m_EdgeRadius: 0
 --- !u!1 &285951738
 GameObject:
   m_ObjectHideFlags: 0
@@ -6275,7 +6324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPause: {fileID: 1637361097}
   managerData: {fileID: 466434709}
-  playerBC: {fileID: 1916445830}
+  player: {fileID: 1916445829}
 --- !u!1 &327544295
 GameObject:
   m_ObjectHideFlags: 0
@@ -6637,6 +6686,7 @@ MonoBehaviour:
   damageBullet: 0
   CurrentDamageBonus: 0
   CurrentSpeedBonus: 0
+  currentPower: 0
   level1Finished: 0
   rotation: {fileID: 0}
   uiShop: {fileID: 2112475134}
@@ -6850,6 +6900,7 @@ GameObject:
   - component: {fileID: 510174260}
   - component: {fileID: 510174259}
   - component: {fileID: 510174262}
+  - component: {fileID: 510174263}
   m_Layer: 0
   m_Name: Shrine
   m_TagString: altarVida
@@ -6984,10 +7035,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiShop: {fileID: 2112475134}
   item: {fileID: 1850652053}
-  message: Presionar F para curar vida
+  entrances: {fileID: 0}
+  portals: {fileID: 0}
+  message: Presionar E para curar vida
   managerData: {fileID: 466434709}
   heartsUI: {fileID: 1554328474}
   messeagePosition: {x: 300, y: 800, z: 0}
+--- !u!61 &510174263
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510174258}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -2.3, y: -8}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 48.8, y: 38.4}
+    newSize: {x: 25.6, y: 25.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 21.7, y: 10}
+  m_EdgeRadius: 0
 --- !u!1 &584258399
 GameObject:
   m_ObjectHideFlags: 0
@@ -7000,6 +7098,8 @@ GameObject:
   - component: {fileID: 584258402}
   - component: {fileID: 584258404}
   - component: {fileID: 584258403}
+  - component: {fileID: 584258405}
+  - component: {fileID: 584258406}
   m_Layer: 0
   m_Name: PortalLvl2
   m_TagString: Level2
@@ -7104,7 +7204,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -9.682664, y: 0}
@@ -7118,7 +7218,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 24.444052, y: 40.857143}
+  m_Size: {x: 40, y: 40.857143}
   m_EdgeRadius: 0
 --- !u!114 &584258404
 MonoBehaviour:
@@ -7134,6 +7234,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedSprite: {fileID: 21300000, guid: 840b38cb5babc0e4b973353d23ff884d, type: 3}
   openSprite: {fileID: 21300000, guid: f5a8f8878872684439245494192fa65d, type: 3}
+--- !u!114 &584258405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584258399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5bb5ed1a4001554297088b184d77b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiShop: {fileID: 2112475134}
+  item: {fileID: 1850652053}
+  entrances: {fileID: 584258404}
+  portals: {fileID: 0}
+  message: Presionar E para ir al bosque
+  managerData: {fileID: 466434709}
+  heartsUI: {fileID: 1554328474}
+  messeagePosition: {x: 300, y: 600, z: 0}
+--- !u!61 &584258406
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584258399}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -12, y: 6}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 51.42857, y: 40.857143}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17, y: 27}
+  m_EdgeRadius: 1
 --- !u!1 &621029716
 GameObject:
   m_ObjectHideFlags: 0
@@ -13605,6 +13770,8 @@ GameObject:
   - component: {fileID: 1051948356}
   - component: {fileID: 1051948359}
   - component: {fileID: 1051948358}
+  - component: {fileID: 1051948360}
+  - component: {fileID: 1051948361}
   m_Layer: 0
   m_Name: PortalLvl1
   m_TagString: Level1
@@ -13709,7 +13876,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -9.740295, y: 0}
@@ -13723,7 +13890,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23.7229, y: 40.857143}
+  m_Size: {x: 40, y: 40.857143}
   m_EdgeRadius: 0
 --- !u!114 &1051948359
 MonoBehaviour:
@@ -13739,6 +13906,71 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   closedSprite: {fileID: 21300000, guid: 840b38cb5babc0e4b973353d23ff884d, type: 3}
   openSprite: {fileID: 21300000, guid: f5a8f8878872684439245494192fa65d, type: 3}
+--- !u!114 &1051948360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051948355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5bb5ed1a4001554297088b184d77b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiShop: {fileID: 2112475134}
+  item: {fileID: 1850652053}
+  entrances: {fileID: 1051948359}
+  portals: {fileID: 0}
+  message: Presionar E para ir al bosque
+  managerData: {fileID: 466434709}
+  heartsUI: {fileID: 1554328474}
+  messeagePosition: {x: 300, y: 600, z: 0}
+--- !u!61 &1051948361
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051948355}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -12, y: 6}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 51.42857, y: 40.857143}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 17, y: 27}
+  m_EdgeRadius: 1
 --- !u!1 &1053630636
 GameObject:
   m_ObjectHideFlags: 3
@@ -14199,6 +14431,7 @@ GameObject:
   - component: {fileID: 1241022664}
   - component: {fileID: 1241022663}
   - component: {fileID: 1241022662}
+  - component: {fileID: 1241022666}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Shop
@@ -14220,7 +14453,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiShop: {fileID: 2112475134}
   item: {fileID: 1850652053}
-  message: Presionar F para entrar a la tienda
+  entrances: {fileID: 0}
+  portals: {fileID: 0}
+  message: Presionar E para entrar a la tienda
   managerData: {fileID: 0}
   heartsUI: {fileID: 0}
   messeagePosition: {x: 300, y: 800, z: 0}
@@ -14330,12 +14565,57 @@ Transform:
   m_GameObject: {fileID: 1241022661}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 550.1, y: -143.4, z: -0.5723061}
+  m_LocalPosition: {x: 550.1, y: -140.7, z: -0.5723061}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1241022666
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241022661}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -3, y: 3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 34.2, y: 28.2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 27, y: 20}
+  m_EdgeRadius: 0
 --- !u!1 &1256946699
 GameObject:
   m_ObjectHideFlags: 0
@@ -24801,7 +25081,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.05
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -24867,8 +25147,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -682.1, y: 374}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -671.4, y: 379.2}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 1, y: 0.50000006}
 --- !u!1 &1637361097
 GameObject:
@@ -25816,7 +26096,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.064514, y: -1.3441162}
+  m_AnchoredPosition: {x: -8.064453, y: -1.3441162}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1858969150
@@ -30740,6 +31020,7 @@ MonoBehaviour:
   redTint: {fileID: 2146265300}
   maxHealth: 4
   health: 0
+  esInmune: 0
   changeHealth:
     m_PersistentCalls:
       m_Calls: []
@@ -30970,7 +31251,7 @@ RectTransform:
   m_GameObject: {fileID: 1959779304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 289691756}

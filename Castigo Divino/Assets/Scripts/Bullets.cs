@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using static Rotation;
+using static UnityEngine.Rendering.DebugUI;
 
 /*public class Bullets : MonoBehaviour
 {
@@ -132,12 +133,18 @@ public class Bullets : MonoBehaviour
         {
             case BulletType.Water:
                 spriteRenderer.color = Color.blue;
+                trail.startColor = Color.blue;
+                trail.endColor = new Color(0, 0, 0, 0);
                 break;
             case BulletType.Fire:
                 spriteRenderer.color = Color.red;
+                trail.startColor = Color.red;
+                trail.endColor = new Color(0, 0, 0, 0);
                 break;
             case BulletType.Air:
-                spriteRenderer.color = Color.green;
+                spriteRenderer.color = Color.white;
+                trail.startColor = Color.white;
+                trail.endColor = new Color(0, 0, 0, 0);
                 break;
         }
 

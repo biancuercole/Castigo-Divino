@@ -8,28 +8,50 @@ public class PowerOfGod : MonoBehaviour
 
     [SerializeField] private Image barImage;
     [SerializeField] public float maxBar = 40;
-    public float currentPower = 0f;
+    public float currentPower = 1f;
     private PlayerMovement playerMovement; 
     private void Start()
     {
         barImage.color = Color.gray;
         playerMovement = FindObjectOfType<PlayerMovement>();
-    }
-    public void UpdatePowerUpBar(float Power)
-    {
-        barImage.color = Color.white;
-        currentPower += Power;
-        currentPower = Mathf.Clamp(currentPower, 0, maxBar);
+        // Cargar los puntos desde ManagerData
+        ManagerData.Instance.LoadPoints();
 
-        barImage.fillAmount = currentPower / maxBar;
-        Debug.Log("currentPower = " + currentPower);
-        Debug.Log("Bar fill amount = " + barImage.fillAmount);
+        // Asignar el valor de currentPower desde ManagerData
+        currentPower = ManagerData.Instance.currentPower;
+
+        // Actualizar la barra de poder con el valor actual
+        UpdatePowerUpBar(currentPower);
+    }
+
+    private void Update()
+    {
         if (currentPower >= maxBar)
         {
             playerMovement.canSpecialAttack = true;
         }
     }
 
+    public void TakePower(float Power)
+    {
+        ManagerData.Instance.AddCurrentPower(Power);
+        currentPower += Power;
+        UpdatePowerUpBar(Power);
+        Debug.Log("currentPower = " + currentPower);
+    }
+    public void UpdatePowerUpBar(float Power)
+    {
+        
+        barImage.color = Color.white;
+   
+        currentPower = Mathf.Clamp(currentPower, 0, maxBar);
+        barImage.fillAmount = currentPower / maxBar;
+        Debug.Log("Bar fill amount = " + barImage.fillAmount);
+       /* if (currentPower >= maxBar)
+        {
+            playerMovement.canSpecialAttack = true;
+        }*/
+    }
 
     public void ShowBar()
     {

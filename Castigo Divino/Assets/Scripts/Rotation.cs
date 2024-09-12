@@ -28,7 +28,6 @@ using UnityEngine.UI;
 
      //   UpdateBulletUIColor();
     }
-
     void Update()
     {
        /* if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -263,7 +262,6 @@ private void ShootMultipleBullets(Vector2 direction, float angle)
 {
     float[] angleOffsets = { 0f, 30f, -30f };
     float bulletSpacing = 0.5f; // La distancia entre las balas
-
     for (int i = 0; i < angleOffsets.Length; i++)
     {
         GameObject bullet = BulletPool.Instance.RequestBullet();
@@ -276,6 +274,9 @@ private void ShootMultipleBullets(Vector2 direction, float angle)
 
             // Configura la dirección ajustada de cada bala
             Vector2 adjustedDirection = Quaternion.Euler(0, 0, angleOffsets[i]) * direction;
+            Bullets bulletComponent = bullet.GetComponent<Bullets>();
+            bulletComponent.bulletType = selectedBulletType;
+            Debug.Log($"Shooting bullet of type: {bulletComponent.bulletType}");
             bullet.GetComponent<Bullets>().LaunchBullet(adjustedDirection);
         }
         else
@@ -300,7 +301,7 @@ private void ShootMultipleBullets(Vector2 direction, float angle)
                 bulletColorUI.color = Color.red;
                 break;
             case BulletType.Air:
-                bulletColorUI.color = Color.green;
+                bulletColorUI.color = Color.white;
                 break;
         }
     }

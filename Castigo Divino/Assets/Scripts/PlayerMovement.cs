@@ -137,10 +137,13 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             {
                 if (dashEnabled)
-            {
+                {
                 StartCoroutine(Dash());
-            }
+                }
+                else
+                {
                  Debug.Log("No hay dash");
+                }
             }
 
            if (Input.GetKey(KeyCode.F) && canSpecialAttack)
@@ -195,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Ataque especial");
   
         canSpecialAttack = false;
+        ManagerData.Instance.ResetCurrentPower();
         powerOfGod.currentPower = 0;
         powerOfGod.UpdatePowerUpBar(0);
     }

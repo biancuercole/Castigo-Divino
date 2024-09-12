@@ -9,7 +9,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
     private GameMaster gm;
-    [SerializeField] BoxCollider2D playerBC;
+    [SerializeField] PlayerHealth player;
 
     private bool inmortality = false;
     private void Start()
@@ -77,12 +77,13 @@ public class MenuPause : MonoBehaviour
 
         if (inmortality)
         {
-            playerBC.isTrigger = true;  
+          
+            player.esInmune = true;
             Debug.Log("Inmortalidad activada");
         }
         else
         {
-            playerBC.isTrigger = false; 
+            player.esInmune = false;
             Debug.Log("Inmortalidad desactivada");
         }
     }

@@ -20,7 +20,8 @@ public class ManagerData : MonoBehaviour
     public float damageBullet = 1;
     public float CurrentDamageBonus = 0;
     public float CurrentSpeedBonus = 0;
-    private GameMaster gm;
+    public float currentPower;
+  //  private GameMaster gm;
     public bool level1Finished = false;
 
     [SerializeField] private Rotation rotation;
@@ -46,7 +47,7 @@ public class ManagerData : MonoBehaviour
 
     private void Start()
     {
-        gm = FindObjectOfType<GameMaster>();
+       // gm = FindObjectOfType<GameMaster>();
         if (points == 0 && health == 0)
         {
             LoadPoints();
@@ -72,67 +73,18 @@ public class ManagerData : MonoBehaviour
         }
     }
 
+    // Points 
     public void ResetPoints()
     {
         points = points / 2;
         PlayerPrefs.SetInt("PlayerPoints", points);
     }
 
-
     public void AddPoints(int pointsToAdd)
     {
         points += pointsToAdd;
         PlayerPrefs.SetInt("PlayerPoints", points);
     }
-
-    public void AddHealth(int currentHealth)
-    {
-        health = currentHealth;
-        PlayerPrefs.SetInt("PlayerHealth", health);
-    }
-
-    public void AddSpeed(float Speed)
-    {
-      speed += Speed;
-      PlayerPrefs.SetFloat("SpeedBuff", speed);
-      PlayerPrefs.Save();
-    }
-
-
-    public void AddSpeedBullet(float SpeedBullet)
-    {
-        speedBullet += SpeedBullet;
-        PlayerPrefs.SetFloat("BulletSpeed", speedBullet);
-        PlayerPrefs.Save();
-        Debug.Log("BulletSpeed=" + speedBullet);
-
-    }
-    public void AddDamageBullet(float DamageBullet) 
-    {
-        damageBullet += DamageBullet;
-        PlayerPrefs.SetFloat("BulletDamage", damageBullet);
-        PlayerPrefs.Save();
-        Debug.Log("BulletDamage=" + damageBullet);
-    }
-
-    public void TakeSpeedBullet(float SpeedBullet)
-    {
-        speedBullet -= SpeedBullet;
-        PlayerPrefs.Save();
-        PlayerPrefs.SetFloat("BulletSpeed", speedBullet);
-    }
-
-    public void TakeDamageBullet(float DamageBullet)
-    {
-        damageBullet -= DamageBullet;
-        PlayerPrefs.Save();
-        PlayerPrefs.SetFloat("BulletDamage", damageBullet);
-    }
-
-    /* public void AddMaxHealth(int maxHealth)
-     {
-         PlayerPrefs.SetInt("PlayerMaxHealth", maxHealth);
-     }*/
 
     public bool SpendPoints(int amount)
     {
@@ -145,10 +97,71 @@ public class ManagerData : MonoBehaviour
         return false;
     }
 
-   /* public int LoadMaxHealth()
+    // Health 
+    public void AddHealth(int currentHealth)
     {
-        return PlayerPrefs.GetInt("PlayerMaxHealth", 4); // Por defecto, 4 corazones
-    }*/
+        health = currentHealth;
+        PlayerPrefs.SetInt("PlayerHealth", health);
+    }
+
+    //Speed Player
+    public void AddSpeed(float Speed)
+    {
+      speed += Speed;
+      PlayerPrefs.SetFloat("SpeedBuff", speed);
+      PlayerPrefs.Save();
+    }
+
+    // Speed bullet
+    public void AddSpeedBullet(float SpeedBullet)
+    {
+        speedBullet += SpeedBullet;
+        PlayerPrefs.SetFloat("BulletSpeed", speedBullet);
+        PlayerPrefs.Save();
+        Debug.Log("BulletSpeed=" + speedBullet);
+
+    }
+
+    public void TakeSpeedBullet(float SpeedBullet)
+    {
+        speedBullet -= SpeedBullet;
+        PlayerPrefs.Save();
+        PlayerPrefs.SetFloat("BulletSpeed", speedBullet);
+    }
+
+    //Damage Bullet 
+    public void AddDamageBullet(float DamageBullet) 
+    {
+        damageBullet += DamageBullet;
+        PlayerPrefs.SetFloat("BulletDamage", damageBullet);
+        PlayerPrefs.Save();
+        Debug.Log("BulletDamage=" + damageBullet);
+    }
+
+    public void TakeDamageBullet(float DamageBullet)
+    {
+        damageBullet -= DamageBullet;
+        PlayerPrefs.Save();
+        PlayerPrefs.SetFloat("BulletDamage", damageBullet);
+    }
+
+    // Power of God
+    public void AddCurrentPower(float Power)
+    {
+        currentPower += Power;
+        PlayerPrefs.SetFloat("CurrentPower", currentPower);
+        Debug.Log("CurrentPower Manager Data " + currentPower);
+    }
+
+    public void ResetCurrentPower()
+    {
+        currentPower = 0;
+        PlayerPrefs.SetFloat("CurrentPower", currentPower);
+        PlayerPrefs.Save();
+        Debug.Log("Power reseteado a 0 en ManagerData.");
+    }
+
+    //Cargar datos 
     public void LoadPoints()
     {
         points = PlayerPrefs.GetInt("PlayerPoints", points);
@@ -156,6 +169,7 @@ public class ManagerData : MonoBehaviour
         speed = PlayerPrefs.GetFloat("PlayerSpeed", speed);
         speedBullet = PlayerPrefs.GetFloat("BulletSpeed", speedBullet);
         damageBullet = PlayerPrefs.GetFloat("BulletDamage", damageBullet);
+        currentPower = PlayerPrefs.GetFloat("CurrentPower", currentPower);
 
         Debug.Log("Datos cargados: Puntos=" + points + ", Salud=" + health + ", Velocidad=" + speed +
             ", BulletSpeed=" + speedBullet + "_Color" + itemColors);
@@ -177,6 +191,7 @@ public class ManagerData : MonoBehaviour
         Debug.Log("item activado");
     }
 
+    // Tienda 
     public void IsBought()
     {
         isSpeedBulletBought = true;
@@ -213,6 +228,7 @@ public class ManagerData : MonoBehaviour
         }
     }
 
+    // Reiniciar datos
     public void ResetGameData()
     {
         if (uiShop != null)
@@ -224,9 +240,9 @@ public class ManagerData : MonoBehaviour
             Debug.LogError("uiShop no esta inicializado.");
         }
 
-        // Reinicia otros valores a sus estados predeterminados
         points = 0;
-        health = 4; // O el valor que consideres por defecto
+        health = 4;
+        currentPower = 0;
         isTripleShotBought = false;
         isBulletPowerUpCollected = false;
         isSpeedBulletBought = false;
