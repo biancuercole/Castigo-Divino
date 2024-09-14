@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             // Aplicar daño a cada enemigo dentro del área
-            enemy.GetComponent<BaseEnemy>()?.TakeDamage(10, BulletType.Air);
+            enemy.GetComponent<BaseEnemy>()?.TakeDamage(10, BulletType.GodPower);
         }
  
         Debug.Log("Ataque especial");

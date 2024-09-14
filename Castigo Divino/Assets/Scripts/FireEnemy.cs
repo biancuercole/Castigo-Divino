@@ -9,12 +9,18 @@ public class FireEnemy : BaseEnemy
         switch (bulletType)
         {
             case BulletType.Fire:
-                damage *= 0.5f; // Resistencia al fuego
+                damage *= 0.5f; 
                 break;
             case BulletType.Water:
-                damage *= 2f; // Vulnerabilidad al agua
+                damage *= 2f; 
                 break;
             case BulletType.Air:
+                damage *= 1f;
+                break;
+            case BulletType.Earth: 
+                damage *= 0.5f;
+                break;
+            case BulletType.GodPower:
                 damage *= 1f;
                 break;
         }

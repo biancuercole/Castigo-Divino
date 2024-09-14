@@ -9,7 +9,11 @@ public class PowerOfGod : MonoBehaviour
     [SerializeField] private Image barImage;
     [SerializeField] public float maxBar = 40;
     public float currentPower = 1f;
-    private PlayerMovement playerMovement; 
+    private PlayerMovement playerMovement;
+
+    public float flickerTime = 0.2f;
+    private bool isFlickering = false;
+
     private void Start()
     {
         barImage.color = Color.gray;
@@ -26,9 +30,10 @@ public class PowerOfGod : MonoBehaviour
 
     private void Update()
     {
-        if (currentPower >= maxBar)
+        if (currentPower >= maxBar && !isFlickering)
         {
             playerMovement.canSpecialAttack = true;
+            StartCoroutine(Flicker());
         }
     }
 
@@ -51,6 +56,20 @@ public class PowerOfGod : MonoBehaviour
         {
             playerMovement.canSpecialAttack = true;
         }*/
+    }
+
+    private IEnumerator Flicker()
+    {
+        isFlickering = true;
+
+        while (currentPower >= maxBar)
+        {
+            barImage.enabled = !barImage.enabled;
+            yield return new WaitForSeconds(flickerTime);
+        }
+
+        barImage.enabled = true;
+        isFlickering = false;
     }
 
     public void ShowBar()

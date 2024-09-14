@@ -11,7 +11,9 @@ public enum BulletType
 {
     Fire,
     Water,
-    Air 
+    Air,
+    Earth,
+    GodPower
 }
 
 
