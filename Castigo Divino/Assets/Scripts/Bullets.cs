@@ -146,6 +146,11 @@ public class Bullets : MonoBehaviour
                 trail.startColor = Color.white;
                 trail.endColor = new Color(0, 0, 0, 0);
                 break;
+            case BulletType.Earth:
+                spriteRenderer.color = new Color(0.65f, 0.33f, 0.0f);
+                trail.startColor = new Color(0.65f, 0.33f, 0.0f);
+                trail.endColor = new Color(0, 0, 0, 0);
+                break;
         }
 
         bulletRb.velocity = direction * speed;

@@ -183,8 +183,12 @@ public class Rotation : MonoBehaviour
     public bool canShoot = true;
     private Animator animator;
     [SerializeField] private float shootAnimationDuration;
-    [SerializeField] private Image bulletColorUI;
 
+    [SerializeField] private Image bulletColorUI;
+    [SerializeField] private Sprite fireSprite;
+    [SerializeField] private Sprite waterSprite;
+    [SerializeField] private Sprite airSprite;
+    [SerializeField] private Sprite earthSprite;
     void Start()
     {
         cam = Camera.main;
@@ -210,6 +214,11 @@ public class Rotation : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             selectedBulletType = BulletType.Air;
+            UpdateBulletUIColor();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            selectedBulletType = BulletType.Earth;
             UpdateBulletUIColor();
         }
 
@@ -295,13 +304,16 @@ private void ShootMultipleBullets(Vector2 direction, float angle)
         switch (selectedBulletType)
         {
             case BulletType.Water:
-                bulletColorUI.color = Color.blue;
+                bulletColorUI.sprite = waterSprite;
                 break;
             case BulletType.Fire:
-                bulletColorUI.color = Color.red;
+                bulletColorUI.sprite = fireSprite;
                 break;
             case BulletType.Air:
-                bulletColorUI.color = Color.white;
+                bulletColorUI.sprite = airSprite;
+                break;
+            case BulletType.Earth:
+                bulletColorUI.sprite = earthSprite;
                 break;
         }
     }
