@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamageType
 {
@@ -19,14 +20,16 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
     public BossMachine bossMachine;
+    private Animator animator; 
 
     private PlayerMovement playerMovement;
     private ManagerData managerData;
 
-
     private float lastHealthThreshold; // Nueva variable
+
     protected virtual void Start()
     {
+        animator = GetComponent<Animator>();
         health = maxHealth;
         audioManager = FindObjectOfType<AudioManager>();
         enemyCollider = GetComponent<Collider2D>();
@@ -37,7 +40,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         health = maxHealth;
         //healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        lastHealthThreshold = maxHealth; // Inicializar con la salud máxima
+        lastHealthThreshold = maxHealth; // Inicializar con la salud mï¿½xima
     }
 
     public virtual void TakeDamage(float damage, BulletType bulletType)
@@ -71,11 +74,23 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
     protected virtual void HandleDeath()
     {
+        StartCoroutine(deathAnimation());
+    }
+
+    private IEnumerator deathAnimation()
+    {
+        animator.SetTrigger("Explode");
+        yield return new WaitForSecondsRealtime(0.7f);
+        deathEnd();
+    }
+
+    protected virtual void deathEnd()
+    {
         Instantiate(explosionParticle, transform.position, Quaternion.identity);
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         audioManager.playSound(audioManager.enemyDeath);
         GetComponent<LootBag>().InstantiateLoot(transform.position);
-        GameEvents.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
+        GameEvents.EnemyDefeated(); // Llama al mï¿½todo de NextStage cuando el enemigo sea derrotado
         if (SceneManager.GetActiveScene().name == "EnemyLevel")
         {
             enemyLevel.EnemyDefeated();
@@ -88,7 +103,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         // healthBar.HideBar(); 
     }
 
-    //Manejo de daño del boss
+    //Manejo de daï¿½o del boss
     private IEnumerator GetDamageBoss(float damage)
     {
         healthBar.ShowBar();
@@ -103,7 +118,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             }
             damageCoroutine = StartCoroutine(FlashDamage());
 
-            UpdateHealthBoss(); // Llama a la función para verificar si se debe cambiar el estado
+            UpdateHealthBoss(); // Llama a la funciï¿½n para verificar si se debe cambiar el estado
         }
         else
         {
