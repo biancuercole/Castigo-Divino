@@ -93,7 +93,7 @@ public void GetDamage(int damage, GameObject damageSource)
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         
         // Espera en tiempo real para permitir que la vibración ocurra
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(1.0f);
 
         // Reinicia el nivel y carga las monedas del checkpoint
         if(sceneName == "GameScene")

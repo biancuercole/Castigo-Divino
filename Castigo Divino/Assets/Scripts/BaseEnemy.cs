@@ -60,8 +60,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         if (health > 0)
         {
             Instantiate(damageParticle, transform.position, Quaternion.identity);
-
+            animator.SetBool("Damage", true);
             yield return new WaitForSeconds(0.5f);
+            animator.SetBool("Damage", false);
 
         }
 
@@ -86,7 +87,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
     protected virtual void deathEnd()
     {
-        Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         audioManager.playSound(audioManager.enemyDeath);
         GetComponent<LootBag>().InstantiateLoot(transform.position);
@@ -95,9 +96,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         {
             enemyLevel.EnemyDefeated();
         }
-
         enemyCollider.enabled = false;
-
 
         Destroy(gameObject);
         // healthBar.HideBar(); 
@@ -125,7 +124,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             audioManager.playSound(audioManager.openDoor);
             managerData.level1Finished = true; // Asigna directamente el booleano
             CameraMovement.Instance.MoveCamera(7, 5, 3f);
-            Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            //Instantiate(explosionParticle, transform.position, Quaternion.identity);
+            animator.SetTrigger("Explode");
+            yield return new WaitForSecondsRealtime(0.7f);
             Destroy(gameObject);
             healthBar.HideBar();
             portal.EnablePortal();
@@ -142,10 +143,12 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         Color customColor;
         ColorUtility.TryParseHtmlString("#FFBD00", out customColor);
         Instantiate(damageParticle, transform.position, Quaternion.identity);
+        animator.SetBool("Damage", true);
         float damageDuration = 0.15f;
         spriteRenderer.color = customColor;
         yield return new WaitForSeconds(damageDuration);
         spriteRenderer.color = Color.white;
+        animator.SetBool("Damage", false);
     }
 
     public void UpdateHealthBoss()
