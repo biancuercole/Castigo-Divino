@@ -31,7 +31,7 @@ public class Trigger : MonoBehaviour
         // Detectar cuando el jugador presiona 'F' dentro del rango
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            HandleInteraction(); // método que maneja las interacciones
+            HandleInteraction(); // mï¿½todo que maneja las interacciones
         }
     }
 
@@ -77,13 +77,13 @@ public class Trigger : MonoBehaviour
         if (itemOpen)
         {
             item.Hide();
-            Debug.Log("Gestión de mejoras cerrada");
+            Debug.Log("Gestiï¿½n de mejoras cerrada");
         }
         else
         {
             item.Show();
             ToolTipManager.instance.HideToolTip();
-            Debug.Log("Gestión de mejoras abierta");
+            Debug.Log("Gestiï¿½n de mejoras abierta");
         }
         itemOpen = !itemOpen;
     }
@@ -144,7 +144,7 @@ public class Trigger : MonoBehaviour
         {
             item.Hide();
             itemOpen = false;
-            Debug.Log("Gestión de mejoras cerrada al salir");
+            Debug.Log("Gestiï¿½n de mejoras cerrada al salir");
         }
     }
 }

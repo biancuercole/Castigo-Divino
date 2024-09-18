@@ -2401,211 +2401,6 @@ MonoBehaviour:
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
   timeEnemies: 5
   maxMinions: 5
---- !u!1 &238354123
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 238354128}
-  - component: {fileID: 238354127}
-  - component: {fileID: 238354126}
-  - component: {fileID: 238354125}
-  - component: {fileID: 238354124}
-  m_Layer: 0
-  m_Name: Dialogo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!61 &238354124
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238354123}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -5.453003, y: 2.3683167}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 48.8, y: 38.4}
-    newSize: {x: 48.8, y: 38.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 39.47058, y: 47.30487}
-  m_EdgeRadius: 0
---- !u!61 &238354125
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238354123}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -2.8492126, y: -1.3943024}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 48.8, y: 38.4}
-    newSize: {x: 48.8, y: 38.4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 21.520203, y: 23.729523}
-  m_EdgeRadius: 0
---- !u!114 &238354126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238354123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ca50db93528ad41b746fc791621c3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogueStart: {fileID: 1770649666}
-  dialoguePanel: {fileID: 177989382}
-  dialogueText: {fileID: 1358714302}
-  dialogueLines:
-  - "\xA1Al fin nos encontramos! Te espera un reto adelante, pero no te preocupes,
-    est\xE1s bien equipado"
-  - "Te encontrar\xE1s con enemigos que est\xE1n da\xF1ando mi tierra, debes deshacerte
-    de ellos dispar\xE1ndoles con tu arma, elije bien que bala utilizar"
-  - "Los enemigos de fuego ser\xE1n destruidos r\xE1pidamente con una bala de agua,
-    los troncos son d\xE9biles ante el fuego, y el humo se dispersa con la tierra. "
-  - "No te preocupes por recordarlo, aqu\xED tienes anotada la estrategia para derrotar
-    enemigos facilmente, aprieta la tecla \"R\" para leerla."
-  - "\xA1Casi lo olvido! Destruye las m\xE1quinas que te encuentres en el camino
-    para recoger amuletos que luego intercambiar\xE1s por mejores habilidades"
-  - "\xA1Mucha suerte! Te espero en la siguiente etapa. "
---- !u!212 &238354127
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238354123}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 4be71158f4ca1c442b28198c05f8d2d2, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 48.8, y: 38.4}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &238354128
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 238354123}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 559, y: -157, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1770649668}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &240431690
 GameObject:
   m_ObjectHideFlags: 0
@@ -4869,6 +4664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 0
 --- !u!1 &598964381
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,6 +4732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 0
 --- !u!95 &598964385
 Animator:
   serializedVersion: 5
@@ -13941,6 +13738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 4
 --- !u!1 &876873404
 GameObject:
   m_ObjectHideFlags: 0
@@ -30865,6 +30663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 0
 --- !u!1 &1285017851
 GameObject:
   m_ObjectHideFlags: 0
@@ -41490,6 +41289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 0
 --- !u!95 &1451483252
 Animator:
   serializedVersion: 5
@@ -43463,90 +43263,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1770649666
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1770649668}
-  - component: {fileID: 1770649667}
-  m_Layer: 0
-  m_Name: e
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!212 &1770649667
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770649666}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ab08aa0a1d331f547ac7defc3c42766f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 4.233333, y: 4.233333}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1770649668
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1770649666}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: 15, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 238354128}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1780796141
 GameObject:
   m_ObjectHideFlags: 0
@@ -43922,6 +43638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 0
 --- !u!1 &1790807781
 GameObject:
   m_ObjectHideFlags: 0
@@ -46694,6 +46411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 0
 --- !u!95 &2129534915
 Animator:
   serializedVersion: 5
@@ -46953,6 +46671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
+  life: 0
 --- !u!95 &2142118743
 Animator:
   serializedVersion: 5
@@ -47138,4 +46857,3 @@ SceneRoots:
   - {fileID: 876873406}
   - {fileID: 1344092411}
   - {fileID: 918034923}
-  - {fileID: 238354128}
