@@ -24,7 +24,8 @@ public class MachineHealth : MonoBehaviour
     public void machineDamage()
     {
         life --;
-        if(life == 0)
+        Instantiate(damageParticle, transform.position, Quaternion.identity);
+        if (life == 0)
         {
         machineGetDamage();
         }

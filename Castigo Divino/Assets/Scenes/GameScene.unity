@@ -1906,7 +1906,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e59b865a9421354db88a1a05008778a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a52675e49760d09488b20dbbe12b760a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2400,7 +2400,7 @@ MonoBehaviour:
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
   timeEnemies: 5
-  maxMinions: 5
+  maxMinions: 6
 --- !u!1 &240431690
 GameObject:
   m_ObjectHideFlags: 0
@@ -4662,7 +4662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!1 &598964381
 GameObject:
@@ -4729,7 +4729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!95 &598964385
 Animator:
@@ -13650,7 +13650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!1 &876873404
 GameObject:
@@ -28933,7 +28933,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 3, y: 1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007933800
@@ -28956,7 +28956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6e59b865a9421354db88a1a05008778a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a52675e49760d09488b20dbbe12b760a, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30574,7 +30574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!1 &1285017851
 GameObject:
@@ -36151,7 +36151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 1007933800}
-  maxBar: 5
+  maxBar: 40
   currentPower: 0
   flickerTime: 0.2
 --- !u!114 &1436265087
@@ -41199,7 +41199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!95 &1451483252
 Animator:
@@ -43209,7 +43209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -505.3, y: 404}
+  m_AnchoredPosition: {x: -506.4, y: 387.9}
   m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 1, y: 0.50000006}
 --- !u!114 &1780796144
@@ -43259,10 +43259,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.2
-  m_fontSizeBase: 67.2
+  m_fontSize: 70.3
+  m_fontSizeBase: 72
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -43547,7 +43547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!1 &1790807781
 GameObject:
@@ -46119,7 +46119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547ee9a6aa1377e4da659d65c66d2356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 60
+  maxHealth: 65
   healthBar: {fileID: 1620495930}
   damageParticle: {fileID: 6260408810082125145, guid: fcfffe73e2159004b932369729597ea3, type: 3}
   explosionParticle: {fileID: 8380370016064689544, guid: ff67a07bf826d434aa155e31449c5cf8, type: 3}
@@ -46206,14 +46206,14 @@ RectTransform:
   m_GameObject: {fileID: 2124497352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.5}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236039930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 217.7, y: -145}
+  m_AnchoredPosition: {x: 223.8, y: -151.1}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5000003, y: 0.5}
 --- !u!114 &2124497354
@@ -46319,7 +46319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!95 &2129534915
 Animator:
@@ -46578,7 +46578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f5b96e923a65e4c8440233454c899e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
+  damageParticle: {fileID: 6387647138094489892, guid: 23963dce7e785ac4db3669536a3dd423, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
 --- !u!95 &2142118743
 Animator:
