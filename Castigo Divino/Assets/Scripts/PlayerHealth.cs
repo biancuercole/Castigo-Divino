@@ -25,9 +25,11 @@ public class PlayerHealth : MonoBehaviour
     private NextStage nextStage;
     private HeartsUI heartsUI;
     private TransicionEscena transition;
+    private Animator animator; 
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         transition = FindObjectOfType<TransicionEscena>();
         redTint.gameObject.SetActive(false);
         nextStage = FindObjectOfType<NextStage>();
@@ -75,6 +77,7 @@ public void GetDamage(int damage, GameObject damageSource)
 
         if (temporaryHealth <= 0)
         {
+            animator.SetTrigger("Muerte");
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
             redTint.gameObject.SetActive(true);
             StartCoroutine(HandleLevelTransition());
@@ -93,7 +96,7 @@ public void GetDamage(int damage, GameObject damageSource)
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         
         // Espera en tiempo real para permitir que la vibración ocurra
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(0.7f);
 
         // Reinicia el nivel y carga las monedas del checkpoint
         if(sceneName == "GameScene")

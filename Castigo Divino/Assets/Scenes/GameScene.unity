@@ -4664,7 +4664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 0
 --- !u!1 &598964381
 GameObject:
   m_ObjectHideFlags: 0
@@ -4732,7 +4731,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 0
 --- !u!95 &598964385
 Animator:
   serializedVersion: 5
@@ -13738,7 +13736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 4
 --- !u!1 &876873404
 GameObject:
   m_ObjectHideFlags: 0
@@ -30663,7 +30660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 0
 --- !u!1 &1285017851
 GameObject:
   m_ObjectHideFlags: 0
@@ -41289,7 +41285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 0
 --- !u!95 &1451483252
 Animator:
   serializedVersion: 5
@@ -43638,7 +43633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 0
 --- !u!1 &1790807781
 GameObject:
   m_ObjectHideFlags: 0
@@ -46411,7 +46405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 0
 --- !u!95 &2129534915
 Animator:
   serializedVersion: 5
@@ -46671,7 +46664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionPaticle: {fileID: 6388412211098959703, guid: 6b3d6d47112799d40bf6f2a3fa0ae588, type: 3}
-  life: 0
 --- !u!95 &2142118743
 Animator:
   serializedVersion: 5
