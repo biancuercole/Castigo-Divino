@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ShrineHealth : MonoBehaviour
 {
+    private Animator animator;
     [SerializeField] private float maxHealth;
     private float health;
     [SerializeField] private HealthBar healthBar;
@@ -23,6 +24,7 @@ public class ShrineHealth : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         transition = FindObjectOfType<TransicionEscena>();
         nextStage = FindObjectOfType<NextStage>();
         health = maxHealth;
@@ -74,6 +76,7 @@ public class ShrineHealth : MonoBehaviour
 
     private IEnumerator DestroyShrineSequence()
     {
+        animator.SetTrigger("Destroyed");
         // Mostrar tinte rojo
         redTint.gameObject.SetActive(true);
 
