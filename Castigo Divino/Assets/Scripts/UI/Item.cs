@@ -16,7 +16,7 @@ public class Item
         switch (itemType) {
         default:
             case ItemType.Speed:  return 60;
-            case ItemType.BulletDamage: return 100;
+            case ItemType.BulletDamage: return 90;
             case ItemType.BulletSpeed: return 60;
            // case ItemType.TripleShot: return 0;
       

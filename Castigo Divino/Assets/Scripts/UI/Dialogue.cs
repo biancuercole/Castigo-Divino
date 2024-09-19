@@ -5,7 +5,7 @@ using TMPro;
 public class Dialogue : MonoBehaviour
 {
     private bool isPlayerInRange;
-    private bool didDialogueStart;
+    public bool didDialogueStart;
     private int lineIndex;
     private float typingTime = 0.05f;
     [SerializeField] private GameObject dialogueStart;
@@ -13,9 +13,10 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField, TextArea(4, 6)] private string[] dialogueLines;
 
+    [SerializeField] private Trigger trigger;
     void Update()
     {
-        if(isPlayerInRange && Input.GetKeyDown(KeyCode.T))
+        if(isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
             if(!didDialogueStart)
             {
@@ -35,7 +36,7 @@ public class Dialogue : MonoBehaviour
     {
         didDialogueStart = true;
         dialoguePanel.SetActive(true);
-        dialogueStart.SetActive(false);
+       // dialogueStart.SetActive(false);
         lineIndex = 0;
         Time.timeScale = 0f;
         StartCoroutine(showLine());
@@ -51,8 +52,11 @@ public class Dialogue : MonoBehaviour
         {
             didDialogueStart = false;
             dialoguePanel.SetActive(false);
-            dialogueStart.SetActive(true);
+          //  dialogueStart.SetActive(true);
             Time.timeScale = 1f;
+            trigger.dialogueStartTrigger = true;
+            trigger.ToggleShop();
+            ToolTipManager.instance.HideToolTip();
         }
     }
 
@@ -71,7 +75,7 @@ public class Dialogue : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            dialogueStart.SetActive(true);
+          //  dialogueStart.SetActive(true);
         }
     }
 
@@ -80,7 +84,7 @@ public class Dialogue : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            dialogueStart.SetActive(false);
+           // dialogueStart.SetActive(false);
         }
     }
 }

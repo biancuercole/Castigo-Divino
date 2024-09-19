@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Trigger : MonoBehaviour
@@ -8,6 +9,7 @@ public class Trigger : MonoBehaviour
     [SerializeField] private ItemSlot item;
     [SerializeField] private Entrances entrances;
     [SerializeField] private Portals portals;
+    [SerializeField] private Dialogue dialogue;
     public string message;
     public ManagerData managerData;
     public HeartsUI heartsUI;
@@ -16,10 +18,10 @@ public class Trigger : MonoBehaviour
     private bool playerInRange = false;
     private bool shopOpen = false;
     private bool itemOpen = false;
-
+    public bool dialogueStartTrigger = false;
+    public bool interactions = false;
     public Vector3 messeagePosition;
 
-    
     private void Start()
     {
         uiShop.Hide();  
@@ -28,16 +30,15 @@ public class Trigger : MonoBehaviour
 
     private void Update()
     {
-        // Detectar cuando el jugador presiona 'F' dentro del rango
+
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            HandleInteraction(); // m�todo que maneja las interacciones
+            HandleInteraction(); // metodo que maneja las interacciones
         }
     }
 
     private void HandleInteraction()
     {
-        // Si es una tienda
         if (gameObject.CompareTag("Shop"))
         {
             ToggleShop();
@@ -56,20 +57,26 @@ public class Trigger : MonoBehaviour
         }
     }
 
-    private void ToggleShop()
+    public void ToggleShop()
     {
-        if (shopOpen)
+        if (dialogueStartTrigger)
         {
-            uiShop.Hide();
-            Debug.Log("Tienda cerrada");
+            if (shopOpen)
+            {
+                uiShop.Hide();
+                dialogue.didDialogueStart = false;
+                Debug.Log("Tienda cerrada");
+            }
+            else
+            {
+                dialogue.didDialogueStart = true;
+                uiShop.Show();
+                ToolTipManager.instance.HideToolTip();
+                Debug.Log("Tienda abierta");
+            }
+            shopOpen = !shopOpen;
         }
-        else
-        {
-            uiShop.Show();
-            ToolTipManager.instance.HideToolTip();
-            Debug.Log("Tienda abierta");
-        }
-        shopOpen = !shopOpen;
+        dialogueStartTrigger = false;
     }
 
     private void ToggleItemManagement()
@@ -90,6 +97,7 @@ public class Trigger : MonoBehaviour
 
     private void RecoverHealth()
     {
+
         managerData.health = 4;
         currentHealth = managerData.health;
         PlayerPrefs.SetInt("PlayerHealth", managerData.health);
@@ -137,6 +145,7 @@ public class Trigger : MonoBehaviour
         {
             uiShop.Hide();
             shopOpen = false;
+            dialogue.didDialogueStart = false;
             Debug.Log("Tienda cerrada al salir");
         }
 
@@ -146,5 +155,7 @@ public class Trigger : MonoBehaviour
             itemOpen = false;
             Debug.Log("Gesti�n de mejoras cerrada al salir");
         }
+
+        interactions = false;
     }
 }

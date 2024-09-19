@@ -8287,9 +8287,12 @@ MonoBehaviour:
   item: {fileID: 0}
   entrances: {fileID: 936941137}
   portals: {fileID: 936941133}
+  dialogue: {fileID: 0}
   message: "Presionar la E para ir a la zona pac\xEDfica"
   managerData: {fileID: 891128284}
   heartsUI: {fileID: 0}
+  dialogueStartTrigger: 0
+  interactions: 0
   messeagePosition: {x: 300, y: 600, z: 0}
 --- !u!61 &936941139
 BoxCollider2D:
@@ -20410,7 +20413,7 @@ MonoBehaviour:
   background2: {fileID: 0}
   ambientSound: {fileID: 0}
   cinematic: {fileID: 0}
-  shot: {fileID: 8300000, guid: e186865efd9dbfc4e89db2766598ee46, type: 3}
+  shot: {fileID: 0}
   steps: {fileID: 8300000, guid: 27e6c8b5e04496b42ab9b9c34d94fef3, type: 3}
   enemyDeath: {fileID: 0}
   victory: {fileID: 0}

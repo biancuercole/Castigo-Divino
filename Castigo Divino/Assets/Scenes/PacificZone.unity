@@ -5937,9 +5937,12 @@ MonoBehaviour:
   item: {fileID: 1850652053}
   entrances: {fileID: 0}
   portals: {fileID: 0}
+  dialogue: {fileID: 1241022667}
   message: Presionar E para gestionar armas
   managerData: {fileID: 0}
   heartsUI: {fileID: 0}
+  dialogueStartTrigger: 0
+  interactions: 0
   messeagePosition: {x: 300, y: 800, z: 0}
 --- !u!61 &272181226
 BoxCollider2D:
@@ -7154,9 +7157,12 @@ MonoBehaviour:
   item: {fileID: 1850652053}
   entrances: {fileID: 0}
   portals: {fileID: 0}
+  dialogue: {fileID: 510174264}
   message: Presionar E para curar vida
   managerData: {fileID: 466434709}
   heartsUI: {fileID: 1286032150}
+  dialogueStartTrigger: 0
+  interactions: 0
   messeagePosition: {x: 300, y: 800, z: 0}
 --- !u!61 &510174263
 BoxCollider2D:
@@ -7215,6 +7221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ca50db93528ad41b746fc791621c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  didDialogueStart: 0
   dialogueStart: {fileID: 629009743}
   dialoguePanel: {fileID: 2092119150}
   dialogueText: {fileID: 1914488421}
@@ -7228,6 +7235,7 @@ MonoBehaviour:
   - "\xA1Casi lo olvido! Destruye las m\xE1quinas que te encuentres en el camino
     para recoger amuletos que luego intercambiar\xE1s por mejores habilidades"
   - "Ten\xE9 mucho cuidado y te espero a la vuelta, \xA1Mucha suerte! "
+  trigger: {fileID: 0}
 --- !u!1 &584258399
 GameObject:
   m_ObjectHideFlags: 0
@@ -7392,9 +7400,12 @@ MonoBehaviour:
   item: {fileID: 1850652053}
   entrances: {fileID: 584258404}
   portals: {fileID: 0}
+  dialogue: {fileID: 1241022667}
   message: Presionar E para ir al bosque
   managerData: {fileID: 466434709}
   heartsUI: {fileID: 0}
+  dialogueStartTrigger: 0
+  interactions: 0
   messeagePosition: {x: 300, y: 600, z: 0}
 --- !u!61 &584258406
 BoxCollider2D:
@@ -7712,7 +7723,7 @@ MonoBehaviour:
   background2: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
   ambientSound: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
   cinematic: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
-  shot: {fileID: 8300000, guid: e186865efd9dbfc4e89db2766598ee46, type: 3}
+  shot: {fileID: 0}
   steps: {fileID: 0}
   enemyDeath: {fileID: 8300000, guid: 3c04fcbdd388d4c489cec7169acac52d, type: 3}
   victory: {fileID: 8300000, guid: acd479117fca73a4faeaea1517202f7d, type: 3}
@@ -14073,9 +14084,12 @@ MonoBehaviour:
   item: {fileID: 1850652053}
   entrances: {fileID: 1051948359}
   portals: {fileID: 0}
+  dialogue: {fileID: 1241022667}
   message: Presionar E para ir al bosque
   managerData: {fileID: 466434709}
   heartsUI: {fileID: 0}
+  dialogueStartTrigger: 0
+  interactions: 0
   messeagePosition: {x: 300, y: 600, z: 0}
 --- !u!61 &1051948361
 BoxCollider2D:
@@ -14607,9 +14621,12 @@ MonoBehaviour:
   item: {fileID: 1850652053}
   entrances: {fileID: 0}
   portals: {fileID: 0}
+  dialogue: {fileID: 1241022667}
   message: Presionar E para entrar a la tienda
   managerData: {fileID: 466434709}
   heartsUI: {fileID: 0}
+  dialogueStartTrigger: 0
+  interactions: 0
   messeagePosition: {x: 300, y: 800, z: 0}
 --- !u!61 &1241022663
 BoxCollider2D:
@@ -14781,6 +14798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ca50db93528ad41b746fc791621c3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  didDialogueStart: 0
   dialogueStart: {fileID: 355712313}
   dialoguePanel: {fileID: 2092119150}
   dialogueText: {fileID: 1914488421}
@@ -14791,6 +14809,7 @@ MonoBehaviour:
     esas con forma de hoja.
   - "Mis productos te van a servir para avanzar en tus desaf\xEDos m\xE1s facilmente,
     yo no pasar\xEDa si fuera t\xFA. "
+  trigger: {fileID: 1241022662}
 --- !u!1 &1256946699
 GameObject:
   m_ObjectHideFlags: 0

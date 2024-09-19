@@ -13399,7 +13399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5294118, g: 0.49019608, b: 0.49019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -41843,7 +41843,7 @@ Transform:
   m_GameObject: {fileID: 1539106568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 997.9, y: -497.1, z: -0.13325137}
+  m_LocalPosition: {x: 986.6, y: -491.2, z: -0.13325137}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -41978,9 +41978,12 @@ MonoBehaviour:
   item: {fileID: 0}
   entrances: {fileID: 1539106575}
   portals: {fileID: 1539106571}
+  dialogue: {fileID: 0}
   message: "Presionar E para ir a la zona pac\xEDfica"
   managerData: {fileID: 1362526664}
   heartsUI: {fileID: 1451445120}
+  dialogueStartTrigger: 0
+  interactions: 0
   messeagePosition: {x: -300, y: 1000, z: 0}
 --- !u!114 &1539106575
 MonoBehaviour:
@@ -44575,7 +44578,7 @@ MonoBehaviour:
   background2: {fileID: 0}
   ambientSound: {fileID: 0}
   cinematic: {fileID: 0}
-  shot: {fileID: 8300000, guid: e186865efd9dbfc4e89db2766598ee46, type: 3}
+  shot: {fileID: 0}
   steps: {fileID: 8300000, guid: 27e6c8b5e04496b42ab9b9c34d94fef3, type: 3}
   enemyDeath: {fileID: 0}
   victory: {fileID: 0}
