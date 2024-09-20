@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BossHealth : MonoBehaviour
+/*public class BossHealth : MonoBehaviour
 {
     [SerializeField] private Portals portal;
     [SerializeField] private float maxHealth;
@@ -94,5 +94,35 @@ public class BossHealth : MonoBehaviour
             lastHealthThreshold = health; // Actualiza el umbral de salud
             healthBar.UpdateHealthBar(maxHealth, health);
         }
+    }*/
+    
+    public class BossHealth : BaseEnemy
+    {
+
+        public override void TakeDamage(float damage, BulletType bulletType)
+        {
+            switch (bulletType)
+            {
+            case BulletType.Fire:
+                damage *= 1f;
+                break;
+            case BulletType.Water:
+                damage *= 1f;
+                break;
+            case BulletType.Air:
+                damage *= 1f;
+                break;
+            case BulletType.Earth:
+                damage *= 1f;
+                break;
+            case BulletType.GodPower:
+                damage *= 1f;
+                break;
+        }
+
+             base.TakeDamageBoss(damage, bulletType);
+           /// StartCoroutine(GetDamage(damage));
+
+        }
     }
-}
+

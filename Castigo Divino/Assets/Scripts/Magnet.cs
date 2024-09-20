@@ -16,13 +16,17 @@ public class Magnet : MonoBehaviour
 
     [SerializeField] public PlayerHealth playerHealth;
     public int healAmount;
+    private ManagerData managerData;
 
-   private ManagerData managerData;
+    [SerializeField] public PowerOfGod powerUpBar;
+    [SerializeField] private float Power;
     private void Start()
     {
         pointsUI = FindObjectOfType<PointsUI>();
 
         managerData = FindObjectOfType<ManagerData>();
+
+        powerUpBar = FindObjectOfType<PowerOfGod>();
 
         if (pointsUI == null)
         {
@@ -33,6 +37,13 @@ public class Magnet : MonoBehaviour
         {
             Debug.LogError("No se encontr� un componente PlayerHealth en el jugador.");
         }
+
+        if (powerUpBar == null)
+        {
+            Debug.LogError("No se encontro powerUpBar en la escena.");
+        }
+
+        powerUpBar.ShowBar();
     }
     void Update()
     {
@@ -41,6 +52,7 @@ public class Magnet : MonoBehaviour
         magnetizableObjects = CombineArrays(magnetizableObjects, GameObject.FindGameObjectsWithTag("heart"));
         magnetizableObjects = CombineArrays(magnetizableObjects, GameObject.FindGameObjectsWithTag("key"));
         magnetizableObjects = CombineArrays(magnetizableObjects, GameObject.FindGameObjectsWithTag("bulletPowerUp"));
+        magnetizableObjects = CombineArrays(magnetizableObjects, GameObject.FindGameObjectsWithTag("powerLeaf"));
 
         foreach (GameObject obj in magnetizableObjects)
         {
@@ -67,7 +79,7 @@ public class Magnet : MonoBehaviour
      if (other.gameObject.CompareTag("coin"))
         {
             Destroy(other.gameObject);
-            pointsUI.takePoints(amountPoints);
+            pointsUI.TakePoints(amountPoints);
         }
         if (other.gameObject.CompareTag("heart"))
         {
@@ -81,15 +93,16 @@ public class Magnet : MonoBehaviour
         }
         if (other.gameObject.CompareTag("bulletPowerUp"))
         {
-            Destroy(other.gameObject);
+           Destroy(other.gameObject);
            StartCoroutine(PowerUpUnlocked());
         }
 
-        if (other.gameObject.CompareTag("altarVida"))
+        if (other.gameObject.CompareTag("powerLeaf"))
         {
-            Debug.Log("salud recuperada");
-            playerHealth.HealHealth(4);
+            Destroy(other.gameObject);
+            powerUpBar.TakePower(Power);
         }
+
         if (other.gameObject.CompareTag("key"))
         {
             GameEvents.KeyCollected();

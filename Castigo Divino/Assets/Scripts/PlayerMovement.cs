@@ -25,14 +25,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashDuration = 0.25f;
     [SerializeField] float dashCoolDown = 1f;
     [SerializeField] private GameObject dashEffect;
-    [SerializeField] private TrailRenderer trail;
     [SerializeField] private GameObject Gun;
     bool isDashing;
     bool canDash;
+    [SerializeField] private bool dashEnabled = true;
+
+    [Header("Special Attack")]
+    public bool canSpecialAttack;
+    private PowerOfGod powerOfGod;
+    [SerializeField] private float attackRadius = 40f; 
+    [SerializeField] private int attackDamage = 50; 
+
 
     public ManagerData managerData;
-    public HeartsUI heartsUI;
-    private int currentHealth;
+
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -46,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         transicion = FindObjectOfType<TransicionEscena>();
+        powerOfGod = FindObjectOfType<PowerOfGod>();
         portals = FindObjectOfType<Portals>();
         managerData = ManagerData.Instance;
         if (managerData == null)
@@ -82,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         GunSpriteRenderer = Gun?.GetComponent<SpriteRenderer>();
         canDash = true;
-
+        canSpecialAttack = false;
         // Verifica si los componentes clave están asignados
         if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null)
         {
@@ -94,8 +101,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogError("No se encontró un componente BossMachine en el jugador.");
         }
 
-        /*managerData.LoadPoints();
-        speed = managerData.speed;*/
     }
 
     void Update()
@@ -131,8 +136,20 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
             {
+                if (dashEnabled)
+                {
                 StartCoroutine(Dash());
+                }
+                else
+                {
+                 Debug.Log("No hay dash");
+                }
             }
+
+           if (Input.GetKey(KeyCode.F) && canSpecialAttack)
+           {
+               ActivateSpecialAttack();
+           }
     }
 
     private void FixedUpdate()
@@ -147,12 +164,10 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRb.velocity = moveInput * dashSpeed;
             Instantiate(dashEffect, transform.position, Quaternion.identity);
-            trail.emitting = true;
         }
         else
         {
             playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
-            trail.emitting = false;
         }  
     }
 
@@ -167,6 +182,37 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCoolDown);
         canDash = true;
     }
+
+    private void ActivateSpecialAttack()
+    {
+        CameraMovement.Instance.MoveCamera(10, 8, 2f);
+
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            // Aplicar daño a cada enemigo dentro del área
+            enemy.GetComponent<BaseEnemy>()?.TakeDamage(10, BulletType.GodPower);
+        }
+ 
+        Debug.Log("Ataque especial");
+  
+        canSpecialAttack = false;
+        ManagerData.Instance.ResetCurrentPower();
+        powerOfGod.currentPower = 0;
+        powerOfGod.UpdatePowerUpBar(0);
+    }
+
+    private void OnDrawGizmos()
+    {
+       
+        if (canSpecialAttack)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -192,30 +238,11 @@ public class PlayerMovement : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
-        /*if (other.gameObject.CompareTag("Level1"))
-        {
-            transicion.SiguienteNivel("GameScene");
-            //SceneManager.LoadScene("GameScene");
-        }
-        if (other.gameObject.CompareTag("Level2"))
-        {
-            if(managerData.level1Finished)
-            {
-                transicion.SiguienteNivel("EnemyLevel");
-            }
-        }*/
+
         if (other.gameObject.CompareTag("Retorno"))
         {
             transicion.SiguienteNivel("PacificZone");
             gm.lastCheckpoint = Vector2.zero;
-        }
-        if (other.gameObject.CompareTag("altarVida"))
-        {
-            managerData.health = 4;
-            currentHealth = managerData.health;
-            PlayerPrefs.SetInt("PlayerHealth", managerData.health);
-            managerData.LoadPoints();
-            heartsUI.UpdateHeartsUI(currentHealth); 
         }
     }
 }

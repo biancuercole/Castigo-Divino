@@ -9,7 +9,8 @@ public class Entrances : MonoBehaviour
     [SerializeField] private Sprite openSprite;
     private Collider2D portalCollider;
     private ManagerData managerData;
-    private TransicionEscena transicion; 
+    private TransicionEscena transicion;
+    private GameMaster gm; 
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,9 @@ public class Entrances : MonoBehaviour
         managerData = FindObjectOfType<ManagerData>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         portalCollider = GetComponent<Collider2D>();
-        if(gameObject.CompareTag("Level1"))
+        gm = FindObjectOfType<GameMaster>();
+
+        if (gameObject.CompareTag("Level1"))
         {
             spriteRenderer.sprite = openSprite;
             portalCollider.enabled = true;
@@ -41,7 +44,21 @@ public class Entrances : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void ChangeScene()
+    {
+       
+            if (gameObject.CompareTag("Level1"))
+            {
+                transicion.SiguienteNivel("GameScene");
+                Debug.Log("GameScene");
+            }
+            else if (gameObject.CompareTag("Level2"))
+            {
+                transicion.SiguienteNivel("EnemyLevel");
+                Debug.Log("EnemyLevel");
+            }     
+    }
+ /*   private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.CompareTag("Player"))
@@ -54,5 +71,5 @@ public class Entrances : MonoBehaviour
                 transicion.SiguienteNivel("EnemyLevel");
             }
         }
-    }
+    }*/
 }

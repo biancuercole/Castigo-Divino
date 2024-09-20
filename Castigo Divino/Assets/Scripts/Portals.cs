@@ -48,7 +48,7 @@ public class Portals : MonoBehaviour
         Debug.Log("Portal activado y capa cambiada");
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   /* private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
         if (player != null)
@@ -57,5 +57,12 @@ public class Portals : MonoBehaviour
             Debug.Log("Pasaron Datos");
             gm.lastCheckpoint = Vector2.zero;
         }
+    }*/
+
+    public void ChangeScenesPortal()
+    {
+        transition.SiguienteNivel("PacificZone");
+        Debug.Log("Pasaron Datos");
+        gm.lastCheckpoint = Vector2.zero;
     }
 }

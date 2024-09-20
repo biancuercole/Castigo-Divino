@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image redTint;
     public int maxHealth;
     public int health;
-    private bool esInmune = false;
+    public bool esInmune = false;
 
     public UnityEvent<int> changeHealth;
     private SpriteRenderer spriteRenderer;
@@ -25,9 +25,14 @@ public class PlayerHealth : MonoBehaviour
     private NextStage nextStage;
     private HeartsUI heartsUI;
     private TransicionEscena transition;
+    private Animator animator; 
+    [SerializeField] private GameObject Gun;
+    private SpriteRenderer[] gunSprite;
 
     void Start()
     {
+        gunSprite = Gun.GetComponentsInChildren<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         transition = FindObjectOfType<TransicionEscena>();
         redTint.gameObject.SetActive(false);
         nextStage = FindObjectOfType<NextStage>();
@@ -51,40 +56,57 @@ public class PlayerHealth : MonoBehaviour
         changeHealth.Invoke(health);
     }
 
-public void GetDamage(int damage, GameObject damageSource)
-{
-    if (!esInmune)
+    public void GetDamage(int damage, GameObject damageSource)
     {
-        CameraMovement.Instance.MoveCamera(5, 5, 2f);
-        Instantiate(damageParticle, transform.position, Quaternion.identity);
-        KnocKBack.KnockBacK(damageSource);
-
-        int temporaryHealth = health - damage;
-
-        if (temporaryHealth < 0)
-        {
-            health = 0;
-        }
-        else
-        {
-            health = temporaryHealth;
-        }
-
-        changeHealth.Invoke(health);
-        managerData.AddHealth(health);
-
-        if (temporaryHealth <= 0)
+        if (!esInmune)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
-            redTint.gameObject.SetActive(true);
-            StartCoroutine(HandleLevelTransition());
-        }
-        else
-        {
-            StartCoroutine(InmunidadCoroutine());
+            Instantiate(damageParticle, transform.position, Quaternion.identity);
+            KnocKBack.KnockBacK(damageSource);
+
+            int temporaryHealth = health - damage;
+
+            if(temporaryHealth > 0)
+            {
+             StartCoroutine(DañoAnimation());
+            }
+
+            if (temporaryHealth < 0)
+            {
+                health = 0;
+            }
+            else
+            {
+                health = temporaryHealth;
+            }
+
+            changeHealth.Invoke(health);
+            managerData.AddHealth(health);
+
+            if (temporaryHealth <= 0)
+            {
+                Gun.SetActive(false);
+                animator.SetTrigger("Muerte");
+                CameraMovement.Instance.MoveCamera(5, 5, 2f);
+                redTint.gameObject.SetActive(true);
+                StartCoroutine(HandleLevelTransition());
+            }
+            else
+            {
+                StartCoroutine(InmunidadCoroutine());
+            }
         }
     }
-}
+
+    private IEnumerator DañoAnimation()
+    {
+        animator.SetBool("isDamaged", true);
+
+        // Esperar hasta que la animación de "Daño" haya terminado.
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+
+        animator.SetBool("isDamaged", false);
+    }
 
     private IEnumerator HandleLevelTransition()
     {
@@ -93,7 +115,7 @@ public void GetDamage(int damage, GameObject damageSource)
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         
         // Espera en tiempo real para permitir que la vibración ocurra
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         // Reinicia el nivel y carga las monedas del checkpoint
         if(sceneName == "GameScene")
@@ -104,6 +126,7 @@ public void GetDamage(int damage, GameObject damageSource)
             transition.SiguienteNivel("EnemyLevel");
         }
         ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
+        ManagerData.Instance.ResetCurrentPower();
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
     }
@@ -148,11 +171,26 @@ public void GetDamage(int damage, GameObject damageSource)
 
         while (Time.time < tiempoFin)
         {
+            // Alternar el sprite del jugador
             spriteRenderer.enabled = !spriteRenderer.enabled;
+
+            // Alternar los sprites del arma
+            foreach (SpriteRenderer gunPart in gunSprite)
+            {
+                gunPart.enabled = !gunPart.enabled;
+            }
+
+            // Esperar antes de alternar nuevamente
             yield return new WaitForSeconds(parpadeoIntervalo);
         }
 
+        // Asegurarse de que todos los sprites estén visibles después de la inmunidad
         spriteRenderer.enabled = true;
+        foreach (SpriteRenderer gunPart in gunSprite)
+        {
+            gunPart.enabled = true;
+        }
+
         esInmune = false;
     }
 }

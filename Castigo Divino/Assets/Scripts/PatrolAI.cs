@@ -25,7 +25,7 @@ public class EnemyPatroll : MonoBehaviour
     private bool isWaiting;
     private bool isFollowing; 
     private bool isCharging = false; // Para controlar si está en embestida
-    private bool isAttacking = false;
+    //private bool isAttacking = false;
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -50,7 +50,7 @@ public class EnemyPatroll : MonoBehaviour
         agent.updateUpAxis = false;
         isWaiting = false;
         isFollowing = false;
-        isAttacking = false; 
+       // isAttacking = false; 
         if (WayPoints.Length > 0 && currentWaypoint < WayPoints.Length)
         {
             agent.SetDestination(WayPoints[currentWaypoint].position);
@@ -84,49 +84,52 @@ public class EnemyPatroll : MonoBehaviour
         isWaiting = false;
         isFollowing = false;
         isCharging = false;
-        isAttacking = false;
+      //  isAttacking = false;
     }
 
-    void Update()
+void Update()
+{
+    float distanceToTarget = Vector2.Distance(transform.position, target.position);
+    
+    if (distanceToTarget < chargeDistance)
     {
-        float distanceToTarget = Vector2.Distance(transform.position, target.position);
-        
-        if (distanceToTarget < chargeDistance)
+        if (!isCharging)
         {
-            if (!isCharging)
-            {
-                isCharging = true;
-                StartCoroutine(Charge());
-            }
-        }
-        else if (distanceToTarget < minDistance)
-        {
-            isFollowing = true;
-            agent.speed = followSpeed; // Velocidad de persecución
-            agent.SetDestination(target.position);
-        }
-        else
-        {
-            if (isFollowing)
-            {
-                // Si estaba siguiendo al jugador y ahora se alejó, volver al waypoint
-                isFollowing = false;
-                agent.speed = patrolSpeed; // Velocidad de patrullaje
-                agent.SetDestination(WayPoints[currentWaypoint].position);
-            }
-
-            // Patrullar waypoints
-            if (!isWaiting && agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
-            {
-                StartCoroutine(Wait());
-            }
-        }
-        
-        if (logAnimator != null)
-        {
-            logAnimator.SetFloat("Horizontal", agent.velocity.x);
+            isCharging = true;
+            StartCoroutine(Charge());
         }
     }
+    else if (distanceToTarget < minDistance)
+    {
+        isFollowing = true;
+        agent.speed = followSpeed; // Velocidad de persecución
+
+        // Actualizar constantemente la posición del jugador
+        agent.SetDestination(target.position);
+    }
+    else
+    {
+        if (isFollowing)
+        {
+            // Si estaba siguiendo al jugador y ahora se alejó, volver al waypoint
+            isFollowing = false;
+            agent.speed = patrolSpeed; // Velocidad de patrullaje
+            agent.SetDestination(WayPoints[currentWaypoint].position);
+        }
+
+        // Patrullar waypoints
+        if (!isWaiting && agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
+        {
+            StartCoroutine(Wait());
+        }
+    }
+    
+    if (logAnimator != null)
+    {
+        logAnimator.SetFloat("Horizontal", agent.velocity.x);
+    }
+}
+
 
     IEnumerator Wait()
     {

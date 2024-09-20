@@ -34,6 +34,9 @@ TagManager:
   - BossBullet
   - Retorno
   - Minions
+  - GestionMejoras
+  - powerLeaf
+  - Level3
   layers:
   - Default
   - TransparentFX

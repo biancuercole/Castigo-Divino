@@ -10,8 +10,11 @@ public class MachineHealth : MonoBehaviour
     private LootBag lootBag; // Añadido para referencia a LootBag
     public GameObject damageParticle;
     public GameObject explosionPaticle;
+    private int life;
+
     void Start()
     {
+        life = 4; 
         machineSprite = GetComponent<SpriteRenderer>(); 
         machineCollider = GetComponent<Collider2D>();   
         nextStage = FindObjectOfType<NextStage>();
@@ -20,7 +23,12 @@ public class MachineHealth : MonoBehaviour
 
     public void machineDamage()
     {
+        life --;
+        Instantiate(damageParticle, transform.position, Quaternion.identity);
+        if (life == 0)
+        {
         machineGetDamage();
+        }
     }
 
     private void machineGetDamage()

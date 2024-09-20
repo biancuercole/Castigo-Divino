@@ -20,7 +20,7 @@ public class EnemyHealth : MonoBehaviour
     private Collider2D enemyCollider; // Referencia al Collider
     public GameObject damageParticle;
     public GameObject explosionPaticle;
-    
+
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
