@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 6
   m_Sprite: {fileID: -2413806693520163455, guid: 58b8fcd90badee2438ee8b3388aaaec0, type: 3}
   m_Color: {r: 1, g: 0.74101985, b: 0, a: 1}
   m_FlipX: 0
@@ -173,7 +173,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 6
   m_Time: 0.3
   m_PreviewTimeScale: 1
   m_Parameters:

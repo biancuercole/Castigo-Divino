@@ -12,6 +12,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField, TextArea(4, 6)] private string[] dialogueLines;
+    [SerializeField] private GameObject godesSprite;
 
     [SerializeField] private Trigger trigger;
     void Update()
@@ -36,6 +37,12 @@ public class Dialogue : MonoBehaviour
     {
         didDialogueStart = true;
         dialoguePanel.SetActive(true);
+        if(this.gameObject.CompareTag("altarVida"))
+        {
+            godesSprite.SetActive(true);
+        } else {
+            godesSprite.SetActive(false);
+        }
        // dialogueStart.SetActive(false);
         lineIndex = 0;
         Time.timeScale = 0f;

@@ -61,7 +61,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         {
             Instantiate(damageParticle, transform.position, Quaternion.identity);
             animator.SetBool("Damage", true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
             animator.SetBool("Damage", false);
 
         }
