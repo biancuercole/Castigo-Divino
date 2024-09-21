@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator; 
     [SerializeField] private GameObject Gun;
     private SpriteRenderer[] gunSprite;
-
+    private AudioManager audioManager;
     void Start()
     {
         gunSprite = Gun.GetComponentsInChildren<SpriteRenderer>();
@@ -41,7 +41,8 @@ public class PlayerHealth : MonoBehaviour
         KnocKBack = GetComponent<KnocKBack>();
         heartsUI = GetComponent<HeartsUI>();
         managerData.LoadPoints();
-       // maxHealth = managerData.LoadMaxHealth();
+        audioManager = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
+        // maxHealth = managerData.LoadMaxHealth();
         health = managerData.health;
         if (health <= 0)
         {
@@ -62,6 +63,7 @@ public class PlayerHealth : MonoBehaviour
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
+            audioManager.playSound(audioManager.damage);
             KnocKBack.KnockBacK(damageSource);
 
             int temporaryHealth = health - damage;
@@ -113,13 +115,13 @@ public class PlayerHealth : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         // Mueve la cámara durante 1 segundo antes de pausar
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
-        
+        StartCoroutine(audioManager.FadeOut(audioManager.musicSource, 0.7f));
         // Espera en tiempo real para permitir que la vibración ocurra
         yield return new WaitForSecondsRealtime(0.5f);
 
         // Reinicia el nivel y carga las monedas del checkpoint
         if(sceneName == "GameScene")
-        {
+        {   
             transition.SiguienteNivel("GameScene"); 
         } else if (sceneName == "EnemyLevel")
         {

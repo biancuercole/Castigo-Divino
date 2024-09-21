@@ -20,6 +20,8 @@ public class Magnet : MonoBehaviour
 
     [SerializeField] public PowerOfGod powerUpBar;
     [SerializeField] private float Power;
+
+    private AudioManager audioManager;
     private void Start()
     {
         pointsUI = FindObjectOfType<PointsUI>();
@@ -27,6 +29,8 @@ public class Magnet : MonoBehaviour
         managerData = FindObjectOfType<ManagerData>();
 
         powerUpBar = FindObjectOfType<PowerOfGod>();
+
+        audioManager = FindAnyObjectByType<AudioManager>();
 
         if (pointsUI == null)
         {
@@ -76,10 +80,11 @@ public class Magnet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-     if (other.gameObject.CompareTag("coin"))
+        if (other.gameObject.CompareTag("coin"))
         {
             Destroy(other.gameObject);
             pointsUI.TakePoints(amountPoints);
+            audioManager.playSound(audioManager.collectSound);
         }
         if (other.gameObject.CompareTag("heart"))
         {
@@ -95,18 +100,21 @@ public class Magnet : MonoBehaviour
         {
            Destroy(other.gameObject);
            StartCoroutine(PowerUpUnlocked());
+           audioManager.playSound(audioManager.healSound);
         }
 
         if (other.gameObject.CompareTag("powerLeaf"))
         {
             Destroy(other.gameObject);
             powerUpBar.TakePower(Power);
+            audioManager.playSound(audioManager.collectSound);
         }
 
         if (other.gameObject.CompareTag("key"))
         {
             GameEvents.KeyCollected();
             Destroy(other.gameObject);
+            audioManager.playSound(audioManager.collectSound);
         }
     }
 

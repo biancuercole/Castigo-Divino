@@ -10,6 +10,7 @@ public class Trigger : MonoBehaviour
     [SerializeField] private Entrances entrances;
     [SerializeField] private Portals portals;
     [SerializeField] private Dialogue dialogue;
+    [SerializeField] private GameObject targetObject;
     public string message;
     public ManagerData managerData;
     public HeartsUI heartsUI;
@@ -20,7 +21,6 @@ public class Trigger : MonoBehaviour
     private bool itemOpen = false;
     public bool dialogueStartTrigger = false;
     public bool interactions = false;
-    public Vector3 messeagePosition;
 
     private void Start()
     {
@@ -123,8 +123,12 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = true;
-            Vector3 worldPosition = transform.position + messeagePosition;
-            ToolTipManager.instance.ShowTriggerToolTip(message, worldPosition);
+            Transform targetTransform = targetObject.transform;
+
+            // Convertir las coordenadas de mundo a coordenadas de pantalla
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
+
+            ToolTipManager.instance.ShowTriggerToolTip(message, screenPosition);
             Debug.Log("ToolTipShow");
         }
     }

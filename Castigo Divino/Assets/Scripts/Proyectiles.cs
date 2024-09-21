@@ -34,7 +34,7 @@ public class Proyectiles: MonoBehaviour
 
     public void LaunchProyectile()
     {
-        audioManager.playSound(audioManager.enemyShot);
+        audioManager.playSound(audioManager.flameShot);
        // Debug.Log("Launching projectile. Object tag: " + this.gameObject.tag);
 
         if (this.gameObject.CompareTag("Proyectile"))
@@ -61,7 +61,7 @@ public class Proyectiles: MonoBehaviour
         float destroyTime = 3f;
         yield return new WaitForSeconds(destroyTime);
      
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 
 
@@ -90,9 +90,6 @@ public class Proyectiles: MonoBehaviour
         {
             playerHealth.GetDamage(damage, this.gameObject);
         }
-
-      
-            Destroy(gameObject);
-       
-    }
+            Destroy(gameObject);    
+        }
 }

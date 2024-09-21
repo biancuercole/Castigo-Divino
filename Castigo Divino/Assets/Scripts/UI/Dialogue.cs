@@ -8,13 +8,14 @@ public class Dialogue : MonoBehaviour
     public bool didDialogueStart;
     private int lineIndex;
     private float typingTime = 0.05f;
-    [SerializeField] private GameObject dialogueStart;
+  //  [SerializeField] private GameObject dialogueStart;
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField, TextArea(4, 6)] private string[] dialogueLines;
     [SerializeField] private GameObject godesSprite;
 
     [SerializeField] private Trigger trigger;
+    [SerializeField] private Rotation rotation;
     void Update()
     {
         if(isPlayerInRange && Input.GetKeyDown(KeyCode.E))
@@ -37,12 +38,12 @@ public class Dialogue : MonoBehaviour
     {
         didDialogueStart = true;
         dialoguePanel.SetActive(true);
-        if(this.gameObject.CompareTag("altarVida"))
+      /*  if(this.gameObject.CompareTag("altarVida"))
         {
             godesSprite.SetActive(true);
         } else {
             godesSprite.SetActive(false);
-        }
+        }*/
        // dialogueStart.SetActive(false);
         lineIndex = 0;
         Time.timeScale = 0f;
@@ -82,7 +83,8 @@ public class Dialogue : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = true;
-          //  dialogueStart.SetActive(true);
+            //  dialogueStart.SetActive(true);
+            rotation.canShoot = false;
         }
     }
 
@@ -92,6 +94,7 @@ public class Dialogue : MonoBehaviour
         {
             isPlayerInRange = false;
            // dialogueStart.SetActive(false);
+           rotation.canShoot = true;
         }
     }
 }

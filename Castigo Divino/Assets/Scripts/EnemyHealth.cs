@@ -62,7 +62,6 @@ public class EnemyHealth : MonoBehaviour
             Instantiate(explosionPaticle, transform.position, Quaternion.identity);
             isDead = true; // Marcar al enemigo como muerto para evitar que se procese varias veces
             agent.isStopped = true;
-            audioManager.playSound(audioManager.enemyDeath);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             GameEvents.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
             if (SceneManager.GetActiveScene().name == "EnemyLevel")

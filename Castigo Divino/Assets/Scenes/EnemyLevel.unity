@@ -8248,7 +8248,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 51.42857, y: 40.857143}
+    oldSize: {x: 40, y: 31.777779}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8288,12 +8288,12 @@ MonoBehaviour:
   entrances: {fileID: 936941137}
   portals: {fileID: 936941133}
   dialogue: {fileID: 0}
+  targetObject: {fileID: 0}
   message: "Presionar la E para ir a la zona pac\xEDfica"
   managerData: {fileID: 891128284}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
-  messeagePosition: {x: 300, y: 600, z: 0}
 --- !u!61 &936941139
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8330,7 +8330,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 51.42857, y: 40.857143}
+    oldSize: {x: 40, y: 31.777779}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8635,7 +8635,7 @@ MonoBehaviour:
   - {fileID: 5347165147909718649, guid: 54d97305a034ba94d81ae1cbaac1511f, type: 3}
   - {fileID: 5474861607113767795, guid: 55c7a11f4de653544b100b1eb47e8470, type: 3}
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
-  totalRounds: 4
+  totalRounds: 1
   portal: {fileID: 936941133}
 --- !u!1 &1094551708
 GameObject:
@@ -19717,7 +19717,7 @@ MonoBehaviour:
   dashEffect: {fileID: 2974914889407992469, guid: 1e663cfa58a3b8440bc383bd0db0331f, type: 3}
   Gun: {fileID: 904613151}
   dashEnabled: 1
-  canSpecialAttack: 0
+  canSpecialAttack: 1
   attackRadius: 40
   attackDamage: 50
   managerData: {fileID: 891128284}
@@ -20409,18 +20409,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 212123847}
   soundSource: {fileID: 1121116055}
-  background: {fileID: 8300000, guid: 68e44e634b22ec74f877d4b562033ff4, type: 3}
-  background2: {fileID: 0}
-  ambientSound: {fileID: 0}
-  cinematic: {fileID: 0}
-  shot: {fileID: 0}
-  steps: {fileID: 8300000, guid: 27e6c8b5e04496b42ab9b9c34d94fef3, type: 3}
-  enemyDeath: {fileID: 0}
-  victory: {fileID: 0}
-  gameOver: {fileID: 0}
-  enemyShot: {fileID: 0}
-  openDoor: {fileID: 8300000, guid: 18ac4368d89e13c498a014f1f02eb5d8, type: 3}
+  pacifistZoneMusic: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
+  gameMusic: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
   bossMusic: {fileID: 8300000, guid: 454c2d6a50c60984b801d493d3b74d93, type: 3}
+  ambientSound: {fileID: 0}
+  menuMusic: {fileID: 0}
+  fireShot: {fileID: 0}
+  waterShot: {fileID: 0}
+  airShot: {fileID: 0}
+  earthShot: {fileID: 0}
+  dash: {fileID: 0}
+  steps: {fileID: 8300000, guid: 27e6c8b5e04496b42ab9b9c34d94fef3, type: 3}
+  damage: {fileID: 0}
+  death: {fileID: 0}
+  flameDeath: {fileID: 0}
+  flameShot: {fileID: 8300000, guid: e186865efd9dbfc4e89db2766598ee46, type: 3}
+  smokeDeath: {fileID: 0}
+  smokeShot: {fileID: 0}
+  logDeath: {fileID: 0}
+  logShot: {fileID: 0}
+  bossDeath: {fileID: 0}
+  bossShot: {fileID: 0}
+  machineDeath: {fileID: 0}
+  machineSound: {fileID: 0}
+  portalSound: {fileID: 0}
 --- !u!4 &1716580025
 Transform:
   m_ObjectHideFlags: 0

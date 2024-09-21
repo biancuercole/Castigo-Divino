@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour
 {
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject MusicAndSoundMenu;
     [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
     private GameMaster gm;
     [SerializeField] PlayerHealth player;
+    [SerializeField] Rotation rotation;
 
     private bool inmortality = false;
+    public Toggle toggle;
     private void Start()
     {
         gm = FindObjectOfType<GameMaster>();
@@ -21,6 +25,9 @@ public class MenuPause : MonoBehaviour
         {
             Debug.LogError("No se encontr� una instancia de ManagerData en la escena.");
         }
+
+        toggle.isOn = false;
+
     }
     private void Update()
     {
@@ -43,6 +50,7 @@ public class MenuPause : MonoBehaviour
         gamePaused = true;
         Time.timeScale = 0f;
         menuPause.SetActive(true);
+        rotation.canShoot = false;
     }
 
     public void Resume()
@@ -51,6 +59,8 @@ public class MenuPause : MonoBehaviour
         gamePaused = false;
         Time.timeScale = 1f;
         menuPause.SetActive(false);
+        MusicAndSoundMenu.SetActive(false);
+        rotation.canShoot = true;
     }
 
     public void Menu()
@@ -79,12 +89,24 @@ public class MenuPause : MonoBehaviour
         {
           
             player.esInmune = true;
+            toggle.isOn = true;
             Debug.Log("Inmortalidad activada");
         }
         else
         {
             player.esInmune = false;
+            toggle.isOn = false;
             Debug.Log("Inmortalidad desactivada");
         }
+    }
+
+    public void MusicAndSound()
+    {
+        MusicAndSoundMenu.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        MusicAndSoundMenu.SetActive(false);
     }
 }

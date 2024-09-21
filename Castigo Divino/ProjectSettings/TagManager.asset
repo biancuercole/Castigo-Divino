@@ -37,6 +37,7 @@ TagManager:
   - GestionMejoras
   - powerLeaf
   - Level3
+  - Stairs
   layers:
   - Default
   - TransparentFX

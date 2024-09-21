@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,6 +40,12 @@ public class PlayerMovement : MonoBehaviour
 
     public ManagerData managerData;
 
+    [Header("Stairs")]
+    public float stairHeightOffset = 0.2f; // Ajusta la altura cuando el jugador sube o baja escaleras horizontales
+    private int stairSortingOrderAdjustment = 1; 
+    private bool onStairs = false;
+    private int originalSortingOrder = 2;
+    private BoxCollider2D playerCollider;
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -66,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
         string sceneName = SceneManager.GetActiveScene().name;
         gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
+
         if (gm != null && gm.lastCheckpoint != Vector2.zero)
         {
             transform.position = gm.lastCheckpoint;
@@ -88,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         GunSpriteRenderer = Gun?.GetComponent<SpriteRenderer>();
+        playerCollider = GetComponent<BoxCollider2D>();
         canDash = true;
         canSpecialAttack = false;
         // Verifica si los componentes clave están asignados
@@ -100,7 +109,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("No se encontró un componente BossMachine en el jugador.");
         }
-
     }
 
     void Update()
@@ -123,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-           // Debug.Log("Arriba");
+            // Debug.Log("Arriba");
             if (GunSpriteRenderer != null && spriteRenderer != null)
             {
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
@@ -168,12 +176,23 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
-        }  
+        }
+
+        if (onStairs)
+        {
+           OnStairs();
+        }
+        else
+        {
+           /* playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
+            playerCollider.enabled = true;*/
+        }
     }
 
     private IEnumerator Dash()
     {
-      //  Debug.Log("dashing");
+        //  Debug.Log("dashing");
+        audioManager.playSound(audioManager.dash);
         canDash = false;
         isDashing = true;
         yield return new WaitForSeconds(dashDuration);
@@ -186,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
     private void ActivateSpecialAttack()
     {
         CameraMovement.Instance.MoveCamera(10, 8, 2f);
-
+        audioManager.playSound(audioManager.powerOfGod);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
 
         foreach (Collider2D enemy in hitEnemies)
@@ -243,6 +262,40 @@ public class PlayerMovement : MonoBehaviour
         {
             transicion.SiguienteNivel("PacificZone");
             gm.lastCheckpoint = Vector2.zero;
+        }
+
+
+        if (other.gameObject.CompareTag("Stairs"))
+        {
+            onStairs = true; // Activa el modo escaleras
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Stairs"))
+        {
+            onStairs = false; // Desactiva el modo escaleras
+            spriteRenderer.sortingOrder = originalSortingOrder; // Restablece el sortingOrder original
+         //   playerCollider.enabled = true;
+            playerRb.velocity = Vector2.zero;
+            playerRb.bodyType = RigidbodyType2D.Dynamic;
+        }
+    }
+
+    private void OnStairs()
+    {
+      //  playerCollider.enabled = false;
+        playerRb.bodyType = RigidbodyType2D.Kinematic;
+        if (Input.GetKey(KeyCode.A)) // Mover a la derecha en la escalera
+        {
+            transform.position += new Vector3(moveInput.x, stairHeightOffset, 0) * Time.deltaTime * speed;
+            spriteRenderer.sortingOrder = originalSortingOrder + stairSortingOrderAdjustment; // Ajusta el sortingOrder
+        }
+        else if (Input.GetKey(KeyCode.D)) // Mover a la izquierda en la escalera
+        {
+            transform.position += new Vector3(moveInput.x, -stairHeightOffset, 0) * Time.deltaTime * speed;
+            spriteRenderer.sortingOrder = originalSortingOrder - stairSortingOrderAdjustment; // Ajusta el sortingOrder
         }
     }
 }

@@ -44,8 +44,11 @@ public class EnemyLevel : MonoBehaviour
             currentRound++;
             Debug.Log("Ronda " + currentRound);
         }
+
+        audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
+        yield return new WaitForSecondsRealtime(2f);
         portal.EnablePortal();
-        audioManager.playSound(audioManager.openDoor);
+        audioManager.playSound(audioManager.portalSound);
         Destroy(gameObject);
     }
 

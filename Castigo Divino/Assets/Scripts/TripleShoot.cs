@@ -11,7 +11,7 @@ public class TripleShoot : MonoBehaviour
     [SerializeField] private int currentWaypoint;
     [SerializeField] private float waitTime;
     private Animator smokeAnimator;
-
+    private AudioManager audioManager;
     NavMeshAgent agent;
     private bool isShooting;
     private bool inRange;
@@ -32,6 +32,7 @@ public class TripleShoot : MonoBehaviour
         agent.updateUpAxis = false;
         isWaiting = false;
         agent.SetDestination(WayPoints[currentWaypoint].position);
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void OnEnable()
@@ -120,6 +121,7 @@ public class TripleShoot : MonoBehaviour
 
     void ShootProyectile(Vector2 direction)
     {
+        audioManager.playSound(audioManager.smokeShot);
         GameObject proyectile = Instantiate(proyectilePrefab, transform.position, Quaternion.identity);
         TripleBullet proyectileScript = proyectile.GetComponent<TripleBullet>();
         proyectileScript.SetDirection(direction);

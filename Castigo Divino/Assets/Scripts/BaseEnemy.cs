@@ -89,7 +89,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     {
         //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
-        audioManager.playSound(audioManager.enemyDeath);
+    
         GetComponent<LootBag>().InstantiateLoot(transform.position);
         GameEvents.EnemyDefeated(); // Llama al m�todo de NextStage cuando el enemigo sea derrotado
         if (SceneManager.GetActiveScene().name == "EnemyLevel")
@@ -121,17 +121,18 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         }
         else
         {
-            audioManager.playSound(audioManager.openDoor);
+            audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
             managerData.level1Finished = true; // Asigna directamente el booleano
             CameraMovement.Instance.MoveCamera(7, 5, 3f);
             //Instantiate(explosionParticle, transform.position, Quaternion.identity);
             animator.SetTrigger("Explode");
-            yield return new WaitForSecondsRealtime(0.7f);
+            yield return new WaitForSecondsRealtime(1f);
             Destroy(gameObject);
             healthBar.HideBar();
-            portal.EnablePortal();
             Debug.Log("muerto");
             GetComponent<LootBag>().InstantiateLoot(transform.position);
+            audioManager.playSound(audioManager.portalSound);
+            portal.EnablePortal();
         }
 
         Debug.Log("Vida JEFE " + health);
