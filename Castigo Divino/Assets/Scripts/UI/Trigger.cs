@@ -123,13 +123,14 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = true;
-            Transform targetTransform = targetObject.transform;
+            GameObject targetTransform = targetObject.gameObject;
+            targetTransform.SetActive(true);
 
             // Convertir las coordenadas de mundo a coordenadas de pantalla
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
+            /*Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
 
             ToolTipManager.instance.ShowTriggerToolTip(message, screenPosition);
-            Debug.Log("ToolTipShow");
+            Debug.Log("ToolTipShow");*/
         }
     }
 
@@ -138,7 +139,9 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = false;
-            ToolTipManager.instance.HideToolTip();
+            //ToolTipManager.instance.HideToolTip();
+            GameObject targetTransform = targetObject.gameObject;
+            targetTransform.SetActive(false);
             CloseAllInteractions(); 
         }
     }
