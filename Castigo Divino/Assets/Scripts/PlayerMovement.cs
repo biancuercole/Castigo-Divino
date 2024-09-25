@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = gm.lastCheckpoint;
         } else
         {
-            transform.position = new Vector2(525, -170); 
+            transform.position = new Vector2(1200, -740); 
             Debug.Log("gm nulo");
         }
 
@@ -248,6 +248,7 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Activando jefe");
             if (boss != null)
             {
+                GameEvents.ClosedDoor();
                 boss.OnActive();
                 audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             }
