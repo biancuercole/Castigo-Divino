@@ -42,7 +42,7 @@ public class Manual : MonoBehaviour
         Time.timeScale = 0f;
         manualPanel.SetActive(true);
         rotation.canShoot = false;
-        showPage();
+        showPage(pageIndex);
     }
 
     public void Hide()
@@ -55,7 +55,7 @@ public class Manual : MonoBehaviour
         rotation.canShoot = true;
     }
 
-    private void showPage()
+    public void showPage(int pageIndex)
     {
         manualText.text = string.Empty;
         foreach (char ch in manualLines[pageIndex])
@@ -64,7 +64,7 @@ public class Manual : MonoBehaviour
         }
     }
 
-    public void NextPage()
+    /*public void NextPage(int pageIndex)
     {
         pageIndex++;
         if(pageIndex < manualLines.Length)
@@ -75,9 +75,9 @@ public class Manual : MonoBehaviour
             pageIndex = 0;
             showPage();
         }
-    }
+    }*/
 
-    public void PreviousPage()
+    /*public void PreviousPage()
     {
         pageIndex--;
         if(pageIndex >= 0)
@@ -88,5 +88,5 @@ public class Manual : MonoBehaviour
             pageIndex = 0;
             showPage();
         }
-    }
+    }*/
 }
