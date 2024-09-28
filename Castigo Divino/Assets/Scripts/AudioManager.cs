@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] public AudioSource musicSource;
     [SerializeField] public AudioSource soundSource;
-
+    [SerializeField] public SliderVolume sliderVolume;
   
     [Header("Music")]
     public AudioClip pacifistZoneMusic;
@@ -15,7 +15,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip bossMusic;
     public AudioClip ambientSound;
     public AudioClip menuMusic;
-   
+
+    [Header("Dinamic Music")]
+    public AudioClip battleMusic;
+    public AudioClip quietMusic;
 
     [Header("Player SX")]
     public AudioClip fireShot;
@@ -61,7 +64,8 @@ public class AudioManager : MonoBehaviour
     private void SetBackgroundMusic()
     {
        string sceneName = SceneManager.GetActiveScene().name;
-
+        SetMusicVolume(sliderVolume.musicVolume);
+        SetSoundVolume(sliderVolume.soundVolume);
         switch (sceneName)
         {
             case "Menu":
@@ -91,7 +95,8 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeBackgroundMusic(AudioClip newMusic)
     {
-        StartCoroutine(FadeOutAndChangeMusic(newMusic, 1f)); 
+        SetMusicVolume(sliderVolume.musicVolume);
+        StartCoroutine(FadeOutAndChangeMusic(newMusic, 1f));
     }
 
     public void FadeOutMusic(float duration)
@@ -156,7 +161,7 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        audioSource.volume = 0.3f;  // Asegurarse de que el volumen sea 1 al final
+        SetMusicVolume(sliderVolume.musicVolume);  // Asegurarse de que el volumen sea 1 al final
     }
 }
 

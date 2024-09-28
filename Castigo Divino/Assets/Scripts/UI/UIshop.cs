@@ -50,7 +50,7 @@ public class UIshop : MonoBehaviour
 
         Button button = shopItemTransform.GetComponent<Button>();
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => TryBuyItem(itemCost, powerUp, button, shopItemTransform));
+        button.onClick.AddListener(() => TryBuyItem(itemCost, powerUp, button, shopItemTransform, itemName));
 
         if (managerData.IsItemBought(itemName))
         {
@@ -59,7 +59,7 @@ public class UIshop : MonoBehaviour
         }
     }
 
-    private void TryBuyItem(int itemCost, PowerUpEffect powerUp, Button button, Transform shopItemTransform)
+    private void TryBuyItem(int itemCost, PowerUpEffect powerUp, Button button, Transform shopItemTransform, string itemName)
     {
         if (pointsUI.SpendPoints(itemCost))
         {
@@ -68,7 +68,7 @@ public class UIshop : MonoBehaviour
                 // Verifica si el PowerUp es para el arma o para el jugador
                 if (System.Array.Exists(weaponUpgradeItems, item => item.GetComponent<PowerUp>().powerUpEffect == powerUp))
                 {
-                    EnableWeaponUpgradeItem(powerUp);
+                    EnableWeaponUpgradeItem(powerUp, itemName);
                 }
                 else
                 {
@@ -101,14 +101,15 @@ public class UIshop : MonoBehaviour
         }
     }
     
-    private void EnableWeaponUpgradeItem(PowerUpEffect powerUp)
+    private void EnableWeaponUpgradeItem(PowerUpEffect powerUp, string itemName)
     {
         foreach (GameObject item in weaponUpgradeItems)
         {
             if (item.GetComponent<PowerUp>().powerUpEffect == powerUp)
             {
                 item.SetActive(true);
-                managerData.IsBought();
+                managerData.IsBought(itemName);
+                Debug.Log("Item en UIshop " + itemName);
             }
         }
     }

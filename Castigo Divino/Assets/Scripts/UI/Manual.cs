@@ -4,17 +4,19 @@ using UnityEngine;
 using TMPro;
 
 public class Manual : MonoBehaviour
-{   
+{
     private bool isManualShowing;
     [SerializeField] private GameObject manualPanel;
     [SerializeField] private TMP_Text manualText;
     [SerializeField, TextArea(4, 6)] private string[] manualLines;
-    [SerializeField] private Rotation rotation; 
+    [SerializeField] private Rotation rotation;
     private int pageIndex;
+    [SerializeField] private GameObject map;
 
     void Start()
     {
         manualPanel.SetActive(false);
+        map.SetActive(false);
         isManualShowing = false;
         pageIndex = 0;
     }
@@ -24,7 +26,7 @@ public class Manual : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (isManualShowing) 
+            if (isManualShowing)
             {
                 Hide();
             }
@@ -47,12 +49,12 @@ public class Manual : MonoBehaviour
 
     public void Hide()
     {
-        pageIndex = 0;
         Debug.Log("Reanudar");
         isManualShowing = false;
         Time.timeScale = 1f;
         manualPanel.SetActive(false);
         rotation.canShoot = true;
+        map.SetActive(false);
     }
 
     public void showPage(int pageIndex)
@@ -62,6 +64,14 @@ public class Manual : MonoBehaviour
         {
             manualText.text += ch;
         }
+        map.SetActive(false);
+    }
+
+    public void showMap()
+    {
+        Debug.Log("Llamada a showMap() con índice: " + pageIndex);
+        map.SetActive(true);
+        Debug.Log("mapa abierto en indice 3");
     }
 
     /*public void NextPage(int pageIndex)

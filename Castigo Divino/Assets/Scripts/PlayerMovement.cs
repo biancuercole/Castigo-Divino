@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     private bool onStairs = false;
     private int originalSortingOrder = 2;
     private BoxCollider2D playerCollider;
+    private enum StairDirection { Right, Left }
+    private StairDirection currentStairDirection;
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -266,18 +268,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (other.gameObject.CompareTag("Stairs"))
+        if (other.gameObject.CompareTag("StairsLeft") || other.gameObject.CompareTag("StairsRight"))
         {
-            onStairs = true; // Activa el modo escaleras
+            onStairs = true;
+            if (other.gameObject.CompareTag("StairsLeft"))
+            {
+                currentStairDirection = StairDirection.Left;
+            }
+            else 
+            {
+                currentStairDirection = StairDirection.Right;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Stairs"))
+        if (other.gameObject.CompareTag("StairsLeft") || other.gameObject.CompareTag("StairsRight"))
         {
-            onStairs = false; // Desactiva el modo escaleras
-            spriteRenderer.sortingOrder = originalSortingOrder; // Restablece el sortingOrder original
+            onStairs = false; 
+            spriteRenderer.sortingOrder = originalSortingOrder; 
          //   playerCollider.enabled = true;
             playerRb.velocity = Vector2.zero;
             playerRb.bodyType = RigidbodyType2D.Dynamic;
@@ -288,15 +298,35 @@ public class PlayerMovement : MonoBehaviour
     {
       //  playerCollider.enabled = false;
         playerRb.bodyType = RigidbodyType2D.Kinematic;
-        if (Input.GetKey(KeyCode.A)) // Mover a la derecha en la escalera
+
+        if (currentStairDirection == StairDirection.Left)
         {
-            transform.position += new Vector3(moveInput.x, stairHeightOffset, 0) * Time.deltaTime * speed;
-            spriteRenderer.sortingOrder = originalSortingOrder + stairSortingOrderAdjustment; // Ajusta el sortingOrder
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += new Vector3(moveInput.x, stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder + stairSortingOrderAdjustment;
+            }
+            else if (Input.GetKey(KeyCode.D)) // Mover a la izquierda en la escalera
+            {
+                transform.position += new Vector3(moveInput.x, -stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder - stairSortingOrderAdjustment;
+            }
+
         }
-        else if (Input.GetKey(KeyCode.D)) // Mover a la izquierda en la escalera
+        else if (currentStairDirection == StairDirection.Right) 
         {
-            transform.position += new Vector3(moveInput.x, -stairHeightOffset, 0) * Time.deltaTime * speed;
-            spriteRenderer.sortingOrder = originalSortingOrder - stairSortingOrderAdjustment; // Ajusta el sortingOrder
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += new Vector3(moveInput.x, stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder + stairSortingOrderAdjustment;
+            }
+            else if (Input.GetKey(KeyCode.A)) // Mover a la izquierda en la escalera
+            {
+                transform.position += new Vector3(moveInput.x, -stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder - stairSortingOrderAdjustment;
+            }
+
         }
+        
     }
 }

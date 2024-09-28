@@ -192,10 +192,18 @@ public class ManagerData : MonoBehaviour
     }
 
     // Tienda 
-    public void IsBought()
+    public void IsBought(string itemName)
     {
-        isSpeedBulletBought = true;
-        isDamageBulletBought = true;
+        Debug.Log("Item en managerData " + itemName);
+
+        if (itemName == "Velocidad Bala")
+        {
+            isSpeedBulletBought = true;
+        }
+        else if (itemName == "Daño")
+        {
+            isDamageBulletBought = true;
+        }
     }
 
     public void MarkItemAsBought(string itemName)

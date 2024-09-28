@@ -71,7 +71,8 @@ public class Trigger : MonoBehaviour
             {
                 dialogue.didDialogueStart = true;
                 uiShop.Show();
-                ToolTipManager.instance.HideToolTip();
+             //   ToolTipManager.instance.HideToolTip();
+                targetObject.SetActive(false);
                 Debug.Log("Tienda abierta");
             }
             shopOpen = !shopOpen;
@@ -89,7 +90,8 @@ public class Trigger : MonoBehaviour
         else
         {
             item.Show();
-            ToolTipManager.instance.HideToolTip();
+          //  ToolTipManager.instance.HideToolTip();
+            targetObject.SetActive(false);
             Debug.Log("Gesti�n de mejoras abierta");
         }
         itemOpen = !itemOpen;
@@ -123,8 +125,8 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = true;
-            GameObject targetTransform = targetObject.gameObject;
-            targetTransform.SetActive(true);
+          //  GameObject targetTransform = targetObject.gameObject;
+            targetObject.SetActive(true);
 
             // Convertir las coordenadas de mundo a coordenadas de pantalla
             /*Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
@@ -140,8 +142,8 @@ public class Trigger : MonoBehaviour
         {
             playerInRange = false;
             //ToolTipManager.instance.HideToolTip();
-            GameObject targetTransform = targetObject.gameObject;
-            targetTransform.SetActive(false);
+           // GameObject targetTransform = targetObject.gameObject;
+            targetObject.SetActive(false);
             CloseAllInteractions(); 
         }
     }
