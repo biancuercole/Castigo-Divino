@@ -10,7 +10,7 @@ public class Trigger : MonoBehaviour
     [SerializeField] private Entrances entrances;
     [SerializeField] private Portals portals;
     [SerializeField] private Dialogue dialogue;
-    [SerializeField] private GameObject targetObject;
+    [SerializeField] public GameObject targetObject;
     public string message;
     public ManagerData managerData;
     public HeartsUI heartsUI;

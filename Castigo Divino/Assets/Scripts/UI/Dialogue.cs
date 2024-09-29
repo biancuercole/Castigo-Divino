@@ -36,6 +36,7 @@ public class Dialogue : MonoBehaviour
 
     private void StartDialogue()
     {
+        trigger.targetObject.SetActive(false);
         didDialogueStart = true;
         dialoguePanel.SetActive(true);
         if(this.gameObject.CompareTag("altarVida"))
