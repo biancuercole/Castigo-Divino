@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
     private Portals portals; 
-    private TransicionEscena transicion; 
+    [SerializeField] private TransicionEscena transicion; 
   
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        transicion = FindObjectOfType<TransicionEscena>();
+        //transicion = FindObjectOfType<TransicionEscena>();
         powerOfGod = FindObjectOfType<PowerOfGod>();
         portals = FindObjectOfType<Portals>();
         managerData = ManagerData.Instance;

@@ -40336,7 +40336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &918034918
 Animator:
   serializedVersion: 5
@@ -58691,10 +58691,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.45
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -69854,9 +69854,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1477722383}
   - component: {fileID: 1477722382}
+  - component: {fileID: 1477722384}
   m_Layer: 0
   m_Name: Volver
-  m_TagString: Retorno
+  m_TagString: Level3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69915,12 +69916,35 @@ Transform:
   m_GameObject: {fileID: 1477722381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1175.6, y: -759.4, z: -1.298712}
+  m_LocalPosition: {x: 1178.4824, y: -756.1347, z: -1.298712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1959398425}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1477722384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477722381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5bb5ed1a4001554297088b184d77b9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiShop: {fileID: 0}
+  item: {fileID: 0}
+  entrances: {fileID: 1539106575}
+  portals: {fileID: 1539106571}
+  dialogue: {fileID: 0}
+  targetObject: {fileID: 1502648661}
+  message: "Presionar E para ir a la zona pac\xEDfica"
+  managerData: {fileID: 1362526664}
+  heartsUI: {fileID: 1451445120}
+  dialogueStartTrigger: 0
+  interactions: 0
 --- !u!1 &1493307789
 GameObject:
   m_ObjectHideFlags: 3
@@ -74709,6 +74733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   boss: {fileID: 2104630005}
+  transicion: {fileID: 918034919}
   dashSpeed: 50
   dashDuration: 0.3
   dashCoolDown: 1
