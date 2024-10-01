@@ -78,10 +78,10 @@ public class TripleShoot : MonoBehaviour
             StartCoroutine(Wait());
         }
 
-        if (smokeAnimator != null)
+        /*if (smokeAnimator != null)
         {
             smokeAnimator.SetFloat("Horizontal", agent.velocity.x);
-        }
+        }*/
     }
 
     IEnumerator Wait()

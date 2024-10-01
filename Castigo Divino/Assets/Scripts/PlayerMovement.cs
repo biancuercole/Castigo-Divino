@@ -245,6 +245,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.CompareTag("entrada2"))
         {
+            enemyLevel.startMinions = true; 
             GameEvents.ClosedDoor();
         }
         if (other.gameObject.CompareTag("entradaBoss"))
