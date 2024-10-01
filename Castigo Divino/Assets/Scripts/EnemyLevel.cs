@@ -13,7 +13,7 @@ public class EnemyLevel : MonoBehaviour
     
     private bool hasStartedSpawning = false; // Control para evitar múltiples inicios
     private int currentRound = 0;
-    private int defeatedEnemies = 0;
+    public int defeatedEnemies = 0;
 
     private void Awake()
     {

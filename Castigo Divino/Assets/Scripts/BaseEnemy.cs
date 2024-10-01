@@ -68,6 +68,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
         if (health <= 0 && !isDead)
         {
+
             isDead = true;
             HandleDeath();
         }
@@ -75,6 +76,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
     protected virtual void HandleDeath()
     {
+
         StartCoroutine(deathAnimation());
     }
 
@@ -92,10 +94,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     
         GetComponent<LootBag>().InstantiateLoot(transform.position);
         GameEvents.EnemyDefeated(); // Llama al m�todo de NextStage cuando el enemigo sea derrotado
-        if (SceneManager.GetActiveScene().name == "EnemyLevel")
-        {
-            enemyLevel.EnemyDefeated();
-        }
+        enemyLevel.EnemyDefeated();
         enemyCollider.enabled = false;
 
         Destroy(gameObject);
