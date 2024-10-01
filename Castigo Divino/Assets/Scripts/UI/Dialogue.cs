@@ -64,6 +64,7 @@ public class Dialogue : MonoBehaviour
           //  dialogueStart.SetActive(true);
             Time.timeScale = 1f;
             trigger.dialogueStartTrigger = true;
+            if(this.gameObject.CompareTag("Shop"))
             trigger.ToggleShop();
             ToolTipManager.instance.HideToolTip();
         }

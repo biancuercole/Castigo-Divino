@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float speed;
     private GameMaster gm;
+    private EnemyLevel enemyLevel;
 
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
@@ -60,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        enemyLevel = FindObjectOfType<EnemyLevel>();
         //transicion = FindObjectOfType<TransicionEscena>();
         powerOfGod = FindObjectOfType<PowerOfGod>();
         portals = FindObjectOfType<Portals>();
@@ -81,13 +83,13 @@ public class PlayerMovement : MonoBehaviour
             transform.position = gm.lastCheckpoint;
         } else
         {
-            transform.position = new Vector2(1200, -740); 
+            transform.position = new Vector2(2400, -1125); 
             Debug.Log("gm nulo");
         }
 
         if (sceneName == "PacificZone" || sceneName == "EnemyLevel")
         {
-            transform.position = new Vector2(525, -170); 
+            transform.position = new Vector2(520, -180); 
             Debug.Log("ZONA PACIFICATION");
         }
 
