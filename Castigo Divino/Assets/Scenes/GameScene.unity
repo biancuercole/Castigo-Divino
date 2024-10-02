@@ -1932,7 +1932,7 @@ GameObject:
   - component: {fileID: 153182138}
   - component: {fileID: 153182137}
   m_Layer: 0
-  m_Name: Triple3 (1)
+  m_Name: Triple5
   m_TagString: Humo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2173,7 +2173,7 @@ GameObject:
   - component: {fileID: 157925758}
   - component: {fileID: 157925757}
   m_Layer: 0
-  m_Name: Altar1 (2)
+  m_Name: Fuego9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2226,7 +2226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38d30d628d8d19449644736d23d799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proyectilePrefab: {fileID: 6074909217324962438, guid: 459996db4104e764f8dc77f5e0e662c3, type: 3}
+  proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
   shootDistance: 30
   WayPoints:
@@ -2539,7 +2539,7 @@ GameObject:
   - component: {fileID: 173027243}
   - component: {fileID: 173027242}
   m_Layer: 0
-  m_Name: Triple5 (1)
+  m_Name: Triple4
   m_TagString: Humo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4361,7 +4361,7 @@ Transform:
   m_GameObject: {fileID: 240431690}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -492.81482, y: -849.9684, z: 0}
+  m_LocalPosition: {x: 1868.7, y: -976.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5266,7 +5266,7 @@ GameObject:
   - component: {fileID: 303215880}
   - component: {fileID: 303215879}
   m_Layer: 0
-  m_Name: Tronco1 (1)
+  m_Name: Tronco7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11149,6 +11149,7 @@ Transform:
   m_Children:
   - {fileID: 159963601}
   - {fileID: 1045216745}
+  - {fileID: 531418568}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &361694191
@@ -11694,7 +11695,7 @@ GameObject:
   - component: {fileID: 396804378}
   - component: {fileID: 396804377}
   m_Layer: 0
-  m_Name: Triple3 (3)
+  m_Name: Triple6
   m_TagString: Humo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11966,7 +11967,7 @@ GameObject:
   - component: {fileID: 415299715}
   - component: {fileID: 415299714}
   m_Layer: 0
-  m_Name: Altar1 (1)
+  m_Name: Fuego8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12019,7 +12020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38d30d628d8d19449644736d23d799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proyectilePrefab: {fileID: 6074909217324962438, guid: 459996db4104e764f8dc77f5e0e662c3, type: 3}
+  proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
   player: {fileID: 1957976470}
   shootDistance: 30
   WayPoints:
@@ -12370,7 +12371,7 @@ GameObject:
   - component: {fileID: 438828886}
   - component: {fileID: 438828885}
   m_Layer: 7
-  m_Name: Maquina7 (1)
+  m_Name: Maquina8
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12518,7 +12519,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
-  - {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &438828888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12858,6 +12860,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 219277005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &531418567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 531418568}
+  - component: {fileID: 531418569}
+  m_Layer: 8
+  m_Name: ShopMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &531418568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531418567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 360757342}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &531418569
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531418567}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 941d8dce377af2a4b8fbea3c9dce10f4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 34.2, y: 28.2}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &566254237
 GameObject:
   m_ObjectHideFlags: 0
@@ -13105,7 +13191,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
-  - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &570377129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13838,7 +13925,7 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
   - {fileID: 11400000, guid: 53ef7fecdf453284ea1458ee82677073, type: 2}
-  - {fileID: 11400000, guid: 573cf17a82ba6914e8af9dd49f2247ef, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &598964384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17227,7 +17314,7 @@ Transform:
   m_GameObject: {fileID: 619623013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -537.01483, y: -870.56836, z: 0}
+  m_LocalPosition: {x: 1874.3, y: -1043.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17741,7 +17828,7 @@ GameObject:
   - component: {fileID: 651426720}
   - component: {fileID: 651426721}
   m_Layer: 0
-  m_Name: Stair1 (3)
+  m_Name: Stair4
   m_TagString: StairsRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17955,7 +18042,7 @@ GameObject:
   - component: {fileID: 672207728}
   - component: {fileID: 672207729}
   m_Layer: 0
-  m_Name: Stair1 (1)
+  m_Name: Stair2
   m_TagString: StairsLeft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18952,7 +19039,7 @@ GameObject:
   - component: {fileID: 802760777}
   - component: {fileID: 802760776}
   m_Layer: 7
-  m_Name: Maquina7 (3)
+  m_Name: Maquina9
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19100,6 +19187,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &802760779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19778,29 +19867,29 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 55028962}
-  - {fileID: 303215878}
-  - {fileID: 973979924}
   - {fileID: 290644114}
   - {fileID: 1103950962}
   - {fileID: 929374232}
   - {fileID: 231483930}
   - {fileID: 88614876}
+  - {fileID: 303215878}
+  - {fileID: 973979924}
   - {fileID: 119936059}
   - {fileID: 981309044}
-  - {fileID: 932008834}
-  - {fileID: 1270955723}
   - {fileID: 1790807787}
   - {fileID: 338353982}
   - {fileID: 1792170943}
-  - {fileID: 776930644}
+  - {fileID: 932008834}
+  - {fileID: 1270955723}
   - {fileID: 415299713}
   - {fileID: 157925756}
+  - {fileID: 776930644}
   - {fileID: 377073718}
   - {fileID: 1142098976}
   - {fileID: 627769625}
   - {fileID: 975187689}
-  - {fileID: 173027241}
   - {fileID: 806763260}
+  - {fileID: 173027241}
   - {fileID: 153182136}
   - {fileID: 396804376}
   - {fileID: 1720910494}
@@ -19902,7 +19991,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819705536}
   m_Enabled: 1
-  m_Alpha: 0.7
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -25483,6 +25572,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &869005868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26074,7 +26165,7 @@ GameObject:
   - component: {fileID: 929374234}
   - component: {fileID: 929374233}
   m_Layer: 0
-  m_Name: Tronco3 (1)
+  m_Name: Tronco4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26347,7 +26438,7 @@ GameObject:
   - component: {fileID: 932008836}
   - component: {fileID: 932008835}
   m_Layer: 0
-  m_Name: Fuego2 (1)
+  m_Name: Fuego6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27132,7 +27223,7 @@ GameObject:
   - component: {fileID: 973979926}
   - component: {fileID: 973979925}
   m_Layer: 0
-  m_Name: Tronco1 (2)
+  m_Name: Tronco8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27405,7 +27496,7 @@ GameObject:
   - component: {fileID: 975187691}
   - component: {fileID: 975187692}
   m_Layer: 0
-  m_Name: Triple5
+  m_Name: Triple2
   m_TagString: Humo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28261,7 +28352,7 @@ GameObject:
   - component: {fileID: 1039076144}
   - component: {fileID: 1039076143}
   m_Layer: 7
-  m_Name: Maquina7 (4)
+  m_Name: Maquina10
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29935,7 +30026,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.24, y: 3.46, z: 0}
-  m_LocalScale: {x: 1.3462, y: 1.4276, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1957976470}
@@ -31170,6 +31261,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &1239471371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31313,7 +31406,7 @@ GameObject:
   - component: {fileID: 1270955725}
   - component: {fileID: 1270955724}
   m_Layer: 0
-  m_Name: Fuego2 (2)
+  m_Name: Fuego7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31551,7 +31644,7 @@ GameObject:
   - component: {fileID: 1285017854}
   - component: {fileID: 1285017855}
   m_Layer: 0
-  m_Name: Triple4
+  m_Name: Triple8
   m_TagString: Humo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31800,12 +31893,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288055923}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2909, y: -1481, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2104630007}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1288055925
 SpriteRenderer:
@@ -32516,7 +32609,7 @@ GameObject:
   - component: {fileID: 1369368455}
   - component: {fileID: 1369368454}
   m_Layer: 7
-  m_Name: Maquina7 (5)
+  m_Name: Maquina11
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32664,6 +32757,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &1369368457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32858,7 +32953,7 @@ GameObject:
   - component: {fileID: 1379639419}
   - component: {fileID: 1379639418}
   m_Layer: 7
-  m_Name: Maquina7 (2)
+  m_Name: Maquina12
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38407,7 +38502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   barImage: {fileID: 1007933800}
-  maxBar: 6
+  maxBar: 70
   currentPower: 0
   flickerTime: 0.2
 --- !u!114 &1436265087
@@ -43652,6 +43747,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &1451483251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43950,7 +44047,7 @@ GameObject:
   - component: {fileID: 1452183881}
   - component: {fileID: 1452183880}
   - component: {fileID: 1452183879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Limites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44082,7 +44179,7 @@ GameObject:
   - component: {fileID: 1470387257}
   - component: {fileID: 1470387256}
   - component: {fileID: 1470387255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Arbolesl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70311,7 +70408,7 @@ Transform:
   m_GameObject: {fileID: 1498537965}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -493.41483, y: -909.66833, z: 0}
+  m_LocalPosition: {x: 1834.4, y: -996.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72302,7 +72399,7 @@ GameObject:
   - component: {fileID: 1720910496}
   - component: {fileID: 1720910495}
   m_Layer: 0
-  m_Name: Triple3 (2)
+  m_Name: Triple7
   m_TagString: Humo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73482,6 +73579,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &1781800494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75424,7 +75523,7 @@ GameObject:
   - component: {fileID: 1907009894}
   - component: {fileID: 1907009895}
   m_Layer: 0
-  m_Name: Stair1 (2)
+  m_Name: Stair3
   m_TagString: StairsRight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75501,7 +75600,7 @@ GameObject:
   - component: {fileID: 1908468257}
   - component: {fileID: 1908468256}
   - component: {fileID: 1908468255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SueloTemporal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76483,7 +76582,7 @@ Transform:
   m_GameObject: {fileID: 2032026379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -449.81482, y: -875.86835, z: 0}
+  m_LocalPosition: {x: 1928.9, y: -999.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76921,12 +77020,12 @@ MonoBehaviour:
   triplePrefab: {fileID: 1396409096964085408, guid: dd99c716f092316488e18efa58701e94, type: 3}
   bulletSpawnPoint: {fileID: 1583882559}
   player: {fileID: 1957976470}
-  chargeSpeed: 30
+  chargeSpeed: 25
   barTimer: 10
   WayPoints:
-  - {fileID: 1847172528}
-  - {fileID: 1003647230}
-  - {fileID: 603275814}
+  - {fileID: 240431691}
+  - {fileID: 619623014}
+  - {fileID: 1498537966}
   currentWaypoint: 0
   waitTime: 0
   damage: 1
@@ -76996,7 +77095,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1583882559}
-  - {fileID: 1288055924}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &2104630008
@@ -77077,7 +77175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 547ee9a6aa1377e4da659d65c66d2356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 75
   healthBar: {fileID: 1620495930}
   damageParticle: {fileID: 6260408810082125145, guid: fcfffe73e2159004b932369729597ea3, type: 3}
   explosionParticle: {fileID: 8380370016064689544, guid: ff67a07bf826d434aa155e31449c5cf8, type: 3}
@@ -77267,6 +77365,8 @@ MonoBehaviour:
   droppedItemPrefab: {fileID: 2151628922429136476, guid: 699a328f92ea3f3498cad2b78fadcfc5, type: 3}
   lootList:
   - {fileID: 11400000, guid: fe9c44f8de1966f46b0e310bccb17528, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
+  - {fileID: 11400000, guid: 53ef25de86ed309409140ac13d30b672, type: 2}
 --- !u!114 &2129534914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77604,7 +77704,7 @@ GameObject:
   - component: {fileID: 2142118748}
   - component: {fileID: 2142118749}
   m_Layer: 7
-  m_Name: Maquina8
+  m_Name: Maquina13
   m_TagString: Machine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77948,6 +78048,7 @@ SceneRoots:
   - {fileID: 858790497}
   - {fileID: 232474838}
   - {fileID: 2104630007}
+  - {fileID: 1288055924}
   - {fileID: 1188332409}
   - {fileID: 1362526665}
   - {fileID: 876873406}

@@ -69,7 +69,7 @@ public class AudioManager : MonoBehaviour
         switch (sceneName)
         {
             case "Menu":
-                StartCoroutine(FadeIn(musicSource, 1));
+                StartCoroutine(FadeIn(musicSource, 3));
                 break;
            case "GameScene":
                 ChangeBackgroundMusic(gameMusic);
@@ -96,7 +96,7 @@ public class AudioManager : MonoBehaviour
     public void ChangeBackgroundMusic(AudioClip newMusic)
     {
         SetMusicVolume(sliderVolume.musicVolume);
-        StartCoroutine(FadeOutAndChangeMusic(newMusic, 1f));
+        StartCoroutine(FadeOutAndChangeMusic(newMusic, 2f));
     }
 
     public void FadeOutMusic(float duration)

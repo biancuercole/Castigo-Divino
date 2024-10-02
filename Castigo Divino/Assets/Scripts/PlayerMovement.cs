@@ -293,14 +293,16 @@ public class PlayerMovement : MonoBehaviour
             spriteRenderer.sortingOrder = originalSortingOrder; 
          //   playerCollider.enabled = true;
             playerRb.velocity = Vector2.zero;
-            playerRb.bodyType = RigidbodyType2D.Dynamic;
+            //   playerRb.bodyType = RigidbodyType2D.Dynamic;
+            canDash = true;
         }
     }
 
     private void OnStairs()
     {
-      //  playerCollider.enabled = false;
-        playerRb.bodyType = RigidbodyType2D.Kinematic;
+        //  playerCollider.enabled = false;
+        //  playerRb.bodyType = RigidbodyType2D.Kinematic;
+        canDash = false;
 
         if (currentStairDirection == StairDirection.Left)
         {

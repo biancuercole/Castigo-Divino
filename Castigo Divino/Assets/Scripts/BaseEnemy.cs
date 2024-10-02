@@ -101,7 +101,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         // healthBar.HideBar(); 
     }
 
-    //Manejo de da�o del boss
+    //Todo lo de abajo es el manejo de daño y muerte del boss
     private IEnumerator GetDamageBoss(float damage)
     {
         healthBar.ShowBar();
