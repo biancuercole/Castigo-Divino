@@ -23,7 +23,7 @@ public class MenuPause : MonoBehaviour
         managerData = FindObjectOfType<ManagerData>();
         if (managerData == null)
         {
-            Debug.LogError("No se encontr� una instancia de ManagerData en la escena.");
+            //Debug.LogError("No se encontr� una instancia de ManagerData en la escena.");
         }
 
         toggle.isOn = false;
@@ -46,7 +46,7 @@ public class MenuPause : MonoBehaviour
 
     public void Pause()
     {
-        Debug.Log("Pausa");
+        //Debug.Log("Pausa");
         gamePaused = true;
         Time.timeScale = 0f;
         menuPause.SetActive(true);
@@ -55,7 +55,7 @@ public class MenuPause : MonoBehaviour
 
     public void Resume()
     {
-        Debug.Log("Reanudar");
+        //Debug.Log("Reanudar");
         gamePaused = false;
         Time.timeScale = 1f;
         menuPause.SetActive(false);
@@ -66,7 +66,7 @@ public class MenuPause : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = 1f;
-        Debug.Log("Salir al menu");
+        //Debug.Log("Salir al menu");
         managerData.ResetGameData();
         SceneManager.LoadScene("Menu");
         gm.lastCheckpoint = Vector2.zero;
@@ -75,7 +75,7 @@ public class MenuPause : MonoBehaviour
     public void ResetGame()
     {
         Time.timeScale = 1f;
-        Debug.Log("reset");
+        //Debug.Log("reset");
         managerData.ResetGameData();
         SceneManager.LoadScene("PacificZone");
         gm.lastCheckpoint = Vector2.zero;
@@ -90,13 +90,13 @@ public class MenuPause : MonoBehaviour
           
             player.esInmune = true;
             toggle.isOn = true;
-            Debug.Log("Inmortalidad activada");
+            //Debug.Log("Inmortalidad activada");
         }
         else
         {
             player.esInmune = false;
             toggle.isOn = false;
-            Debug.Log("Inmortalidad desactivada");
+            //Debug.Log("Inmortalidad desactivada");
         }
     }
 

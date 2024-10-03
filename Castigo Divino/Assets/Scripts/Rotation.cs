@@ -101,14 +101,14 @@ public class Rotation : MonoBehaviour
 
                 Bullets bulletComponent = bullet.GetComponent<Bullets>();
                 bulletComponent.bulletType = selectedBulletType;
-                Debug.Log($"Shooting bullet of type: {bulletComponent.bulletType}"); // Debugging
+                //Debug.Log($"Shooting bullet of type: {bulletComponent.bulletType}"); // Debugging
                 bulletComponent.LaunchBullet(direction);
 
                 Invoke("ResetShootingAnimation", shootAnimationDuration);
             }
             else
             {
-                Debug.LogWarning("No bullet available to shoot");
+                //Debug.LogWarning("No bullet available to shoot");
             }
     }
 
@@ -130,12 +130,12 @@ public class Rotation : MonoBehaviour
                 Vector2 adjustedDirection = Quaternion.Euler(0, 0, angleOffsets[i]) * direction;
                 Bullets bulletComponent = bullet.GetComponent<Bullets>();
                 bulletComponent.bulletType = selectedBulletType;
-                Debug.Log($"Shooting bullet of type: {bulletComponent.bulletType}");
+                //Debug.Log($"Shooting bullet of type: {bulletComponent.bulletType}");
                 bullet.GetComponent<Bullets>().LaunchBullet(adjustedDirection);
             }
             else
             {
-                Debug.LogWarning("No bullet available to shoot");
+                //Debug.LogWarning("No bullet available to shoot");
             }
         }
 

@@ -4,73 +4,63 @@ using UnityEngine;
 
 public class EnemyLevel : MonoBehaviour
 {
-    [SerializeField] private Transform[] points; 
-    [SerializeField] private GameObject[] enemies;
-    [SerializeField] private int totalRounds = 3; 
-    //[SerializeField] private Portals portal;
-    private AudioManager audioManager;
-    public bool startMinions = false;
-    
-    private bool hasStartedSpawning = false; // Control para evitar múltiples inicios
-    private int currentRound = 0;
-    public int defeatedEnemies = 0;
+    public GameObject[] enemyPrefabs; // Array para los distintos prefabs de enemigos
+    public Transform[] spawnPoints; 
+    public bool comenzarOleada = false; 
+    public bool abrirPuerta = false; 
+    private int enemigosRestantes; 
+    public int contadorOleadas = 0; // Contador de oleadas
+    public int maxOleadas = 2; // Número máximo de oleadas (en este caso, 2)
 
-    private void Awake()
+    void Update()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
-
-    private void Update()
-    {
-        // Iniciar la generación de enemigos solo si startMinions es true y no ha comenzado ya
-        if (startMinions && !hasStartedSpawning)
+        if (comenzarOleada && enemigosRestantes <= 0 && contadorOleadas < maxOleadas)
         {
-            hasStartedSpawning = true; // Evitar que se vuelva a llamar varias veces
-            StartCoroutine(SpawnEnemies());
+            StartCoroutine(GenerarOleada());
         }
     }
 
-    private IEnumerator SpawnEnemies()
+    IEnumerator GenerarOleada()
     {
-        while (currentRound < totalRounds)
+        enemigosRestantes = spawnPoints.Length;
+        contadorOleadas++; // Incrementa el contador de oleadas
+
+        for (int i = 0; i < spawnPoints.Length; i++)
         {
-            defeatedEnemies = 0; // Reiniciar el contador de enemigos derrotados al comenzar una nueva ronda
+            // Seleccionar un prefab aleatorio del array de enemyPrefabs
+            GameObject enemigoAleatorio = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 
-            // Esperar antes de que empiece la siguiente ronda
-            yield return new WaitForSeconds(2f); // Puede ajustar este tiempo según prefieras
-
-            // Generar enemigos en los puntos correspondientes
-            for (int i = 0; i < points.Length; i++)
-            {
-                int numEnemy = Random.Range(0, enemies.Length);
-                Instantiate(enemies[numEnemy], points[i].position, Quaternion.identity);
-            }
-
-            // Esperar hasta que todos los enemigos de la ronda sean derrotados
-            while (defeatedEnemies < points.Length)
-            {
-                yield return null; // Espera en cada frame hasta que los enemigos sean derrotados
-            }
-
-            currentRound++;
-            Debug.Log("Ronda " + currentRound + " completada");
+            // Instanciar el enemigo en el punto de spawn correspondiente
+            Instantiate(enemigoAleatorio, spawnPoints[i].position, spawnPoints[i].rotation);
+            yield return new WaitForSeconds(0.2f);
         }
 
-        // Cuando todas las rondas terminan, invocamos el evento de rondas completadas
-        GameEvents.AllRoundsCompleted();
-
-        // Cambiar la música o activar el portal cuando todas las rondas terminen
-        audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
-        yield return new WaitForSecondsRealtime(2f);
-        audioManager.playSound(audioManager.portalSound);
-
-        // Destruir el objeto que controla la generación de enemigos al final
-        Destroy(gameObject);
+        // Espera 2 segundos antes de permitir que otra oleada comience
+        yield return new WaitForSeconds(2f);
     }
 
-    public void EnemyDefeated()
+    public void EnemigoEliminado()
     {
-        defeatedEnemies++;
-        Debug.Log("Enemigos derrotados " + defeatedEnemies);
+        if (comenzarOleada && enemigosRestantes > 0)
+        {
+            enemigosRestantes--;
+
+            if (enemigosRestantes <= 0 && contadorOleadas < maxOleadas)
+            {
+                // Abre la puerta solo si aún no se ha hecho
+                if (!abrirPuerta)
+                {
+                    abrirPuerta = true;
+                    Debug.Log("Puerta abierta");
+                }
+
+                comenzarOleada = true; // Permite que la siguiente oleada comience
+            }
+            else if (enemigosRestantes <= 0 && contadorOleadas >= maxOleadas)
+            {
+                comenzarOleada = false; // No permitir más oleadas después de la última
+                Debug.Log("Se completaron todas las oleadas.");
+            }
+        }
     }
 }

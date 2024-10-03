@@ -36,7 +36,7 @@ public class ShootAI : MonoBehaviour
     {
         if (agent == null || WayPoints == null || player == null)
         {
-            Debug.LogError("One or more required components or references are not assigned.");
+            //Debug.LogError("One or more required components or references are not assigned.");
             return;
         }
 

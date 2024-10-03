@@ -71,26 +71,26 @@ public class ToolTipManager : MonoBehaviour
         // Verificar si el canvas es Screen Space - Overlay
         if (canvasRectTransform.GetComponentInParent<Canvas>().renderMode == RenderMode.ScreenSpaceOverlay)
         {
-            // Si el Canvas está en Screen Space - Overlay, usa las coordenadas de pantalla directamente
+            // Si el Canvas estï¿½ en Screen Space - Overlay, usa las coordenadas de pantalla directamente
             transform.position = screenPosition;
         }
         else
         {
-            // Si el Canvas está en Screen Space - Camera o World Space, convierte las coordenadas
+            // Si el Canvas estï¿½ en Screen Space - Camera o World Space, convierte las coordenadas
             Vector2 localPosition;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 canvasRectTransform,
                 screenPosition,
-                Camera.main,  // La cámara utilizada para la conversión
+                Camera.main,  // La cï¿½mara utilizada para la conversiï¿½n
                 out localPosition
             );
 
-            // Establecer la posición local dentro del RectTransform
+            // Establecer la posiciï¿½n local dentro del RectTransform
             GetComponent<RectTransform>().anchoredPosition = localPosition;
         }
 
         isItemTooltipActive = true;
-        Debug.Log("ToolTipShowManager");
+        //.Log("ToolTipShowManager");
     
 }
     public void HideToolTip()

@@ -28,7 +28,7 @@ public class Item
     {
         if (UIassets.i == null)
         {
-            Debug.LogError("UIassets instance is null. Check if the prefab is correctly loaded.");
+            //Debug.LogError("UIassets instance is null. Check if the prefab is correctly loaded.");
             return null;  // Retorna null o un sprite por defecto
         }
 

@@ -15,7 +15,7 @@ public class UIassets : MonoBehaviour
                 GameObject uiAssetsPrefab = Resources.Load("UIassets") as GameObject;
                 if (uiAssetsPrefab == null)
                 {
-                    Debug.LogError("UIassets prefab not found in Resources.");
+                    //Debug.LogError("UIassets prefab not found in Resources.");
                 }
                 else
                 {

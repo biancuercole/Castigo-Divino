@@ -15,8 +15,8 @@ public class BBspeed : PowerUpEffect
         managerData = FindObjectOfType<ManagerData>();
         if (managerData != null)
         {
-            managerData.AddSpeedBullet(amount - managerData.CurrentSpeedBonus); // Ajustar la velocidad según el nuevo bono
-            Debug.Log("Damage Bonus " + managerData.CurrentSpeedBonus + "Amount " + amount);
+            managerData.AddSpeedBullet(amount - managerData.CurrentSpeedBonus); // Ajustar la velocidad segï¿½n el nuevo bono
+            //Log("Damage Bonus " + managerData.CurrentSpeedBonus + "Amount " + amount);
         }
         if (bulletPool != null)
         {
@@ -31,7 +31,7 @@ public class BBspeed : PowerUpEffect
             }
         }
         managerData.CurrentSpeedBonus = amount; // Guardar el bono actual
-        Debug.Log("CurrentSpeedBonuts " + managerData.CurrentSpeedBonus);
+        //Debug.Log("CurrentSpeedBonuts " + managerData.CurrentSpeedBonus);
     }
 
     public override void Remove(GameObject target)
@@ -53,6 +53,6 @@ public class BBspeed : PowerUpEffect
             }
         }
         managerData.CurrentSpeedBonus = 0; // Restablecer el bono
-        Debug.Log("CurrentSpeedBonuts " + managerData.CurrentSpeedBonus);
+        //Debug.Log("CurrentSpeedBonuts " + managerData.CurrentSpeedBonus);
     }
 }

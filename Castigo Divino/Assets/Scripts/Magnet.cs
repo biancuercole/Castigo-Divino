@@ -38,17 +38,17 @@ public class Magnet : MonoBehaviour
 
         if (pointsUI == null)
         {
-            Debug.LogError("No se encontr� un componente PointsUI en la escena.");
+            //Debug.LogError("No se encontr� un componente PointsUI en la escena.");
         }
 
         if (playerHealth == null)
         {
-            Debug.LogError("No se encontr� un componente PlayerHealth en el jugador.");
+            //Debug.LogError("No se encontr� un componente PlayerHealth en el jugador.");
         }
 
         if (powerUpBar == null)
         {
-            Debug.LogError("No se encontro powerUpBar en la escena.");
+            //Debug.LogError("No se encontro powerUpBar en la escena.");
         }
 
         powerUpBar.ShowBar();
@@ -93,11 +93,11 @@ public class Magnet : MonoBehaviour
         }
         if (other.gameObject.CompareTag("heart"))
         {
-            Debug.Log("Corazon");
+            //Debug.Log("Corazon");
             if (playerHealth != null)
             {
                 Destroy(other.gameObject);
-                Debug.Log("Recolectado: " + loot.lootName);
+                //Debug.Log("Recolectado: " + loot.lootName);
                 playerHealth.HealHealth(healAmount);
             }
         }

@@ -34,6 +34,6 @@ public class GameMaster : MonoBehaviour
     {
         lastCheckpoint = position;
        // checkpointCoins = coins;
-       Debug.Log("Checkpoint actualizado: " + lastCheckpoint + ", Monedas: " + checkpointCoins);
+       //Debug.Log("Checkpoint actualizado: " + lastCheckpoint + ", Monedas: " + checkpointCoins);
     }
 }

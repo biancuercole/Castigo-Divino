@@ -32,7 +32,7 @@ public class Portals : MonoBehaviour
 
         /* Desactiva el portal (incluye el collider y el renderer)
         gameObject.SetActive(false);*/
-        Debug.Log("Portal inactivo al inicio");
+        //Debug.Log("Portal inactivo al inicio");
     }
 
     public void EnablePortal()
@@ -45,7 +45,7 @@ public class Portals : MonoBehaviour
         portalCollider.enabled = true;
         spriteRenderer.sprite = openSprite;
         gameObject.layer = 3; // Cambia "3" por la capa que desees
-        Debug.Log("Portal activado y capa cambiada");
+        //Debug.Log("Portal activado y capa cambiada");
     }
 
    /* private void OnCollisionEnter2D(Collision2D collision)
@@ -62,7 +62,7 @@ public class Portals : MonoBehaviour
     public void ChangeScenesPortal()
     {
         transition.SiguienteNivel("PacificZone");
-        Debug.Log("Pasaron Datos");
+        //Debug.Log("Pasaron Datos");
         gm.lastCheckpoint = Vector2.zero;
     }
 }

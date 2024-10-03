@@ -39,7 +39,7 @@ public class Manual : MonoBehaviour
 
     public void Show()
     {
-        Debug.Log("Manual");
+        //.Log("Manual");
         isManualShowing = true;
         Time.timeScale = 0f;
         manualPanel.SetActive(true);
@@ -49,7 +49,7 @@ public class Manual : MonoBehaviour
 
     public void Hide()
     {
-        Debug.Log("Reanudar");
+        //Debug.Log("Reanudar");
         isManualShowing = false;
         Time.timeScale = 1f;
         manualPanel.SetActive(false);
@@ -69,9 +69,9 @@ public class Manual : MonoBehaviour
 
     public void showMap()
     {
-        Debug.Log("Llamada a showMap() con índice: " + pageIndex);
+        //Debug.Log("Llamada a showMap() con ï¿½ndice: " + pageIndex);
         map.SetActive(true);
-        Debug.Log("mapa abierto en indice 3");
+        //Debug.Log("mapa abierto en indice 3");
     }
 
     /*public void NextPage(int pageIndex)

@@ -63,7 +63,7 @@ public class ShrineHealth : MonoBehaviour
             StartCoroutine(DestroyShrineSequence());
         }
 
-        Debug.Log("Vida altar: " + health);
+        //Debug.Log("Vida altar: " + health);
         yield return null;
     }
 

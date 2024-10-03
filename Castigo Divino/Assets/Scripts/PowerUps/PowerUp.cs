@@ -9,7 +9,7 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        Debug.Log($"Applying power-up to {collision.gameObject.name}");
+        //Debug.Log($"Applying power-up to {collision.gameObject.name}");
         powerUpEffect.Apply(collision.gameObject);
         Destroy(gameObject);
         

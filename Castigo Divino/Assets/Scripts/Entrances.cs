@@ -53,12 +53,12 @@ public class Entrances : MonoBehaviour
             {
             audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
             transicion.SiguienteNivel("GameScene");
-                Debug.Log("GameScene");
+                //Debug.Log("GameScene");
             }
             else if (gameObject.CompareTag("Level2"))
             {
                 transicion.SiguienteNivel("EnemyLevel");
-                Debug.Log("EnemyLevel");
+                //Debug.Log("EnemyLevel");
             }     
     }
  /*   private void OnCollisionEnter2D(Collision2D collision)

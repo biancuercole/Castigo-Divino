@@ -67,11 +67,9 @@ using UnityEngine.SceneManagement;
             Destroy(gameObject);
             healthBar.HideBar();
             portal.EnablePortal();
-            Debug.Log("muerto");
             GetComponent<LootBag>().InstantiateLoot(transform.position);
         }
 
-        Debug.Log("Vida altar: " + health);
         yield return null;
     }
 

@@ -18,7 +18,7 @@ public class Checkpoints : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             gm.SetCheckpoint(transform.position, checkpointCoins);
-            Debug.Log("Checkpoint actualizado: " + gm.lastCheckpoint + ", Monedas: " + gm.checkpointCoins);
+            //Debug.Log("Checkpoint actualizado: " + gm.lastCheckpoint + ", Monedas: " + gm.checkpointCoins);
         }
     }
 }

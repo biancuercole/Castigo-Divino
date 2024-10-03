@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
-    private EnemyLevel enemyLevel;
+    //private EnemyLevel enemyLevel;
     [SerializeField] private float maxHealth = 10f;
     [SerializeField] private HealthBar healthBar;
     private float health;
@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
-        enemyLevel = FindObjectOfType<EnemyLevel>();
+        //enemyLevel = FindObjectOfType<EnemyLevel>();
         agent = GetComponent<NavMeshAgent>();
         health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -64,10 +64,10 @@ public class EnemyHealth : MonoBehaviour
             agent.isStopped = true;
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             GameEvents.EnemyDefeated(); // Llama al método de NextStage cuando el enemigo sea derrotado
-            if (SceneManager.GetActiveScene().name == "EnemyLevel")
+            /*if (SceneManager.GetActiveScene().name == "EnemyLevel")
             {
-                enemyLevel.EnemyDefeated();
-            }
+                //enemyLevel.EnemyDefeated();
+            }*/
 
             // Desactivar el Collider del enemigo
             enemyCollider.enabled = false;

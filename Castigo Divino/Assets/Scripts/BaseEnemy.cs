@@ -68,7 +68,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
         if (health <= 0 && !isDead)
         {
-
             isDead = true;
             HandleDeath();
         }
@@ -76,7 +75,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
     protected virtual void HandleDeath()
     {
-
         StartCoroutine(deathAnimation());
     }
 
@@ -94,7 +92,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     
         GetComponent<LootBag>().InstantiateLoot(transform.position);
         GameEvents.EnemyDefeated(); // Llama al m�todo de NextStage cuando el enemigo sea derrotado
-        enemyLevel.EnemyDefeated();
+        enemyLevel.EnemigoEliminado();
         enemyCollider.enabled = false;
 
         Destroy(gameObject);
@@ -128,13 +126,13 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             yield return new WaitForSecondsRealtime(1f);
             Destroy(gameObject);
             healthBar.HideBar();
-            Debug.Log("muerto");
+            //Debug.Log("muerto");
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             audioManager.playSound(audioManager.portalSound);
             portal.EnablePortal();
         }
 
-        Debug.Log("Vida JEFE " + health);
+        //Debug.Log("Vida JEFE " + health);
         yield return null;
     }
 

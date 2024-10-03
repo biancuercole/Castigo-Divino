@@ -18,7 +18,7 @@ public class PointsUI : MonoBehaviour
     {
         ManagerData.Instance.AddPoints(pointsNow);
         UpdatePointsUI();
-        Debug.Log("Puntos: " + ManagerData.Instance.points);
+        //.Log("Puntos: " + ManagerData.Instance.points);
     }
 
     public bool SpendPoints(int amount)

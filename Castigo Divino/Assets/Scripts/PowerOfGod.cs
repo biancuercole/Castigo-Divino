@@ -42,7 +42,7 @@ public class PowerOfGod : MonoBehaviour
         ManagerData.Instance.AddCurrentPower(Power);
         currentPower += Power;
         UpdatePowerUpBar(Power);
-        Debug.Log("currentPower = " + currentPower);
+        //Debug.Log("currentPower = " + currentPower);
     }
     public void UpdatePowerUpBar(float Power)
     {
@@ -51,7 +51,7 @@ public class PowerOfGod : MonoBehaviour
    
         currentPower = Mathf.Clamp(currentPower, 0, maxBar);
         barImage.fillAmount = currentPower / maxBar;
-        Debug.Log("Bar fill amount = " + barImage.fillAmount);
+        //Debug.Log("Bar fill amount = " + barImage.fillAmount);
        /* if (currentPower >= maxBar)
         {
             playerMovement.canSpecialAttack = true;

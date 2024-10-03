@@ -27,7 +27,7 @@ public class MachineHealth : MonoBehaviour
     {
         life --;
         Instantiate(damageParticle, transform.position, Quaternion.identity);
-        Debug.Log("Vida maquina " + life);
+        //Debug.Log("Vida maquina " + life);
         if (life == 0)
         {
         machineGetDamage();
@@ -39,11 +39,11 @@ public class MachineHealth : MonoBehaviour
         if (lootBag != null) // Verifica si lootBag no es nulo
         {
             lootBag.InstantiateLoot(transform.position);
-            Debug.Log("se intancio el loot");
+            //Debug.Log("se intancio el loot");
         }
         else
         {
-            Debug.Log("LootBag no encontrado en la máquina.");
+            //Debug.Log("LootBag no encontrado en la máquina.");
         }
         Destroy(gameObject);
         CameraMovement.Instance.MoveCamera(5, 5, 0.5f);

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
-    [SerializeField] private int maxUpgrades = 3; // Límite de mejoras que se pueden aplicar
+    [SerializeField] private int maxUpgrades = 3; // Lï¿½mite de mejoras que se pueden aplicar
     public List<GameObject> appliedUpgrades = new List<GameObject>();
     private PowerUpManager powerUpManager;
     public Canvas canvas;
@@ -23,14 +23,14 @@ public class ItemSlot : MonoBehaviour
     {
         if (appliedUpgrades.Contains(item))
         {
-            // Si la mejora ya está aplicada, la removemos
+            // Si la mejora ya estï¿½ aplicada, la removemos
             RemovePowerUpEffect(item);
             appliedUpgrades.Remove(item);
             DeselectItem(item);
         }
         else
         {
-            // Si no está aplicada y aún no alcanzamos el límite, la aplicamos
+            // Si no estï¿½ aplicada y aï¿½n no alcanzamos el lï¿½mite, la aplicamos
             if (appliedUpgrades.Count < maxUpgrades)
             {
                 ApplyPowerUpEffect(item);
@@ -67,7 +67,7 @@ public class ItemSlot : MonoBehaviour
         string itemName = item.name;
         PlayerPrefs.SetString(itemName + "_Color", ColorUtility.ToHtmlStringRGBA(selectedColor));
         PlayerPrefs.Save();
-        Debug.Log(itemName + "_Color " + selectedColor);
+        //.Log(itemName + "_Color " + selectedColor);
     }
 
     private void DeselectItem(GameObject item)
@@ -78,7 +78,7 @@ public class ItemSlot : MonoBehaviour
         string itemName = item.name;
         PlayerPrefs.DeleteKey(itemName + "_Color");
         PlayerPrefs.Save();
-        Debug.Log(itemName + "_Color " + item.GetComponent<Image>().color);
+        //Debug.Log(itemName + "_Color " + item.GetComponent<Image>().color);
     }
 
     private void LoadItemColors()

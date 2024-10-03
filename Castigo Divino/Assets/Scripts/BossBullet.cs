@@ -24,8 +24,6 @@ public class BossBullet: MonoBehaviour
 
     public void LaunchProyectile()
     {
-      
-            Debug.Log("Targeting player");
             Vector2 directionToPlayer = (player.position - transform.position).normalized;
             rb.velocity = directionToPlayer * speed;
             trail.emitting = true;

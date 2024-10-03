@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
         if (audioManager == null)
         {
-            Debug.LogError("No se encontró un AudioManager en la escena.");
+            //.LogError("No se encontró un AudioManager en la escena.");
         }
     }
 
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
-            Debug.LogError("No se encontró ManagerData en la escena.");
+            //Debug.LogError("No se encontró ManagerData en la escena.");
             return;
         }
 
@@ -84,13 +84,13 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             transform.position = new Vector2(2400, -1125); 
-            Debug.Log("gm nulo");
+            //Debug.Log("gm nulo");
         }
 
         if (sceneName == "PacificZone" || sceneName == "EnemyLevel")
         {
             transform.position = new Vector2(520, -180); 
-            Debug.Log("ZONA PACIFICATION");
+            //Debug.Log("ZONA PACIFICATION");
         }
 
         playerRb = GetComponent<Rigidbody2D>();
@@ -106,12 +106,12 @@ public class PlayerMovement : MonoBehaviour
         // Verifica si los componentes clave están asignados
         if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null)
         {
-            Debug.LogError("Uno o más componentes no están asignados correctamente.");
+            //Debug.LogError("Uno o más componentes no están asignados correctamente.");
         }
 
         if (boss == null)
         {
-            Debug.LogError("No se encontró un componente BossMachine en el jugador.");
+            //Debug.LogError("No se encontró un componente BossMachine en el jugador.");
         }
     }
 
@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            // Debug.Log("Arriba");
+            //Debug.Log("Arriba");
             if (GunSpriteRenderer != null && spriteRenderer != null)
             {
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerRb == null)
         {
-            Debug.LogError("playerRb no está asignado.");
+            //Debug.LogError("playerRb no está asignado.");
             return;
         }
 
@@ -195,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        //  Debug.Log("dashing");
+        //Debug.Log("dashing");
         audioManager.playSound(audioManager.dash);
         canDash = false;
         isDashing = true;
@@ -218,7 +218,7 @@ public class PlayerMovement : MonoBehaviour
             enemy.GetComponent<BaseEnemy>()?.TakeDamage(10, BulletType.GodPower);
         }
  
-        Debug.Log("Ataque especial");
+        //Debug.Log("Ataque especial");
   
         canSpecialAttack = false;
         ManagerData.Instance.ResetCurrentPower();
@@ -245,12 +245,15 @@ public class PlayerMovement : MonoBehaviour
         }
         if(other.gameObject.CompareTag("entrada2"))
         {
-            enemyLevel.startMinions = true; 
             GameEvents.ClosedDoor();
+            if (!enemyLevel.comenzarOleada && enemyLevel.contadorOleadas == 0)
+            {
+                enemyLevel.comenzarOleada = true; 
+            }
         }
         if (other.gameObject.CompareTag("entradaBoss"))
         {
-            Debug.Log("Activando jefe");
+            //Debug.Log("Activando jefe");
             if (boss != null)
             {
                 GameEvents.ClosedDoor();
@@ -259,7 +262,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                Debug.LogError("BossMachine no está asignado");
+                //Debug.LogError("BossMachine no está asignado");
             }
             Destroy(other.gameObject);
         }

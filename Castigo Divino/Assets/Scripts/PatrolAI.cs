@@ -31,7 +31,7 @@ public class EnemyPatroll : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         if (agent == null)
         {
-            Debug.LogError("NavMeshAgent not found on " + gameObject.name);
+            //Debug.LogError("NavMeshAgent not found on " + gameObject.name);
         }
 
         if (target == null)
@@ -57,7 +57,7 @@ public class EnemyPatroll : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("currentWaypoint está fuera de rango o no hay waypoints asignados.");
+            //Debug.LogWarning("currentWaypoint está fuera de rango o no hay waypoints asignados.");
         }
         agent.speed = patrolSpeed; // Establece la velocidad inicial de patrullaje
     }
@@ -67,7 +67,7 @@ public class EnemyPatroll : MonoBehaviour
         // Verifica y configura el agente y los waypoints nuevamente al activarse
         if (agent == null)
         {
-            Debug.LogError("NavMeshAgent not assigned to " + gameObject.name);
+            //Debug.LogError("NavMeshAgent not assigned to " + gameObject.name);
             return;
         }
 
@@ -77,7 +77,7 @@ public class EnemyPatroll : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("currentWaypoint está fuera de rango o no hay waypoints asignados.");
+            //Debug.LogWarning("currentWaypoint está fuera de rango o no hay waypoints asignados.");
         }
 
         // Restablecer estados al activarse
@@ -186,7 +186,7 @@ void Update()
 
         // Asegúrate de que el enemigo no ataque inmediatamente después de este ataque
         isAttacking = false;
-        Debug.Log("tronco attack");
+       Debug.Log("tronco attack");
     }*/
 
     public void OnCollisionEnter2D(Collision2D collision)

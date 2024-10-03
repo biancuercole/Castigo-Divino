@@ -65,7 +65,7 @@ public class Trigger : MonoBehaviour
             {
                 uiShop.Hide();
                 dialogue.didDialogueStart = false;
-                Debug.Log("Tienda cerrada");
+                //Debug.Log("Tienda cerrada");
             }
             else
             {
@@ -73,7 +73,7 @@ public class Trigger : MonoBehaviour
                 uiShop.Show();
              //   ToolTipManager.instance.HideToolTip();
                 targetObject.SetActive(false);
-                Debug.Log("Tienda abierta");
+                //Debug.Log("Tienda abierta");
             }
             shopOpen = !shopOpen;
         }
@@ -85,14 +85,14 @@ public class Trigger : MonoBehaviour
         if (itemOpen)
         {
             item.Hide();
-            Debug.Log("Gesti�n de mejoras cerrada");
+            //Debug.Log("Gesti�n de mejoras cerrada");
         }
         else
         {
             item.Show();
           //  ToolTipManager.instance.HideToolTip();
             targetObject.SetActive(false);
-            Debug.Log("Gesti�n de mejoras abierta");
+            //Debug.Log("Gesti�n de mejoras abierta");
         }
         itemOpen = !itemOpen;
     }
@@ -117,7 +117,7 @@ public class Trigger : MonoBehaviour
         {
             portals.ChangeScenesPortal();
         }
-        Debug.Log("se presiono E para cambiar de escena");
+        //Debug.Log("se presiono E para cambiar de escena");
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -155,14 +155,14 @@ public class Trigger : MonoBehaviour
             uiShop.Hide();
             shopOpen = false;
             dialogue.didDialogueStart = false;
-            Debug.Log("Tienda cerrada al salir");
+            //Debug.Log("Tienda cerrada al salir");
         }
 
         if (itemOpen)
         {
             item.Hide();
             itemOpen = false;
-            Debug.Log("Gesti�n de mejoras cerrada al salir");
+            //Debug.Log("Gesti�n de mejoras cerrada al salir");
         }
 
         interactions = false;

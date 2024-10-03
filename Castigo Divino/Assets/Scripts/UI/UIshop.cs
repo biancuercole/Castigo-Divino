@@ -81,7 +81,7 @@ public class UIshop : MonoBehaviour
 
                     else
                     {
-                        Debug.LogError("Player not found");
+                        //Debug.LogError("Player not found");
                     }
                 }
 
@@ -91,13 +91,13 @@ public class UIshop : MonoBehaviour
             }
             else
             {
-                Debug.LogError("PowerUpEffect is null");
+                //Debug.LogError("PowerUpEffect is null");
             }
         }
         else
         {
             ToolTipManager.instance.SetAndShowToolTip(messeage);
-            Debug.Log("Not enough coins");
+            //Debug.Log("Not enough coins");
         }
     }
     
@@ -109,7 +109,7 @@ public class UIshop : MonoBehaviour
             {
                 item.SetActive(true);
                 managerData.IsBought(itemName);
-                Debug.Log("Item en UIshop " + itemName);
+                //Debug.Log("Item en UIshop " + itemName);
             }
         }
     }

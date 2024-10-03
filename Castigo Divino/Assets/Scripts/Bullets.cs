@@ -27,7 +27,7 @@ using static UnityEngine.Rendering.DebugUI;
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
-            Debug.LogError("No se encontró ManagerData en la escena.");
+            //Debug.LogError("No se encontró ManagerData en la escena.");
             return;
         }
 
@@ -118,7 +118,7 @@ public class Bullets : MonoBehaviour
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
-            Debug.LogError("No se encontró ManagerData en la escena.");
+            //.LogError("No se encontró ManagerData en la escena.");
             return;
         }
 

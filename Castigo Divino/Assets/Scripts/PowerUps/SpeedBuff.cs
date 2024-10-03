@@ -15,7 +15,7 @@ public class SpeedBuff : PowerUpEffect
         target.GetComponent<PlayerMovement>().speed += amount;
         managerData = FindObjectOfType<ManagerData>();
         managerData.AddSpeed(amount);
-        Debug.Log("Incresed speed");
+        //.Log("Incresed speed");
     }
 
     public override void Remove(GameObject target)
