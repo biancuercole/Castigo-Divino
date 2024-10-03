@@ -53,7 +53,6 @@ public class EnemyLevel : MonoBehaviour
                     abrirPuerta = true;
                     Debug.Log("Puerta abierta");
                 }
-
                 comenzarOleada = true; // Permite que la siguiente oleada comience
             }
             else if (enemigosRestantes <= 0 && contadorOleadas >= maxOleadas)
