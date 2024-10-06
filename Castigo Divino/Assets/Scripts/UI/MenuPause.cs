@@ -11,9 +11,9 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
     private GameMaster gm;
-    [SerializeField] PlayerHealth player;
+    [SerializeField] PlayerHealth playerHealth;
     [SerializeField] Rotation rotation;
-
+    [SerializeField] SpriteRenderer spriteRenderer;
     private bool inmortality = false;
     public Toggle toggle;
     private void Start()
@@ -27,7 +27,6 @@ public class MenuPause : MonoBehaviour
         }
 
         toggle.isOn = false;
-
     }
     private void Update()
     {
@@ -87,16 +86,15 @@ public class MenuPause : MonoBehaviour
 
         if (inmortality)
         {
-          
-            player.esInmune = true;
+            playerHealth.health = 3000;
             toggle.isOn = true;
-            //Debug.Log("Inmortalidad activada");
+            Debug.Log("Inmortalidad activada ");
         }
         else
         {
-            player.esInmune = false;
+            playerHealth.health = 4;
             toggle.isOn = false;
-            //Debug.Log("Inmortalidad desactivada");
+            Debug.Log("Inmortalidad desactivada ");
         }
     }
 

@@ -28165,6 +28165,7 @@ MonoBehaviour:
   speed: 25
   boss: {fileID: 0}
   transicion: {fileID: 0}
+  player: {fileID: 1916445834}
   dashSpeed: 50
   dashDuration: 0.3
   dashCoolDown: 1

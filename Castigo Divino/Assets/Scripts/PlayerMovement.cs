@@ -20,8 +20,12 @@ public class PlayerMovement : MonoBehaviour
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
     private Portals portals; 
-    [SerializeField] private TransicionEscena transicion; 
-  
+    [SerializeField] private TransicionEscena transicion;
+
+    [Header("Rotacion")]
+    private Vector3 targetRotation;
+    public Transform player;
+
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
@@ -121,11 +125,58 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
 
+        // Actualizar animaciones de movimiento
         if (playerAnimator != null)
         {
-            playerAnimator.SetFloat("Horizontal", moveX);
-            playerAnimator.SetFloat("Vertical", moveY);
-            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);  // Si hay movimiento o no
+        }
+
+
+        // Rotación y cambio de dirección del sprite basado en la posición del mouse
+        targetRotation = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        //   var angle = Mathf.Atan2(targetRotation.y, targetRotation.x) * Mathf.Rad2Deg;
+
+        if (Mathf.Abs(targetRotation.x) > Mathf.Abs(targetRotation.y))
+        {
+            // El mouse está más hacia la izquierda o derecha
+            if (targetRotation.x < 0)
+            {
+                // El mouse está a la izquierda del jugador
+                playerAnimator.SetFloat("Horizontal", -1);  // Animación de mirar a la izquierda
+                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
+            else
+            {
+                // El mouse está a la derecha del jugador    
+                playerAnimator.SetFloat("Horizontal", 1);   // Animación de mirar a la derecha
+                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
+        }
+        else
+        {
+            // El mouse está más hacia arriba o abajo
+            if (targetRotation.y < 0)
+            {
+                // El mouse está por debajo del jugador
+                playerAnimator.SetFloat("Vertical", -1);  // Animación de mirar hacia abajo
+                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
+            else
+            {
+                // El mouse está por encima del jugador    
+                playerAnimator.SetFloat("Vertical", 1);   // Animación de mirar hacia arriba
+                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+            }
+        }
+
+        if (moveInput.sqrMagnitude == 0)
+        {
+            // Si el jugador NO se está moviendo (idle)
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
 
         if (isDashing)
@@ -133,35 +184,23 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            //Debug.Log("Arriba");
-            if (GunSpriteRenderer != null && spriteRenderer != null)
+
+         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+         {
+            if (dashEnabled)
             {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+              StartCoroutine(Dash());
             }
-        } 
             else
             {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+              Debug.Log("No hay dash");
             }
+         }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            {
-                if (dashEnabled)
-                {
-                StartCoroutine(Dash());
-                }
-                else
-                {
-                 Debug.Log("No hay dash");
-                }
-            }
-
-           if (Input.GetKey(KeyCode.F) && canSpecialAttack)
-           {
-               ActivateSpecialAttack();
-           }
+         if (Input.GetKey(KeyCode.F) && canSpecialAttack)
+         {
+            ActivateSpecialAttack();
+         }
     }
 
     private void FixedUpdate()
@@ -208,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ActivateSpecialAttack()
     {
-        CameraMovement.Instance.MoveCamera(10, 8, 2f);
+        CameraMovement.Instance.MoveCamera(12, 10, 3f);
         audioManager.playSound(audioManager.powerOfGod);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
 

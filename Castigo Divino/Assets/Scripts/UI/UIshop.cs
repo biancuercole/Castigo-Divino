@@ -30,7 +30,7 @@ public class UIshop : MonoBehaviour
     private void Start()
     {
         CreateItemButton(Item.GetSprite(Item.ItemType.Speed),"Velocidad", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton(Item.GetSprite(Item.ItemType.BulletDamage),"Daño", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton(Item.GetSprite(Item.ItemType.BulletDamage),"Dano", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
         CreateItemButton(Item.GetSprite(Item.ItemType.BulletSpeed), "Velocidad Bala", Item.GetCost(Item.ItemType.BulletSpeed), 2, powerUps[3]);
         // CreateItemButton("Triple", Item.GetCost(Item.ItemType.TripleShot), 2, powerUps[2]);
     }

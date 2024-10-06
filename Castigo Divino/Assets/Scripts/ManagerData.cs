@@ -200,7 +200,7 @@ public class ManagerData : MonoBehaviour
         {
             isSpeedBulletBought = true;
         }
-        else if (itemName == "Da�o")
+        else if (itemName == "Dano")
         {
             isDamageBulletBought = true;
         }

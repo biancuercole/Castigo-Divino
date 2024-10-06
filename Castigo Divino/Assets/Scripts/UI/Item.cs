@@ -15,7 +15,7 @@ public class Item
     public static int GetCost(ItemType itemType) { 
         switch (itemType) {
         default:
-            case ItemType.Speed:  return 40;
+            case ItemType.Speed:  return 60;
             case ItemType.BulletDamage: return 80;
             case ItemType.BulletSpeed: return 80;
            // case ItemType.TripleShot: return 0;

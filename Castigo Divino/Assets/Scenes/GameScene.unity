@@ -8315,6 +8315,7 @@ MonoBehaviour:
   targetObject: {fileID: 786809097}
   message: Presionar E para gestionar armas
   managerData: {fileID: 1362526664}
+  playerHealth: {fileID: 0}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
@@ -10396,7 +10397,7 @@ Transform:
   m_GameObject: {fileID: 303215877}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2567.7852, y: -926.0684, z: 0}
+  m_LocalPosition: {x: 2554.1, y: -944.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16149,6 +16150,7 @@ MonoBehaviour:
   targetObject: {fileID: 1502648661}
   message: Presionar E para entrar a la tienda
   managerData: {fileID: 1362526664}
+  playerHealth: {fileID: 0}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
@@ -18778,7 +18780,7 @@ Transform:
   m_GameObject: {fileID: 598964381}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2561.5405, y: -930.14734, z: 0}
+  m_LocalPosition: {x: 2567.7, y: -901.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24917,7 +24919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1957976470}
-  activationDistance: 65
+  activationDistance: 0.1
 --- !u!1 &819705536
 GameObject:
   m_ObjectHideFlags: 0
@@ -36507,6 +36509,7 @@ MonoBehaviour:
   targetObject: {fileID: 109019291}
   message: Presionar E para curar vida
   managerData: {fileID: 1362526664}
+  playerHealth: {fileID: 1957976474}
   heartsUI: {fileID: 1451445120}
   dialogueStartTrigger: 0
   interactions: 0
@@ -36738,11 +36741,11 @@ RectTransform:
   - {fileID: 1502648662}
   - {fileID: 1427030393}
   - {fileID: 109019294}
+  - {fileID: 1024378053}
+  - {fileID: 29643401}
   - {fileID: 786809098}
   - {fileID: 918034923}
   - {fileID: 227904767}
-  - {fileID: 1024378053}
-  - {fileID: 29643401}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -36765,8 +36768,9 @@ MonoBehaviour:
   menuPause: {fileID: 227904766}
   MusicAndSoundMenu: {fileID: 1766159165}
   managerData: {fileID: 1362526664}
-  player: {fileID: 1957976474}
+  playerHealth: {fileID: 1957976474}
   rotation: {fileID: 2033237690}
+  spriteRenderer: {fileID: 1957976468}
   toggle: {fileID: 1932926923}
 --- !u!114 &1236039932
 MonoBehaviour:
@@ -77097,6 +77101,7 @@ MonoBehaviour:
   targetObject: {fileID: 1427030392}
   message: "Presionar E para ir a la zona pac\xEDfica"
   managerData: {fileID: 1362526664}
+  playerHealth: {fileID: 1957976474}
   heartsUI: {fileID: 1451445120}
   dialogueStartTrigger: 0
   interactions: 0
@@ -78165,6 +78170,7 @@ MonoBehaviour:
   targetObject: {fileID: 1427030392}
   message: "Presionar E para ir a la zona pac\xEDfica"
   managerData: {fileID: 1362526664}
+  playerHealth: {fileID: 1957976474}
   heartsUI: {fileID: 1451445120}
   dialogueStartTrigger: 0
   interactions: 0
@@ -81769,6 +81775,7 @@ MonoBehaviour:
   targetObject: {fileID: 109019291}
   message: Presionar E para curar vida
   managerData: {fileID: 1362526664}
+  playerHealth: {fileID: 1957976474}
   heartsUI: {fileID: 1451445120}
   dialogueStartTrigger: 0
   interactions: 0
@@ -82504,8 +82511,8 @@ Transform:
   m_GameObject: {fileID: 1907009893}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -138.01953, y: -2.9284668, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -136.7, y: -2.9284668, z: 0}
+  m_LocalScale: {x: 0.7, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1791109696}
@@ -83073,6 +83080,7 @@ MonoBehaviour:
   speed: 25
   boss: {fileID: 2104630005}
   transicion: {fileID: 918034919}
+  player: {fileID: 1957976470}
   dashSpeed: 50
   dashDuration: 0.3
   dashCoolDown: 1

@@ -55,7 +55,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void GetDamage(int damage, GameObject damageSource)
     {
-        if (!esInmune && !yaMuerto)
+        Debug.Log("Inmunidad "+ esInmune);
+        if (!esInmune  && !yaMuerto)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
@@ -126,7 +127,6 @@ public class PlayerHealth : MonoBehaviour
         nextStage.keyCount = 0;
     }
 
-
     public void HealHealth(int healAmount)
     {
         int temporaryHealth = health + healAmount;
@@ -159,7 +159,7 @@ public class PlayerHealth : MonoBehaviour
         SceneManager.LoadScene(indice);
     }
 
-    private IEnumerator InmunidadCoroutine()
+    public IEnumerator InmunidadCoroutine()
     {
         esInmune = true;
         float tiempoFin = Time.time + inmunidadDuracion;

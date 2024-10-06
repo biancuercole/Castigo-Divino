@@ -13,6 +13,7 @@ public class Trigger : MonoBehaviour
     [SerializeField] public GameObject targetObject;
     public string message;
     public ManagerData managerData;
+    public PlayerHealth playerHealth;
     public HeartsUI heartsUI;
     private int currentHealth;
 
@@ -99,7 +100,8 @@ public class Trigger : MonoBehaviour
 
     private void RecoverHealth()
     {
-
+        playerHealth.health = 4;
+        Debug.Log("vida" +  playerHealth.health);
         managerData.health = 4;
         currentHealth = managerData.health;
         PlayerPrefs.SetInt("PlayerHealth", managerData.health);
