@@ -15,8 +15,8 @@ public class BulletBuffDamage : PowerUpEffect
         managerData = FindObjectOfType<ManagerData>();
         if (managerData != null)
         {
-            managerData.AddDamageBullet(amount - managerData.CurrentDamageBonus); // Ajustar el daño según el nuevo bono
-            Debug.Log("Damage Bonus " + managerData.CurrentDamageBonus + "Amount "+ amount);
+            managerData.AddDamageBullet(amount - managerData.CurrentDamageBonus); // Ajustar el daï¿½o segï¿½n el nuevo bono
+            //Debug.Log("Damage Bonus " + managerData.CurrentDamageBonus + "Amount "+ amount);
         } 
         if (bulletPool != null)
         {
@@ -31,7 +31,7 @@ public class BulletBuffDamage : PowerUpEffect
             }
         }
         managerData.CurrentDamageBonus = amount; // Guardar el bono actual
-        Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
+        //Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
     }
 
     public override void Remove(GameObject target)
@@ -53,6 +53,6 @@ public class BulletBuffDamage : PowerUpEffect
             }
         }
         managerData.CurrentDamageBonus = 0; // Restablecer el bono
-        Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
+        //Debug.Log("CurrentDamageBonuts " + managerData.CurrentDamageBonus);
     }
 }

@@ -8128,7 +8128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &936941133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8248,7 +8248,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 51.42857, y: 40.857143}
+    oldSize: {x: 40, y: 31.777779}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8288,12 +8288,12 @@ MonoBehaviour:
   entrances: {fileID: 936941137}
   portals: {fileID: 936941133}
   dialogue: {fileID: 0}
+  targetObject: {fileID: 0}
   message: "Presionar la E para ir a la zona pac\xEDfica"
   managerData: {fileID: 891128284}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
-  messeagePosition: {x: 300, y: 600, z: 0}
 --- !u!61 &936941139
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8330,7 +8330,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 51.42857, y: 40.857143}
+    oldSize: {x: 40, y: 31.777779}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8394,6 +8394,7 @@ MonoBehaviour:
   healAmount: 1
   powerUpBar: {fileID: 0}
   Power: 1
+  UIposition: {fileID: 0}
 --- !u!58 &1039218189
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -8625,18 +8626,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25ac6a8e128268741b5a462dda2b291d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {fileID: 1438184092}
-  - {fileID: 509632917}
-  - {fileID: 1918863733}
-  - {fileID: 1885943033}
-  - {fileID: 1100623081}
-  enemies:
-  - {fileID: 5347165147909718649, guid: 54d97305a034ba94d81ae1cbaac1511f, type: 3}
-  - {fileID: 5474861607113767795, guid: 55c7a11f4de653544b100b1eb47e8470, type: 3}
-  - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
-  totalRounds: 4
-  portal: {fileID: 936941133}
+  enemyPrefabs: []
+  spawnPoints: []
+  comenzarOleada: 0
+  abrirPuerta: 0
+  contadorOleadas: 0
+  maxOleadas: 2
 --- !u!1 &1094551708
 GameObject:
   m_ObjectHideFlags: 0
@@ -19591,6 +19586,7 @@ GameObject:
   - component: {fileID: 1429132250}
   - component: {fileID: 1429132252}
   - component: {fileID: 1429132251}
+  - component: {fileID: 1429132259}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -19711,16 +19707,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   boss: {fileID: 0}
+  transicion: {fileID: 0}
+  player: {fileID: 1429132249}
   dashSpeed: 50
   dashDuration: 0.3
   dashCoolDown: 1
   dashEffect: {fileID: 2974914889407992469, guid: 1e663cfa58a3b8440bc383bd0db0331f, type: 3}
   Gun: {fileID: 904613151}
   dashEnabled: 1
-  canSpecialAttack: 0
+  canSpecialAttack: 1
   attackRadius: 40
   attackDamage: 50
   managerData: {fileID: 891128284}
+  stairHeightOffset: 0.2
 --- !u!96 &1429132254
 TrailRenderer:
   serializedVersion: 3
@@ -19979,6 +19978,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &1429132259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429132248}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a18b241ab887648bab99e2d5da9b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 25
+  Gun: {fileID: 904613151}
+  player: {fileID: 1429132249}
 --- !u!1 &1438184091
 GameObject:
   m_ObjectHideFlags: 0
@@ -20409,18 +20423,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 212123847}
   soundSource: {fileID: 1121116055}
-  background: {fileID: 8300000, guid: 68e44e634b22ec74f877d4b562033ff4, type: 3}
-  background2: {fileID: 0}
-  ambientSound: {fileID: 0}
-  cinematic: {fileID: 0}
-  shot: {fileID: 0}
-  steps: {fileID: 8300000, guid: 27e6c8b5e04496b42ab9b9c34d94fef3, type: 3}
-  enemyDeath: {fileID: 0}
-  victory: {fileID: 0}
-  gameOver: {fileID: 0}
-  enemyShot: {fileID: 0}
-  openDoor: {fileID: 8300000, guid: 18ac4368d89e13c498a014f1f02eb5d8, type: 3}
+  sliderVolume: {fileID: 0}
+  pacifistZoneMusic: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
+  gameMusic: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
   bossMusic: {fileID: 8300000, guid: 454c2d6a50c60984b801d493d3b74d93, type: 3}
+  ambientSound: {fileID: 0}
+  menuMusic: {fileID: 0}
+  battleMusic: {fileID: 0}
+  quietMusic: {fileID: 0}
+  fireShot: {fileID: 0}
+  waterShot: {fileID: 0}
+  airShot: {fileID: 0}
+  earthShot: {fileID: 0}
+  powerOfGod: {fileID: 0}
+  dash: {fileID: 0}
+  steps: {fileID: 8300000, guid: 27e6c8b5e04496b42ab9b9c34d94fef3, type: 3}
+  damage: {fileID: 0}
+  death: {fileID: 0}
+  flameDeath: {fileID: 0}
+  flameShot: {fileID: 8300000, guid: e186865efd9dbfc4e89db2766598ee46, type: 3}
+  smokeDeath: {fileID: 0}
+  smokeShot: {fileID: 0}
+  logDeath: {fileID: 0}
+  logShot: {fileID: 0}
+  bossDeath: {fileID: 0}
+  bossShot: {fileID: 0}
+  machineDeath: {fileID: 0}
+  machineSound: {fileID: 0}
+  portalSound: {fileID: 0}
+  collectSound: {fileID: 0}
+  healSound: {fileID: 0}
+  shrineDestroy: {fileID: 0}
 --- !u!4 &1716580025
 Transform:
   m_ObjectHideFlags: 0
@@ -21292,8 +21325,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPause: {fileID: 268841471}
+  MusicAndSoundMenu: {fileID: 0}
   managerData: {fileID: 891128284}
   player: {fileID: 1429132250}
+  rotation: {fileID: 0}
+  toggle: {fileID: 0}
 --- !u!114 &2025973062
 MonoBehaviour:
   m_ObjectHideFlags: 0

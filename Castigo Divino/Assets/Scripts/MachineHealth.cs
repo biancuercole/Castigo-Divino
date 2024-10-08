@@ -10,6 +10,7 @@ public class MachineHealth : MonoBehaviour
     private LootBag lootBag; // Añadido para referencia a LootBag
     public GameObject damageParticle;
     public GameObject explosionPaticle;
+    private AudioManager audioManager;
     private int life;
 
     void Start()
@@ -19,12 +20,14 @@ public class MachineHealth : MonoBehaviour
         machineCollider = GetComponent<Collider2D>();   
         nextStage = FindObjectOfType<NextStage>();
         lootBag = GetComponent<LootBag>(); // Asigna el LootBag
+        audioManager = FindAnyObjectByType<AudioManager>();
     }
 
     public void machineDamage()
     {
         life --;
         Instantiate(damageParticle, transform.position, Quaternion.identity);
+        //Debug.Log("Vida maquina " + life);
         if (life == 0)
         {
         machineGetDamage();
@@ -36,15 +39,16 @@ public class MachineHealth : MonoBehaviour
         if (lootBag != null) // Verifica si lootBag no es nulo
         {
             lootBag.InstantiateLoot(transform.position);
-            Debug.Log("se intancio el loot");
+            //Debug.Log("se intancio el loot");
         }
         else
         {
-            Debug.Log("LootBag no encontrado en la máquina.");
+            //Debug.Log("LootBag no encontrado en la máquina.");
         }
+        Destroy(gameObject);
         CameraMovement.Instance.MoveCamera(5, 5, 0.5f);
         Instantiate(explosionPaticle, transform.position, Quaternion.identity);
+        audioManager.playSound(audioManager.machineDeath);
         //nextStage.MachineDefeated();
-        Destroy(gameObject);
     }
 }

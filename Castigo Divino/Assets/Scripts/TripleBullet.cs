@@ -19,7 +19,6 @@ public class TripleBullet : MonoBehaviour
         {
             rb = GetComponent<Rigidbody2D>();
         }
-
         rb.velocity = direction * speed;
         trail.emitting = true;
         StartCoroutine(DestroyProjectile());

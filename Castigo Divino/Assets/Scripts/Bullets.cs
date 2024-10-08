@@ -27,7 +27,7 @@ using static UnityEngine.Rendering.DebugUI;
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
-            Debug.LogError("No se encontró ManagerData en la escena.");
+            //Debug.LogError("No se encontró ManagerData en la escena.");
             return;
         }
 
@@ -118,7 +118,7 @@ public class Bullets : MonoBehaviour
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
-            Debug.LogError("No se encontró ManagerData en la escena.");
+            //.LogError("No se encontró ManagerData en la escena.");
             return;
         }
 
@@ -135,27 +135,30 @@ public class Bullets : MonoBehaviour
                 spriteRenderer.color = Color.blue;
                 trail.startColor = Color.blue;
                 trail.endColor = new Color(0, 0, 0, 0);
+                audioManager.playSound(audioManager.waterShot);
                 break;
             case BulletType.Fire:
                 spriteRenderer.color = Color.red;
                 trail.startColor = Color.red;
                 trail.endColor = new Color(0, 0, 0, 0);
+                audioManager.playSound(audioManager.fireShot);
                 break;
             case BulletType.Air:
                 spriteRenderer.color = Color.white;
                 trail.startColor = Color.white;
                 trail.endColor = new Color(0, 0, 0, 0);
+                audioManager.playSound(audioManager.airShot);
                 break;
             case BulletType.Earth:
                 spriteRenderer.color = new Color(0.65f, 0.33f, 0.0f);
                 trail.startColor = new Color(0.65f, 0.33f, 0.0f);
                 trail.endColor = new Color(0, 0, 0, 0);
+                audioManager.playSound(audioManager.earthShot);
                 break;
         }
 
         bulletRb.velocity = direction * speed;
         trail.emitting = true;
-        audioManager.playSound(audioManager.shot);
         StartCoroutine(DestroyProjectile());
     }
 

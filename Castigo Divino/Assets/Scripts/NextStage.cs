@@ -30,37 +30,25 @@ public class NextStage : MonoBehaviour
         keyCount = 0;
         currentState = MachineState.Close;
 
-        // Asignar las variables según el tag del GameObject
-        /*if (puertaTag == "Puerta1")
-        {
-            enemiesNeeded = 1;
-            keysNeeded = 1;
-        }
-        else if (puertaTag == "Puerta2")
-        {
-            enemiesNeeded = 2;
-            keysNeeded = 1;
-        }
-        else if (puertaTag == "Puerta3")
-        {
-            enemiesNeeded = 3;
-            keysNeeded = 1;
-        }*/
-
-        // Suscribirse a eventos estáticos
         GameEvents.OnEnemyDefeated += EnemyDefeated;
         GameEvents.OnKeyCollected += CollectKey;
         GameEvents.OnClosedDoor += closeDoor;
+        GameEvents.OnAllRoundsCompleted += OpenDoor; // Nos suscribimos al nuevo evento
 
         StartCoroutine(StateMachine());
     }
 
     private void OnDestroy()
     {
-        // Desuscribirse de eventos estáticos
         GameEvents.OnEnemyDefeated -= EnemyDefeated;
         GameEvents.OnKeyCollected -= CollectKey;
         GameEvents.OnClosedDoor -= closeDoor;
+        GameEvents.OnAllRoundsCompleted -= OpenDoor; // Nos desuscribimos del evento
+    }
+
+    private void OpenDoor()
+    {
+        currentState = MachineState.Open;
     }
 
     public void EnemyDefeated()
@@ -123,7 +111,7 @@ public class NextStage : MonoBehaviour
         spriteRenderer.sprite = closedSprite;
     }
 
-    private void Open()
+    public void Open()
     {
         spriteRenderer.sprite = null;
         doorCollider.enabled = false;
@@ -135,6 +123,7 @@ public static class GameEvents
     public static System.Action OnEnemyDefeated;
     public static System.Action OnKeyCollected;
     public static System.Action OnClosedDoor;
+    public static System.Action OnAllRoundsCompleted; // Nuevo evento
 
     public static void EnemyDefeated()
     {
@@ -150,4 +139,10 @@ public static class GameEvents
     {
         OnClosedDoor?.Invoke();
     }
+
+    public static void AllRoundsCompleted() // Nueva función para invocar el evento
+    {
+        OnAllRoundsCompleted?.Invoke();
+    }
 }
+

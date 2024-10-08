@@ -1,57 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class EnemyLevel : MonoBehaviour
 {
-    [SerializeField] private Transform[] points; 
-    [SerializeField] private GameObject[] enemies;
-    [SerializeField] private int totalRounds = 3; 
-    [SerializeField] private Portals portal;
-    private AudioManager audioManager;
+    public GameObject[] enemyPrefabs; // Array para los distintos prefabs de enemigos
+    public Transform[] spawnPoints; 
+    public bool comenzarOleada = false; 
+    public bool abrirPuerta = false; 
+    private int enemigosRestantes; 
+    public int contadorOleadas = 0; // Contador de oleadas
+    public int maxOleadas = 2; // Número máximo de oleadas (en este caso, 2)
 
-    private int currentRound = 0;
-    private int defeatedEnemies = 0;
-
-    private void Awake()
+    void Update()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
-        
-    private void Start()
-    {
-        StartCoroutine(SpawnEnemies());
-    }
-
-    private IEnumerator SpawnEnemies()
-    {
-        while (currentRound < totalRounds)
+        if (comenzarOleada && enemigosRestantes <= 0 && contadorOleadas < maxOleadas)
         {
-            yield return new WaitForSeconds(5f);
-
-            for (int i = 0; i < points.Length; i++)
-            {
-                int numEnemy = Random.Range(0, enemies.Length);
-                Instantiate(enemies[numEnemy], points[i].position, Quaternion.identity);
-            }
-
-            while (defeatedEnemies < points.Length * (currentRound + 1))
-            {
-                yield return null;
-            }
-
-            currentRound++;
-            Debug.Log("Ronda " + currentRound);
+            StartCoroutine(GenerarOleada());
         }
-        portal.EnablePortal();
-        audioManager.playSound(audioManager.openDoor);
-        Destroy(gameObject);
     }
 
-    public void EnemyDefeated()
+    IEnumerator GenerarOleada()
     {
-        defeatedEnemies++;
-        Debug.Log("Enemigos derrotados " + defeatedEnemies);
+        enemigosRestantes = spawnPoints.Length;
+        contadorOleadas++; // Incrementa el contador de oleadas
+
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            // Seleccionar un prefab aleatorio del array de enemyPrefabs
+            GameObject enemigoAleatorio = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+
+            // Instanciar el enemigo en el punto de spawn correspondiente
+            Instantiate(enemigoAleatorio, spawnPoints[i].position, spawnPoints[i].rotation);
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        // Espera 2 segundos antes de permitir que otra oleada comience
+        yield return new WaitForSeconds(2f);
+    }
+
+    public void EnemigoEliminado()
+    {
+        if (comenzarOleada && enemigosRestantes > 0)
+        {
+            enemigosRestantes--;
+
+            if (enemigosRestantes <= 0 && contadorOleadas < maxOleadas)
+            {
+                // Abre la puerta solo si aún no se ha hecho
+                if (!abrirPuerta)
+                {
+                    abrirPuerta = true;
+                    Debug.Log("Puerta abierta");
+                }
+                comenzarOleada = true; // Permite que la siguiente oleada comience
+            }
+            else if (enemigosRestantes <= 0 && contadorOleadas >= maxOleadas)
+            {
+                comenzarOleada = false; // No permitir más oleadas después de la última
+                Debug.Log("Se completaron todas las oleadas.");
+            }
+        }
     }
 }

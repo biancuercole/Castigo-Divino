@@ -30,7 +30,7 @@ public class UIshop : MonoBehaviour
     private void Start()
     {
         CreateItemButton(Item.GetSprite(Item.ItemType.Speed),"Velocidad", Item.GetCost(Item.ItemType.Speed), 0, powerUps[0]);
-        CreateItemButton(Item.GetSprite(Item.ItemType.BulletDamage),"Daño", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
+        CreateItemButton(Item.GetSprite(Item.ItemType.BulletDamage),"Dano", Item.GetCost(Item.ItemType.BulletDamage), 1, powerUps[1]);
         CreateItemButton(Item.GetSprite(Item.ItemType.BulletSpeed), "Velocidad Bala", Item.GetCost(Item.ItemType.BulletSpeed), 2, powerUps[3]);
         // CreateItemButton("Triple", Item.GetCost(Item.ItemType.TripleShot), 2, powerUps[2]);
     }
@@ -50,7 +50,7 @@ public class UIshop : MonoBehaviour
 
         Button button = shopItemTransform.GetComponent<Button>();
         button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => TryBuyItem(itemCost, powerUp, button, shopItemTransform));
+        button.onClick.AddListener(() => TryBuyItem(itemCost, powerUp, button, shopItemTransform, itemName));
 
         if (managerData.IsItemBought(itemName))
         {
@@ -59,7 +59,7 @@ public class UIshop : MonoBehaviour
         }
     }
 
-    private void TryBuyItem(int itemCost, PowerUpEffect powerUp, Button button, Transform shopItemTransform)
+    private void TryBuyItem(int itemCost, PowerUpEffect powerUp, Button button, Transform shopItemTransform, string itemName)
     {
         if (pointsUI.SpendPoints(itemCost))
         {
@@ -68,7 +68,7 @@ public class UIshop : MonoBehaviour
                 // Verifica si el PowerUp es para el arma o para el jugador
                 if (System.Array.Exists(weaponUpgradeItems, item => item.GetComponent<PowerUp>().powerUpEffect == powerUp))
                 {
-                    EnableWeaponUpgradeItem(powerUp);
+                    EnableWeaponUpgradeItem(powerUp, itemName);
                 }
                 else
                 {
@@ -81,7 +81,7 @@ public class UIshop : MonoBehaviour
 
                     else
                     {
-                        Debug.LogError("Player not found");
+                        //Debug.LogError("Player not found");
                     }
                 }
 
@@ -91,24 +91,25 @@ public class UIshop : MonoBehaviour
             }
             else
             {
-                Debug.LogError("PowerUpEffect is null");
+                //Debug.LogError("PowerUpEffect is null");
             }
         }
         else
         {
             ToolTipManager.instance.SetAndShowToolTip(messeage);
-            Debug.Log("Not enough coins");
+            //Debug.Log("Not enough coins");
         }
     }
     
-    private void EnableWeaponUpgradeItem(PowerUpEffect powerUp)
+    private void EnableWeaponUpgradeItem(PowerUpEffect powerUp, string itemName)
     {
         foreach (GameObject item in weaponUpgradeItems)
         {
             if (item.GetComponent<PowerUp>().powerUpEffect == powerUp)
             {
                 item.SetActive(true);
-                managerData.IsBought();
+                managerData.IsBought(itemName);
+                //Debug.Log("Item en UIshop " + itemName);
             }
         }
     }

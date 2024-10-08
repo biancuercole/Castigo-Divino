@@ -16,8 +16,8 @@ public class Item
         switch (itemType) {
         default:
             case ItemType.Speed:  return 60;
-            case ItemType.BulletDamage: return 90;
-            case ItemType.BulletSpeed: return 60;
+            case ItemType.BulletDamage: return 80;
+            case ItemType.BulletSpeed: return 80;
            // case ItemType.TripleShot: return 0;
       
         } 
@@ -28,7 +28,7 @@ public class Item
     {
         if (UIassets.i == null)
         {
-            Debug.LogError("UIassets instance is null. Check if the prefab is correctly loaded.");
+            //Debug.LogError("UIassets instance is null. Check if the prefab is correctly loaded.");
             return null;  // Retorna null o un sprite por defecto
         }
 

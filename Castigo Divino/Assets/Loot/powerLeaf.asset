@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846fecea1bcc24640b749ec0f24172b6, type: 3}
   m_Name: powerLeaf
   m_EditorClassIdentifier: 
-  lootSprite: {fileID: 21300000, guid: 3200544600d65444ab22e11cb063f2b5, type: 3}
+  lootSprite: {fileID: -2413806693520163455, guid: 58b8fcd90badee2438ee8b3388aaaec0, type: 3}
   lootName: powerLeaf
   dropChance: 100

@@ -21,7 +21,7 @@ public class ShrineHealth : MonoBehaviour
     public float showTimer;
     private NextStage nextStage;
     private TransicionEscena transition;
-
+    private AudioManager audioManager;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -31,6 +31,7 @@ public class ShrineHealth : MonoBehaviour
         healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
         redTint.gameObject.SetActive(false);  // Asegúrate de que el tinte rojo esté desactivado al inicio
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void Update()
@@ -62,7 +63,7 @@ public class ShrineHealth : MonoBehaviour
             StartCoroutine(DestroyShrineSequence());
         }
 
-        Debug.Log("Vida altar: " + health);
+        //Debug.Log("Vida altar: " + health);
         yield return null;
     }
 
@@ -84,13 +85,13 @@ public class ShrineHealth : MonoBehaviour
         CameraMovement.Instance.MoveCamera(5, 5, 2f);
 
         // Esperar un momento para que el efecto rojo sea visible (sin afectar Time.timeScale)
-        yield return new WaitForSecondsRealtime(3.5f); // 3.5 segundos de espera en tiempo real
-
+        yield return new WaitForSecondsRealtime(2.5f); // 3.5 segundos de espera en tiempo real
+        audioManager.playSound(audioManager.shrineDestroy);
         // Reiniciar el nivel
         transition.SiguienteNivel("GameScene");
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
-        ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
+        ManagerData.Instance.ResetPoints(); 
         managerData.LoadPoints();
     }
 }

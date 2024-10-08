@@ -41,7 +41,7 @@ public class TransicionEscena : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ManagerData no está asignado.");
+            //.LogError("ManagerData no está asignado.");
         }
         managerData.ResetGameData();
         SceneManager.LoadScene(indice);

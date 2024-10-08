@@ -13,11 +13,11 @@ public class TripleB : PowerUpEffect
         if (rotation != null)
         {
             rotation.EnableTripleShot();
-            Debug.Log("Triple shot enabled"); // Agregar este mensaje de depuración
+            //Debug.Log("Triple shot enabled"); // Agregar este mensaje de depuraciï¿½n
         }
         else
         {
-            Debug.LogWarning("Rotation component not found on target.");
+            //Debug.LogWarning("Rotation component not found on target.");
         }
     }
     public override void Remove(GameObject target)
@@ -29,7 +29,7 @@ public class TripleB : PowerUpEffect
         }
         else
         {
-            Debug.LogWarning("Rotation component not found on target.");
+            //Debug.LogWarning("Rotation component not found on target.");
         }
     }
 }

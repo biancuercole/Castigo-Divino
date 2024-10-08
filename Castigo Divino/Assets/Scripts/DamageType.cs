@@ -9,8 +9,8 @@ public interface IDamageType
 
 public enum BulletType
 {
-    Fire,
     Water,
+    Fire,
     Air,
     Earth,
     GodPower

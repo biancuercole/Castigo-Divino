@@ -69,7 +69,7 @@ public class ManagerData : MonoBehaviour
             {
                 item.GetComponent<Image>().color = color;
             }
-            Debug.Log(itemName + "_Color " + item.GetComponent<Image>().color + " managerData");
+            //.Log(itemName + "_Color " + item.GetComponent<Image>().color + " managerData");
         }
     }
 
@@ -118,7 +118,7 @@ public class ManagerData : MonoBehaviour
         speedBullet += SpeedBullet;
         PlayerPrefs.SetFloat("BulletSpeed", speedBullet);
         PlayerPrefs.Save();
-        Debug.Log("BulletSpeed=" + speedBullet);
+        //Debug.Log("BulletSpeed=" + speedBullet);
 
     }
 
@@ -135,7 +135,7 @@ public class ManagerData : MonoBehaviour
         damageBullet += DamageBullet;
         PlayerPrefs.SetFloat("BulletDamage", damageBullet);
         PlayerPrefs.Save();
-        Debug.Log("BulletDamage=" + damageBullet);
+        //Debug.Log("BulletDamage=" + damageBullet);
     }
 
     public void TakeDamageBullet(float DamageBullet)
@@ -150,7 +150,7 @@ public class ManagerData : MonoBehaviour
     {
         currentPower += Power;
         PlayerPrefs.SetFloat("CurrentPower", currentPower);
-        Debug.Log("CurrentPower Manager Data " + currentPower);
+        //Debug.Log("CurrentPower Manager Data " + currentPower);
     }
 
     public void ResetCurrentPower()
@@ -158,7 +158,7 @@ public class ManagerData : MonoBehaviour
         currentPower = 0;
         PlayerPrefs.SetFloat("CurrentPower", currentPower);
         PlayerPrefs.Save();
-        Debug.Log("Power reseteado a 0 en ManagerData.");
+        //Debug.Log("Power reseteado a 0 en ManagerData.");
     }
 
     //Cargar datos 
@@ -171,8 +171,8 @@ public class ManagerData : MonoBehaviour
         damageBullet = PlayerPrefs.GetFloat("BulletDamage", damageBullet);
         currentPower = PlayerPrefs.GetFloat("CurrentPower", currentPower);
 
-        Debug.Log("Datos cargados: Puntos=" + points + ", Salud=" + health + ", Velocidad=" + speed +
-            ", BulletSpeed=" + speedBullet + "_Color" + itemColors);
+        /*Debug.Log("Datos cargados: Puntos=" + points + ", Salud=" + health + ", Velocidad=" + speed +
+            ", BulletSpeed=" + speedBullet + "_Color" + itemColors);*/
 
         if (isTripleShotBought)
         {
@@ -188,14 +188,22 @@ public class ManagerData : MonoBehaviour
     public void ItemSetActive()
     {
         isBulletPowerUpCollected = true;
-        Debug.Log("item activado");
+        //Debug.Log("item activado");
     }
 
     // Tienda 
-    public void IsBought()
+    public void IsBought(string itemName)
     {
-        isSpeedBulletBought = true;
-        isDamageBulletBought = true;
+        //Debug.Log("Item en managerData " + itemName);
+
+        if (itemName == "Velocidad Bala")
+        {
+            isSpeedBulletBought = true;
+        }
+        else if (itemName == "Dano")
+        {
+            isDamageBulletBought = true;
+        }
     }
 
     public void MarkItemAsBought(string itemName)
@@ -237,7 +245,7 @@ public class ManagerData : MonoBehaviour
         }
         else
         {
-            Debug.LogError("uiShop no esta inicializado.");
+            //Debug.LogError("uiShop no esta inicializado.");
         }
 
         points = 0;
@@ -258,6 +266,6 @@ public class ManagerData : MonoBehaviour
         SaveBoughtItems();
     
         PlayerPrefs.DeleteAll();
-        Debug.Log("Datos del juego reiniciados.");
+        //Debug.Log("Datos del juego reiniciados.");
     }
 }

@@ -8,9 +8,12 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    // Nueva variable para controlar si el jugador ya ha muerto
+    private bool yaMuerto = false;
+
     [SerializeField] private int indiceNivel;
-    [SerializeField] private float inmunidadDuracion = 2.0f; // Duración de la inmunidad en segundos
-    [SerializeField] private float parpadeoIntervalo = 0.2f; // Intervalo de parpadeo
+    [SerializeField] private float inmunidadDuracion = 2.0f;
+    [SerializeField] private float parpadeoIntervalo = 0.2f;
 
     [SerializeField] private UnityEngine.UI.Image redTint;
     public int maxHealth;
@@ -28,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator animator; 
     [SerializeField] private GameObject Gun;
     private SpriteRenderer[] gunSprite;
+    private AudioManager audioManager;
 
     void Start()
     {
@@ -36,39 +40,34 @@ public class PlayerHealth : MonoBehaviour
         transition = FindObjectOfType<TransicionEscena>();
         redTint.gameObject.SetActive(false);
         nextStage = FindObjectOfType<NextStage>();
-       // health = maxHealth;
         spriteRenderer = GetComponent<SpriteRenderer>();
         KnocKBack = GetComponent<KnocKBack>();
         heartsUI = GetComponent<HeartsUI>();
         managerData.LoadPoints();
-       // maxHealth = managerData.LoadMaxHealth();
+        audioManager = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
         health = managerData.health;
         if (health <= 0)
         {
             health = maxHealth;
         }
-
-        // Inicializar la UI de corazones con el maxHealth actual
-       /* heartsUI.InitializeHeartsUI(maxHealth);
-
-        // Actualizar la UI para reflejar la vida actual del jugador
-        heartsUI.UpdateHeartsUI(health);*/
         changeHealth.Invoke(health);
     }
 
     public void GetDamage(int damage, GameObject damageSource)
     {
-        if (!esInmune)
+        Debug.Log("Inmunidad "+ esInmune);
+        if (!esInmune  && !yaMuerto)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
+            audioManager.playSound(audioManager.damage);
             KnocKBack.KnockBacK(damageSource);
 
             int temporaryHealth = health - damage;
 
             if(temporaryHealth > 0)
             {
-             StartCoroutine(DañoAnimation());
+                StartCoroutine(DañoAnimation());
             }
 
             if (temporaryHealth < 0)
@@ -83,8 +82,9 @@ public class PlayerHealth : MonoBehaviour
             changeHealth.Invoke(health);
             managerData.AddHealth(health);
 
-            if (temporaryHealth <= 0)
+            if (temporaryHealth <= 0 && !yaMuerto)
             {
+                yaMuerto = true;  // Marcar que el jugador ha muerto
                 Gun.SetActive(false);
                 animator.SetTrigger("Muerte");
                 CameraMovement.Instance.MoveCamera(5, 5, 2f);
@@ -101,36 +101,31 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DañoAnimation()
     {
         animator.SetBool("isDamaged", true);
-
-        // Esperar hasta que la animación de "Daño" haya terminado.
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
         animator.SetBool("isDamaged", false);
     }
 
     private IEnumerator HandleLevelTransition()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        // Mueve la cámara durante 1 segundo antes de pausar
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
-        
-        // Espera en tiempo real para permitir que la vibración ocurra
+        StartCoroutine(audioManager.FadeOut(audioManager.musicSource, 0.7f));
         yield return new WaitForSecondsRealtime(0.5f);
 
-        // Reinicia el nivel y carga las monedas del checkpoint
         if(sceneName == "GameScene")
-        {
+        {   
             transition.SiguienteNivel("GameScene"); 
-        } else if (sceneName == "EnemyLevel")
+        } 
+        else if (sceneName == "EnemyLevel")
         {
             transition.SiguienteNivel("EnemyLevel");
         }
-        ManagerData.Instance.ResetPoints(); // Reinicia las monedas a 0
+
+        ManagerData.Instance.ResetPoints();
         ManagerData.Instance.ResetCurrentPower();
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
     }
-
 
     public void HealHealth(int healAmount)
     {
@@ -164,7 +159,7 @@ public class PlayerHealth : MonoBehaviour
         SceneManager.LoadScene(indice);
     }
 
-    private IEnumerator InmunidadCoroutine()
+    public IEnumerator InmunidadCoroutine()
     {
         esInmune = true;
         float tiempoFin = Time.time + inmunidadDuracion;

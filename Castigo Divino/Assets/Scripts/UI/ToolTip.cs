@@ -9,12 +9,12 @@ public class ToolTip : MonoBehaviour
     private void OnMouseEnter()
     {
         ToolTipManager.instance.SetAndShowToolTip(messeage);
-        Debug.Log("Enter tooltip");
+        //Debug.Log("Enter tooltip");
     }
 
     private void OnMouseExit()
     {
         ToolTipManager.instance.HideToolTip();
-        Debug.Log("Exit tooltip");
+        //Debug.Log("Exit tooltip");
     }
 }

@@ -25,7 +25,7 @@ public class GameMaster : MonoBehaviour
     {
         if (lastCheckpoint == Vector2.zero)
         {
-            lastCheckpoint = new Vector2(525, -170); // Reemplaza (0, 0) por la posición inicial deseada del jugador
+            lastCheckpoint = new Vector2(2400, -1125); // Reemplaza (0, 0) por la posición inicial deseada del jugador
         }
        // checkpointCoins = 0; // Inicializa con 0 monedas por defecto
     }
@@ -34,6 +34,6 @@ public class GameMaster : MonoBehaviour
     {
         lastCheckpoint = position;
        // checkpointCoins = coins;
-       Debug.Log("Checkpoint actualizado: " + lastCheckpoint + ", Monedas: " + checkpointCoins);
+       //Debug.Log("Checkpoint actualizado: " + lastCheckpoint + ", Monedas: " + checkpointCoins);
     }
 }

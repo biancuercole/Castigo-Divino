@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] public float speed;
     private GameMaster gm;
+    private EnemyLevel enemyLevel;
 
     private Rigidbody2D playerRb;
     private Vector2 moveInput;
@@ -18,8 +20,12 @@ public class PlayerMovement : MonoBehaviour
     private NextStage nextStage; 
     [SerializeField] private BossMachine boss;
     private Portals portals; 
-    private TransicionEscena transicion; 
-  
+    [SerializeField] private TransicionEscena transicion;
+
+    [Header("Rotacion")]
+    private Vector3 targetRotation;
+    public Transform player;
+
     [Header("Dash Settings")]
     [SerializeField] float dashSpeed = 25f;
     [SerializeField] float dashDuration = 0.25f;
@@ -39,25 +45,34 @@ public class PlayerMovement : MonoBehaviour
 
     public ManagerData managerData;
 
+    [Header("Stairs")]
+    public float stairHeightOffset = 0.2f; // Ajusta la altura cuando el jugador sube o baja escaleras horizontales
+    private int stairSortingOrderAdjustment = 1; 
+    private bool onStairs = false;
+    private int originalSortingOrder = 2;
+    private BoxCollider2D playerCollider;
+    private enum StairDirection { Right, Left }
+    private StairDirection currentStairDirection;
     private void Awake()
     {
         // Inicializa el AudioManager
         audioManager = GameObject.FindGameObjectWithTag("Audio")?.GetComponent<AudioManager>();
         if (audioManager == null)
         {
-            Debug.LogError("No se encontró un AudioManager en la escena.");
+            //.LogError("No se encontró un AudioManager en la escena.");
         }
     }
 
     void Start()
     {
-        transicion = FindObjectOfType<TransicionEscena>();
+        enemyLevel = FindObjectOfType<EnemyLevel>();
+        //transicion = FindObjectOfType<TransicionEscena>();
         powerOfGod = FindObjectOfType<PowerOfGod>();
         portals = FindObjectOfType<Portals>();
         managerData = ManagerData.Instance;
         if (managerData == null)
         {
-            Debug.LogError("No se encontró ManagerData en la escena.");
+            //Debug.LogError("No se encontró ManagerData en la escena.");
             return;
         }
 
@@ -66,19 +81,20 @@ public class PlayerMovement : MonoBehaviour
 
         string sceneName = SceneManager.GetActiveScene().name;
         gm = GameObject.FindGameObjectWithTag("GM")?.GetComponent<GameMaster>();
+
         if (gm != null && gm.lastCheckpoint != Vector2.zero)
         {
             transform.position = gm.lastCheckpoint;
         } else
         {
-            transform.position = new Vector2(525, -170); 
-            Debug.Log("gm nulo");
+            transform.position = new Vector2(2400, -1125); 
+            //Debug.Log("gm nulo");
         }
 
         if (sceneName == "PacificZone" || sceneName == "EnemyLevel")
         {
-            transform.position = new Vector2(525, -170); 
-            Debug.Log("ZONA PACIFICATION");
+            transform.position = new Vector2(520, -180); 
+            //Debug.Log("ZONA PACIFICATION");
         }
 
         playerRb = GetComponent<Rigidbody2D>();
@@ -88,19 +104,19 @@ public class PlayerMovement : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         GunSpriteRenderer = Gun?.GetComponent<SpriteRenderer>();
+        playerCollider = GetComponent<BoxCollider2D>();
         canDash = true;
         canSpecialAttack = false;
         // Verifica si los componentes clave están asignados
         if (playerRb == null || playerAnimator == null || spriteRenderer == null || GunSpriteRenderer == null)
         {
-            Debug.LogError("Uno o más componentes no están asignados correctamente.");
+            //Debug.LogError("Uno o más componentes no están asignados correctamente.");
         }
 
         if (boss == null)
         {
-            Debug.LogError("No se encontró un componente BossMachine en el jugador.");
+            //Debug.LogError("No se encontró un componente BossMachine en el jugador.");
         }
-
     }
 
     void Update()
@@ -109,11 +125,58 @@ public class PlayerMovement : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
 
+        // Actualizar animaciones de movimiento
         if (playerAnimator != null)
         {
-            playerAnimator.SetFloat("Horizontal", moveX);
-            playerAnimator.SetFloat("Vertical", moveY);
-            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);
+            playerAnimator.SetFloat("Speed", moveInput.sqrMagnitude);  // Si hay movimiento o no
+        }
+
+
+        // Rotación y cambio de dirección del sprite basado en la posición del mouse
+        targetRotation = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        //   var angle = Mathf.Atan2(targetRotation.y, targetRotation.x) * Mathf.Rad2Deg;
+
+        if (Mathf.Abs(targetRotation.x) > Mathf.Abs(targetRotation.y))
+        {
+            // El mouse está más hacia la izquierda o derecha
+            if (targetRotation.x < 0)
+            {
+                // El mouse está a la izquierda del jugador
+                playerAnimator.SetFloat("Horizontal", -1);  // Animación de mirar a la izquierda
+                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
+            else
+            {
+                // El mouse está a la derecha del jugador    
+                playerAnimator.SetFloat("Horizontal", 1);   // Animación de mirar a la derecha
+                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
+        }
+        else
+        {
+            // El mouse está más hacia arriba o abajo
+            if (targetRotation.y < 0)
+            {
+                // El mouse está por debajo del jugador
+                playerAnimator.SetFloat("Vertical", -1);  // Animación de mirar hacia abajo
+                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            }
+            else
+            {
+                // El mouse está por encima del jugador    
+                playerAnimator.SetFloat("Vertical", 1);   // Animación de mirar hacia arriba
+                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+            }
+        }
+
+        if (moveInput.sqrMagnitude == 0)
+        {
+            // Si el jugador NO se está moviendo (idle)
+            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
         }
 
         if (isDashing)
@@ -121,42 +184,30 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-           // Debug.Log("Arriba");
-            if (GunSpriteRenderer != null && spriteRenderer != null)
+
+         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+         {
+            if (dashEnabled)
             {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+              StartCoroutine(Dash());
             }
-        } 
             else
             {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+              Debug.Log("No hay dash");
             }
+         }
 
-            if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-            {
-                if (dashEnabled)
-                {
-                StartCoroutine(Dash());
-                }
-                else
-                {
-                 Debug.Log("No hay dash");
-                }
-            }
-
-           if (Input.GetKey(KeyCode.F) && canSpecialAttack)
-           {
-               ActivateSpecialAttack();
-           }
+         if (Input.GetKey(KeyCode.F) && canSpecialAttack)
+         {
+            ActivateSpecialAttack();
+         }
     }
 
     private void FixedUpdate()
     {
         if (playerRb == null)
         {
-            Debug.LogError("playerRb no está asignado.");
+            //Debug.LogError("playerRb no está asignado.");
             return;
         }
 
@@ -168,12 +219,23 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
-        }  
+        }
+
+        if (onStairs)
+        {
+           OnStairs();
+        }
+        else
+        {
+           /* playerRb.MovePosition(playerRb.position + moveInput * speed * Time.fixedDeltaTime);
+            playerCollider.enabled = true;*/
+        }
     }
 
     private IEnumerator Dash()
     {
-      //  Debug.Log("dashing");
+        //Debug.Log("dashing");
+        audioManager.playSound(audioManager.dash);
         canDash = false;
         isDashing = true;
         yield return new WaitForSeconds(dashDuration);
@@ -185,8 +247,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void ActivateSpecialAttack()
     {
-        CameraMovement.Instance.MoveCamera(10, 8, 2f);
-
+        CameraMovement.Instance.MoveCamera(12, 10, 3f);
+        audioManager.playSound(audioManager.powerOfGod);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
 
         foreach (Collider2D enemy in hitEnemies)
@@ -195,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
             enemy.GetComponent<BaseEnemy>()?.TakeDamage(10, BulletType.GodPower);
         }
  
-        Debug.Log("Ataque especial");
+        //Debug.Log("Ataque especial");
   
         canSpecialAttack = false;
         ManagerData.Instance.ResetCurrentPower();
@@ -223,18 +285,23 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("entrada2"))
         {
             GameEvents.ClosedDoor();
+            if (!enemyLevel.comenzarOleada && enemyLevel.contadorOleadas == 0)
+            {
+                enemyLevel.comenzarOleada = true; 
+            }
         }
         if (other.gameObject.CompareTag("entradaBoss"))
         {
-            Debug.Log("Activando jefe");
+            //Debug.Log("Activando jefe");
             if (boss != null)
             {
+                GameEvents.ClosedDoor();
                 boss.OnActive();
                 audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             }
             else
             {
-                Debug.LogError("BossMachine no está asignado");
+                //Debug.LogError("BossMachine no está asignado");
             }
             Destroy(other.gameObject);
         }
@@ -244,5 +311,69 @@ public class PlayerMovement : MonoBehaviour
             transicion.SiguienteNivel("PacificZone");
             gm.lastCheckpoint = Vector2.zero;
         }
+
+
+        if (other.gameObject.CompareTag("StairsLeft") || other.gameObject.CompareTag("StairsRight"))
+        {
+            onStairs = true;
+            if (other.gameObject.CompareTag("StairsLeft"))
+            {
+                currentStairDirection = StairDirection.Left;
+            }
+            else 
+            {
+                currentStairDirection = StairDirection.Right;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("StairsLeft") || other.gameObject.CompareTag("StairsRight"))
+        {
+            onStairs = false; 
+            spriteRenderer.sortingOrder = originalSortingOrder; 
+         //   playerCollider.enabled = true;
+            playerRb.velocity = Vector2.zero;
+            //   playerRb.bodyType = RigidbodyType2D.Dynamic;
+            canDash = true;
+        }
+    }
+
+    private void OnStairs()
+    {
+        //  playerCollider.enabled = false;
+        //  playerRb.bodyType = RigidbodyType2D.Kinematic;
+        canDash = false;
+
+        if (currentStairDirection == StairDirection.Left)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += new Vector3(moveInput.x, stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder + stairSortingOrderAdjustment;
+            }
+            else if (Input.GetKey(KeyCode.D)) // Mover a la izquierda en la escalera
+            {
+                transform.position += new Vector3(moveInput.x, -stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder - stairSortingOrderAdjustment;
+            }
+
+        }
+        else if (currentStairDirection == StairDirection.Right) 
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += new Vector3(moveInput.x, stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder + stairSortingOrderAdjustment;
+            }
+            else if (Input.GetKey(KeyCode.A)) // Mover a la izquierda en la escalera
+            {
+                transform.position += new Vector3(moveInput.x, -stairHeightOffset, 0) * Time.deltaTime * speed;
+                spriteRenderer.sortingOrder = originalSortingOrder - stairSortingOrderAdjustment;
+            }
+
+        }
+        
     }
 }

@@ -219,7 +219,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -394,18 +394,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1908810938}
   soundSource: {fileID: 41309133}
-  background: {fileID: 8300000, guid: 68e44e634b22ec74f877d4b562033ff4, type: 3}
-  background2: {fileID: 0}
+  sliderVolume: {fileID: 0}
+  pacifistZoneMusic: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
+  gameMusic: {fileID: 8300000, guid: be743634153b6ad469fdb5f8f30aef66, type: 3}
+  bossMusic: {fileID: 8300000, guid: 454c2d6a50c60984b801d493d3b74d93, type: 3}
   ambientSound: {fileID: 0}
-  cinematic: {fileID: 8300000, guid: 2a1c6246d4b034d4e8df995761c5e3ad, type: 3}
-  shot: {fileID: 8300000, guid: aa2798b6500864145896b48b69413669, type: 3}
+  menuMusic: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
+  battleMusic: {fileID: 0}
+  quietMusic: {fileID: 0}
+  fireShot: {fileID: 0}
+  waterShot: {fileID: 0}
+  airShot: {fileID: 0}
+  earthShot: {fileID: 0}
+  powerOfGod: {fileID: 0}
+  dash: {fileID: 0}
   steps: {fileID: 0}
-  enemyDeath: {fileID: 8300000, guid: 3c04fcbdd388d4c489cec7169acac52d, type: 3}
-  victory: {fileID: 0}
-  gameOver: {fileID: 0}
-  enemyShot: {fileID: 0}
-  openDoor: {fileID: 0}
-  bossMusic: {fileID: 0}
+  damage: {fileID: 0}
+  death: {fileID: 0}
+  flameDeath: {fileID: 0}
+  flameShot: {fileID: 0}
+  smokeDeath: {fileID: 0}
+  smokeShot: {fileID: 0}
+  logDeath: {fileID: 0}
+  logShot: {fileID: 0}
+  bossDeath: {fileID: 0}
+  bossShot: {fileID: 0}
+  machineDeath: {fileID: 0}
+  machineSound: {fileID: 0}
+  portalSound: {fileID: 0}
+  collectSound: {fileID: 0}
+  healSound: {fileID: 0}
+  shrineDestroy: {fileID: 0}
 --- !u!4 &810915299
 Transform:
   m_ObjectHideFlags: 0
@@ -436,7 +455,7 @@ GameObject:
   - component: {fileID: 837562712}
   - component: {fileID: 837562711}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ButtonCredits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -458,8 +477,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.44833, y: -28.69312}
-  m_SizeDelta: {x: 30.265, y: 10.115}
+  m_AnchoredPosition: {x: 0.59, y: -29.258}
+  m_SizeDelta: {x: 33.594, y: 13.603}
   m_Pivot: {x: 0.5000001, y: 0.4999999}
 --- !u!114 &837562711
 MonoBehaviour:
@@ -482,9 +501,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 0}
-    m_HighlightedColor: {r: 0.60093313, g: 0.507615, b: 0.645, a: 0.62352943}
-    m_PressedColor: {r: 0.20822644, g: 0.124, b: 0.248, a: 0.5058824}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.6392157, g: 0.54509807, b: 0.68235296, a: 1}
+    m_PressedColor: {r: 0.14117648, g: 0.08627451, b: 0.16862746, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -530,14 +549,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.16470589, g: 0.078431375, b: 0.25490198, a: 0.3882353}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -806,7 +825,7 @@ GameObject:
   - component: {fileID: 1386183368}
   - component: {fileID: 1386183367}
   m_Layer: 0
-  m_Name: menuu1-sheet
+  m_Name: MenuSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,7 +957,7 @@ GameObject:
   - component: {fileID: 1518403976}
   - component: {fileID: 1518403975}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonPlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -960,8 +979,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.7, y: -27.3}
-  m_SizeDelta: {x: 30.265, y: 10.115}
+  m_AnchoredPosition: {x: 0.625, y: -32.982}
+  m_SizeDelta: {x: 33.586, y: 15.055}
   m_Pivot: {x: 0.5, y: -0.6962588}
 --- !u!114 &1518403975
 MonoBehaviour:
@@ -984,9 +1003,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 0}
-    m_HighlightedColor: {r: 0.63753164, g: 0.54548097, b: 0.681, a: 0.62352943}
-    m_PressedColor: {r: 0.14273587, g: 0.085, b: 0.17, a: 0.50980395}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.63753164, g: 0.54548097, b: 0.681, a: 1}
+    m_PressedColor: {r: 0.14273587, g: 0.085, b: 0.17, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1032,14 +1051,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.16551943, g: 0.078097194, b: 0.254717, a: 0.41960785}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1084,9 +1103,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.56
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1225,6 +1244,7 @@ MonoBehaviour:
   damageBullet: 0
   CurrentDamageBonus: 0
   CurrentSpeedBonus: 0
+  currentPower: 0
   level1Finished: 0
   rotation: {fileID: 0}
   uiShop: {fileID: 0}

@@ -160,7 +160,7 @@ public class BossMachine : MonoBehaviour
         }
         else
         {
-            Debug.LogError("bulletPrefab o bulletSpawnPoint no asignado");
+            //LogError("bulletPrefab o bulletSpawnPoint no asignado");
         }
 
         yield return new WaitForSeconds(0.5f); // Tiempo de espera para simular la animación del disparo

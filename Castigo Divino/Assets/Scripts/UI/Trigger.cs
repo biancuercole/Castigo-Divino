@@ -10,8 +10,10 @@ public class Trigger : MonoBehaviour
     [SerializeField] private Entrances entrances;
     [SerializeField] private Portals portals;
     [SerializeField] private Dialogue dialogue;
+    [SerializeField] public GameObject targetObject;
     public string message;
     public ManagerData managerData;
+    public PlayerHealth playerHealth;
     public HeartsUI heartsUI;
     private int currentHealth;
 
@@ -20,7 +22,6 @@ public class Trigger : MonoBehaviour
     private bool itemOpen = false;
     public bool dialogueStartTrigger = false;
     public bool interactions = false;
-    public Vector3 messeagePosition;
 
     private void Start()
     {
@@ -65,14 +66,15 @@ public class Trigger : MonoBehaviour
             {
                 uiShop.Hide();
                 dialogue.didDialogueStart = false;
-                Debug.Log("Tienda cerrada");
+                //Debug.Log("Tienda cerrada");
             }
             else
             {
                 dialogue.didDialogueStart = true;
                 uiShop.Show();
-                ToolTipManager.instance.HideToolTip();
-                Debug.Log("Tienda abierta");
+             //   ToolTipManager.instance.HideToolTip();
+                targetObject.SetActive(false);
+                //Debug.Log("Tienda abierta");
             }
             shopOpen = !shopOpen;
         }
@@ -84,20 +86,22 @@ public class Trigger : MonoBehaviour
         if (itemOpen)
         {
             item.Hide();
-            Debug.Log("Gesti�n de mejoras cerrada");
+            //Debug.Log("Gesti�n de mejoras cerrada");
         }
         else
         {
             item.Show();
-            ToolTipManager.instance.HideToolTip();
-            Debug.Log("Gesti�n de mejoras abierta");
+          //  ToolTipManager.instance.HideToolTip();
+            targetObject.SetActive(false);
+            //Debug.Log("Gesti�n de mejoras abierta");
         }
         itemOpen = !itemOpen;
     }
 
     private void RecoverHealth()
     {
-
+        playerHealth.health = 4;
+        Debug.Log("vida" +  playerHealth.health);
         managerData.health = 4;
         currentHealth = managerData.health;
         PlayerPrefs.SetInt("PlayerHealth", managerData.health);
@@ -115,7 +119,7 @@ public class Trigger : MonoBehaviour
         {
             portals.ChangeScenesPortal();
         }
-        Debug.Log("se presiono E para cambiar de escena");
+        //Debug.Log("se presiono E para cambiar de escena");
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -123,9 +127,14 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = true;
-            Vector3 worldPosition = transform.position + messeagePosition;
-            ToolTipManager.instance.ShowTriggerToolTip(message, worldPosition);
-            Debug.Log("ToolTipShow");
+          //  GameObject targetTransform = targetObject.gameObject;
+            targetObject.SetActive(true);
+
+            // Convertir las coordenadas de mundo a coordenadas de pantalla
+            /*Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
+
+            ToolTipManager.instance.ShowTriggerToolTip(message, screenPosition);
+            Debug.Log("ToolTipShow");*/
         }
     }
 
@@ -134,7 +143,9 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = false;
-            ToolTipManager.instance.HideToolTip();
+            //ToolTipManager.instance.HideToolTip();
+           // GameObject targetTransform = targetObject.gameObject;
+            targetObject.SetActive(false);
             CloseAllInteractions(); 
         }
     }
@@ -146,14 +157,14 @@ public class Trigger : MonoBehaviour
             uiShop.Hide();
             shopOpen = false;
             dialogue.didDialogueStart = false;
-            Debug.Log("Tienda cerrada al salir");
+            //Debug.Log("Tienda cerrada al salir");
         }
 
         if (itemOpen)
         {
             item.Hide();
             itemOpen = false;
-            Debug.Log("Gesti�n de mejoras cerrada al salir");
+            //Debug.Log("Gesti�n de mejoras cerrada al salir");
         }
 
         interactions = false;

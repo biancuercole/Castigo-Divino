@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour
 {
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject MusicAndSoundMenu;
     [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
     private GameMaster gm;
-    [SerializeField] PlayerHealth player;
-
+    [SerializeField] PlayerHealth playerHealth;
+    [SerializeField] Rotation rotation;
+    [SerializeField] SpriteRenderer spriteRenderer;
     private bool inmortality = false;
+    public Toggle toggle;
     private void Start()
     {
         gm = FindObjectOfType<GameMaster>();
@@ -19,8 +23,10 @@ public class MenuPause : MonoBehaviour
         managerData = FindObjectOfType<ManagerData>();
         if (managerData == null)
         {
-            Debug.LogError("No se encontr� una instancia de ManagerData en la escena.");
+            //Debug.LogError("No se encontr� una instancia de ManagerData en la escena.");
         }
+
+        toggle.isOn = false;
     }
     private void Update()
     {
@@ -39,24 +45,27 @@ public class MenuPause : MonoBehaviour
 
     public void Pause()
     {
-        Debug.Log("Pausa");
+        //Debug.Log("Pausa");
         gamePaused = true;
         Time.timeScale = 0f;
         menuPause.SetActive(true);
+        rotation.canShoot = false;
     }
 
     public void Resume()
     {
-        Debug.Log("Reanudar");
+        //Debug.Log("Reanudar");
         gamePaused = false;
         Time.timeScale = 1f;
         menuPause.SetActive(false);
+        MusicAndSoundMenu.SetActive(false);
+        rotation.canShoot = true;
     }
 
     public void Menu()
     {
         Time.timeScale = 1f;
-        Debug.Log("Salir al menu");
+        //Debug.Log("Salir al menu");
         managerData.ResetGameData();
         SceneManager.LoadScene("Menu");
         gm.lastCheckpoint = Vector2.zero;
@@ -65,7 +74,7 @@ public class MenuPause : MonoBehaviour
     public void ResetGame()
     {
         Time.timeScale = 1f;
-        Debug.Log("reset");
+        //Debug.Log("reset");
         managerData.ResetGameData();
         SceneManager.LoadScene("PacificZone");
         gm.lastCheckpoint = Vector2.zero;
@@ -77,14 +86,25 @@ public class MenuPause : MonoBehaviour
 
         if (inmortality)
         {
-          
-            player.esInmune = true;
-            Debug.Log("Inmortalidad activada");
+            playerHealth.health = 3000;
+            toggle.isOn = true;
+            Debug.Log("Inmortalidad activada ");
         }
         else
         {
-            player.esInmune = false;
-            Debug.Log("Inmortalidad desactivada");
+            playerHealth.health = 4;
+            toggle.isOn = false;
+            Debug.Log("Inmortalidad desactivada ");
         }
+    }
+
+    public void MusicAndSound()
+    {
+        MusicAndSoundMenu.SetActive(true);
+    }
+
+    public void BackToMenu()
+    {
+        MusicAndSoundMenu.SetActive(false);
     }
 }

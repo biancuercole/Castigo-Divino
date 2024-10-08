@@ -61,7 +61,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         {
             Instantiate(damageParticle, transform.position, Quaternion.identity);
             animator.SetBool("Damage", true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
             animator.SetBool("Damage", false);
 
         }
@@ -89,20 +89,17 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     {
         //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
-        audioManager.playSound(audioManager.enemyDeath);
+    
         GetComponent<LootBag>().InstantiateLoot(transform.position);
         GameEvents.EnemyDefeated(); // Llama al m�todo de NextStage cuando el enemigo sea derrotado
-        if (SceneManager.GetActiveScene().name == "EnemyLevel")
-        {
-            enemyLevel.EnemyDefeated();
-        }
+        enemyLevel.EnemigoEliminado();
         enemyCollider.enabled = false;
 
         Destroy(gameObject);
         // healthBar.HideBar(); 
     }
 
-    //Manejo de da�o del boss
+    //Todo lo de abajo es el manejo de daño y muerte del boss
     private IEnumerator GetDamageBoss(float damage)
     {
         healthBar.ShowBar();
@@ -121,20 +118,21 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         }
         else
         {
-            audioManager.playSound(audioManager.openDoor);
+            audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
             managerData.level1Finished = true; // Asigna directamente el booleano
             CameraMovement.Instance.MoveCamera(7, 5, 3f);
             //Instantiate(explosionParticle, transform.position, Quaternion.identity);
             animator.SetTrigger("Explode");
-            yield return new WaitForSecondsRealtime(0.7f);
+            yield return new WaitForSecondsRealtime(1f);
             Destroy(gameObject);
             healthBar.HideBar();
-            portal.EnablePortal();
-            Debug.Log("muerto");
+            //Debug.Log("muerto");
             GetComponent<LootBag>().InstantiateLoot(transform.position);
+            audioManager.playSound(audioManager.portalSound);
+            portal.EnablePortal();
         }
 
-        Debug.Log("Vida JEFE " + health);
+        //Debug.Log("Vida JEFE " + health);
         yield return null;
     }
 

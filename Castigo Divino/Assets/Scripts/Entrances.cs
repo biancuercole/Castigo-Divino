@@ -10,7 +10,8 @@ public class Entrances : MonoBehaviour
     private Collider2D portalCollider;
     private ManagerData managerData;
     private TransicionEscena transicion;
-    private GameMaster gm; 
+    private GameMaster gm;
+    private AudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class Entrances : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         portalCollider = GetComponent<Collider2D>();
         gm = FindObjectOfType<GameMaster>();
+        audioManager = FindObjectOfType<AudioManager>();
 
         if (gameObject.CompareTag("Level1"))
         {
@@ -49,13 +51,14 @@ public class Entrances : MonoBehaviour
        
             if (gameObject.CompareTag("Level1"))
             {
-                transicion.SiguienteNivel("GameScene");
-                Debug.Log("GameScene");
+            audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
+            transicion.SiguienteNivel("GameScene");
+                //Debug.Log("GameScene");
             }
             else if (gameObject.CompareTag("Level2"))
             {
                 transicion.SiguienteNivel("EnemyLevel");
-                Debug.Log("EnemyLevel");
+                //Debug.Log("EnemyLevel");
             }     
     }
  /*   private void OnCollisionEnter2D(Collision2D collision)

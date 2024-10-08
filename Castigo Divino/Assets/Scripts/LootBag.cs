@@ -26,7 +26,7 @@ public class LootBag : MonoBehaviour
         {
             return possibleItems;
         }
-        Debug.Log("No loot dropped");
+        //Debug.Log("No loot dropped");
         return null;
     }
 
