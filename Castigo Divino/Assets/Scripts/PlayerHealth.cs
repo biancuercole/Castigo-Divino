@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject Gun;
     private SpriteRenderer[] gunSprite;
     private AudioManager audioManager;
-
+    public UnityEvent OnBegin, OnDone;
     void Start()
     {
         gunSprite = Gun.GetComponentsInChildren<SpriteRenderer>();
@@ -55,12 +55,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void GetDamage(int damage, GameObject damageSource)
     {
+        audioManager.playSound(audioManager.damage);
         Debug.Log("Inmunidad "+ esInmune);
         if (!esInmune  && !yaMuerto)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
-            audioManager.playSound(audioManager.damage);
             KnocKBack.KnockBacK(damageSource);
 
             int temporaryHealth = health - damage;
@@ -87,6 +87,7 @@ public class PlayerHealth : MonoBehaviour
                 yaMuerto = true;  // Marcar que el jugador ha muerto
                 Gun.SetActive(false);
                 animator.SetTrigger("Muerte");
+                OnBegin?.Invoke();
                 CameraMovement.Instance.MoveCamera(5, 5, 2f);
                 redTint.gameObject.SetActive(true);
                 StartCoroutine(HandleLevelTransition());
@@ -125,6 +126,8 @@ public class PlayerHealth : MonoBehaviour
         ManagerData.Instance.ResetCurrentPower();
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
+        yield return new WaitForSecondsRealtime(1.5f);
+        OnDone?.Invoke();
     }
 
     public void HealHealth(int healAmount)

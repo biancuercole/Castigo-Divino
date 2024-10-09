@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -175,8 +176,17 @@ public class PlayerMovement : MonoBehaviour
 
         if (moveInput.sqrMagnitude == 0)
         {
-            // Si el jugador NO se está moviendo (idle)
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+            // Si el jugador está quieto y apunta hacia arriba
+            if (targetRotation.y > 0)
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;  // Arma detrás del jugador
+                Debug.Log("mirando arriba en idle " + GunSpriteRenderer.sortingOrder);
+            }
+            else
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;  // Arma al frente
+                Debug.Log("idle arma al frente");
+            }
         }
 
         if (isDashing)
