@@ -83574,7 +83574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1957976469}
   strength: 4
-  delay: 0.5
+  delay: 1.5
   OnBegin:
     m_PersistentCalls:
       m_Calls:

@@ -133,9 +133,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        // Rotación y cambio de dirección del sprite basado en la posición del mouse
+       
         targetRotation = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        //   var angle = Mathf.Atan2(targetRotation.y, targetRotation.x) * Mathf.Rad2Deg;
+       
 
         if (Mathf.Abs(targetRotation.x) > Mathf.Abs(targetRotation.y))
         {
@@ -143,15 +143,15 @@ public class PlayerMovement : MonoBehaviour
             if (targetRotation.x < 0)
             {
                 // El mouse está a la izquierda del jugador
-                playerAnimator.SetFloat("Horizontal", -1);  // Animación de mirar a la izquierda
-                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                playerAnimator.SetFloat("Horizontal", -1); 
+                playerAnimator.SetFloat("Vertical", 0);  
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
             }
             else
             {
                 // El mouse está a la derecha del jugador    
-                playerAnimator.SetFloat("Horizontal", 1);   // Animación de mirar a la derecha
-                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                playerAnimator.SetFloat("Horizontal", 1);   
+                playerAnimator.SetFloat("Vertical", 0);  
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
             }
         }
@@ -161,31 +161,31 @@ public class PlayerMovement : MonoBehaviour
             if (targetRotation.y < 0)
             {
                 // El mouse está por debajo del jugador
-                playerAnimator.SetFloat("Vertical", -1);  // Animación de mirar hacia abajo
-                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                playerAnimator.SetFloat("Vertical", -1);  
+                playerAnimator.SetFloat("Horizontal", 0);  
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
             }
             else
             {
                 // El mouse está por encima del jugador    
-                playerAnimator.SetFloat("Vertical", 1);   // Animación de mirar hacia arriba
-                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                playerAnimator.SetFloat("Vertical", 1);  
+                playerAnimator.SetFloat("Horizontal", 0); 
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
             }
         }
 
         if (moveInput.sqrMagnitude == 0)
         {
-            // Si el jugador está quieto y apunta hacia arriba
+           
             if (targetRotation.y > 0)
             {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;  // Arma detrás del jugador
-                Debug.Log("mirando arriba en idle " + GunSpriteRenderer.sortingOrder);
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;  
+                
             }
             else
             {
-                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;  // Arma al frente
-                Debug.Log("idle arma al frente");
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;  
+             
             }
         }
 
