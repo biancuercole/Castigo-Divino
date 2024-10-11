@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer GunSpriteRenderer;
     private AudioManager audioManager;
     private NextStage nextStage; 
-    [SerializeField] private BossMachine boss;
+   [SerializeField] private BossMachine boss;
     private Portals portals; 
     [SerializeField] private TransicionEscena transicion;
 
@@ -43,9 +43,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float attackRadius = 40f; 
     [SerializeField] private int attackDamage = 50; 
 
-
-    public ManagerData managerData;
-
     [Header("Stairs")]
     public float stairHeightOffset = 0.2f; // Ajusta la altura cuando el jugador sube o baja escaleras horizontales
     private int stairSortingOrderAdjustment = 1; 
@@ -54,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D playerCollider;
     private enum StairDirection { Right, Left }
     private StairDirection currentStairDirection;
+
+    [Header("Others")]
+    public ManagerData managerData;
+    [SerializeField] private CamTransition camTransition;
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -305,9 +306,8 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Activando jefe");
             if (boss != null)
             {
+                StartCoroutine(camTransition.SwitchPriorityBoss());
                 GameEvents.ClosedDoor();
-                boss.OnActive();
-                audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             }
             else
             {
