@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
     private bool yaMuerto = false;
 
     [SerializeField] private int indiceNivel;
-    [SerializeField] private float inmunidadDuracion = 2.0f;
+    [SerializeField] private float inmunidadDuracion = 1.0f;
     [SerializeField] private float parpadeoIntervalo = 0.2f;
 
     [SerializeField] private UnityEngine.UI.Image redTint;
@@ -81,12 +81,14 @@ public class PlayerHealth : MonoBehaviour
 
             changeHealth.Invoke(health);
             managerData.AddHealth(health);
-
+            
             if (temporaryHealth <= 0 && !yaMuerto)
             {
-                yaMuerto = true;  // Marcar que el jugador ha muerto
+                yaMuerto = true;
+                animator.ResetTrigger("isDamaged"); // Asegura que no haya conflictos
+                animator.SetBool("isDamaged", false);
+                animator.SetTrigger("Muerte"); // Activar animación de muerte
                 Gun.SetActive(false);
-                animator.SetTrigger("Muerte");
                 OnBegin?.Invoke();
                 CameraMovement.Instance.MoveCamera(5, 5, 2f);
                 redTint.gameObject.SetActive(true);
@@ -102,7 +104,7 @@ public class PlayerHealth : MonoBehaviour
     private IEnumerator DañoAnimation()
     {
         animator.SetBool("isDamaged", true);
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(1f);
         animator.SetBool("isDamaged", false);
     }
 
@@ -111,7 +113,7 @@ public class PlayerHealth : MonoBehaviour
         string sceneName = SceneManager.GetActiveScene().name;
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
         StartCoroutine(audioManager.FadeOut(audioManager.musicSource, 0.7f));
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.1f);
 
         if(sceneName == "GameScene")
         {   
