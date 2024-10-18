@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer GunSpriteRenderer;
     private AudioManager audioManager;
     private NextStage nextStage; 
-    [SerializeField] private BossMachine boss;
+   [SerializeField] private BossMachine boss;
     private Portals portals; 
     [SerializeField] private TransicionEscena transicion;
 
@@ -42,9 +43,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float attackRadius = 40f; 
     [SerializeField] private int attackDamage = 50; 
 
-
-    public ManagerData managerData;
-
     [Header("Stairs")]
     public float stairHeightOffset = 0.2f; // Ajusta la altura cuando el jugador sube o baja escaleras horizontales
     private int stairSortingOrderAdjustment = 1; 
@@ -53,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D playerCollider;
     private enum StairDirection { Right, Left }
     private StairDirection currentStairDirection;
+
+    [Header("Others")]
+    public ManagerData managerData;
+    [SerializeField] private CamTransition camTransition;
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -132,9 +134,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        // Rotación y cambio de dirección del sprite basado en la posición del mouse
+       
         targetRotation = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-        //   var angle = Mathf.Atan2(targetRotation.y, targetRotation.x) * Mathf.Rad2Deg;
+       
 
         if (Mathf.Abs(targetRotation.x) > Mathf.Abs(targetRotation.y))
         {
@@ -142,15 +144,15 @@ public class PlayerMovement : MonoBehaviour
             if (targetRotation.x < 0)
             {
                 // El mouse está a la izquierda del jugador
-                playerAnimator.SetFloat("Horizontal", -1);  // Animación de mirar a la izquierda
-                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                playerAnimator.SetFloat("Horizontal", -1); 
+                playerAnimator.SetFloat("Vertical", 0);  
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
             }
             else
             {
                 // El mouse está a la derecha del jugador    
-                playerAnimator.SetFloat("Horizontal", 1);   // Animación de mirar a la derecha
-                playerAnimator.SetFloat("Vertical", 0);  // Reseteamos el valor de Vertical
+                playerAnimator.SetFloat("Horizontal", 1);   
+                playerAnimator.SetFloat("Vertical", 0);  
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
             }
         }
@@ -160,23 +162,32 @@ public class PlayerMovement : MonoBehaviour
             if (targetRotation.y < 0)
             {
                 // El mouse está por debajo del jugador
-                playerAnimator.SetFloat("Vertical", -1);  // Animación de mirar hacia abajo
-                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                playerAnimator.SetFloat("Vertical", -1);  
+                playerAnimator.SetFloat("Horizontal", 0);  
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
             }
             else
             {
                 // El mouse está por encima del jugador    
-                playerAnimator.SetFloat("Vertical", 1);   // Animación de mirar hacia arriba
-                playerAnimator.SetFloat("Horizontal", 0);  // Reseteamos el valor de Horizontal
+                playerAnimator.SetFloat("Vertical", 1);  
+                playerAnimator.SetFloat("Horizontal", 0); 
                 GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
             }
         }
 
         if (moveInput.sqrMagnitude == 0)
         {
-            // Si el jugador NO se está moviendo (idle)
-            GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;
+           
+            if (targetRotation.y > 0)
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;  
+                
+            }
+            else
+            {
+                GunSpriteRenderer.sortingOrder = spriteRenderer.sortingOrder + 1;  
+             
+            }
         }
 
         if (isDashing)
@@ -295,15 +306,19 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Activando jefe");
             if (boss != null)
             {
+                StartCoroutine(camTransition.SwitchPriorityBoss());
                 GameEvents.ClosedDoor();
-                boss.OnActive();
-                audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             }
             else
             {
                 //Debug.LogError("BossMachine no está asignado");
             }
             Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("entradaShrine"))
+        {
+           StartCoroutine(camTransition.SwitchPriorityShrine());
+           Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Retorno"))

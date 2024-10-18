@@ -12,9 +12,11 @@ public class Entrances : MonoBehaviour
     private TransicionEscena transicion;
     private GameMaster gm;
     private AudioManager audioManager;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         transicion = FindObjectOfType<TransicionEscena>();
         managerData = FindObjectOfType<ManagerData>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -24,6 +26,7 @@ public class Entrances : MonoBehaviour
 
         if (gameObject.CompareTag("Level1"))
         {
+            animator.SetTrigger("Warp");
             spriteRenderer.sprite = openSprite;
             portalCollider.enabled = true;
         } else if (gameObject.CompareTag("Level2"))

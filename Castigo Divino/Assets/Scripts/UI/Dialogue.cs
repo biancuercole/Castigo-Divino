@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.Events;
 public class Dialogue : MonoBehaviour
 {
     private bool isPlayerInRange;
@@ -16,6 +16,8 @@ public class Dialogue : MonoBehaviour
 
     [SerializeField] private Trigger trigger;
     [SerializeField] private Rotation rotation;
+    public UnityEvent OnBegin, OnDone;
+
     void Update()
     {
         if(isPlayerInRange && Input.GetKeyDown(KeyCode.E))
@@ -36,6 +38,7 @@ public class Dialogue : MonoBehaviour
 
     private void StartDialogue()
     {
+        OnBegin?.Invoke();
         trigger.targetObject.SetActive(false);
         didDialogueStart = true;
         dialoguePanel.SetActive(true);
@@ -47,7 +50,6 @@ public class Dialogue : MonoBehaviour
         }
         //dialogueStart.SetActive(false);
         lineIndex = 0;
-        Time.timeScale = 0f;
         StartCoroutine(showLine());
     }
 
@@ -62,11 +64,11 @@ public class Dialogue : MonoBehaviour
             didDialogueStart = false;
             dialoguePanel.SetActive(false);
           //  dialogueStart.SetActive(true);
-            Time.timeScale = 1f;
             trigger.dialogueStartTrigger = true;
             if(this.gameObject.CompareTag("Shop"))
             trigger.ToggleShop();
             ToolTipManager.instance.HideToolTip();
+            OnDone?.Invoke();
         }
     }
 

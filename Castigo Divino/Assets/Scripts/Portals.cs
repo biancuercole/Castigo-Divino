@@ -14,9 +14,11 @@ public class Portals : MonoBehaviour
     [SerializeField] private Sprite openSprite;
     private Collider2D portalCollider;
     private GameMaster gm;
+    private Animator animator;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         gm = FindObjectOfType<GameMaster>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         portalCollider = GetComponent<Collider2D>();
@@ -41,7 +43,7 @@ public class Portals : MonoBehaviour
         gameObject.SetActive(true);*/
 
         // Activa el collider y cambia la capa
-
+        animator.SetTrigger("Warp");
         portalCollider.enabled = true;
         spriteRenderer.sprite = openSprite;
         gameObject.layer = 3; // Cambia "3" por la capa que desees

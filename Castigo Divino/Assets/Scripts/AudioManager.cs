@@ -46,6 +46,7 @@ public class AudioManager : MonoBehaviour
     [Header("Enemy : JEFE")]
     public AudioClip bossDeath;
     public AudioClip bossShot;
+    public AudioClip bossAwaken;
 
     [Header("Enemy : MAQUINAS")]
     public AudioClip machineDeath;

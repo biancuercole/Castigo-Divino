@@ -38,4 +38,14 @@ public class MinionsBoss : MonoBehaviour
             Instantiate(enemies[numEnemy], randomPosition, Quaternion.identity);
         }
     }
+
+    public void KillAllMinions()
+    {
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minions"); // Encuentra los minions activos
+
+        foreach (var minion in minions)
+        {
+            if (minion != null) Destroy(minion); // Destruye cada minion encontrado
+        }
+    }
 }

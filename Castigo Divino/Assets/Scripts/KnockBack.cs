@@ -12,10 +12,10 @@ public class KnocKBack : MonoBehaviour
 
     public void KnockBacK(GameObject sender)
     {
-        StopAllCoroutines();
+      //  StopAllCoroutines();
         OnBegin?.Invoke();
 
-        Rigidbody2D senderRb = sender.GetComponent<Rigidbody2D>();
+       /* Rigidbody2D senderRb = sender.GetComponent<Rigidbody2D>();
         Vector2 direction;
 
         if (senderRb != null)
@@ -29,7 +29,7 @@ public class KnocKBack : MonoBehaviour
 
        // Debug.Log("Dirección del Knockback: " + direction);
 
-        rb.AddForce(direction * strength, ForceMode2D.Impulse);
+        rb.AddForce(direction * strength, ForceMode2D.Impulse);*/
         StartCoroutine(Reset());
     }
     private IEnumerator Reset()

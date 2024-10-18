@@ -6214,6 +6214,7 @@ MonoBehaviour:
   targetObject: {fileID: 1714256343}
   message: Presionar E para gestionar armas
   managerData: {fileID: 0}
+  playerHealth: {fileID: 0}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
@@ -6507,8 +6508,9 @@ MonoBehaviour:
   menuPause: {fileID: 1466019058}
   MusicAndSoundMenu: {fileID: 1103581447}
   managerData: {fileID: 466434709}
-  player: {fileID: 1916445829}
+  playerHealth: {fileID: 0}
   rotation: {fileID: 1256946702}
+  spriteRenderer: {fileID: 0}
   toggle: {fileID: 387443508}
 --- !u!114 &289691758
 MonoBehaviour:
@@ -7816,7 +7818,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4be71158f4ca1c442b28198c05f8d2d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d164f89d7c03ed40b800c4efb0644ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7865,6 +7867,7 @@ MonoBehaviour:
   targetObject: {fileID: 1462188203}
   message: Presionar E para curar vida
   managerData: {fileID: 466434709}
+  playerHealth: {fileID: 0}
   heartsUI: {fileID: 1286032150}
   dialogueStartTrigger: 0
   interactions: 0
@@ -7943,6 +7946,12 @@ MonoBehaviour:
   godesSprite: {fileID: 1925307918}
   trigger: {fileID: 510174262}
   rotation: {fileID: 1256946702}
+  OnBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDone:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &516894197
 GameObject:
   m_ObjectHideFlags: 0
@@ -8760,6 +8769,7 @@ MonoBehaviour:
   targetObject: {fileID: 496527268}
   message: Presionar E para ir al bosque
   managerData: {fileID: 466434709}
+  playerHealth: {fileID: 0}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
@@ -11699,6 +11709,7 @@ GameObject:
   - component: {fileID: 1051948358}
   - component: {fileID: 1051948360}
   - component: {fileID: 1051948361}
+  - component: {fileID: 1051948362}
   m_Layer: 7
   m_Name: PortalLvl1
   m_TagString: Level1
@@ -11768,7 +11779,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 62.99999, y: -80, z: 0.13325137}
-  m_LocalScale: {x: 1, y: 1, z: 0.6818}
+  m_LocalScale: {x: -1, y: 1, z: 0.6818}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1317746544}
@@ -11855,6 +11866,7 @@ MonoBehaviour:
   targetObject: {fileID: 1522720654}
   message: Presionar E para ir al bosque
   managerData: {fileID: 466434709}
+  playerHealth: {fileID: 0}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
@@ -11903,6 +11915,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 15.701965, y: 27}
   m_EdgeRadius: 1
+--- !u!95 &1051948362
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051948355}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67b607820aed1264c98726a8ae074796, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1053630636
 GameObject:
   m_ObjectHideFlags: 3
@@ -13175,6 +13208,7 @@ MonoBehaviour:
   targetObject: {fileID: 1120059619}
   message: Presionar E para entrar a la tienda
   managerData: {fileID: 466434709}
+  playerHealth: {fileID: 0}
   heartsUI: {fileID: 0}
   dialogueStartTrigger: 0
   interactions: 0
@@ -13362,6 +13396,12 @@ MonoBehaviour:
   godesSprite: {fileID: 1925307918}
   trigger: {fileID: 1241022662}
   rotation: {fileID: 1256946702}
+  OnBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDone:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1251174830
 GameObject:
   m_ObjectHideFlags: 0
@@ -28105,6 +28145,12 @@ MonoBehaviour:
   managerData: {fileID: 466434709}
   damageParticle: {fileID: 4909714097112085620, guid: f3d7060887abc624bbad115b07113924, type: 3}
   Gun: {fileID: 1256946699}
+  OnBegin:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDone:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1916445830
 BoxCollider2D:
   m_ObjectHideFlags: 0
