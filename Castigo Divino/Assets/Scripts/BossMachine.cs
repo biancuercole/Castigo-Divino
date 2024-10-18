@@ -12,7 +12,7 @@ public class BossMachine : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    private Animator bossAnimator;
+    public Animator bossAnimator;
     private Vector2 moveInput;
 
     public GameObject bulletPrefab;
@@ -53,6 +53,15 @@ public class BossMachine : MonoBehaviour
     public void OnActive()
     {
         gameObject.SetActive(true);
+    }
+
+    public void OnVisible()
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = true;
+        }
     }
 
     private void Update()

@@ -13,6 +13,7 @@ public class CamTransition : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera shrineCamera;
 
     [SerializeField] private BossMachine boss;
+     [SerializeField] private GameObject bossAnimation;
     [SerializeField] AudioManager audioManager;
     public IEnumerator SwitchPriorityShrine()
     {
@@ -32,18 +33,22 @@ public class CamTransition : MonoBehaviour
     {
         if (virtualCamera)
         {
+           // boss.OnVisible();
             virtualCamera.Priority = 0;
             bossCamera.Priority = 1;
             audioManager.playSound(audioManager.bossAwaken);
+           // bossAnimation.bossAnimator.SetBool("Jumping", true);
             audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             Debug.Log("bossCamera");
+           // boss.OnVisible();
         }
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3.5f);
         virtualCamera.Priority = 1;
         bossCamera.Priority = 0;
 
         yield return new WaitForSeconds(2);
         boss.OnActive();
+        boss.bossAnimator.SetBool("Jumping", false);
     }
 }
