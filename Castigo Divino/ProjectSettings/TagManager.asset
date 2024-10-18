@@ -39,6 +39,7 @@ TagManager:
   - Level3
   - StairsLeft
   - StairsRight
+  - entradaShrine
   layers:
   - Default
   - TransparentFX

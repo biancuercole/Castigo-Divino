@@ -23,7 +23,7 @@ public class CamTransition : MonoBehaviour
             Debug.Log("portalCamera");
         }
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         virtualCamera.Priority = 1;
         shrineCamera.Priority = 0;
     }

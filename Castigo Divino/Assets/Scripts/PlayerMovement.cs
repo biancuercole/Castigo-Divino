@@ -315,6 +315,11 @@ public class PlayerMovement : MonoBehaviour
             }
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("entradaShrine"))
+        {
+           StartCoroutine(camTransition.SwitchPriorityShrine());
+           Destroy(other.gameObject);
+        }
 
         if (other.gameObject.CompareTag("Retorno"))
         {

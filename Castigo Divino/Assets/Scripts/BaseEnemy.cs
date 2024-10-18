@@ -20,8 +20,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     [SerializeField] private int indiceNivel;
     private Coroutine damageCoroutine;
     public BossMachine bossMachine;
-    private Animator animator; 
-
+    private Animator animator;
+    [SerializeField] private MinionsBoss minionsBoss;
     private PlayerMovement playerMovement;
     private ManagerData managerData;
 
@@ -87,6 +87,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
     protected virtual void deathEnd()
     {
+        Destroy(gameObject);
         //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
     
@@ -94,8 +95,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         GameEvents.EnemyDefeated(); // Llama al m�todo de NextStage cuando el enemigo sea derrotado
         enemyLevel.EnemigoEliminado();
         enemyCollider.enabled = false;
-
-        Destroy(gameObject);
         // healthBar.HideBar(); 
     }
 
@@ -118,6 +117,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         }
         else
         {
+            minionsBoss.KillAllMinions();
             audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
             managerData.level1Finished = true; // Asigna directamente el booleano
             CameraMovement.Instance.MoveCamera(7, 5, 3f);
