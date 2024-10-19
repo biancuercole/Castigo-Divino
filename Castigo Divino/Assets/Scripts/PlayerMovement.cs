@@ -225,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
         if (isDashing)
         {
             playerRb.velocity = moveInput * dashSpeed;
-            Instantiate(dashEffect, transform.position, Quaternion.identity);
+          //  Instantiate(dashEffect, transform.position, Quaternion.identity);
         }
         else
         {
@@ -249,7 +249,13 @@ public class PlayerMovement : MonoBehaviour
         audioManager.playSound(audioManager.dash);
         canDash = false;
         isDashing = true;
+
+        playerRb.velocity = moveInput * dashSpeed; // Aplica la velocidad del dash
+        Instantiate(dashEffect, transform.position, Quaternion.identity);
+
         yield return new WaitForSeconds(dashDuration);
+
+        playerRb.velocity = Vector2.zero;
         isDashing = false;
 
         yield return new WaitForSeconds(dashCoolDown);
@@ -306,14 +312,11 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Activando jefe");
             if (boss != null)
             {
-                StartCoroutine(camTransition.SwitchPriorityBoss());
                 GameEvents.ClosedDoor();
+                StartCoroutine(camTransition.SwitchPriorityBoss());
+                Destroy(other.gameObject);
             }
-            else
-            {
-                //Debug.LogError("BossMachine no está asignado");
-            }
-            Destroy(other.gameObject);
+
         }
         if (other.gameObject.CompareTag("entradaShrine"))
         {

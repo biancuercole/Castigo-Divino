@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
+using UnityEditor.Rendering.PostProcessing;
 public class Dialogue : MonoBehaviour
 {
     private bool isPlayerInRange;
@@ -17,21 +18,31 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private Trigger trigger;
     [SerializeField] private Rotation rotation;
     public UnityEvent OnBegin, OnDone;
+    private bool isTyping = false;
+
+    // verificar si se está escribiendo
+    public bool IsTyping
+    {
+        get { return isTyping; }
+    }
 
     void Update()
     {
-        if(isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if(!didDialogueStart)
+            if (!didDialogueStart)
             {
                 StartDialogue();
-            } else if (dialogueText.text == dialogueLines[lineIndex])
+            }
+            else if (dialogueText.text == dialogueLines[lineIndex])
             {
                 nextDialogueLine();
-            }else
+            }
+            else
             {
                 StopAllCoroutines();
                 dialogueText.text = dialogueLines[lineIndex];
+                isTyping = false;
             }
         }
     }
@@ -42,10 +53,12 @@ public class Dialogue : MonoBehaviour
         trigger.targetObject.SetActive(false);
         didDialogueStart = true;
         dialoguePanel.SetActive(true);
-        if(this.gameObject.CompareTag("altarVida"))
+        if (this.gameObject.CompareTag("altarVida"))
         {
             godesSprite.SetActive(true);
-        } else {
+        }
+        else
+        {
             godesSprite.SetActive(false);
         }
         //dialogueStart.SetActive(false);
@@ -53,20 +66,21 @@ public class Dialogue : MonoBehaviour
         StartCoroutine(showLine());
     }
 
-    private void nextDialogueLine()
+    public void nextDialogueLine()
     {
         lineIndex++;
-        if(lineIndex < dialogueLines.Length)
+        if (lineIndex < dialogueLines.Length)
         {
             StartCoroutine(showLine());
-        } else
+        }
+        else
         {
             didDialogueStart = false;
             dialoguePanel.SetActive(false);
-          //  dialogueStart.SetActive(true);
+            //  dialogueStart.SetActive(true);
             trigger.dialogueStartTrigger = true;
-            if(this.gameObject.CompareTag("Shop"))
-            trigger.ToggleShop();
+            if (this.gameObject.CompareTag("Shop"))
+                trigger.ToggleShop();
             ToolTipManager.instance.HideToolTip();
             OnDone?.Invoke();
         }
@@ -74,17 +88,26 @@ public class Dialogue : MonoBehaviour
 
     private IEnumerator showLine()
     {
+        isTyping = true;
         dialogueText.text = string.Empty;
+
         foreach (char ch in dialogueLines[lineIndex])
         {
             dialogueText.text += ch;
             yield return new WaitForSecondsRealtime(typingTime);
         }
+        isTyping = false;
     }
+
+    public bool IsDialogueFinished()
+    {
+        return lineIndex >= dialogueLines.Length;  
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = true;
             //  dialogueStart.SetActive(true);
@@ -94,11 +117,11 @@ public class Dialogue : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = false;
-           // dialogueStart.SetActive(false);
-           rotation.canShoot = true;
+            // dialogueStart.SetActive(false);
+            rotation.canShoot = true;
         }
     }
 }

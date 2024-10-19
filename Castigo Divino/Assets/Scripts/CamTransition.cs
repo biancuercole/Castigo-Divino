@@ -2,7 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 
 
 public class CamTransition : MonoBehaviour
@@ -12,9 +12,15 @@ public class CamTransition : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera bossCamera;
     [SerializeField] private CinemachineVirtualCamera shrineCamera;
 
-    [SerializeField] private BossMachine boss;
-     [SerializeField] private GameObject bossAnimation;
     [SerializeField] AudioManager audioManager;
+    [SerializeField] private BossMachine boss;
+    public Animator bossAnimator;
+    public GameObject bossAnimationObject;
+    public UnityEvent OnBegin, OnDone;
+    public float timeForAnimationJump;
+    public float timeForCamPlayer;
+    public float timeForPlayerToMove;
+
     public IEnumerator SwitchPriorityShrine()
     {
         if (virtualCamera)
@@ -33,22 +39,35 @@ public class CamTransition : MonoBehaviour
     {
         if (virtualCamera)
         {
-           // boss.OnVisible();
+            OnBegin?.Invoke();
             virtualCamera.Priority = 0;
             bossCamera.Priority = 1;
-            audioManager.playSound(audioManager.bossAwaken);
-           // bossAnimation.bossAnimator.SetBool("Jumping", true);
+          //  audioManager.playSound(audioManager.bossAwaken);
+
+            yield return new WaitForSeconds(timeForAnimationJump);
+            bossAnimationObject.SetActive(true);
+            bossAnimator.SetTrigger("Jumping");
+            Debug.Log("Jumping state after setting: " + bossAnimator.GetBool("Jumping"));
+
+            // Esperar a que termine la animación
+          //  yield return new WaitUntil(() => IsAnimationFinished("Jumping"));
+
+            // Cambiar la música después del salto
             audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             Debug.Log("bossCamera");
-           // boss.OnVisible();
+
+            // Resetear el trigger después de que termine la animación
+            bossAnimator.ResetTrigger("Jumping"); 
         }
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(timeForCamPlayer);
         virtualCamera.Priority = 1;
         bossCamera.Priority = 0;
-
-        yield return new WaitForSeconds(2);
+      //  bossAnimationObject.SetActive(false);
+        yield return new WaitForSeconds(timeForPlayerToMove);
+        bossAnimationObject.SetActive(false);
+        OnDone?.Invoke();
         boss.OnActive();
-        boss.bossAnimator.SetBool("Jumping", false);
+        Debug.Log("Door Closed ");
     }
 }

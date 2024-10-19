@@ -53,15 +53,15 @@ public class PlayerHealth : MonoBehaviour
         changeHealth.Invoke(health);
     }
 
-    public void GetDamage(int damage, GameObject damageSource)
+    public void GetDamage(int damage /*GameObject damageSource*/)
     {
         audioManager.playSound(audioManager.damage);
-        Debug.Log("Inmunidad "+ esInmune);
+       // Debug.Log("Inmunidad "+ esInmune);
         if (!esInmune  && !yaMuerto)
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
-            KnocKBack.KnockBacK(damageSource);
+            KnocKBack.KnockBacK();
 
             int temporaryHealth = health - damage;
 

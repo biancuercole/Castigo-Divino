@@ -219,7 +219,7 @@ public class BossMachine : MonoBehaviour
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.GetDamage(damage, this.gameObject);
+            playerHealth.GetDamage(damage /*this.gameObject*/);
         }
     }
 }

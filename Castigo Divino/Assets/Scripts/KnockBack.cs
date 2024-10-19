@@ -10,7 +10,7 @@ public class KnocKBack : MonoBehaviour
 
     public UnityEvent OnBegin, OnDone;
 
-    public void KnockBacK(GameObject sender)
+    public void KnockBacK(/*GameObject sender*/)
     {
       //  StopAllCoroutines();
         OnBegin?.Invoke();
@@ -35,7 +35,7 @@ public class KnocKBack : MonoBehaviour
     private IEnumerator Reset()
     {
         yield return new WaitForSeconds(delay);
-        rb.velocity = Vector3.zero;
+      //  rb.velocity = Vector3.zero;
         OnDone?.Invoke();
     }
 }

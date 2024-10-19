@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Trigger : MonoBehaviour
@@ -25,16 +22,21 @@ public class Trigger : MonoBehaviour
 
     private void Start()
     {
-        uiShop.Hide();  
+        uiShop.Hide();
         item.Hide();
     }
 
     private void Update()
     {
+        if (shopOpen && Input.GetKeyDown(KeyCode.E))
+        {
+            CloseShop();  
+            return;  
+        }
 
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            HandleInteraction(); // metodo que maneja las interacciones
+            HandleInteraction();  
         }
     }
 
@@ -60,25 +62,35 @@ public class Trigger : MonoBehaviour
 
     public void ToggleShop()
     {
-        if (dialogueStartTrigger)
+        if (dialogue.IsDialogueFinished())  
         {
             if (shopOpen)
             {
-                uiShop.Hide();
-                dialogue.didDialogueStart = false;
-                //Debug.Log("Tienda cerrada");
+                CloseShop(); 
             }
             else
             {
-                dialogue.didDialogueStart = true;
-                uiShop.Show();
-             //   ToolTipManager.instance.HideToolTip();
-                targetObject.SetActive(false);
-                //Debug.Log("Tienda abierta");
+                OpenShop();  
             }
-            shopOpen = !shopOpen;
         }
-        dialogueStartTrigger = false;
+        else if (!dialogue.IsTyping) 
+        {
+            dialogue.nextDialogueLine();
+        }
+    }
+
+    private void OpenShop()
+    {
+        dialogue.didDialogueStart = true; 
+        uiShop.Show();  
+        targetObject.SetActive(false);  
+        shopOpen = true;
+    }
+    private void CloseShop()
+    {
+        uiShop.Hide();
+        dialogue.didDialogueStart = false;
+        shopOpen = false;
     }
 
     private void ToggleItemManagement()
@@ -91,7 +103,6 @@ public class Trigger : MonoBehaviour
         else
         {
             item.Show();
-          //  ToolTipManager.instance.HideToolTip();
             targetObject.SetActive(false);
             //Debug.Log("Gesti�n de mejoras abierta");
         }
@@ -101,7 +112,7 @@ public class Trigger : MonoBehaviour
     private void RecoverHealth()
     {
         playerHealth.health = 4;
-        Debug.Log("vida" +  playerHealth.health);
+        Debug.Log("vida" + playerHealth.health);
         managerData.health = 4;
         currentHealth = managerData.health;
         PlayerPrefs.SetInt("PlayerHealth", managerData.health);
@@ -127,14 +138,7 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = true;
-          //  GameObject targetTransform = targetObject.gameObject;
             targetObject.SetActive(true);
-
-            // Convertir las coordenadas de mundo a coordenadas de pantalla
-            /*Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
-
-            ToolTipManager.instance.ShowTriggerToolTip(message, screenPosition);
-            Debug.Log("ToolTipShow");*/
         }
     }
 
@@ -143,10 +147,8 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = false;
-            //ToolTipManager.instance.HideToolTip();
-           // GameObject targetTransform = targetObject.gameObject;
             targetObject.SetActive(false);
-            CloseAllInteractions(); 
+            CloseAllInteractions();
         }
     }
 
