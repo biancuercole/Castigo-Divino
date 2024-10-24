@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI; // Para trabajar con imágenes en UI
 
 public class Manual : MonoBehaviour
 {
     private bool isManualShowing;
     [SerializeField] private GameObject manualPanel;
-    [SerializeField] private TMP_Text manualText;
-    [SerializeField, TextArea(4, 6)] private string[] manualLines;
+    [SerializeField] private Image manualImage; // Cambiamos TMP_Text por Image
+    [SerializeField] private Sprite[] manualImages; // Array de imágenes tipo Sprite
     [SerializeField] private Rotation rotation;
     private int pageIndex;
     [SerializeField] private GameObject map;
@@ -20,7 +20,6 @@ public class Manual : MonoBehaviour
         isManualShowing = false;
         pageIndex = 0;
     }
-
 
     private void Update()
     {
@@ -39,7 +38,6 @@ public class Manual : MonoBehaviour
 
     public void Show()
     {
-        //.Log("Manual");
         isManualShowing = true;
         Time.timeScale = 0f;
         manualPanel.SetActive(true);
@@ -49,7 +47,6 @@ public class Manual : MonoBehaviour
 
     public void Hide()
     {
-        //Debug.Log("Reanudar");
         isManualShowing = false;
         Time.timeScale = 1f;
         manualPanel.SetActive(false);
@@ -59,44 +56,35 @@ public class Manual : MonoBehaviour
 
     public void showPage(int pageIndex)
     {
-        manualText.text = string.Empty;
-        foreach (char ch in manualLines[pageIndex])
+        if (pageIndex >= 0 && pageIndex < manualImages.Length)
         {
-            manualText.text += ch;
+            manualImage.sprite = manualImages[pageIndex]; // Cambiamos la imagen
         }
         map.SetActive(false);
     }
 
     public void showMap()
     {
-        //Debug.Log("Llamada a showMap() con �ndice: " + pageIndex);
         map.SetActive(true);
-        //Debug.Log("mapa abierto en indice 3");
     }
 
-    /*public void NextPage(int pageIndex)
+    public void NextPage()
     {
         pageIndex++;
-        if(pageIndex < manualLines.Length)
+        if (pageIndex >= manualImages.Length)
         {
-            showPage();
-        } else
-        {
-            pageIndex = 0;
-            showPage();
+            pageIndex = 0; // Vuelve al inicio si supera el número de imágenes
         }
-    }*/
+        showPage(pageIndex);
+    }
 
-    /*public void PreviousPage()
+    public void PreviousPage()
     {
         pageIndex--;
-        if(pageIndex >= 0)
+        if (pageIndex < 0)
         {
-            showPage();
-        }else 
-        {
-            pageIndex = 0;
-            showPage();
+            pageIndex = manualImages.Length - 1; // Vuelve a la última imagen si retrocede demasiado
         }
-    }*/
+        showPage(pageIndex);
+    }
 }
