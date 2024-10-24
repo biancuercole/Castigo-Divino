@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; // Para trabajar con imágenes en UI
+using UnityEngine.UI;
 
 public class Manual : MonoBehaviour
 {
     private bool isManualShowing;
     [SerializeField] private GameObject manualPanel;
-    [SerializeField] private Image manualImage; // Cambiamos TMP_Text por Image
-    [SerializeField] private Sprite[] manualImages; // Array de imágenes tipo Sprite
+    [SerializeField] private Image manualImage;
+    [SerializeField] private Sprite[] manualImages;
+    [SerializeField] private Image[] enemyCollected;
     [SerializeField] private Rotation rotation;
-    private int pageIndex;
     [SerializeField] private GameObject map;
+
+    public int pageIndex;
+    public List<int> defeatedEnemies = new List<int>(); // Lista para enemigos derrotados
 
     void Start()
     {
@@ -43,6 +46,7 @@ public class Manual : MonoBehaviour
         manualPanel.SetActive(true);
         rotation.canShoot = false;
         showPage(pageIndex);
+        UpdateDefeatedEnemiesUI(); // Actualiza los enemigos al abrir el manual
     }
 
     public void Hide()
@@ -58,9 +62,48 @@ public class Manual : MonoBehaviour
     {
         if (pageIndex >= 0 && pageIndex < manualImages.Length)
         {
-            manualImage.sprite = manualImages[pageIndex]; // Cambiamos la imagen
+            manualImage.sprite = manualImages[pageIndex];
         }
+
+        // Solo actualiza los enemigos derrotados si estamos en la página 1
+        if (pageIndex == 1)
+        {
+            UpdateDefeatedEnemiesUI();
+        }
+        else
+        {
+            HideDefeatedEnemies(); // Oculta los enemigos si no es la página 1
+        }
+
         map.SetActive(false);
+    }
+
+    // Método para ocultar los sprites de enemigos cuando no estamos en la página 1
+    private void HideDefeatedEnemies()
+    {
+        foreach (Image enemy in enemyCollected)
+        {
+            enemy.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowDefeatedEnemies(int enemyIndex)
+    {
+        if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length)
+        {
+            defeatedEnemies.Add(enemyIndex); // Agrega el enemigo a la lista
+        }
+    }
+
+    private void UpdateDefeatedEnemiesUI()
+    {
+        foreach (int enemyIndex in defeatedEnemies)
+        {
+            if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length)
+            {
+                enemyCollected[enemyIndex].gameObject.SetActive(true); // Muestra el enemigo
+            }
+        }
     }
 
     public void showMap()
@@ -73,7 +116,7 @@ public class Manual : MonoBehaviour
         pageIndex++;
         if (pageIndex >= manualImages.Length)
         {
-            pageIndex = 0; // Vuelve al inicio si supera el número de imágenes
+            pageIndex = 0;
         }
         showPage(pageIndex);
     }
@@ -83,7 +126,7 @@ public class Manual : MonoBehaviour
         pageIndex--;
         if (pageIndex < 0)
         {
-            pageIndex = manualImages.Length - 1; // Vuelve a la última imagen si retrocede demasiado
+            pageIndex = manualImages.Length - 1;
         }
         showPage(pageIndex);
     }

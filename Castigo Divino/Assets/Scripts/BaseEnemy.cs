@@ -1,5 +1,4 @@
 using System.Collections;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
@@ -24,11 +23,14 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     [SerializeField] private MinionsBoss minionsBoss;
     private PlayerMovement playerMovement;
     private ManagerData managerData;
+    private int enemyIndex;
+    private Manual manual;
 
     private float lastHealthThreshold; // Nueva variable
 
     protected virtual void Start()
     {
+        manual = FindObjectOfType<Manual>();
         animator = GetComponent<Animator>();
         health = maxHealth;
         audioManager = FindObjectOfType<AudioManager>();
@@ -40,7 +42,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         health = maxHealth;
         //healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        lastHealthThreshold = maxHealth; // Inicializar con la salud m�xima
+        lastHealthThreshold = maxHealth; // Inicializar con la salud máxima
     }
 
     public virtual void TakeDamage(float damage, BulletType bulletType)
@@ -63,7 +65,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             animator.SetBool("Damage", true);
             yield return new WaitForSeconds(1.0f);
             animator.SetBool("Damage", false);
-
         }
 
         if (health <= 0 && !isDead)
@@ -87,15 +88,34 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
     protected virtual void deathEnd()
     {
+        string tag = gameObject.tag;
+        switch (tag)
+        {
+            case "fuego":
+                enemyIndex = 0;
+                break;
+            case "tronco":
+                enemyIndex = 1;
+                break;
+            case "Humo":
+                enemyIndex = 2;
+                break;
+            default:
+                enemyIndex = -1;
+                break;
+        }
+
+        if (manual != null && enemyIndex != -1)
+        {
+            manual.defeatedEnemies.Add(enemyIndex);
+        }
+
         Destroy(gameObject);
-        //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
-    
         GetComponent<LootBag>().InstantiateLoot(transform.position);
-        GameEvents.EnemyDefeated(); // Llama al m�todo de NextStage cuando el enemigo sea derrotado
+        GameEvents.EnemyDefeated();
         enemyLevel.EnemigoEliminado();
         enemyCollider.enabled = false;
-        // healthBar.HideBar(); 
     }
 
     //Todo lo de abajo es el manejo de daño y muerte del boss
@@ -113,7 +133,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             }
             damageCoroutine = StartCoroutine(FlashDamage());
 
-            UpdateHealthBoss(); // Llama a la funci�n para verificar si se debe cambiar el estado
+            UpdateHealthBoss(); // Llama a la función para verificar si se debe cambiar el estado
         }
         else
         {
@@ -159,5 +179,3 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         }
     }
 }
-
-
