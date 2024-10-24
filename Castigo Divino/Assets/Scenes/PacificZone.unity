@@ -6364,7 +6364,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -4.2850027, y: 2.075756}
+  m_Offset: {x: -4.2850027, y: 1.734731}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6375,7 +6375,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 26.80861, y: 14.4522915}
+  m_Size: {x: 26.80861, y: 15.134344}
   m_EdgeRadius: 0
 --- !u!1 &289691752
 GameObject:
@@ -7817,7 +7817,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1d164f89d7c03ed40b800c4efb0644ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7903,7 +7903,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.4890747, y: -1.5192642}
+  m_Offset: {x: -3.4890747, y: -0.8533478}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7914,7 +7914,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 41.517822, y: 22.961472}
+  m_Size: {x: 41.517822, y: 21.629639}
   m_EdgeRadius: 0
 --- !u!114 &510174264
 MonoBehaviour:
@@ -7936,12 +7936,10 @@ MonoBehaviour:
     est\xE1s bien equipado"
   - "Te encontrar\xE1s con enemigos que est\xE1n da\xF1ando mi tierra, debes deshacerte
     de ellos dispar\xE1ndoles con tu arma, elije bien que bala utilizar"
-  - "Los enemigos de fuego ser\xE1n destruidos r\xE1pidamente con una bala de agua,
-    los troncos son d\xE9biles ante el fuego, y el humo se dispersa con la tierra. "
+  - "Podr\xE1s encontrar la debilidad de cada uno en el manual que te dej\xE9 en
+    tu bolsillo, estudialo con cuidado..."
   - "\xA1Casi lo olvido! Destruye las m\xE1quinas que te encuentres en el camino
-    para recoger amuletos que luego intercambiar\xE1s por mejores habilidades"
-  - "Toda esta informaci\xF3n la encontrar\xE1s en el manual, aprieta la tecla \"r\"
-    para abrirlo. "
+    para recoger amuletos especiales"
   - "Ten\xE9 mucho cuidado y te espero a la vuelta, \xA1Mucha suerte! "
   godesSprite: {fileID: 1925307918}
   trigger: {fileID: 510174262}
@@ -9129,6 +9127,7 @@ MonoBehaviour:
   logShot: {fileID: 0}
   bossDeath: {fileID: 0}
   bossShot: {fileID: 0}
+  bossAwaken: {fileID: 0}
   machineDeath: {fileID: 0}
   machineSound: {fileID: 0}
   portalSound: {fileID: 0}
@@ -13358,7 +13357,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3, y: 3}
+  m_Offset: {x: -3, y: 2.133278}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -13369,7 +13368,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 27, y: 20}
+  m_Size: {x: 27, y: 21.733444}
   m_EdgeRadius: 0
 --- !u!114 &1241022667
 MonoBehaviour:
@@ -28221,8 +28220,9 @@ MonoBehaviour:
   canSpecialAttack: 0
   attackRadius: 40
   attackDamage: 50
-  managerData: {fileID: 466434709}
   stairHeightOffset: 0.2
+  managerData: {fileID: 466434709}
+  camTransition: {fileID: 0}
 --- !u!212 &1916445832
 SpriteRenderer:
   m_ObjectHideFlags: 0
