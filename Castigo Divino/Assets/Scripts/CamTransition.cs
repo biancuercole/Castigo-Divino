@@ -49,25 +49,25 @@ public class CamTransition : MonoBehaviour
             bossAnimator.SetTrigger("Jumping");
             Debug.Log("Jumping state after setting: " + bossAnimator.GetBool("Jumping"));
 
-            // Esperar a que termine la animación
+            // Esperar a que termine la animaciï¿½n
           //  yield return new WaitUntil(() => IsAnimationFinished("Jumping"));
 
-            // Cambiar la música después del salto
+            // Cambiar la mï¿½sica despuï¿½s del salto
             audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
             Debug.Log("bossCamera");
 
-            // Resetear el trigger después de que termine la animación
+            // Resetear el trigger despuï¿½s de que termine la animaciï¿½n
             bossAnimator.ResetTrigger("Jumping"); 
         }
 
         yield return new WaitForSeconds(timeForCamPlayer);
         virtualCamera.Priority = 1;
         bossCamera.Priority = 0;
+        bossAnimationObject.SetActive(false);
+        boss.OnActive();        
       //  bossAnimationObject.SetActive(false);
         yield return new WaitForSeconds(timeForPlayerToMove);
-        bossAnimationObject.SetActive(false);
         OnDone?.Invoke();
-        boss.OnActive();
         Debug.Log("Door Closed ");
     }
 }

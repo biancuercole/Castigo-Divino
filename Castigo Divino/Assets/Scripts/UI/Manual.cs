@@ -46,7 +46,6 @@ public class Manual : MonoBehaviour
         manualPanel.SetActive(true);
         rotation.canShoot = false;
         showPage(pageIndex);
-        UpdateDefeatedEnemiesUI(); // Actualiza los enemigos al abrir el manual
     }
 
     public void Hide()
@@ -65,20 +64,18 @@ public class Manual : MonoBehaviour
             manualImage.sprite = manualImages[pageIndex];
         }
 
-        // Solo actualiza los enemigos derrotados si estamos en la página 1
-        if (pageIndex == 1)
+        if (pageIndex == 1) // Mostrar enemigos solo en la página 1
         {
             UpdateDefeatedEnemiesUI();
         }
         else
         {
-            HideDefeatedEnemies(); // Oculta los enemigos si no es la página 1
+            HideDefeatedEnemies();
         }
 
         map.SetActive(false);
     }
 
-    // Método para ocultar los sprites de enemigos cuando no estamos en la página 1
     private void HideDefeatedEnemies()
     {
         foreach (Image enemy in enemyCollected)
@@ -89,9 +86,9 @@ public class Manual : MonoBehaviour
 
     public void ShowDefeatedEnemies(int enemyIndex)
     {
-        if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length)
+        if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length && !defeatedEnemies.Contains(enemyIndex))
         {
-            defeatedEnemies.Add(enemyIndex); // Agrega el enemigo a la lista
+            defeatedEnemies.Add(enemyIndex); // Evita agregar duplicados
         }
     }
 

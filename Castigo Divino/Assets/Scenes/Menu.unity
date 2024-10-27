@@ -419,6 +419,7 @@ MonoBehaviour:
   logShot: {fileID: 0}
   bossDeath: {fileID: 0}
   bossShot: {fileID: 0}
+  bossAwaken: {fileID: 0}
   machineDeath: {fileID: 0}
   machineSound: {fileID: 0}
   portalSound: {fileID: 0}
@@ -957,7 +958,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 9118c1bb535d09a4a844b4d1cd0257a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7967802e679bad749a2380e9329a5370, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
