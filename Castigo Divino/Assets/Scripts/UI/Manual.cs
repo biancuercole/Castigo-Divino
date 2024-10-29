@@ -86,15 +86,15 @@ public class Manual : MonoBehaviour
 
     public void ShowDefeatedEnemies(int enemyIndex)
     {
-        if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length && !defeatedEnemies.Contains(enemyIndex))
+        if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length)
         {
-            defeatedEnemies.Add(enemyIndex); // Evita agregar duplicados
+            ManagerData.Instance.AddDefeatedEnemy(enemyIndex);
         }
     }
 
     private void UpdateDefeatedEnemiesUI()
     {
-        foreach (int enemyIndex in defeatedEnemies)
+        foreach (int enemyIndex in ManagerData.Instance.defeatedEnemies)
         {
             if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length)
             {

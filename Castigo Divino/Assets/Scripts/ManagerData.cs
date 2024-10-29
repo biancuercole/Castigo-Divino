@@ -23,6 +23,7 @@ public class ManagerData : MonoBehaviour
     public float currentPower;
   //  private GameMaster gm;
     public bool level1Finished = false;
+    public List<int> defeatedEnemies = new List<int>();
 
     [SerializeField] private Rotation rotation;
     [SerializeField] private UIshop uiShop;
@@ -70,6 +71,14 @@ public class ManagerData : MonoBehaviour
                 item.GetComponent<Image>().color = color;
             }
             //.Log(itemName + "_Color " + item.GetComponent<Image>().color + " managerData");
+        }
+    }
+
+    public void AddDefeatedEnemy(int enemyIndex)
+    {
+        if (!defeatedEnemies.Contains(enemyIndex))
+        {
+            defeatedEnemies.Add(enemyIndex);
         }
     }
 
