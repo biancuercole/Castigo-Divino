@@ -84,6 +84,9 @@ public class AudioManager : MonoBehaviour
             case "Credits":
                 ChangeBackgroundMusic(pacifistZoneMusic);
                 break;
+            case "GameOver":
+                ChangeBackgroundMusic(pacifistZoneMusic);
+                break;
         }
         soundSource.Play();
         musicSource.Play();

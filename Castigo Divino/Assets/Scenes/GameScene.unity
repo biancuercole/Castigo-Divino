@@ -15387,7 +15387,7 @@ Transform:
   m_GameObject: {fileID: 317456612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2915, y: -1467, z: -10.330311}
+  m_LocalPosition: {x: 2915, y: -1460, z: -10.330311}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82615,7 +82615,7 @@ MonoBehaviour:
   powerOfGod: {fileID: 8300000, guid: ba568e0a0b0c67d4d8dffdb1e9324b5d, type: 3}
   dash: {fileID: 8300000, guid: f4d7bcf54aef27448afececfbeefcea9, type: 3}
   steps: {fileID: 0}
-  damage: {fileID: 8300000, guid: 23eb4eff20da3a445ab62dfe139a2e7b, type: 3}
+  damage: {fileID: 0}
   death: {fileID: 0}
   flameDeath: {fileID: 0}
   flameShot: {fileID: 8300000, guid: bb441401e717d054184a43c17de8fcbf, type: 3}
@@ -82629,7 +82629,7 @@ MonoBehaviour:
   machineDeath: {fileID: 8300000, guid: 58675ab110ee3b44cb378abf95660ff2, type: 3}
   machineSound: {fileID: 0}
   portalSound: {fileID: 8300000, guid: f2d589ca667cd3b40aca5c8bd108f662, type: 3}
-  collectSound: {fileID: 8300000, guid: 8b1949b0ca68c20479324be822759ecc, type: 3}
+  collectSound: {fileID: 8300000, guid: d4af9f6fa13cad74bb1ce5f5241adc65, type: 3}
   healSound: {fileID: 8300000, guid: 27584550a6ed4b64abf2a34612cdc64e, type: 3}
   shrineDestroy: {fileID: 0}
 --- !u!4 &1881755048
@@ -84976,7 +84976,7 @@ Transform:
   m_GameObject: {fileID: 2104630002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2909, y: -1481, z: 0}
+  m_LocalPosition: {x: 2909, y: -1477, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:

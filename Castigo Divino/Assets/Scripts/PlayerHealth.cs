@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
         {
             CameraMovement.Instance.MoveCamera(5, 5, 2f);
             Instantiate(damageParticle, transform.position, Quaternion.identity);
-            KnocKBack.KnockBacK();
+          //  KnocKBack.KnockBacK();
 
             int temporaryHealth = health - damage;
 
@@ -84,12 +84,13 @@ public class PlayerHealth : MonoBehaviour
             
             if (temporaryHealth <= 0 && !yaMuerto)
             {
+                OnBegin?.Invoke();
                 yaMuerto = true;
                 animator.ResetTrigger("isDamaged"); // Asegura que no haya conflictos
                 animator.SetBool("isDamaged", false);
                 animator.SetTrigger("Muerte"); // Activar animación de muerte
                 Gun.SetActive(false);
-                OnBegin?.Invoke();
+               
                 CameraMovement.Instance.MoveCamera(5, 5, 2f);
                 redTint.gameObject.SetActive(true);
                 StartCoroutine(HandleLevelTransition());
@@ -128,7 +129,7 @@ public class PlayerHealth : MonoBehaviour
         ManagerData.Instance.ResetCurrentPower();
         nextStage.enemiesCount = 0;
         nextStage.keyCount = 0;
-        yield return new WaitForSecondsRealtime(1.5f);
+        yield return new WaitForSecondsRealtime(3f);
         OnDone?.Invoke();
     }
 
