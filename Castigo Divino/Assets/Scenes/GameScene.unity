@@ -9177,7 +9177,7 @@ MonoBehaviour:
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
   - {fileID: 2384532195481966551, guid: eea3b63f98defe947921c38ed5b8f337, type: 3}
   timeEnemies: 5
-  maxMinions: 6
+  maxMinions: 5
 --- !u!1 &240431690
 GameObject:
   m_ObjectHideFlags: 0
@@ -15213,7 +15213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &311947230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15794,7 +15794,7 @@ GameObject:
   - component: {fileID: 360757339}
   - component: {fileID: 360757338}
   - component: {fileID: 360757337}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Shop
   m_TagString: Shop
   m_Icon: {fileID: 0}
@@ -17173,7 +17173,7 @@ GameObject:
   - component: {fileID: 438828887}
   - component: {fileID: 438828886}
   - component: {fileID: 438828885}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina8
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -17205,7 +17205,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -17796,7 +17796,7 @@ GameObject:
   - component: {fileID: 570377128}
   - component: {fileID: 570377130}
   - component: {fileID: 570377131}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina2
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -18036,7 +18036,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -18558,7 +18558,7 @@ GameObject:
   - component: {fileID: 598964383}
   - component: {fileID: 598964390}
   - component: {fileID: 598964391}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina4
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -18798,7 +18798,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -23707,7 +23707,7 @@ GameObject:
   - component: {fileID: 802760778}
   - component: {fileID: 802760777}
   - component: {fileID: 802760776}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina9
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -23739,7 +23739,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -24390,7 +24390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &808799115
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30125,7 +30125,7 @@ GameObject:
   - component: {fileID: 869005867}
   - component: {fileID: 869005869}
   - component: {fileID: 869005870}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina3
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -30365,7 +30365,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -30880,7 +30880,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 33024
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: f7c46b0497ed4024db54d300e573b5bf, type: 2}
   m_TargetDisplay: 0
@@ -33290,7 +33290,7 @@ GameObject:
   - component: {fileID: 1039076145}
   - component: {fileID: 1039076144}
   - component: {fileID: 1039076143}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina10
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -33322,7 +33322,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -33870,7 +33870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6908de1883313d74889b9fa2b1b03163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: "Aumenta da\xF1o + 1"
+  message: "Aumenta 20% el da\xF1o "
 --- !u!225 &1055907129
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -34258,7 +34258,7 @@ Transform:
   m_GameObject: {fileID: 1080244030}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1443.8616, y: -900.50555, z: 0}
+  m_LocalPosition: {x: 1443.5, y: -900.9, z: 0}
   m_LocalScale: {x: 4.4648, y: 4.4648, z: 4.4648}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35424,7 +35424,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.24, y: 3.46, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 7, y: 7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1957976470}
@@ -35469,7 +35469,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 90ffce0a970d67645ad936b26807608f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -36088,7 +36088,7 @@ GameObject:
   - component: {fileID: 1188332411}
   - component: {fileID: 1188332410}
   - component: {fileID: 1188332414}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Shrine
   m_TagString: Shrine
   m_Icon: {fileID: 0}
@@ -37060,9 +37060,9 @@ RectTransform:
   - {fileID: 1024378053}
   - {fileID: 29643401}
   - {fileID: 786809098}
+  - {fileID: 1896964442}
   - {fileID: 918034923}
   - {fileID: 227904767}
-  - {fileID: 1896964442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -37152,7 +37152,7 @@ GameObject:
   - component: {fileID: 1239471370}
   - component: {fileID: 1239471373}
   - component: {fileID: 1239471372}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina1
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -37376,7 +37376,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -38015,7 +38015,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2909, y: -1481, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -38060,7 +38060,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: b246158f4708d994bb2e8804d05f5cfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -38562,6 +38562,7 @@ MonoBehaviour:
   CurrentSpeedBonus: 0
   currentPower: 0
   level1Finished: 0
+  defeatedEnemies: 
   rotation: {fileID: 2033237690}
   uiShop: {fileID: 0}
 --- !u!4 &1362526665
@@ -38597,7 +38598,7 @@ GameObject:
   - component: {fileID: 1369368456}
   - component: {fileID: 1369368455}
   - component: {fileID: 1369368454}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina11
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -38629,7 +38630,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -38941,7 +38942,7 @@ GameObject:
   - component: {fileID: 1379639420}
   - component: {fileID: 1379639419}
   - component: {fileID: 1379639418}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina12
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -38973,7 +38974,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -49536,7 +49537,7 @@ GameObject:
   - component: {fileID: 1451483250}
   - component: {fileID: 1451483257}
   - component: {fileID: 1451483258}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Maquina6
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -49776,7 +49777,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -50006,7 +50007,7 @@ GameObject:
   - component: {fileID: 1470387256}
   - component: {fileID: 1470387255}
   m_Layer: 7
-  m_Name: Arbolesl
+  m_Name: Arboles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77147,7 +77148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1494682360
 RectTransform:
   m_ObjectHideFlags: 0
@@ -77806,7 +77807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6908de1883313d74889b9fa2b1b03163, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: Aumenta la velocidad de la bala + 2
+  message: 'Aumenta 20%  la velocidad de la bala '
 --- !u!225 &1535134331
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -77920,7 +77921,7 @@ Transform:
   m_GameObject: {fileID: 1539106568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2871, y: -1469, z: -0.13325137}
+  m_LocalPosition: {x: 2856.8, y: -1453.3, z: -0.13325137}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79519,7 +79520,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32511
+    m_Bits: 65279
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -80550,7 +80551,7 @@ GameObject:
   - component: {fileID: 1781800493}
   - component: {fileID: 1781800495}
   - component: {fileID: 1781800496}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Maquina5
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -80790,7 +80791,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -82625,7 +82626,7 @@ MonoBehaviour:
   logShot: {fileID: 0}
   bossDeath: {fileID: 0}
   bossShot: {fileID: 8300000, guid: e186865efd9dbfc4e89db2766598ee46, type: 3}
-  bossAwaken: {fileID: 8300000, guid: 36f74ddf59bb25748b92bb702a025a33, type: 3}
+  bossAwaken: {fileID: 8300000, guid: ba568e0a0b0c67d4d8dffdb1e9324b5d, type: 3}
   machineDeath: {fileID: 8300000, guid: 58675ab110ee3b44cb378abf95660ff2, type: 3}
   machineSound: {fileID: 0}
   portalSound: {fileID: 8300000, guid: f2d589ca667cd3b40aca5c8bd108f662, type: 3}
@@ -83383,7 +83384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1932926923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84078,6 +84079,7 @@ Transform:
   - {fileID: 1477722383}
   - {fileID: 1908468257}
   - {fileID: 1470387257}
+  - {fileID: 2133341224}
   - {fileID: 1452183881}
   - {fileID: 615275179}
   - {fileID: 993779614}
@@ -84411,7 +84413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1994527312
 RectTransform:
   m_ObjectHideFlags: 0
@@ -84955,7 +84957,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: a3152b9644af8654fba7eca494facf1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -85557,7 +85559,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -85643,6 +85645,90 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2133341223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2133341224}
+  - component: {fileID: 2133341226}
+  m_Layer: 8
+  m_Name: treeMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2133341224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133341223}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2861.0425, y: -1186.9946, z: 0.13325137}
+  m_LocalScale: {x: 20, y: 20, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1959398425}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2133341226
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133341223}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 172ac0b465bee1b4c83ae2148a427f83, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 52.59062, y: 41.600002}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2135086646
 GameObject:
   m_ObjectHideFlags: 0
@@ -85692,7 +85778,7 @@ GameObject:
   - component: {fileID: 2142118741}
   - component: {fileID: 2142118748}
   - component: {fileID: 2142118749}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Maquina13
   m_TagString: Machine
   m_Icon: {fileID: 0}
@@ -85932,7 +86018,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 943c24de6b5953c4685aab87ca6a909d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bbff25147b8f89a45ae6a561839825cd, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1

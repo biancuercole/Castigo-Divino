@@ -42,15 +42,14 @@ public class CamTransition : MonoBehaviour
             OnBegin?.Invoke();
             virtualCamera.Priority = 0;
             bossCamera.Priority = 1;
-          //  audioManager.playSound(audioManager.bossAwaken);
 
             yield return new WaitForSeconds(timeForAnimationJump);
             bossAnimationObject.SetActive(true);
             bossAnimator.SetTrigger("Jumping");
             Debug.Log("Jumping state after setting: " + bossAnimator.GetBool("Jumping"));
-
+            audioManager.playSound(audioManager.bossAwaken);
             // Esperar a que termine la animaci�n
-          //  yield return new WaitUntil(() => IsAnimationFinished("Jumping"));
+            //  yield return new WaitUntil(() => IsAnimationFinished("Jumping"));
 
             // Cambiar la m�sica despu�s del salto
             audioManager.ChangeBackgroundMusic(audioManager.bossMusic);
