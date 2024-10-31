@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Manual : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Manual : MonoBehaviour
     [SerializeField] private Image[] enemyCollected;
     [SerializeField] private Rotation rotation;
     [SerializeField] private GameObject map;
+    [SerializeField] private TextMeshProUGUI[] controlText; 
 
     public int pageIndex;
     public List<int> defeatedEnemies = new List<int>(); // Lista para enemigos derrotados
@@ -72,6 +74,31 @@ public class Manual : MonoBehaviour
         {
             HideDefeatedEnemies();
         }
+
+    if (pageIndex == 1) // Mostrar enemigos solo en la página 1
+    {
+        UpdateDefeatedEnemiesUI();
+    }
+    else
+    {
+        HideDefeatedEnemies();
+    }
+
+    // Mostrar todos los textos de control si pageIndex es 0
+    if (pageIndex == 0)
+    {
+        foreach (TextMeshProUGUI text in controlText)
+        {
+            text.gameObject.SetActive(true); // Habilitar todos los elementos de controlText
+        }
+    }
+    else
+    {
+        foreach (TextMeshProUGUI text in controlText)
+        {
+            text.gameObject.SetActive(false); // Deshabilitar si no es la página 0
+        }
+    }
 
         map.SetActive(false);
     }
