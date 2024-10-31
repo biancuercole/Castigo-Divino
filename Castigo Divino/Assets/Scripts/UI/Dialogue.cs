@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
-using UnityEditor.Rendering.PostProcessing;
+//using UnityEditor.Rendering.PostProcessing;
 public class Dialogue : MonoBehaviour
 {
     private bool isPlayerInRange;
@@ -20,7 +20,7 @@ public class Dialogue : MonoBehaviour
     public UnityEvent OnBegin, OnDone;
     private bool isTyping = false;
 
-    // verificar si se está escribiendo
+    // verificar si se estï¿½ escribiendo
     public bool IsTyping
     {
         get { return isTyping; }
