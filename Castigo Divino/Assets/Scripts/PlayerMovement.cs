@@ -316,7 +316,6 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(camTransition.SwitchPriorityBoss());
                 Destroy(other.gameObject);
             }
-
         }
         if (other.gameObject.CompareTag("entradaShrine"))
         {
@@ -329,7 +328,6 @@ public class PlayerMovement : MonoBehaviour
             transicion.SiguienteNivel("PacificZone");
             gm.lastCheckpoint = Vector2.zero;
         }
-
 
         if (other.gameObject.CompareTag("StairsLeft") || other.gameObject.CompareTag("StairsRight"))
         {

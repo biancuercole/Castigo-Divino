@@ -41,6 +41,7 @@ TagManager:
   - StairsRight
   - entradaShrine
   - Jefe
+  - instruccion
   layers:
   - Default
   - TransparentFX

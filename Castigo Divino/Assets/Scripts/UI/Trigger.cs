@@ -58,6 +58,10 @@ public class Trigger : MonoBehaviour
         {
             Portals();
         }
+        if(gameObject.CompareTag("instruccion"))
+        {
+            targetObject.SetActive(true);  
+        }
     }
 
     public void ToggleShop()
