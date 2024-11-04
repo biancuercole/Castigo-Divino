@@ -363,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animacionFinal: {fileID: 0}
+  barraProgreso: {fileID: 0}
 --- !u!1 &810915297
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,8 +504,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.14117648, g: 0.08627451, b: 0.16862746, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0.09019608, b: 0.1882353, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1111,8 +1112,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 0.09573395, g: 0.02305091, b: 0.13207549, a: 1}
+    m_HighlightedColor: {r: 0.15686275, g: 0.09019608, b: 0.1882353, a: 1}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1353,6 +1354,7 @@ MonoBehaviour:
   CurrentSpeedBonus: 0
   currentPower: 0
   level1Finished: 0
+  defeatedEnemies: 
   rotation: {fileID: 0}
   uiShop: {fileID: 0}
 --- !u!4 &2026762562

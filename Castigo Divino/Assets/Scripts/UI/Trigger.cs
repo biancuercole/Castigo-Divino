@@ -1,3 +1,4 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class Trigger : MonoBehaviour
@@ -15,7 +16,7 @@ public class Trigger : MonoBehaviour
     private int currentHealth;
 
     private bool playerInRange = false;
-    private bool shopOpen = false;
+    public bool shopOpen = false;
     private bool itemOpen = false;
     public bool dialogueStartTrigger = false;
     public bool interactions = false;
@@ -28,24 +29,37 @@ public class Trigger : MonoBehaviour
 
     private void Update()
     {
-        if (shopOpen && Input.GetKeyDown(KeyCode.E))
-        {
-            CloseShop();  
-            return;  
-        }
-
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            HandleInteraction();  
+        {/*
+            Debug.Log("Jugador presionó 'E'. Verificando tipo de objeto...");
+            if (gameObject.CompareTag("Shop"))
+            {
+                if (!shopOpen && dialogue.IsDialogueFinished())
+                {
+                    ToggleShop();
+                }
+                else if (shopOpen)
+                {
+                    CloseShop();
+                }
+            }
+            else
+            {*/
+                HandleInteraction();
+            /* }*/
+            if (shopOpen && Input.GetKeyDown(KeyCode.E))
+            {
+                dialogue.lineIndex++;
+            }
         }
     }
 
     private void HandleInteraction()
     {
-        if (gameObject.CompareTag("Shop"))
+      /*  if (gameObject.CompareTag("Shop"))
         {
             ToggleShop();
-        }
+        }*/
         if (gameObject.CompareTag("GestionMejoras"))
         {
             ToggleItemManagement();
@@ -66,35 +80,37 @@ public class Trigger : MonoBehaviour
 
     public void ToggleShop()
     {
-        if (dialogue.IsDialogueFinished())  
+        Debug.Log("Intentando cambiar estado de la tienda...");
+        if (shopOpen)
         {
-            if (shopOpen)
-            {
-                CloseShop(); 
-            }
-            else
-            {
-                OpenShop();  
-            }
+            CloseShop();
         }
-        else if (!dialogue.IsTyping) 
+        else if (!shopOpen && dialogue.IsDialogueFinished())
         {
-            dialogue.nextDialogueLine();
+            OpenShop();
+        }
+        else
+        {
+            Debug.Log("Diálogo no ha terminado, no se puede abrir la tienda.");
         }
     }
-
     private void OpenShop()
     {
-        dialogue.didDialogueStart = true; 
-        uiShop.Show();  
-        targetObject.SetActive(false);  
-        shopOpen = true;
+        Debug.Log("Tienda abierta");
+        dialogue.didDialogueStart = true;  // Inicia el diálogo
+        uiShop.Show();  // Muestra la tienda
+        targetObject.SetActive(false);  // Oculta el objeto del jugador
+        shopOpen = true;  // Marca la tienda como abierta
     }
-    private void CloseShop()
+
+
+    public void CloseShop()
     {
-        uiShop.Hide();
-        dialogue.didDialogueStart = false;
-        shopOpen = false;
+        uiShop.Hide();  // Oculta la tienda
+        dialogue.didDialogueStart = false;  // Finaliza el diálogo
+        shopOpen = false;  // Marca la tienda como cerrada
+        dialogue.lineIndex = dialogue.dialogueLines.Length;
+        Debug.Log("Tienda cerrada");
     }
 
     private void ToggleItemManagement()

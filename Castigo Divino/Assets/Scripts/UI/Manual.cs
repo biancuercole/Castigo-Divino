@@ -13,6 +13,7 @@ public class Manual : MonoBehaviour
     [SerializeField] private Image[] enemyCollected;
     [SerializeField] private Rotation rotation;
     [SerializeField] private GameObject map;
+    [SerializeField] private GameObject menu;
     [SerializeField] private TextMeshProUGUI[] controlText; 
 
     public int pageIndex;
@@ -57,6 +58,8 @@ public class Manual : MonoBehaviour
         manualPanel.SetActive(false);
         rotation.canShoot = true;
         map.SetActive(false);
+        menu.SetActive(false);
+        pageIndex = 0;
     }
 
     public void showPage(int pageIndex)
@@ -101,6 +104,7 @@ public class Manual : MonoBehaviour
     }
 
         map.SetActive(false);
+        menu.SetActive(false);
     }
 
     private void HideDefeatedEnemies()
@@ -133,6 +137,11 @@ public class Manual : MonoBehaviour
     public void showMap()
     {
         map.SetActive(true);
+    }
+
+    public void showMenu()
+    {
+        menu.SetActive(true);
     }
 
     public void NextPage()

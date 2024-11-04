@@ -7,19 +7,18 @@ public class Dialogue : MonoBehaviour
 {
     private bool isPlayerInRange;
     public bool didDialogueStart;
-    private int lineIndex;
+    public int lineIndex;
     private float typingTime = 0.05f;
     //[SerializeField] private GameObject dialogueStart;
     [SerializeField] private GameObject dialoguePanel;
-    [SerializeField] private TMP_Text dialogueText;
-    [SerializeField, TextArea(4, 6)] private string[] dialogueLines;
+    [SerializeField] public TMP_Text dialogueText;
+    [SerializeField, TextArea(4, 6)] public string[] dialogueLines;
     [SerializeField] private GameObject godesSprite;
 
     [SerializeField] private Trigger trigger;
     [SerializeField] private Rotation rotation;
     public UnityEvent OnBegin, OnDone;
     private bool isTyping = false;
-
     // verificar si se est� escribiendo
     public bool IsTyping
     {
@@ -32,21 +31,49 @@ public class Dialogue : MonoBehaviour
         {
             if (!didDialogueStart)
             {
+                Debug.Log("Iniciando diálogo...");
                 StartDialogue();
             }
-            else if (dialogueText.text == dialogueLines[lineIndex])
+            else if (isTyping)
             {
-                nextDialogueLine();
-            }
-            else
-            {
+                Debug.Log("Completando línea actual...");
                 StopAllCoroutines();
                 dialogueText.text = dialogueLines[lineIndex];
                 isTyping = false;
             }
+            else if (dialogueText.text == dialogueLines[lineIndex])
+            {
+                if (lineIndex == dialogueLines.Length - 1)
+                {
+                    Debug.Log("Última línea del diálogo alcanzada. Finalizando diálogo y abriendo tienda.");
+                    EndDialogue();
+                }
+                else
+                {
+                    Debug.Log("Avanzando a la siguiente línea del diálogo.");
+                    nextDialogueLine();
+                }
+            }
+        }
+        if (gameObject.CompareTag("Shop") && lineIndex == 5)
+        {
+            trigger.CloseShop();
         }
     }
 
+    private void EndDialogue()
+    {
+        Debug.Log("Diálogo finalizado. Estado de didDialogueStart: " + didDialogueStart);
+        didDialogueStart = false;
+        dialoguePanel.SetActive(false);
+        lineIndex = dialogueLines.Length;
+        ToolTipManager.instance.HideToolTip();
+        OnDone?.Invoke();
+        if (gameObject.CompareTag("Shop"))
+        {
+            trigger.ToggleShop();
+        }
+    }
     private void StartDialogue()
     {
         OnBegin?.Invoke();
@@ -101,7 +128,9 @@ public class Dialogue : MonoBehaviour
 
     public bool IsDialogueFinished()
     {
-        return lineIndex >= dialogueLines.Length;  
+        bool isFinished = lineIndex == dialogueLines.Length;
+        Debug.Log("¿El diálogo ha terminado? " + isFinished);
+        return isFinished;
     }
 
 

@@ -14,6 +14,7 @@ public class MenuPause : MonoBehaviour
     [SerializeField] PlayerHealth playerHealth;
     [SerializeField] Rotation rotation;
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] private Manual manual;
     private bool inmortality = false;
     public Toggle toggle;
     private void Start()
@@ -48,7 +49,9 @@ public class MenuPause : MonoBehaviour
         //Debug.Log("Pausa");
         gamePaused = true;
         Time.timeScale = 0f;
-        menuPause.SetActive(true);
+        manual.pageIndex = 4;
+        manual.Show();
+        manual.showMenu();
         rotation.canShoot = false;
     }
 
@@ -60,6 +63,8 @@ public class MenuPause : MonoBehaviour
         menuPause.SetActive(false);
         MusicAndSoundMenu.SetActive(false);
         rotation.canShoot = true;
+        manual.Hide();
+        manual.pageIndex = 0;
     }
 
     public void Menu()

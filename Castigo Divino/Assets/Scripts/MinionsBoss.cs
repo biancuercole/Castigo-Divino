@@ -41,11 +41,11 @@ public class MinionsBoss : MonoBehaviour
 
     public void KillAllMinions()
     {
-        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minions"); // Encuentra los minions activos
+        GameObject[] minions = GameObject.FindGameObjectsWithTag("Minions"); 
 
         foreach (var minion in minions)
         {
-            if (minion != null) Destroy(minion); // Destruye cada minion encontrado
+            if (minion != null) Destroy(minion); 
         }
     }
 }
