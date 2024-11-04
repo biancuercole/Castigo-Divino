@@ -7679,9 +7679,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a832de90dbe00247bf601f603c29ee9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSlider: {fileID: 569419380}
+  musicSlider: {fileID: 179605501}
   musicVolume: 0
-  soundSlider: {fileID: 1949724650}
+  soundSlider: {fileID: 1475958730}
   soundVolume: 0
   audioManager: {fileID: 669272022}
 --- !u!114 &289691759
