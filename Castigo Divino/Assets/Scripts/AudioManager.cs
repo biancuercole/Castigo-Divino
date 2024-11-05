@@ -8,7 +8,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioSource musicSource;
     [SerializeField] public AudioSource soundSource;
     [SerializeField] public SliderVolume sliderVolume;
-  
+
+    private List<AudioSource> audioSourcePool = new List<AudioSource>();
+    [SerializeField] private int poolSize = 10;
+
     [Header("Music")]
     public AudioClip pacifistZoneMusic;
     public AudioClip gameMusic;
@@ -62,6 +65,27 @@ public class AudioManager : MonoBehaviour
         SetBackgroundMusic();
     }
 
+    void Awake()
+    {
+        // Crear un pool de AudioSources para los sonidos de disparo
+        for (int i = 0; i < poolSize; i++)
+        {
+            AudioSource newSource = gameObject.AddComponent<AudioSource>();
+            newSource.playOnAwake = false;
+            audioSourcePool.Add(newSource);
+        }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        // Buscar un AudioSource libre en el pool
+        AudioSource source = audioSourcePool.Find(s => !s.isPlaying);
+        if (source != null)
+        {
+            source.clip = clip;
+            source.Play();
+        }
+    }
     private void SetBackgroundMusic()
     {
        string sceneName = SceneManager.GetActiveScene().name;

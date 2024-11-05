@@ -55,6 +55,14 @@ public class PlayerMovement : MonoBehaviour
     [Header("Others")]
     public ManagerData managerData;
     [SerializeField] private CamTransition camTransition;
+
+    [Header("ShockWave")]
+    public Material _material;
+    private static int _waveDistanceFromCenter = Shader.PropertyToID("_WaveDistanceFromCenter");
+    [SerializeField] private float _shockWaveTime = 0.75f;
+    private Coroutine _shockWaveCorutine;
+    public GameObject shockWavePrefab;
+    [SerializeField] GameObject rippleEffect;
     private void Awake()
     {
         // Inicializa el AudioManager
@@ -63,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
         {
             //.LogError("No se encontró un AudioManager en la escena.");
         }
+
+        _material = GetComponent<SpriteRenderer>().material;
     }
 
     void Start()
@@ -264,10 +274,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void ActivateSpecialAttack()
     {
-        CameraMovement.Instance.MoveCamera(12, 10, 3f);
+        CameraMovement.Instance.MoveCamera(12, 10, 5f);
         audioManager.playSound(audioManager.powerOfGod);
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+        Instantiate(rippleEffect, transform.position, Quaternion.identity);
 
+        // Instanciar el prefab de la onda de choque
+        /* GameObject shockWaveInstance = Instantiate(shockWavePrefab, transform.position, Quaternion.identity);
+
+         // Obtener el material del objeto instanciado
+         Material instanceMaterial = shockWaveInstance.GetComponent<SpriteRenderer>().material;*/
+
+        // Llamar a la corutina con el material del prefab instanciado
+        // StartCoroutine(ShockWave(instanceMaterial, -0.1f, 1f));
         foreach (Collider2D enemy in hitEnemies)
         {
             // Aplicar daño a cada enemigo dentro del área
@@ -280,19 +299,43 @@ public class PlayerMovement : MonoBehaviour
         ManagerData.Instance.ResetCurrentPower();
         powerOfGod.currentPower = 0;
         powerOfGod.UpdatePowerUpBar(0);
+        // Destruir la onda de choque después de un tiempo
+       // Destroy(shockWaveInstance, _shockWaveTime);
     }
-
-    private void OnDrawGizmos()
+  /*  private IEnumerator ShockWave(Material material, float startPos, float endPos)
     {
-       
-        if (canSpecialAttack)
+        material.SetFloat(_waveDistanceFromCenter, startPos);
+        float elapsedTime = 0f;
+
+        while (elapsedTime < _shockWaveTime)
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, attackRadius);
+            elapsedTime += Time.deltaTime;
+            float lerpedAmount = Mathf.Lerp(startPos, endPos, elapsedTime / _shockWaveTime);
+            material.SetFloat(_waveDistanceFromCenter, lerpedAmount);
+            yield return null;
         }
+    }*/
+  /*  private void CallShockWave(GameObject shockWaveInstance)
+    {
+        _shockWaveCorutine = StartCoroutine(shockWave(shockWaveInstance, -0.1f, 1f));
     }
 
 
+    private IEnumerator shockWave(GameObject shockWaveInstance, float startPos, float endPos)
+    {
+        Material shockWaveMaterial = shockWaveInstance.GetComponent<SpriteRenderer>().material;
+        shockWaveMaterial.SetFloat(_waveDistanceFromCenter, startPos);
+        float lerpedAmount = 0f;
+        float elapsedTime = 0f;
+        while (elapsedTime < _shockWaveTime)
+        {
+            elapsedTime += Time.deltaTime;
+            lerpedAmount = Mathf.Lerp(startPos, endPos, elapsedTime / _shockWaveTime);
+            shockWaveMaterial.SetFloat(_waveDistanceFromCenter, lerpedAmount);
+            yield return null;
+        }
+        Destroy(shockWaveInstance);  // Destruye el prefab solo al finalizar la animación
+    }*/
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("entrada"))

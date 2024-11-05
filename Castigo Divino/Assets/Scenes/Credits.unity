@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2421, y: 0.000045776}
+  m_AnchoredPosition: {x: 2510, y: 0.000045776}
   m_SizeDelta: {x: 0, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &48933626
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1801229721}
   m_HandleRect: {fileID: 1801229720}
   m_Direction: 0
-  m_Value: 0.017729083
+  m_Value: 0
   m_Size: 0.27665707
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1746,6 +1746,7 @@ MonoBehaviour:
   musicSource: {fileID: 338014111}
   soundSource: {fileID: 1144046728}
   sliderVolume: {fileID: 0}
+  poolSize: 10
   pacifistZoneMusic: {fileID: 8300000, guid: eae2a3a288591884cb385a24acf99d7e, type: 3}
   gameMusic: {fileID: 8300000, guid: be743634153b6ad469fdb5f8f30aef66, type: 3}
   bossMusic: {fileID: 8300000, guid: 454c2d6a50c60984b801d493d3b74d93, type: 3}

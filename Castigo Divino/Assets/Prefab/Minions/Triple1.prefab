@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805abbbdc5b264f42b356e5542140b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proyectilePrefab: {fileID: 3059902749241357101, guid: 1b51b792d7052f34bae87224f8ea6bf5, type: 3}
+  proyectilePrefab: {fileID: 3059902749241357101, guid: 411bf5d0385957047bbc45c0f685bfa4, type: 3}
   player: {fileID: 0}
   shootDistance: 60
   WayPoints:
