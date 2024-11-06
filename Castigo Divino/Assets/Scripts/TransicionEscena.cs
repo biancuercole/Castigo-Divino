@@ -7,15 +7,16 @@ public class TransicionEscena : MonoBehaviour
 {
     private Animator animator;
     [SerializeField] private AnimationClip animacionFinal;
-    [SerializeField] private Slider barraProgreso; // Referencia al Slider de progreso
+    [SerializeField] private Slider barraProgreso;
     private ManagerData managerData;
-    private float progresoSimulado = 0f; // Progreso simulado para la barra
+    private float progresoSimulado = 0f;
+    private const float VELOCIDAD_LLENADO = 1.5f; // Velocidad para llenar la barra más lentamente
 
     void Start()
     {
         managerData = FindObjectOfType<ManagerData>();
         animator = GetComponent<Animator>();
-        barraProgreso.gameObject.SetActive(false); // Oculta la barra al inicio
+        barraProgreso.gameObject.SetActive(false);
     }
 
     public void SiguienteNivel(string sceneName)
@@ -28,28 +29,23 @@ public class TransicionEscena : MonoBehaviour
         Time.timeScale = 1;
         animator.SetTrigger("StartTransition");
         
-        // Espera a que termine la animación antes de iniciar la carga
         yield return new WaitForSeconds(animacionFinal.length);
 
-        // Activa la barra de progreso y comienza a cargar la escena
         barraProgreso.gameObject.SetActive(true);
         AsyncOperation operacionCarga = SceneManager.LoadSceneAsync(sceneName);
         operacionCarga.allowSceneActivation = false;
 
-        // Actualiza el progreso de la barra mientras carga
         while (!operacionCarga.isDone)
         {
-            // Progreso real limitado al 0.9
             float progresoReal = Mathf.Clamp01(operacionCarga.progress / 0.9f);
             
-            // Usamos Lerp para incrementar progresoSimulado de forma gradual hasta alcanzar el progreso real
-            progresoSimulado = Mathf.Lerp(progresoSimulado, progresoReal, Time.deltaTime * 3);
+            // Incrementa progresoSimulado más lentamente
+            progresoSimulado = Mathf.Lerp(progresoSimulado, progresoReal, Time.deltaTime * VELOCIDAD_LLENADO);
 
-            // Asignamos el valor simulado al Slider
             barraProgreso.value = progresoSimulado;
 
-            // Cuando llega al 0.9, habilitamos la activación de la escena
-            if (progresoReal >= 0.9f)
+            // Cuando llega a 0.9, espera a que la barra se llene al 100% antes de activar la escena
+            if (progresoReal >= 0.9f && progresoSimulado >= 0.99f)
             {
                 operacionCarga.allowSceneActivation = true;
             }
@@ -57,11 +53,10 @@ public class TransicionEscena : MonoBehaviour
             yield return null;
         }
 
-        // Oculta la barra de progreso cuando la carga haya finalizado
         barraProgreso.gameObject.SetActive(false);
     }
 
-    public void CambiarNivel(int indice)
+    public void CambiarNivel(string sceneName)
     {
         if (managerData != null)
         {
@@ -71,6 +66,6 @@ public class TransicionEscena : MonoBehaviour
         {
             Debug.LogError("ManagerData no está asignado.");
         }
-        StartCoroutine(CargarEscenaConTransicion(SceneManager.GetSceneByBuildIndex(indice).name));
+        StartCoroutine(CargarEscenaConTransicion(sceneName));
     }
 }
