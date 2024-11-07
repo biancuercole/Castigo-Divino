@@ -61,6 +61,10 @@ void Start()
         map.SetActive(false);
         menu.SetActive(false);
         pageIndex = 0;
+        foreach (TextMeshProUGUI text in controlText)
+        {
+            text.gameObject.SetActive(false); // Deshabilitar si no es la página 0
+        }
     }
 
     public void showPage(int pageIndex)
