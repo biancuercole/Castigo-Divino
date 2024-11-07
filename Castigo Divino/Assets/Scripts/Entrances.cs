@@ -27,9 +27,18 @@ public class Entrances : MonoBehaviour
         if (gameObject.CompareTag("Level1"))
         {
             animator.SetTrigger("Warp");
+            animator.SetBool("right", false);
             spriteRenderer.sprite = openSprite;
             portalCollider.enabled = true;
-        } else if (gameObject.CompareTag("Level2"))
+        } else if (gameObject.CompareTag("Level1Right"))
+        {
+            animator.SetTrigger("Warp");
+            animator.SetBool("right", true);
+            spriteRenderer.sprite = openSprite;
+            portalCollider.enabled = true;
+        }
+
+        if (gameObject.CompareTag("Level2"))
         {
             spriteRenderer.sprite = closedSprite;
             portalCollider.enabled = false;
@@ -52,7 +61,7 @@ public class Entrances : MonoBehaviour
     public void ChangeScene()
     {
        
-            if (gameObject.CompareTag("Level1"))
+            if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level1Right"))
             {
             audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
             transicion.SiguienteNivel("GameScene");

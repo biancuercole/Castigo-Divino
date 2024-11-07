@@ -68,7 +68,7 @@ public class Trigger : MonoBehaviour
         {
             RecoverHealth();
         }
-        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2") || gameObject.CompareTag("Level3"))
+        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2") || gameObject.CompareTag("Level3") || gameObject.CompareTag("Level1Right"))
         {
             Portals();
         }
@@ -142,7 +142,7 @@ public class Trigger : MonoBehaviour
 
     private void Portals()
     {
-        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2"))
+        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2") || gameObject.CompareTag("Level1Right"))
         {
             entrances.ChangeScene();
         }

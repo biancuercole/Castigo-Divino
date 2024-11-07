@@ -19,13 +19,14 @@ public class Manual : MonoBehaviour
     public int pageIndex;
     public List<int> defeatedEnemies = new List<int>(); // Lista para enemigos derrotados
 
-    void Start()
-    {
-        manualPanel.SetActive(false);
-        map.SetActive(false);
-        isManualShowing = false;
-        pageIndex = 0;
-    }
+void Start()
+{
+    manualPanel.SetActive(false);
+    map.SetActive(false);
+    isManualShowing = false;
+    pageIndex = 0;
+}
+
 
     private void Update()
     {
@@ -90,6 +91,7 @@ public class Manual : MonoBehaviour
     // Mostrar todos los textos de control si pageIndex es 0
     if (pageIndex == 0)
     {
+        Debug.Log("controles");
         foreach (TextMeshProUGUI text in controlText)
         {
             text.gameObject.SetActive(true); // Habilitar todos los elementos de controlText

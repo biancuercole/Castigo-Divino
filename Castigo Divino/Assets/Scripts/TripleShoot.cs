@@ -12,7 +12,7 @@ public class TripleShoot : MonoBehaviour
     [SerializeField] private float waitTime;
     private Animator smokeAnimator;
     private AudioManager audioManager;
-    private float soundCooldown = 0.3f;
+    private float soundCooldown = 0.9f;
     private float lastSoundTime;
     NavMeshAgent agent;
     private bool isShooting;

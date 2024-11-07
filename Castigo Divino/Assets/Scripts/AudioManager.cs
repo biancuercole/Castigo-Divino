@@ -102,6 +102,9 @@ public class AudioManager : MonoBehaviour
             case "PacificZone":
                 ChangeBackgroundMusic(pacifistZoneMusic);
                 break;
+            case "Cinematics":
+                ChangeBackgroundMusic(pacifistZoneMusic);
+                break;
             case "EnemyLevel":
                 ChangeBackgroundMusic(bossMusic);
                 break;

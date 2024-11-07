@@ -42,6 +42,7 @@ TagManager:
   - entradaShrine
   - Jefe
   - instruccion
+  - Level1Right
   layers:
   - Default
   - TransparentFX

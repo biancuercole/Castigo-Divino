@@ -11,7 +11,7 @@ public class Proyectiles: MonoBehaviour
     private Rigidbody2D rb;
 
     private AudioManager audioManager;
-    private float soundCooldown = 0.3f; 
+    private float soundCooldown = 0.9f; 
     private float lastSoundTime;
     private void Awake()
     {
