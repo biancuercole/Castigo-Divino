@@ -12,6 +12,8 @@ public class TripleShoot : MonoBehaviour
     [SerializeField] private float waitTime;
     private Animator smokeAnimator;
     private AudioManager audioManager;
+    private float soundCooldown = 0.9f;
+    private float lastSoundTime;
     NavMeshAgent agent;
     private bool isShooting;
     private bool inRange;
@@ -121,7 +123,11 @@ public class TripleShoot : MonoBehaviour
 
     void ShootProyectile(Vector2 direction)
     {
-        audioManager.playSound(audioManager.smokeShot);
+        if (Time.time - lastSoundTime >= soundCooldown)
+        {
+            audioManager.PlaySound(audioManager.smokeShot);
+            lastSoundTime = Time.time;
+        }
         GameObject proyectile = Instantiate(proyectilePrefab, transform.position, Quaternion.identity);
         TripleBullet proyectileScript = proyectile.GetComponent<TripleBullet>();
         proyectileScript.SetDirection(direction);

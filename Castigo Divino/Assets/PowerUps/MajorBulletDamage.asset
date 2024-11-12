@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c140a74fe59a794f8ff9d8817e181ca, type: 3}
   m_Name: MajorBulletDamage
   m_EditorClassIdentifier: 
-  amount: 1
+  amount: 0.2
+  managerData: {fileID: 0}

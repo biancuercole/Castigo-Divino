@@ -196,10 +196,10 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   damageParticle: {fileID: 2864178102878807860, guid: 00e453297c9156e419fa142c98999fd0, type: 3}
   explosionParticle: {fileID: 1470179279396867778, guid: 636f849900566fa40af387c40d8d4fda, type: 3}
-  health: 0
   portal: {fileID: 0}
   indiceNivel: 0
   bossMachine: {fileID: 0}
+  minionsBoss: {fileID: 0}
 --- !u!114 &8852067775631776650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38d30d628d8d19449644736d23d799d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  proyectilePrefab: {fileID: 2563805070802004030, guid: d323f66829e407f46a93444f1f5a8045, type: 3}
+  proyectilePrefab: {fileID: 2563805070802004030, guid: fbb8c331f02cb584c89da2903539ef7e, type: 3}
   player: {fileID: 0}
   shootDistance: 60
   WayPoints:

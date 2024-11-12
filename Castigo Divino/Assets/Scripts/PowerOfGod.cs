@@ -14,6 +14,7 @@ public class PowerOfGod : MonoBehaviour
     public float flickerTime = 0.2f;
     private bool isFlickering = false;
 
+    [SerializeField] private GameObject powerUpText;
     private void Start()
     {
         barImage.color = Color.gray;
@@ -26,6 +27,8 @@ public class PowerOfGod : MonoBehaviour
 
         // Actualizar la barra de poder con el valor actual
         UpdatePowerUpBar(currentPower);
+
+        powerUpText.SetActive(false);
     }
 
     private void Update()
@@ -62,14 +65,19 @@ public class PowerOfGod : MonoBehaviour
     {
         isFlickering = true;
 
+        powerUpText.SetActive(true);
+
+
         while (currentPower >= maxBar)
         {
             barImage.enabled = !barImage.enabled;
+            powerUpText.SetActive(!powerUpText.activeSelf);
             yield return new WaitForSeconds(flickerTime);
         }
 
         barImage.enabled = true;
         isFlickering = false;
+        powerUpText.SetActive(false);
     }
 
     public void ShowBar()

@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Rotation : MonoBehaviour
 {
-    public BulletType selectedBulletType = BulletType.Fire;  
+    public BulletType selectedBulletType = BulletType.Fire;
 
     [SerializeField] private float rotationSpeed;
     [SerializeField] private Transform shootPosition;
@@ -23,6 +22,8 @@ public class Rotation : MonoBehaviour
     [SerializeField] private Sprite airSprite;
     [SerializeField] private Sprite earthSprite;
 
+    private float lastScrollTime;
+    [SerializeField] private float scrollCooldown = 0.1f; 
     void Start()
     {
         cam = Camera.main;
@@ -32,9 +33,10 @@ public class Rotation : MonoBehaviour
         canShoot = true;
         UpdateBulletUIColor();
     }
+
     private void Update()
     {
-        // Cambia el tipo de bala segun la tecla presionada
+       
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             selectedBulletType = BulletType.Water;
@@ -56,29 +58,32 @@ public class Rotation : MonoBehaviour
             UpdateBulletUIColor();
         }
 
-        //cambiar de bala usando la rueda del mouse
+        
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll > 0f)
+        if (Time.time >= lastScrollTime + scrollCooldown)
         {
-            CycleBulletType(1);  
-        }
-        else if (scroll < 0f)
-        {
-            CycleBulletType(-1); 
+            if (scroll > 0f)
+            {
+                CycleBulletType(1);
+                lastScrollTime = Time.time;
+            }
+            else if (scroll < 0f)
+            {
+                CycleBulletType(-1);
+                lastScrollTime = Time.time;
+            }
         }
 
-        Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition); 
+        Vector2 mouseWorldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mouseWorldPoint - (Vector2)transform.position;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-
-     
         if (Input.GetMouseButtonDown(0) && Time.time >= lastShootTime + shootCooldown && canShoot)
         {
             lastShootTime = Time.time;
-   
+
             if (tripleShotEnabled)
             {
                 ShootMultipleBullets(direction, angle);
@@ -92,24 +97,19 @@ public class Rotation : MonoBehaviour
 
     private void ShootSingleBullet(Vector2 direction, float angle)
     {
-            GameObject bullet = BulletPool.Instance.RequestBullet();
-            if (bullet != null)
-            {
-                animator.SetBool("Shooting", true);
-                bullet.transform.position = shootPosition.position;
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+        GameObject bullet = BulletPool.Instance.RequestBullet();
+        if (bullet != null)
+        {
+            animator.SetBool("Shooting", true);
+            bullet.transform.position = shootPosition.position;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
 
-                Bullets bulletComponent = bullet.GetComponent<Bullets>();
-                bulletComponent.bulletType = selectedBulletType;
-                //Debug.Log($"Shooting bullet of type: {bulletComponent.bulletType}"); // Debugging
-                bulletComponent.LaunchBullet(direction);
+            Bullets bulletComponent = bullet.GetComponent<Bullets>();
+            bulletComponent.bulletType = selectedBulletType;
+            bulletComponent.LaunchBullet(direction);
 
-                Invoke("ResetShootingAnimation", shootAnimationDuration);
-            }
-            else
-            {
-                //Debug.LogWarning("No bullet available to shoot");
-            }
+            Invoke("ResetShootingAnimation", shootAnimationDuration);
+        }
     }
 
     private void ShootMultipleBullets(Vector2 direction, float angle)
@@ -121,21 +121,14 @@ public class Rotation : MonoBehaviour
             GameObject bullet = BulletPool.Instance.RequestBullet();
             if (bullet != null)
             {
-                // Ajusta la posición de las balas para que no todas salgan del mismo punto
-                Vector3 bulletPositionOffset = shootPosition.right * (i - 1) * bulletSpacing; // Desplaza en el eje X
+                Vector3 bulletPositionOffset = shootPosition.right * (i - 1) * bulletSpacing;
                 bullet.transform.position = shootPosition.position + bulletPositionOffset;
                 bullet.transform.rotation = Quaternion.Euler(0, 0, angle + angleOffsets[i]);
 
-                // Configura la dirección ajustada de cada bala
                 Vector2 adjustedDirection = Quaternion.Euler(0, 0, angleOffsets[i]) * direction;
                 Bullets bulletComponent = bullet.GetComponent<Bullets>();
                 bulletComponent.bulletType = selectedBulletType;
-                //Debug.Log($"Shooting bullet of type: {bulletComponent.bulletType}");
-                bullet.GetComponent<Bullets>().LaunchBullet(adjustedDirection);
-            }
-            else
-            {
-                //Debug.LogWarning("No bullet available to shoot");
+                bulletComponent.LaunchBullet(adjustedDirection);
             }
         }
 
@@ -186,8 +179,4 @@ public class Rotation : MonoBehaviour
         tripleShotEnabled = false;
         managerData.isTripleShotBought = false;
     }
-
-
 }
-
-

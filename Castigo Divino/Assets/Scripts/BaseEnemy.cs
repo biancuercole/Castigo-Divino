@@ -1,8 +1,6 @@
 using System.Collections;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Events;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamageType
 {
@@ -10,7 +8,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private GameObject damageParticle;
     [SerializeField] private GameObject explosionParticle;
-    public float health;
+    private float health;
     private bool isDead = false;
     private AudioManager audioManager;
     private Collider2D enemyCollider;
@@ -24,11 +22,14 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     [SerializeField] private MinionsBoss minionsBoss;
     private PlayerMovement playerMovement;
     private ManagerData managerData;
+    private int enemyIndex;
+    private Manual manual;
 
-    private float lastHealthThreshold; // Nueva variable
+    private float lastHealthThreshold;
 
     protected virtual void Start()
     {
+        manual = FindObjectOfType<Manual>();
         animator = GetComponent<Animator>();
         health = maxHealth;
         audioManager = FindObjectOfType<AudioManager>();
@@ -37,10 +38,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         managerData = FindObjectOfType<ManagerData>();
         playerMovement = FindObjectOfType<PlayerMovement>();
         bossMachine = GetComponent<BossMachine>();
-        health = maxHealth;
-        //healthBar.UpdateHealthBar(maxHealth, health);
         spriteRenderer = GetComponent<SpriteRenderer>();
-        lastHealthThreshold = maxHealth; // Inicializar con la salud m�xima
+        lastHealthThreshold = maxHealth;
     }
 
     public virtual void TakeDamage(float damage, BulletType bulletType)
@@ -63,7 +62,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             animator.SetBool("Damage", true);
             yield return new WaitForSeconds(1.0f);
             animator.SetBool("Damage", false);
-
         }
 
         if (health <= 0 && !isDead)
@@ -75,30 +73,48 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
 
     protected virtual void HandleDeath()
     {
-        StartCoroutine(deathAnimation());
+        StartCoroutine(DeathAnimation());
     }
 
-    private IEnumerator deathAnimation()
+    private IEnumerator DeathAnimation()
     {
         animator.SetTrigger("Explode");
         yield return new WaitForSecondsRealtime(0.7f);
-        deathEnd();
+        DeathEnd();
     }
 
-    protected virtual void deathEnd()
+    protected virtual void DeathEnd()
     {
+        string tag = gameObject.tag;
+        switch (tag)
+        {
+            case "fuego":
+                enemyIndex = 0;
+                break;
+            case "tronco":
+                enemyIndex = 1;
+                break;
+            case "Humo":
+                enemyIndex = 2;
+                break;
+            default:
+                enemyIndex = -1;
+                break;
+        }
+
+        if (manual != null && enemyIndex != -1)
+        {
+            manual.ShowDefeatedEnemies(enemyIndex);
+        }
+
         Destroy(gameObject);
-        //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         CameraMovement.Instance.MoveCamera(5, 5, 1.5f);
-    
         GetComponent<LootBag>().InstantiateLoot(transform.position);
-        GameEvents.EnemyDefeated(); // Llama al m�todo de NextStage cuando el enemigo sea derrotado
+        GameEvents.EnemyDefeated();
         enemyLevel.EnemigoEliminado();
         enemyCollider.enabled = false;
-        // healthBar.HideBar(); 
     }
 
-    //Todo lo de abajo es el manejo de daño y muerte del boss
     private IEnumerator GetDamageBoss(float damage)
     {
         healthBar.ShowBar();
@@ -113,26 +129,23 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             }
             damageCoroutine = StartCoroutine(FlashDamage());
 
-            UpdateHealthBoss(); // Llama a la funci�n para verificar si se debe cambiar el estado
+            UpdateHealthBoss();
         }
         else
         {
             minionsBoss.KillAllMinions();
             audioManager.ChangeBackgroundMusic(audioManager.gameMusic);
-            managerData.level1Finished = true; // Asigna directamente el booleano
+            managerData.level1Finished = true;
             CameraMovement.Instance.MoveCamera(7, 5, 3f);
-            //Instantiate(explosionParticle, transform.position, Quaternion.identity);
             animator.SetTrigger("Explode");
             yield return new WaitForSecondsRealtime(1f);
             Destroy(gameObject);
             healthBar.HideBar();
-            //Debug.Log("muerto");
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             audioManager.playSound(audioManager.portalSound);
             portal.EnablePortal();
         }
 
-        //Debug.Log("Vida JEFE " + health);
         yield return null;
     }
 
@@ -142,9 +155,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
         ColorUtility.TryParseHtmlString("#FFBD00", out customColor);
         Instantiate(damageParticle, transform.position, Quaternion.identity);
         animator.SetBool("Damage", true);
-        float damageDuration = 0.15f;
         spriteRenderer.color = customColor;
-        yield return new WaitForSeconds(damageDuration);
+        yield return new WaitForSeconds(0.15f);
         spriteRenderer.color = Color.white;
         animator.SetBool("Damage", false);
     }
@@ -153,11 +165,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
     {
         if ((lastHealthThreshold - health) >= 10f)
         {
-            bossMachine.StateMachine(); // Cambiar el estado del jefe
-            lastHealthThreshold = health; // Actualiza el umbral de salud
+            bossMachine.StateMachine();
+            lastHealthThreshold = health;
             healthBar.UpdateHealthBar(maxHealth, health);
         }
     }
 }
-
-

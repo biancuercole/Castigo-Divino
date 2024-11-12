@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine;
 
@@ -18,32 +16,50 @@ public class Trigger : MonoBehaviour
     private int currentHealth;
 
     private bool playerInRange = false;
-    private bool shopOpen = false;
+    public bool shopOpen = false;
     private bool itemOpen = false;
     public bool dialogueStartTrigger = false;
     public bool interactions = false;
 
     private void Start()
     {
-        uiShop.Hide();  
+        uiShop.Hide();
         item.Hide();
     }
 
     private void Update()
     {
-
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            HandleInteraction(); // metodo que maneja las interacciones
+        {/*
+            Debug.Log("Jugador presionó 'E'. Verificando tipo de objeto...");
+            if (gameObject.CompareTag("Shop"))
+            {
+                if (!shopOpen && dialogue.IsDialogueFinished())
+                {
+                    ToggleShop();
+                }
+                else if (shopOpen)
+                {
+                    CloseShop();
+                }
+            }
+            else
+            {*/
+                HandleInteraction();
+            /* }*/
+            if (shopOpen && Input.GetKeyDown(KeyCode.E))
+            {
+                dialogue.lineIndex++;
+            }
         }
     }
 
     private void HandleInteraction()
     {
-        if (gameObject.CompareTag("Shop"))
+      /*  if (gameObject.CompareTag("Shop"))
         {
             ToggleShop();
-        }
+        }*/
         if (gameObject.CompareTag("GestionMejoras"))
         {
             ToggleItemManagement();
@@ -52,33 +68,49 @@ public class Trigger : MonoBehaviour
         {
             RecoverHealth();
         }
-        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2") || gameObject.CompareTag("Level3"))
+        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2") || gameObject.CompareTag("Level3") || gameObject.CompareTag("Level1Right"))
         {
             Portals();
+        }
+        if(gameObject.CompareTag("instruccion"))
+        {
+            targetObject.SetActive(true);  
         }
     }
 
     public void ToggleShop()
     {
-        if (dialogueStartTrigger)
+        Debug.Log("Intentando cambiar estado de la tienda...");
+        if (shopOpen)
         {
-            if (shopOpen)
-            {
-                uiShop.Hide();
-                dialogue.didDialogueStart = false;
-                //Debug.Log("Tienda cerrada");
-            }
-            else
-            {
-                dialogue.didDialogueStart = true;
-                uiShop.Show();
-             //   ToolTipManager.instance.HideToolTip();
-                targetObject.SetActive(false);
-                //Debug.Log("Tienda abierta");
-            }
-            shopOpen = !shopOpen;
+            CloseShop();
         }
-        dialogueStartTrigger = false;
+        else if (!shopOpen && dialogue.IsDialogueFinished())
+        {
+            OpenShop();
+        }
+        else
+        {
+            Debug.Log("Diálogo no ha terminado, no se puede abrir la tienda.");
+        }
+    }
+    private void OpenShop()
+    {
+        Debug.Log("Tienda abierta");
+        dialogue.didDialogueStart = true;  // Inicia el diálogo
+        uiShop.Show();  // Muestra la tienda
+        targetObject.SetActive(false);  // Oculta el objeto del jugador
+        shopOpen = true;  // Marca la tienda como abierta
+    }
+
+
+    public void CloseShop()
+    {
+        uiShop.Hide();  // Oculta la tienda
+        dialogue.didDialogueStart = false;  // Finaliza el diálogo
+        shopOpen = false;  // Marca la tienda como cerrada
+        dialogue.lineIndex = dialogue.dialogueLines.Length;
+        Debug.Log("Tienda cerrada");
     }
 
     private void ToggleItemManagement()
@@ -91,7 +123,6 @@ public class Trigger : MonoBehaviour
         else
         {
             item.Show();
-          //  ToolTipManager.instance.HideToolTip();
             targetObject.SetActive(false);
             //Debug.Log("Gesti�n de mejoras abierta");
         }
@@ -101,7 +132,7 @@ public class Trigger : MonoBehaviour
     private void RecoverHealth()
     {
         playerHealth.health = 4;
-        Debug.Log("vida" +  playerHealth.health);
+        Debug.Log("vida" + playerHealth.health);
         managerData.health = 4;
         currentHealth = managerData.health;
         PlayerPrefs.SetInt("PlayerHealth", managerData.health);
@@ -111,7 +142,7 @@ public class Trigger : MonoBehaviour
 
     private void Portals()
     {
-        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2"))
+        if (gameObject.CompareTag("Level1") || gameObject.CompareTag("Level2") || gameObject.CompareTag("Level1Right"))
         {
             entrances.ChangeScene();
         }
@@ -127,14 +158,7 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = true;
-          //  GameObject targetTransform = targetObject.gameObject;
             targetObject.SetActive(true);
-
-            // Convertir las coordenadas de mundo a coordenadas de pantalla
-            /*Vector3 screenPosition = Camera.main.WorldToScreenPoint(targetTransform.position);
-
-            ToolTipManager.instance.ShowTriggerToolTip(message, screenPosition);
-            Debug.Log("ToolTipShow");*/
         }
     }
 
@@ -143,10 +167,8 @@ public class Trigger : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             playerInRange = false;
-            //ToolTipManager.instance.HideToolTip();
-           // GameObject targetTransform = targetObject.gameObject;
             targetObject.SetActive(false);
-            CloseAllInteractions(); 
+            CloseAllInteractions();
         }
     }
 

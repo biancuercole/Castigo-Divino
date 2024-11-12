@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Manual : MonoBehaviour
 {
     private bool isManualShowing;
     [SerializeField] private GameObject manualPanel;
-    [SerializeField] private TMP_Text manualText;
-    [SerializeField, TextArea(4, 6)] private string[] manualLines;
+    [SerializeField] private Image manualImage;
+    [SerializeField] private Sprite[] manualImages;
+    [SerializeField] private Image[] enemyCollected;
     [SerializeField] private Rotation rotation;
-    private int pageIndex;
     [SerializeField] private GameObject map;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private TextMeshProUGUI[] controlText; 
 
-    void Start()
-    {
-        manualPanel.SetActive(false);
-        map.SetActive(false);
-        isManualShowing = false;
-        pageIndex = 0;
-    }
+    public int pageIndex;
+    public List<int> defeatedEnemies = new List<int>(); // Lista para enemigos derrotados
+
+void Start()
+{
+    manualPanel.SetActive(false);
+    map.SetActive(false);
+    isManualShowing = false;
+    pageIndex = 0;
+}
 
 
     private void Update()
@@ -39,7 +45,6 @@ public class Manual : MonoBehaviour
 
     public void Show()
     {
-        //.Log("Manual");
         isManualShowing = true;
         Time.timeScale = 0f;
         manualPanel.SetActive(true);
@@ -49,54 +54,119 @@ public class Manual : MonoBehaviour
 
     public void Hide()
     {
-        //Debug.Log("Reanudar");
         isManualShowing = false;
         Time.timeScale = 1f;
         manualPanel.SetActive(false);
         rotation.canShoot = true;
         map.SetActive(false);
+        menu.SetActive(false);
+        pageIndex = 0;
+        foreach (TextMeshProUGUI text in controlText)
+        {
+            text.gameObject.SetActive(false); // Deshabilitar si no es la página 0
+        }
     }
 
     public void showPage(int pageIndex)
     {
-        manualText.text = string.Empty;
-        foreach (char ch in manualLines[pageIndex])
+        if (pageIndex >= 0 && pageIndex < manualImages.Length)
         {
-            manualText.text += ch;
+            manualImage.sprite = manualImages[pageIndex];
         }
+
+        if (pageIndex == 1) // Mostrar enemigos solo en la página 1
+        {
+            UpdateDefeatedEnemiesUI();
+        }
+        else
+        {
+            HideDefeatedEnemies();
+        }
+
+    if (pageIndex == 1) // Mostrar enemigos solo en la página 1
+    {
+        UpdateDefeatedEnemiesUI();
+    }
+    else
+    {
+        HideDefeatedEnemies();
+    }
+
+    // Mostrar todos los textos de control si pageIndex es 0
+    if (pageIndex == 0)
+    {
+        Debug.Log("controles");
+        foreach (TextMeshProUGUI text in controlText)
+        {
+            text.gameObject.SetActive(true); // Habilitar todos los elementos de controlText
+        }
+    }
+    else
+    {
+        foreach (TextMeshProUGUI text in controlText)
+        {
+            text.gameObject.SetActive(false); // Deshabilitar si no es la página 0
+        }
+    }
+
         map.SetActive(false);
+        menu.SetActive(false);
+    }
+
+    private void HideDefeatedEnemies()
+    {
+        foreach (Image enemy in enemyCollected)
+        {
+            enemy.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowDefeatedEnemies(int enemyIndex)
+    {
+        if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length)
+        {
+            ManagerData.Instance.AddDefeatedEnemy(enemyIndex);
+        }
+    }
+
+    private void UpdateDefeatedEnemiesUI()
+    {
+        foreach (int enemyIndex in ManagerData.Instance.defeatedEnemies)
+        {
+            if (enemyIndex >= 0 && enemyIndex < enemyCollected.Length)
+            {
+                enemyCollected[enemyIndex].gameObject.SetActive(true); // Muestra el enemigo
+            }
+        }
     }
 
     public void showMap()
     {
-        //Debug.Log("Llamada a showMap() con �ndice: " + pageIndex);
         map.SetActive(true);
-        //Debug.Log("mapa abierto en indice 3");
     }
 
-    /*public void NextPage(int pageIndex)
+    public void showMenu()
+    {
+        menu.SetActive(true);
+    }
+
+    public void NextPage()
     {
         pageIndex++;
-        if(pageIndex < manualLines.Length)
-        {
-            showPage();
-        } else
+        if (pageIndex >= manualImages.Length)
         {
             pageIndex = 0;
-            showPage();
         }
-    }*/
+        showPage(pageIndex);
+    }
 
-    /*public void PreviousPage()
+    public void PreviousPage()
     {
         pageIndex--;
-        if(pageIndex >= 0)
+        if (pageIndex < 0)
         {
-            showPage();
-        }else 
-        {
-            pageIndex = 0;
-            showPage();
+            pageIndex = manualImages.Length - 1;
         }
-    }*/
+        showPage(pageIndex);
+    }
 }

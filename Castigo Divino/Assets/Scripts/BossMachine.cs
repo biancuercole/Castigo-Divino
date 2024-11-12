@@ -32,6 +32,10 @@ public class BossMachine : MonoBehaviour
     private bool isWaiting; //espera waypoints
 
     [SerializeField] public int damage;
+
+    private AudioManager audioManager;
+    private float soundCooldown = 0.9f;
+    private float lastSoundTime;
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -47,7 +51,8 @@ public class BossMachine : MonoBehaviour
         bossAnimator = GetComponent<Animator>();
         agent.SetDestination(player.position);
         isWaiting = false;
-       // agent.SetDestination(WayPoints[currentWaypoint].position);
+        // agent.SetDestination(WayPoints[currentWaypoint].position);
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     public void OnActive()
@@ -162,6 +167,11 @@ public class BossMachine : MonoBehaviour
     private IEnumerator Shoot()
     {
         isShooting = true;
+        if (Time.time - lastSoundTime >= soundCooldown)
+        {
+            audioManager.PlaySound(audioManager.flameShot);
+            lastSoundTime = Time.time;
+        }
         // Verifica que bulletPrefab no sea null
         if (bulletPrefab != null && bulletSpawnPoint != null)
         {
@@ -179,8 +189,13 @@ public class BossMachine : MonoBehaviour
     IEnumerator TripleShoot()
     {
         isShooting = true;
-            // Disparar 3 balas en diferentes direcciones
-            Vector2 directionToPlayer = (player.position - transform.position).normalized;
+        if (Time.time - lastSoundTime >= soundCooldown)
+        {
+            audioManager.PlaySound(audioManager.flameShot);
+            lastSoundTime = Time.time;
+        }
+        // Disparar 3 balas en diferentes direcciones
+        Vector2 directionToPlayer = (player.position - transform.position).normalized;
             ShootProyectile(directionToPlayer);
             ShootProyectile(Quaternion.Euler(0, 0, 45) * directionToPlayer); // 45° abajo
           //  ShootProyectile(Quaternion.Euler(0, 0, 25) * directionToPlayer); // 45° arriba
@@ -219,7 +234,7 @@ public class BossMachine : MonoBehaviour
         PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.GetDamage(damage, this.gameObject);
+            playerHealth.GetDamage(damage /*this.gameObject*/);
         }
     }
 }

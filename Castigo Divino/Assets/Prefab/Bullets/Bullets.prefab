@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3423878006308847333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.035248, y: -8951.588, z: 0}
+  m_LocalPosition: {x: -10.903044, y: -8955.096, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 2.356067}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_Sprite: {fileID: -2413806693520163455, guid: 58b8fcd90badee2438ee8b3388aaaec0, type: 3}
-  m_Color: {r: 1, g: 0.74101985, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -205,8 +205,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.7411765, b: 0, a: 0.49019608}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 1, g: 0.7411765, b: 0, a: 1}
+      key1: {r: 1, g: 0.7411765, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -237,7 +237,7 @@ TrailRenderer:
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    textureScale: {x: 1, y: 1}
+    textureScale: {x: 3, y: 3}
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1

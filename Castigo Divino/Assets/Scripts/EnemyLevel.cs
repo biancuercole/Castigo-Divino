@@ -11,17 +11,26 @@ public class EnemyLevel : MonoBehaviour
     private int enemigosRestantes; 
     public int contadorOleadas = 0; // Contador de oleadas
     public int maxOleadas = 2; // Número máximo de oleadas (en este caso, 2)
+    public float tiempoEntreOleadas = 5f; // Tiempo de espera entre oleadas
 
     void Update()
     {
         if (comenzarOleada && enemigosRestantes <= 0 && contadorOleadas < maxOleadas)
         {
+            comenzarOleada = false; // Evita que se llame varias veces al Coroutine
             StartCoroutine(GenerarOleada());
         }
     }
 
     IEnumerator GenerarOleada()
     {
+        // Espera antes de comenzar la oleada (solo para las oleadas después de la primera)
+        if (contadorOleadas > 0) 
+        {
+            Debug.Log("Esperando para la siguiente oleada...");
+            yield return new WaitForSeconds(tiempoEntreOleadas);
+        }
+
         enemigosRestantes = spawnPoints.Length;
         contadorOleadas++; // Incrementa el contador de oleadas
 
@@ -35,13 +44,12 @@ public class EnemyLevel : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
 
-        // Espera 2 segundos antes de permitir que otra oleada comience
-        yield return new WaitForSeconds(2f);
+        Debug.Log($"Oleada {contadorOleadas} comenzada.");
     }
 
     public void EnemigoEliminado()
     {
-        if (comenzarOleada && enemigosRestantes > 0)
+        if (enemigosRestantes > 0)
         {
             enemigosRestantes--;
 
@@ -57,7 +65,6 @@ public class EnemyLevel : MonoBehaviour
             }
             else if (enemigosRestantes <= 0 && contadorOleadas >= maxOleadas)
             {
-                comenzarOleada = false; // No permitir más oleadas después de la última
                 Debug.Log("Se completaron todas las oleadas.");
             }
         }
