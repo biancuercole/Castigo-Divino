@@ -11,7 +11,7 @@ public class TransicionEscena : MonoBehaviour
     private ManagerData managerData;
     private float progresoSimulado = 0f;
     private const float VELOCIDAD_LLENADO = 1.5f; // Velocidad para llenar la barra más lentamente
-
+    public bool inTransition = false;
     void Start()
     {
         managerData = FindObjectOfType<ManagerData>();
@@ -26,6 +26,7 @@ public class TransicionEscena : MonoBehaviour
 
     private IEnumerator CargarEscenaConTransicion(string sceneName)
     {
+        inTransition = true;
         Time.timeScale = 1;
         animator.SetTrigger("StartTransition");
         
@@ -54,6 +55,7 @@ public class TransicionEscena : MonoBehaviour
         }
 
         barraProgreso.gameObject.SetActive(false);
+        inTransition = false;
     }
 
     public void CambiarNivel(string sceneName)

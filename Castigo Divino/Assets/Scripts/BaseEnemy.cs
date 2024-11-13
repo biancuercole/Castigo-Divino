@@ -97,6 +97,9 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             case "Humo":
                 enemyIndex = 2;
                 break;
+            case "Jefe":
+                enemyIndex = 3;
+                break;
             default:
                 enemyIndex = -1;
                 break;
@@ -144,6 +147,7 @@ public abstract class BaseEnemy : MonoBehaviour, IDamageType
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             audioManager.playSound(audioManager.portalSound);
             portal.EnablePortal();
+            DeathEnd();
         }
 
         yield return null;

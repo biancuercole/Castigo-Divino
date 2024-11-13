@@ -113,7 +113,7 @@ void Start()
         menu.SetActive(false);
     }
 
-    private void HideDefeatedEnemies()
+    public void HideDefeatedEnemies()
     {
         foreach (Image enemy in enemyCollected)
         {

@@ -19,7 +19,7 @@ public class EarthEnemy : BaseEnemy
             case BulletType.Earth:
                 damage *= 0.5f;
                 break;
-            case BulletType.GodPower:
+           case BulletType.GodPower:
                 damage *= 1f;
                 break;
         }

@@ -157,14 +157,14 @@ public class UIshop : MonoBehaviour
 
     public void Show()
     {
-        Debug.Log("Tienda abriendose");
+    //    Debug.Log("Tienda abriendose");
         container.gameObject.SetActive(true);
         rotation.canShoot = false;
     }
 
     public void Hide()
     {
-        Debug.Log("Tienda cerrandose");
+       // Debug.Log("Tienda cerrandose");
         container.gameObject.SetActive(false);
         rotation.canShoot = true;
     }
