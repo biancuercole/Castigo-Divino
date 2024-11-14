@@ -35467,7 +35467,7 @@ MonoBehaviour:
   player: {fileID: 1957976470}
   enemiesCount: 0
   keyCount: 0
-  enemiesNeeded: 10
+  enemiesNeeded: 15
   keysNeeded: 0
   closedSprite: {fileID: 21300000, guid: 7142c5c7f90093c49acb98d3bd898d2e, type: 3}
   openSprite: {fileID: 21300000, guid: 7142c5c7f90093c49acb98d3bd898d2e, type: 3}
