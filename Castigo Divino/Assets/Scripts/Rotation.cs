@@ -139,7 +139,13 @@ public class Rotation : MonoBehaviour
     private void CycleBulletType(int direction)
     {
         int bulletCount = System.Enum.GetValues(typeof(BulletType)).Length;
-        int newBulletIndex = ((int)selectedBulletType + direction + bulletCount) % bulletCount;
+        int newBulletIndex = (int)selectedBulletType;
+
+        do
+        {
+            newBulletIndex = (newBulletIndex + direction + bulletCount) % bulletCount;
+        } while ((BulletType)newBulletIndex == BulletType.GodPower);
+
         selectedBulletType = (BulletType)newBulletIndex;
         UpdateBulletUIColor();
     }

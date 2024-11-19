@@ -53,19 +53,18 @@ public class EnemyLevel : MonoBehaviour
         {
             enemigosRestantes--;
 
-            if (enemigosRestantes <= 0 && contadorOleadas < maxOleadas)
+            if (enemigosRestantes <= 0)
             {
-                // Abre la puerta solo si aún no se ha hecho
-                if (!abrirPuerta)
+                if (contadorOleadas < maxOleadas)
                 {
-                    abrirPuerta = true;
-                    Debug.Log("Puerta abierta");
+                    comenzarOleada = true; // Permite que la siguiente oleada comience
                 }
-                comenzarOleada = true; // Permite que la siguiente oleada comience
-            }
-            else if (enemigosRestantes <= 0 && contadorOleadas >= maxOleadas)
-            {
-                Debug.Log("Se completaron todas las oleadas.");
+                else
+                {
+                    // Se han completado todas las oleadas
+                    Debug.Log("Se completaron todas las oleadas.");
+                    GameEvents.AllRoundsCompleted(); // Invoca el evento para abrir la puerta
+                }
             }
         }
     }

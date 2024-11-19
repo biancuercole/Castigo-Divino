@@ -6,17 +6,21 @@ using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour
 {
-    [SerializeField] GameObject menuPause;
-    [SerializeField] GameObject MusicAndSoundMenu;
     [SerializeField] private ManagerData managerData;
     private bool gamePaused = false;
     private GameMaster gm;
-    [SerializeField] PlayerHealth playerHealth;
     [SerializeField] Rotation rotation;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] private Manual manual;
     private bool inmortality = false;
     public Toggle toggle;
+    [SerializeField] private TransicionEscena transitionScene;
+
+    //Manual
+   [SerializeField] private Image troncoManual;
+    [SerializeField] private Image fuegoManual;
+    [SerializeField] private Image humoManual;
+    [SerializeField] private Image jefeManual;
     private void Start()
     {
         gm = FindObjectOfType<GameMaster>();
@@ -31,7 +35,7 @@ public class MenuPause : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !transitionScene.inTransition)
         {
             if (gamePaused) 
             {
@@ -60,8 +64,8 @@ public class MenuPause : MonoBehaviour
         //Debug.Log("Reanudar");
         gamePaused = false;
         Time.timeScale = 1f;
-        menuPause.SetActive(false);
-        MusicAndSoundMenu.SetActive(false);
+     //   menuPause.SetActive(false);
+     //  MusicAndSoundMenu.SetActive(false);
         rotation.canShoot = true;
         manual.Hide();
         manual.pageIndex = 0;
@@ -83,9 +87,10 @@ public class MenuPause : MonoBehaviour
         managerData.ResetGameData();
         SceneManager.LoadScene("PacificZone");
         gm.lastCheckpoint = Vector2.zero;
+        manual.HideDefeatedEnemies();
     }
 
-    public void Inmortality()
+  /*  public void Inmortality()
     {
         inmortality = !inmortality; 
 
@@ -101,9 +106,9 @@ public class MenuPause : MonoBehaviour
             toggle.isOn = false;
             Debug.Log("Inmortalidad desactivada ");
         }
-    }
+    }*/
 
-    public void MusicAndSound()
+  /*  public void MusicAndSound()
     {
         MusicAndSoundMenu.SetActive(true);
     }
@@ -111,5 +116,5 @@ public class MenuPause : MonoBehaviour
     public void BackToMenu()
     {
         MusicAndSoundMenu.SetActive(false);
-    }
+    }*/
 }

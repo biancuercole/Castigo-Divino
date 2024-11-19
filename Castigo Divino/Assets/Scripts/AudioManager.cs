@@ -89,12 +89,11 @@ public class AudioManager : MonoBehaviour
     private void SetBackgroundMusic()
     {
        string sceneName = SceneManager.GetActiveScene().name;
-        SetMusicVolume(sliderVolume.musicVolume);
-        SetSoundVolume(sliderVolume.soundVolume);
+       
         switch (sceneName)
         {
             case "Menu":
-                StartCoroutine(FadeIn(musicSource, 3));
+                ChangeBackgroundMusic(menuMusic);
                 break;
            case "GameScene":
                 ChangeBackgroundMusic(gameMusic);
@@ -109,7 +108,7 @@ public class AudioManager : MonoBehaviour
                 ChangeBackgroundMusic(bossMusic);
                 break;
             case "Credits":
-                ChangeBackgroundMusic(pacifistZoneMusic);
+                ChangeBackgroundMusic(menuMusic);
                 break;
             case "GameOver":
                 ChangeBackgroundMusic(pacifistZoneMusic);
@@ -117,6 +116,8 @@ public class AudioManager : MonoBehaviour
         }
         soundSource.Play();
         musicSource.Play();
+        SetMusicVolume(sliderVolume.musicVolume);
+        SetSoundVolume(sliderVolume.soundVolume);
     }
 
     public void playSound(AudioClip clip)
